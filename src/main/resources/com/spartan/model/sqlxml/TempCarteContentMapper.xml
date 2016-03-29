@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.spartan.dao.TempCarteContentMapper" >
+  <resultMap id="BaseResultMap" type="com.spartan.model.TempCarteContent" >
+    <id column="TCCID" property="tccid" jdbcType="INTEGER" />
+    <result column="TCISwiftNumber" property="tciswiftnumber" jdbcType="VARCHAR" />
+    <result column="TCCDishID" property="tccdishid" jdbcType="INTEGER" />
+    <result column="TCCDishNum" property="tccdishnum" jdbcType="TINYINT" />
+    <result column="TCCTotalPrice" property="tcctotalprice" jdbcType="DECIMAL" />
+    <result column="TCCSpecilDesc" property="tccspecildesc" jdbcType="VARCHAR" />
+    <result column="delFlag" property="delflag" jdbcType="TINYINT" />
+    <result column="lastSubTime" property="lastsubtime" jdbcType="TIMESTAMP" />
+    <result column="subBy" property="subby" jdbcType="INTEGER" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_tempcartecontent
+    where TCCID = #{tccid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.spartan.model.TempCarteContent" >
+    insert into t_tempcartecontent (TCCID, TCISwiftNumber, TCCDishID, 
+      TCCDishNum, TCCTotalPrice, TCCSpecilDesc, 
+      delFlag, lastSubTime, subBy
+      )
+    values (#{tccid,jdbcType=INTEGER}, #{tciswiftnumber,jdbcType=VARCHAR}, #{tccdishid,jdbcType=INTEGER}, 
+      #{tccdishnum,jdbcType=TINYINT}, #{tcctotalprice,jdbcType=DECIMAL}, #{tccspecildesc,jdbcType=VARCHAR}, 
+      #{delflag,jdbcType=TINYINT}, #{lastsubtime,jdbcType=TIMESTAMP}, #{subby,jdbcType=INTEGER}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.spartan.model.TempCarteContent" >
+    update t_tempcartecontent
+    set TCISwiftNumber = #{tciswiftnumber,jdbcType=VARCHAR},
+      TCCDishID = #{tccdishid,jdbcType=INTEGER},
+      TCCDishNum = #{tccdishnum,jdbcType=TINYINT},
+      TCCTotalPrice = #{tcctotalprice,jdbcType=DECIMAL},
+      TCCSpecilDesc = #{tccspecildesc,jdbcType=VARCHAR},
+      delFlag = #{delflag,jdbcType=TINYINT},
+      lastSubTime = #{lastsubtime,jdbcType=TIMESTAMP},
+      subBy = #{subby,jdbcType=INTEGER}
+    where TCCID = #{tccid,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select TCCID, TCISwiftNumber, TCCDishID, TCCDishNum, TCCTotalPrice, TCCSpecilDesc, 
+    delFlag, lastSubTime, subBy
+    from t_tempcartecontent
+    where TCCID = #{tccid,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select TCCID, TCISwiftNumber, TCCDishID, TCCDishNum, TCCTotalPrice, TCCSpecilDesc, 
+    delFlag, lastSubTime, subBy
+    from t_tempcartecontent
+  </select>
+</mapper>

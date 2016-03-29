@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.spartan.dao.DinningTableMapper" >
+  <resultMap id="BaseResultMap" type="com.spartan.model.DinningTable" >
+    <id column="dTableID" property="dtableid" jdbcType="INTEGER" />
+    <result column="regionID" property="regionid" jdbcType="TINYINT" />
+    <result column="dTableName" property="dtablename" jdbcType="VARCHAR" />
+    <result column="dTableState" property="dtablestate" jdbcType="TINYINT" />
+    <result column="dTableDesc" property="dtabledesc" jdbcType="VARCHAR" />
+    <result column="dMaxConsumer" property="dmaxconsumer" jdbcType="INTEGER" />
+    <result column="dTableRemark" property="dtableremark" jdbcType="VARCHAR" />
+    <result column="delFlag" property="delflag" jdbcType="TINYINT" />
+    <result column="lastSubTime" property="lastsubtime" jdbcType="TIMESTAMP" />
+    <result column="subBy" property="subby" jdbcType="INTEGER" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_dinningtable
+    where dTableID = #{dtableid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.spartan.model.DinningTable" >
+    insert into t_dinningtable (dTableID, regionID, dTableName, 
+      dTableState, dTableDesc, dMaxConsumer, 
+      dTableRemark, delFlag, lastSubTime, 
+      subBy)
+    values (#{dtableid,jdbcType=INTEGER}, #{regionid,jdbcType=TINYINT}, #{dtablename,jdbcType=VARCHAR}, 
+      #{dtablestate,jdbcType=TINYINT}, #{dtabledesc,jdbcType=VARCHAR}, #{dmaxconsumer,jdbcType=INTEGER}, 
+      #{dtableremark,jdbcType=VARCHAR}, #{delflag,jdbcType=TINYINT}, #{lastsubtime,jdbcType=TIMESTAMP}, 
+      #{subby,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.spartan.model.DinningTable" >
+    update t_dinningtable
+    set regionID = #{regionid,jdbcType=TINYINT},
+      dTableName = #{dtablename,jdbcType=VARCHAR},
+      dTableState = #{dtablestate,jdbcType=TINYINT},
+      dTableDesc = #{dtabledesc,jdbcType=VARCHAR},
+      dMaxConsumer = #{dmaxconsumer,jdbcType=INTEGER},
+      dTableRemark = #{dtableremark,jdbcType=VARCHAR},
+      delFlag = #{delflag,jdbcType=TINYINT},
+      lastSubTime = #{lastsubtime,jdbcType=TIMESTAMP},
+      subBy = #{subby,jdbcType=INTEGER}
+    where dTableID = #{dtableid,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select dTableID, regionID, dTableName, dTableState, dTableDesc, dMaxConsumer, dTableRemark, 
+    delFlag, lastSubTime, subBy
+    from t_dinningtable
+    where dTableID = #{dtableid,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select dTableID, regionID, dTableName, dTableState, dTableDesc, dMaxConsumer, dTableRemark, 
+    delFlag, lastSubTime, subBy
+    from t_dinningtable
+  </select>
+</mapper>

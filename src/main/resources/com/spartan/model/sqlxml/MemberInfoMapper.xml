@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.spartan.dao.MemberInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.spartan.model.MemberInfo" >
+    <id column="memID" property="memid" jdbcType="INTEGER" />
+    <result column="memTypeID" property="memtypeid" jdbcType="INTEGER" />
+    <result column="memName" property="memname" jdbcType="VARCHAR" />
+    <result column="memUserName" property="memusername" jdbcType="VARCHAR" />
+    <result column="memPassword" property="mempassword" jdbcType="VARCHAR" />
+    <result column="memTel" property="memtel" jdbcType="VARCHAR" />
+    <result column="memPhone" property="memphone" jdbcType="VARCHAR" />
+    <result column="memAddress" property="memaddress" jdbcType="VARCHAR" />
+    <result column="memGender" property="memgender" jdbcType="TINYINT" />
+    <result column="memMoney" property="memmoney" jdbcType="DECIMAL" />
+    <result column="memIntegral" property="memintegral" jdbcType="INTEGER" />
+    <result column="memBirthday" property="membirthday" jdbcType="DATE" />
+    <result column="memBeginTime" property="membegintime" jdbcType="TIMESTAMP" />
+    <result column="memEndTime" property="memendtime" jdbcType="TIMESTAMP" />
+    <result column="delFlag" property="delflag" jdbcType="TINYINT" />
+    <result column="lastSubTime" property="lastsubtime" jdbcType="TIMESTAMP" />
+    <result column="subBy" property="subby" jdbcType="INTEGER" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_memberinfo
+    where memID = #{memid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.spartan.model.MemberInfo" >
+    insert into t_memberinfo (memID, memTypeID, memName, 
+      memUserName, memPassword, memTel, 
+      memPhone, memAddress, memGender, 
+      memMoney, memIntegral, memBirthday, 
+      memBeginTime, memEndTime, delFlag, 
+      lastSubTime, subBy)
+    values (#{memid,jdbcType=INTEGER}, #{memtypeid,jdbcType=INTEGER}, #{memname,jdbcType=VARCHAR}, 
+      #{memusername,jdbcType=VARCHAR}, #{mempassword,jdbcType=VARCHAR}, #{memtel,jdbcType=VARCHAR}, 
+      #{memphone,jdbcType=VARCHAR}, #{memaddress,jdbcType=VARCHAR}, #{memgender,jdbcType=TINYINT}, 
+      #{memmoney,jdbcType=DECIMAL}, #{memintegral,jdbcType=INTEGER}, #{membirthday,jdbcType=DATE}, 
+      #{membegintime,jdbcType=TIMESTAMP}, #{memendtime,jdbcType=TIMESTAMP}, #{delflag,jdbcType=TINYINT}, 
+      #{lastsubtime,jdbcType=TIMESTAMP}, #{subby,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.spartan.model.MemberInfo" >
+    update t_memberinfo
+    set memTypeID = #{memtypeid,jdbcType=INTEGER},
+      memName = #{memname,jdbcType=VARCHAR},
+      memUserName = #{memusername,jdbcType=VARCHAR},
+      memPassword = #{mempassword,jdbcType=VARCHAR},
+      memTel = #{memtel,jdbcType=VARCHAR},
+      memPhone = #{memphone,jdbcType=VARCHAR},
+      memAddress = #{memaddress,jdbcType=VARCHAR},
+      memGender = #{memgender,jdbcType=TINYINT},
+      memMoney = #{memmoney,jdbcType=DECIMAL},
+      memIntegral = #{memintegral,jdbcType=INTEGER},
+      memBirthday = #{membirthday,jdbcType=DATE},
+      memBeginTime = #{membegintime,jdbcType=TIMESTAMP},
+      memEndTime = #{memendtime,jdbcType=TIMESTAMP},
+      delFlag = #{delflag,jdbcType=TINYINT},
+      lastSubTime = #{lastsubtime,jdbcType=TIMESTAMP},
+      subBy = #{subby,jdbcType=INTEGER}
+    where memID = #{memid,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select memID, memTypeID, memName, memUserName, memPassword, memTel, memPhone, memAddress, 
+    memGender, memMoney, memIntegral, memBirthday, memBeginTime, memEndTime, delFlag, 
+    lastSubTime, subBy
+    from t_memberinfo
+    where memID = #{memid,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select memID, memTypeID, memName, memUserName, memPassword, memTel, memPhone, memAddress, 
+    memGender, memMoney, memIntegral, memBirthday, memBeginTime, memEndTime, delFlag, 
+    lastSubTime, subBy
+    from t_memberinfo
+  </select>
+</mapper>

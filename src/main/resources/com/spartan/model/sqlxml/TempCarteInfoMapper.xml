@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.spartan.dao.TempCarteInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.spartan.model.TempCarteInfo" >
+    <id column="TCIID" property="tciid" jdbcType="INTEGER" />
+    <result column="TCISwiftNumber" property="tciswiftnumber" jdbcType="VARCHAR" />
+    <result column="TCIState" property="tcistate" jdbcType="TINYINT" />
+    <result column="TCIdTableID" property="tcidtableid" jdbcType="INTEGER" />
+    <result column="TCICustomerID" property="tcicustomerid" jdbcType="INTEGER" />
+    <result column="TCIMemID" property="tcimemid" jdbcType="INTEGER" />
+    <result column="TCIWaiterID" property="tciwaiterid" jdbcType="INTEGER" />
+    <result column="TCIDishNums" property="tcidishnums" jdbcType="INTEGER" />
+    <result column="TCIAmountPeoplo" property="tciamountpeoplo" jdbcType="INTEGER" />
+    <result column="TCIRepastTime" property="tcirepasttime" jdbcType="TIMESTAMP" />
+    <result column="TCIConsumeAmount" property="tciconsumeamount" jdbcType="DECIMAL" />
+    <result column="TCICostAmount" property="tcicostamount" jdbcType="DECIMAL" />
+    <result column="TCIDiscount" property="tcidiscount" jdbcType="DECIMAL" />
+    <result column="delFlag" property="delflag" jdbcType="TINYINT" />
+    <result column="lastSubTime" property="lastsubtime" jdbcType="TIMESTAMP" />
+    <result column="subBy" property="subby" jdbcType="INTEGER" />
+    <result column="TCIRemark" property="tciremark" jdbcType="VARBINARY" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_tempcarteinfo
+    where TCIID = #{tciid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.spartan.model.TempCarteInfo" >
+    insert into t_tempcarteinfo (TCIID, TCISwiftNumber, TCIState, 
+      TCIdTableID, TCICustomerID, TCIMemID, 
+      TCIWaiterID, TCIDishNums, TCIAmountPeoplo, 
+      TCIRepastTime, TCIConsumeAmount, TCICostAmount, 
+      TCIDiscount, delFlag, lastSubTime, 
+      subBy, TCIRemark)
+    values (#{tciid,jdbcType=INTEGER}, #{tciswiftnumber,jdbcType=VARCHAR}, #{tcistate,jdbcType=TINYINT}, 
+      #{tcidtableid,jdbcType=INTEGER}, #{tcicustomerid,jdbcType=INTEGER}, #{tcimemid,jdbcType=INTEGER}, 
+      #{tciwaiterid,jdbcType=INTEGER}, #{tcidishnums,jdbcType=INTEGER}, #{tciamountpeoplo,jdbcType=INTEGER}, 
+      #{tcirepasttime,jdbcType=TIMESTAMP}, #{tciconsumeamount,jdbcType=DECIMAL}, #{tcicostamount,jdbcType=DECIMAL}, 
+      #{tcidiscount,jdbcType=DECIMAL}, #{delflag,jdbcType=TINYINT}, #{lastsubtime,jdbcType=TIMESTAMP}, 
+      #{subby,jdbcType=INTEGER}, #{tciremark,jdbcType=VARBINARY})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.spartan.model.TempCarteInfo" >
+    update t_tempcarteinfo
+    set TCISwiftNumber = #{tciswiftnumber,jdbcType=VARCHAR},
+      TCIState = #{tcistate,jdbcType=TINYINT},
+      TCIdTableID = #{tcidtableid,jdbcType=INTEGER},
+      TCICustomerID = #{tcicustomerid,jdbcType=INTEGER},
+      TCIMemID = #{tcimemid,jdbcType=INTEGER},
+      TCIWaiterID = #{tciwaiterid,jdbcType=INTEGER},
+      TCIDishNums = #{tcidishnums,jdbcType=INTEGER},
+      TCIAmountPeoplo = #{tciamountpeoplo,jdbcType=INTEGER},
+      TCIRepastTime = #{tcirepasttime,jdbcType=TIMESTAMP},
+      TCIConsumeAmount = #{tciconsumeamount,jdbcType=DECIMAL},
+      TCICostAmount = #{tcicostamount,jdbcType=DECIMAL},
+      TCIDiscount = #{tcidiscount,jdbcType=DECIMAL},
+      delFlag = #{delflag,jdbcType=TINYINT},
+      lastSubTime = #{lastsubtime,jdbcType=TIMESTAMP},
+      subBy = #{subby,jdbcType=INTEGER},
+      TCIRemark = #{tciremark,jdbcType=VARBINARY}
+    where TCIID = #{tciid,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select TCIID, TCISwiftNumber, TCIState, TCIdTableID, TCICustomerID, TCIMemID, TCIWaiterID, 
+    TCIDishNums, TCIAmountPeoplo, TCIRepastTime, TCIConsumeAmount, TCICostAmount, TCIDiscount, 
+    delFlag, lastSubTime, subBy, TCIRemark
+    from t_tempcarteinfo
+    where TCIID = #{tciid,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select TCIID, TCISwiftNumber, TCIState, TCIdTableID, TCICustomerID, TCIMemID, TCIWaiterID, 
+    TCIDishNums, TCIAmountPeoplo, TCIRepastTime, TCIConsumeAmount, TCICostAmount, TCIDiscount, 
+    delFlag, lastSubTime, subBy, TCIRemark
+    from t_tempcarteinfo
+  </select>
+</mapper>

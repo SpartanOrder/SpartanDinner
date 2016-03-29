@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.spartan.dao.EmployeeInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.spartan.model.EmployeeInfo" >
+    <result column="employeeID" property="employeeid" jdbcType="INTEGER" />
+    <result column="userId" property="userid" jdbcType="INTEGER" />
+    <result column="employeeName" property="employeename" jdbcType="VARCHAR" />
+    <result column="employeeSex" property="employeesex" jdbcType="TINYINT" />
+    <result column="birthDate" property="birthdate" jdbcType="DATE" />
+    <result column="IDCard" property="idcard" jdbcType="VARCHAR" />
+    <result column="tel" property="tel" jdbcType="VARCHAR" />
+    <result column="fixedPhone" property="fixedphone" jdbcType="VARCHAR" />
+    <result column="degree" property="degree" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="departmentId" property="departmentid" jdbcType="INTEGER" />
+    <result column="salary" property="salary" jdbcType="INTEGER" />
+    <result column="employeeDate" property="employeedate" jdbcType="DATE" />
+    <result column="fireDate" property="firedate" jdbcType="DATE" />
+    <result column="delFlag" property="delflag" jdbcType="TINYINT" />
+    <result column="lastSubTime" property="lastsubtime" jdbcType="TIMESTAMP" />
+    <result column="subBy" property="subby" jdbcType="INTEGER" />
+  </resultMap>
+  <insert id="insert" parameterType="com.spartan.model.EmployeeInfo" >
+    insert into t_employeeinfo (employeeID, userId, employeeName, 
+      employeeSex, birthDate, IDCard, 
+      tel, fixedPhone, degree, 
+      description, address, departmentId, 
+      salary, employeeDate, fireDate, 
+      delFlag, lastSubTime, subBy
+      )
+    values (#{employeeid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{employeename,jdbcType=VARCHAR}, 
+      #{employeesex,jdbcType=TINYINT}, #{birthdate,jdbcType=DATE}, #{idcard,jdbcType=VARCHAR}, 
+      #{tel,jdbcType=VARCHAR}, #{fixedphone,jdbcType=VARCHAR}, #{degree,jdbcType=VARCHAR}, 
+      #{description,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{departmentid,jdbcType=INTEGER}, 
+      #{salary,jdbcType=INTEGER}, #{employeedate,jdbcType=DATE}, #{firedate,jdbcType=DATE}, 
+      #{delflag,jdbcType=TINYINT}, #{lastsubtime,jdbcType=TIMESTAMP}, #{subby,jdbcType=INTEGER}
+      )
+  </insert>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select employeeID, userId, employeeName, employeeSex, birthDate, IDCard, tel, fixedPhone, 
+    degree, description, address, departmentId, salary, employeeDate, fireDate, delFlag, 
+    lastSubTime, subBy
+    from t_employeeinfo
+  </select>
+</mapper>

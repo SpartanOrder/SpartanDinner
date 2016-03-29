@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.spartan.dao.CustomerMapper" >
+  <resultMap id="BaseResultMap" type="com.spartan.model.Customer" >
+    <id column="customerID" property="customerid" jdbcType="INTEGER" />
+    <result column="customerName" property="customername" jdbcType="VARCHAR" />
+    <result column="customerTel" property="customertel" jdbcType="VARCHAR" />
+    <result column="customerGender" property="customergender" jdbcType="TINYINT" />
+    <result column="delFlag" property="delflag" jdbcType="TINYINT" />
+    <result column="lastSubTime" property="lastsubtime" jdbcType="TIMESTAMP" />
+    <result column="subBy" property="subby" jdbcType="INTEGER" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_customer
+    where customerID = #{customerid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.spartan.model.Customer" >
+    insert into t_customer (customerID, customerName, customerTel, 
+      customerGender, delFlag, lastSubTime, 
+      subBy)
+    values (#{customerid,jdbcType=INTEGER}, #{customername,jdbcType=VARCHAR}, #{customertel,jdbcType=VARCHAR}, 
+      #{customergender,jdbcType=TINYINT}, #{delflag,jdbcType=TINYINT}, #{lastsubtime,jdbcType=TIMESTAMP}, 
+      #{subby,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.spartan.model.Customer" >
+    update t_customer
+    set customerName = #{customername,jdbcType=VARCHAR},
+      customerTel = #{customertel,jdbcType=VARCHAR},
+      customerGender = #{customergender,jdbcType=TINYINT},
+      delFlag = #{delflag,jdbcType=TINYINT},
+      lastSubTime = #{lastsubtime,jdbcType=TIMESTAMP},
+      subBy = #{subby,jdbcType=INTEGER}
+    where customerID = #{customerid,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select customerID, customerName, customerTel, customerGender, delFlag, lastSubTime, 
+    subBy
+    from t_customer
+    where customerID = #{customerid,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select customerID, customerName, customerTel, customerGender, delFlag, lastSubTime, 
+    subBy
+    from t_customer
+  </select>
+</mapper>

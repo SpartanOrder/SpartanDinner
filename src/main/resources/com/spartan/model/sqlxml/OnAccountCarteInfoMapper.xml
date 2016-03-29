@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.spartan.dao.OnAccountCarteInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.spartan.model.OnAccountCarteInfo" >
+    <id column="ECIID" property="eciid" jdbcType="INTEGER" />
+    <result column="ECISwiftNumber" property="eciswiftnumber" jdbcType="VARCHAR" />
+    <result column="ECIState" property="ecistate" jdbcType="TINYINT" />
+    <result column="ECIdTableID" property="ecidtableid" jdbcType="INTEGER" />
+    <result column="ECIWaiterID" property="eciwaiterid" jdbcType="INTEGER" />
+    <result column="ECICashierID" property="ecicashierid" jdbcType="INTEGER" />
+    <result column="ECICustomerID" property="ecicustomerid" jdbcType="INTEGER" />
+    <result column="ECIMemID" property="ecimemid" jdbcType="INTEGER" />
+    <result column="ECIDishNums" property="ecidishnums" jdbcType="INTEGER" />
+    <result column="ECIAmountPeoplo" property="eciamountpeoplo" jdbcType="INTEGER" />
+    <result column="ECIRepastTime" property="ecirepasttime" jdbcType="TIMESTAMP" />
+    <result column="ECIBillTime" property="ecibilltime" jdbcType="TIMESTAMP" />
+    <result column="ECIConsumeAmount" property="eciconsumeamount" jdbcType="DECIMAL" />
+    <result column="ECIDiscount" property="ecidiscount" jdbcType="DECIMAL" />
+    <result column="ECIPaidAmount" property="ecipaidamount" jdbcType="DECIMAL" />
+    <result column="delFlag" property="delflag" jdbcType="TINYINT" />
+    <result column="lastSubTime" property="lastsubtime" jdbcType="TIMESTAMP" />
+    <result column="subBy" property="subby" jdbcType="INTEGER" />
+    <result column="ECIRemark" property="eciremark" jdbcType="VARBINARY" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_onaccountcarteinfo
+    where ECIID = #{eciid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.spartan.model.OnAccountCarteInfo" >
+    insert into t_onaccountcarteinfo (ECIID, ECISwiftNumber, ECIState, 
+      ECIdTableID, ECIWaiterID, ECICashierID, 
+      ECICustomerID, ECIMemID, ECIDishNums, 
+      ECIAmountPeoplo, ECIRepastTime, ECIBillTime, 
+      ECIConsumeAmount, ECIDiscount, ECIPaidAmount, 
+      delFlag, lastSubTime, subBy, 
+      ECIRemark)
+    values (#{eciid,jdbcType=INTEGER}, #{eciswiftnumber,jdbcType=VARCHAR}, #{ecistate,jdbcType=TINYINT}, 
+      #{ecidtableid,jdbcType=INTEGER}, #{eciwaiterid,jdbcType=INTEGER}, #{ecicashierid,jdbcType=INTEGER}, 
+      #{ecicustomerid,jdbcType=INTEGER}, #{ecimemid,jdbcType=INTEGER}, #{ecidishnums,jdbcType=INTEGER}, 
+      #{eciamountpeoplo,jdbcType=INTEGER}, #{ecirepasttime,jdbcType=TIMESTAMP}, #{ecibilltime,jdbcType=TIMESTAMP}, 
+      #{eciconsumeamount,jdbcType=DECIMAL}, #{ecidiscount,jdbcType=DECIMAL}, #{ecipaidamount,jdbcType=DECIMAL}, 
+      #{delflag,jdbcType=TINYINT}, #{lastsubtime,jdbcType=TIMESTAMP}, #{subby,jdbcType=INTEGER}, 
+      #{eciremark,jdbcType=VARBINARY})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.spartan.model.OnAccountCarteInfo" >
+    update t_onaccountcarteinfo
+    set ECISwiftNumber = #{eciswiftnumber,jdbcType=VARCHAR},
+      ECIState = #{ecistate,jdbcType=TINYINT},
+      ECIdTableID = #{ecidtableid,jdbcType=INTEGER},
+      ECIWaiterID = #{eciwaiterid,jdbcType=INTEGER},
+      ECICashierID = #{ecicashierid,jdbcType=INTEGER},
+      ECICustomerID = #{ecicustomerid,jdbcType=INTEGER},
+      ECIMemID = #{ecimemid,jdbcType=INTEGER},
+      ECIDishNums = #{ecidishnums,jdbcType=INTEGER},
+      ECIAmountPeoplo = #{eciamountpeoplo,jdbcType=INTEGER},
+      ECIRepastTime = #{ecirepasttime,jdbcType=TIMESTAMP},
+      ECIBillTime = #{ecibilltime,jdbcType=TIMESTAMP},
+      ECIConsumeAmount = #{eciconsumeamount,jdbcType=DECIMAL},
+      ECIDiscount = #{ecidiscount,jdbcType=DECIMAL},
+      ECIPaidAmount = #{ecipaidamount,jdbcType=DECIMAL},
+      delFlag = #{delflag,jdbcType=TINYINT},
+      lastSubTime = #{lastsubtime,jdbcType=TIMESTAMP},
+      subBy = #{subby,jdbcType=INTEGER},
+      ECIRemark = #{eciremark,jdbcType=VARBINARY}
+    where ECIID = #{eciid,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select ECIID, ECISwiftNumber, ECIState, ECIdTableID, ECIWaiterID, ECICashierID, ECICustomerID, 
+    ECIMemID, ECIDishNums, ECIAmountPeoplo, ECIRepastTime, ECIBillTime, ECIConsumeAmount, 
+    ECIDiscount, ECIPaidAmount, delFlag, lastSubTime, subBy, ECIRemark
+    from t_onaccountcarteinfo
+    where ECIID = #{eciid,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select ECIID, ECISwiftNumber, ECIState, ECIdTableID, ECIWaiterID, ECICashierID, ECICustomerID, 
+    ECIMemID, ECIDishNums, ECIAmountPeoplo, ECIRepastTime, ECIBillTime, ECIConsumeAmount, 
+    ECIDiscount, ECIPaidAmount, delFlag, lastSubTime, subBy, ECIRemark
+    from t_onaccountcarteinfo
+  </select>
+</mapper>

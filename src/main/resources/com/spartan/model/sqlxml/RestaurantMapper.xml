@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.spartan.dao.RestaurantMapper" >
+  <resultMap id="BaseResultMap" type="com.spartan.model.Restaurant" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="restaurantName" property="restaurantname" jdbcType="VARCHAR" />
+    <result column="shortName" property="shortname" jdbcType="VARCHAR" />
+    <result column="tel" property="tel" jdbcType="VARCHAR" />
+    <result column="adderss" property="adderss" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+    <result column="beginDate" property="begindate" jdbcType="DATE" />
+    <result column="account" property="account" jdbcType="VARCHAR" />
+    <result column="taxRegistrationCertificate" property="taxregistrationcertificate" jdbcType="VARCHAR" />
+    <result column="delFlag" property="delflag" jdbcType="TINYINT" />
+    <result column="lastSubTime" property="lastsubtime" jdbcType="TIMESTAMP" />
+    <result column="subBy" property="subby" jdbcType="INTEGER" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_restaurant
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.spartan.model.Restaurant" >
+    insert into t_restaurant (id, restaurantName, shortName, 
+      tel, adderss, description, 
+      url, beginDate, account, 
+      taxRegistrationCertificate, delFlag, lastSubTime, 
+      subBy)
+    values (#{id,jdbcType=INTEGER}, #{restaurantname,jdbcType=VARCHAR}, #{shortname,jdbcType=VARCHAR}, 
+      #{tel,jdbcType=VARCHAR}, #{adderss,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
+      #{url,jdbcType=VARCHAR}, #{begindate,jdbcType=DATE}, #{account,jdbcType=VARCHAR}, 
+      #{taxregistrationcertificate,jdbcType=VARCHAR}, #{delflag,jdbcType=TINYINT}, #{lastsubtime,jdbcType=TIMESTAMP}, 
+      #{subby,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.spartan.model.Restaurant" >
+    update t_restaurant
+    set restaurantName = #{restaurantname,jdbcType=VARCHAR},
+      shortName = #{shortname,jdbcType=VARCHAR},
+      tel = #{tel,jdbcType=VARCHAR},
+      adderss = #{adderss,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR},
+      beginDate = #{begindate,jdbcType=DATE},
+      account = #{account,jdbcType=VARCHAR},
+      taxRegistrationCertificate = #{taxregistrationcertificate,jdbcType=VARCHAR},
+      delFlag = #{delflag,jdbcType=TINYINT},
+      lastSubTime = #{lastsubtime,jdbcType=TIMESTAMP},
+      subBy = #{subby,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select id, restaurantName, shortName, tel, adderss, description, url, beginDate, 
+    account, taxRegistrationCertificate, delFlag, lastSubTime, subBy
+    from t_restaurant
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id, restaurantName, shortName, tel, adderss, description, url, beginDate, 
+    account, taxRegistrationCertificate, delFlag, lastSubTime, subBy
+    from t_restaurant
+  </select>
+</mapper>

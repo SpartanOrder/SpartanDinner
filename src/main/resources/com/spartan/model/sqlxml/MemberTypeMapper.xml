@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.spartan.dao.MemberTypeMapper" >
+  <resultMap id="BaseResultMap" type="com.spartan.model.MemberType" >
+    <id column="memTypeID" property="memtypeid" jdbcType="INTEGER" />
+    <result column="memTypeName" property="memtypename" jdbcType="VARCHAR" />
+    <result column="memTypeDiscount" property="memtypediscount" jdbcType="DECIMAL" />
+    <result column="memTypeDesc" property="memtypedesc" jdbcType="VARCHAR" />
+    <result column="delFlag" property="delflag" jdbcType="TINYINT" />
+    <result column="lastSubTime" property="lastsubtime" jdbcType="TIMESTAMP" />
+    <result column="subBy" property="subby" jdbcType="INTEGER" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_membertype
+    where memTypeID = #{memtypeid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.spartan.model.MemberType" >
+    insert into t_membertype (memTypeID, memTypeName, memTypeDiscount, 
+      memTypeDesc, delFlag, lastSubTime, 
+      subBy)
+    values (#{memtypeid,jdbcType=INTEGER}, #{memtypename,jdbcType=VARCHAR}, #{memtypediscount,jdbcType=DECIMAL}, 
+      #{memtypedesc,jdbcType=VARCHAR}, #{delflag,jdbcType=TINYINT}, #{lastsubtime,jdbcType=TIMESTAMP}, 
+      #{subby,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.spartan.model.MemberType" >
+    update t_membertype
+    set memTypeName = #{memtypename,jdbcType=VARCHAR},
+      memTypeDiscount = #{memtypediscount,jdbcType=DECIMAL},
+      memTypeDesc = #{memtypedesc,jdbcType=VARCHAR},
+      delFlag = #{delflag,jdbcType=TINYINT},
+      lastSubTime = #{lastsubtime,jdbcType=TIMESTAMP},
+      subBy = #{subby,jdbcType=INTEGER}
+    where memTypeID = #{memtypeid,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select memTypeID, memTypeName, memTypeDiscount, memTypeDesc, delFlag, lastSubTime, 
+    subBy
+    from t_membertype
+    where memTypeID = #{memtypeid,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select memTypeID, memTypeName, memTypeDiscount, memTypeDesc, delFlag, lastSubTime, 
+    subBy
+    from t_membertype
+  </select>
+</mapper>
