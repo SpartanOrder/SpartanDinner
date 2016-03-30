@@ -4,178 +4,178 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 public class OnAccountCarteInfo {
-    private Integer eciid;
+    private Integer eciId;
 
-    private String eciswiftnumber;
+    private String eciSwiftNumber;
 
-    private Byte ecistate;
+    private Byte eciState;
 
-    private Integer ecidtableid;
+    private Integer eciTableId;
 
-    private Integer eciwaiterid;
+    private Integer eciWaiterId;
 
-    private Integer ecicashierid;
+    private Integer eciCashierId;
 
-    private Integer ecicustomerid;
+    private Integer eciCustomerId;
 
-    private Integer ecimemid;
+    private Integer eciMemId;
 
-    private Integer ecidishnums;
+    private Integer eciDishNums;
 
-    private Integer eciamountpeoplo;
+    private Integer eciAmountPeoplo;
 
-    private Date ecirepasttime;
+    private Date eciRepastTime;
 
-    private Date ecibilltime;
+    private Date eciBillTime;
 
-    private BigDecimal eciconsumeamount;
+    private BigDecimal eciConsumeAmount;
 
-    private BigDecimal ecidiscount;
+    private BigDecimal eciDiscount;
 
-    private BigDecimal ecipaidamount;
+    private BigDecimal eciPaidAmount;
 
-    private Byte delflag;
+    private Byte delFlag;
 
-    private Date lastsubtime;
+    private Date lastSubtime;
 
     private Integer subby;
 
-    private byte[] eciremark;
+    private byte[] eciRemark;
 
-    public Integer getEciid() {
-        return eciid;
+    public Integer getEciId() {
+        return eciId;
     }
 
-    public void setEciid(Integer eciid) {
-        this.eciid = eciid;
+    public void setEciId(Integer eciId) {
+        this.eciId = eciId;
     }
 
-    public String getEciswiftnumber() {
-        return eciswiftnumber;
+    public String getEciSwiftNumber() {
+        return eciSwiftNumber;
     }
 
-    public void setEciswiftnumber(String eciswiftnumber) {
-        this.eciswiftnumber = eciswiftnumber == null ? null : eciswiftnumber.trim();
+    public void setEciSwiftNumber(String eciSwiftNumber) {
+        this.eciSwiftNumber = eciSwiftNumber == null ? null : eciSwiftNumber.trim();
     }
 
-    public Byte getEcistate() {
-        return ecistate;
+    public Byte getEciState() {
+        return eciState;
     }
 
-    public void setEcistate(Byte ecistate) {
-        this.ecistate = ecistate;
+    public void setEciState(Byte eciState) {
+        this.eciState = eciState;
     }
 
-    public Integer getEcidtableid() {
-        return ecidtableid;
+    public Integer getEciTableId() {
+        return eciTableId;
     }
 
-    public void setEcidtableid(Integer ecidtableid) {
-        this.ecidtableid = ecidtableid;
+    public void setEciTableId(Integer eciTableId) {
+        this.eciTableId = eciTableId;
     }
 
-    public Integer getEciwaiterid() {
-        return eciwaiterid;
+    public Integer getEciWaiterId() {
+        return eciWaiterId;
     }
 
-    public void setEciwaiterid(Integer eciwaiterid) {
-        this.eciwaiterid = eciwaiterid;
+    public void setEciWaiterId(Integer eciWaiterId) {
+        this.eciWaiterId = eciWaiterId;
     }
 
-    public Integer getEcicashierid() {
-        return ecicashierid;
+    public Integer getEciCashierId() {
+        return eciCashierId;
     }
 
-    public void setEcicashierid(Integer ecicashierid) {
-        this.ecicashierid = ecicashierid;
+    public void setEciCashierId(Integer eciCashierId) {
+        this.eciCashierId = eciCashierId;
     }
 
-    public Integer getEcicustomerid() {
-        return ecicustomerid;
+    public Integer getEciCustomerId() {
+        return eciCustomerId;
     }
 
-    public void setEcicustomerid(Integer ecicustomerid) {
-        this.ecicustomerid = ecicustomerid;
+    public void setEciCustomerId(Integer eciCustomerId) {
+        this.eciCustomerId = eciCustomerId;
     }
 
-    public Integer getEcimemid() {
-        return ecimemid;
+    public Integer getEciMemId() {
+        return eciMemId;
     }
 
-    public void setEcimemid(Integer ecimemid) {
-        this.ecimemid = ecimemid;
+    public void setEciMemId(Integer eciMemId) {
+        this.eciMemId = eciMemId;
     }
 
-    public Integer getEcidishnums() {
-        return ecidishnums;
+    public Integer getEciDishNums() {
+        return eciDishNums;
     }
 
-    public void setEcidishnums(Integer ecidishnums) {
-        this.ecidishnums = ecidishnums;
+    public void setEciDishNums(Integer eciDishNums) {
+        this.eciDishNums = eciDishNums;
     }
 
-    public Integer getEciamountpeoplo() {
-        return eciamountpeoplo;
+    public Integer getEciAmountPeoplo() {
+        return eciAmountPeoplo;
     }
 
-    public void setEciamountpeoplo(Integer eciamountpeoplo) {
-        this.eciamountpeoplo = eciamountpeoplo;
+    public void setEciAmountPeoplo(Integer eciAmountPeoplo) {
+        this.eciAmountPeoplo = eciAmountPeoplo;
     }
 
-    public Date getEcirepasttime() {
-        return ecirepasttime;
+    public Date getEciRepastTime() {
+        return eciRepastTime;
     }
 
-    public void setEcirepasttime(Date ecirepasttime) {
-        this.ecirepasttime = ecirepasttime;
+    public void setEciRepastTime(Date eciRepastTime) {
+        this.eciRepastTime = eciRepastTime;
     }
 
-    public Date getEcibilltime() {
-        return ecibilltime;
+    public Date getEciBillTime() {
+        return eciBillTime;
     }
 
-    public void setEcibilltime(Date ecibilltime) {
-        this.ecibilltime = ecibilltime;
+    public void setEciBillTime(Date eciBillTime) {
+        this.eciBillTime = eciBillTime;
     }
 
-    public BigDecimal getEciconsumeamount() {
-        return eciconsumeamount;
+    public BigDecimal getEciConsumeAmount() {
+        return eciConsumeAmount;
     }
 
-    public void setEciconsumeamount(BigDecimal eciconsumeamount) {
-        this.eciconsumeamount = eciconsumeamount;
+    public void setEciConsumeAmount(BigDecimal eciConsumeAmount) {
+        this.eciConsumeAmount = eciConsumeAmount;
     }
 
-    public BigDecimal getEcidiscount() {
-        return ecidiscount;
+    public BigDecimal getEciDiscount() {
+        return eciDiscount;
     }
 
-    public void setEcidiscount(BigDecimal ecidiscount) {
-        this.ecidiscount = ecidiscount;
+    public void setEciDiscount(BigDecimal eciDiscount) {
+        this.eciDiscount = eciDiscount;
     }
 
-    public BigDecimal getEcipaidamount() {
-        return ecipaidamount;
+    public BigDecimal getEciPaidAmount() {
+        return eciPaidAmount;
     }
 
-    public void setEcipaidamount(BigDecimal ecipaidamount) {
-        this.ecipaidamount = ecipaidamount;
+    public void setEciPaidAmount(BigDecimal eciPaidAmount) {
+        this.eciPaidAmount = eciPaidAmount;
     }
 
-    public Byte getDelflag() {
-        return delflag;
+    public Byte getDelFlag() {
+        return delFlag;
     }
 
-    public void setDelflag(Byte delflag) {
-        this.delflag = delflag;
+    public void setDelFlag(Byte delFlag) {
+        this.delFlag = delFlag;
     }
 
-    public Date getLastsubtime() {
-        return lastsubtime;
+    public Date getLastSubtime() {
+        return lastSubtime;
     }
 
-    public void setLastsubtime(Date lastsubtime) {
-        this.lastsubtime = lastsubtime;
+    public void setLastSubtime(Date lastSubtime) {
+        this.lastSubtime = lastSubtime;
     }
 
     public Integer getSubby() {
@@ -186,11 +186,11 @@ public class OnAccountCarteInfo {
         this.subby = subby;
     }
 
-    public byte[] getEciremark() {
-        return eciremark;
+    public byte[] getEciRemark() {
+        return eciRemark;
     }
 
-    public void setEciremark(byte[] eciremark) {
-        this.eciremark = eciremark;
+    public void setEciRemark(byte[] eciRemark) {
+        this.eciRemark = eciRemark;
     }
 }

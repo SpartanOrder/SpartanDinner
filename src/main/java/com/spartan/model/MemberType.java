@@ -4,66 +4,66 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 public class MemberType {
-    private Integer memtypeid;
+    private Integer memTypeId;
 
-    private String memtypename;
+    private String memTypeName;
 
-    private BigDecimal memtypediscount;
+    private BigDecimal memTypeDiscount;
 
-    private String memtypedesc;
+    private String memTypeDesc;
 
-    private Byte delflag;
+    private Byte delFlag;
 
-    private Date lastsubtime;
+    private Date lastSubtime;
 
     private Integer subby;
 
-    public Integer getMemtypeid() {
-        return memtypeid;
+    public Integer getMemTypeId() {
+        return memTypeId;
     }
 
-    public void setMemtypeid(Integer memtypeid) {
-        this.memtypeid = memtypeid;
+    public void setMemTypeId(Integer memTypeId) {
+        this.memTypeId = memTypeId;
     }
 
-    public String getMemtypename() {
-        return memtypename;
+    public String getMemTypeName() {
+        return memTypeName;
     }
 
-    public void setMemtypename(String memtypename) {
-        this.memtypename = memtypename == null ? null : memtypename.trim();
+    public void setMemTypeName(String memTypeName) {
+        this.memTypeName = memTypeName == null ? null : memTypeName.trim();
     }
 
-    public BigDecimal getMemtypediscount() {
-        return memtypediscount;
+    public BigDecimal getMemTypeDiscount() {
+        return memTypeDiscount;
     }
 
-    public void setMemtypediscount(BigDecimal memtypediscount) {
-        this.memtypediscount = memtypediscount;
+    public void setMemTypeDiscount(BigDecimal memTypeDiscount) {
+        this.memTypeDiscount = memTypeDiscount;
     }
 
-    public String getMemtypedesc() {
-        return memtypedesc;
+    public String getMemTypeDesc() {
+        return memTypeDesc;
     }
 
-    public void setMemtypedesc(String memtypedesc) {
-        this.memtypedesc = memtypedesc == null ? null : memtypedesc.trim();
+    public void setMemTypeDesc(String memTypeDesc) {
+        this.memTypeDesc = memTypeDesc == null ? null : memTypeDesc.trim();
     }
 
-    public Byte getDelflag() {
-        return delflag;
+    public Byte getDelFlag() {
+        return delFlag;
     }
 
-    public void setDelflag(Byte delflag) {
-        this.delflag = delflag;
+    public void setDelFlag(Byte delFlag) {
+        this.delFlag = delFlag;
     }
 
-    public Date getLastsubtime() {
-        return lastsubtime;
+    public Date getLastSubtime() {
+        return lastSubtime;
     }
 
-    public void setLastsubtime(Date lastsubtime) {
-        this.lastsubtime = lastsubtime;
+    public void setLastSubtime(Date lastSubtime) {
+        this.lastSubtime = lastSubtime;
     }
 
     public Integer getSubby() {

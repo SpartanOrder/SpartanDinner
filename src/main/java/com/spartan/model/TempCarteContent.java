@@ -4,86 +4,86 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 public class TempCarteContent {
-    private Integer tccid;
+    private Integer tccId;
 
-    private String tciswiftnumber;
+    private String tciSwiftNumber;
 
-    private Integer tccdishid;
+    private Integer tccDishId;
 
-    private Byte tccdishnum;
+    private Integer tccDishNum;
 
-    private BigDecimal tcctotalprice;
+    private BigDecimal tccTotalPrice;
 
-    private String tccspecildesc;
+    private String tccSpecilDesc;
 
-    private Byte delflag;
+    private Byte delFlag;
 
-    private Date lastsubtime;
+    private Date lastSubtime;
 
     private Integer subby;
 
-    public Integer getTccid() {
-        return tccid;
+    public Integer getTccId() {
+        return tccId;
     }
 
-    public void setTccid(Integer tccid) {
-        this.tccid = tccid;
+    public void setTccId(Integer tccId) {
+        this.tccId = tccId;
     }
 
-    public String getTciswiftnumber() {
-        return tciswiftnumber;
+    public String getTciSwiftNumber() {
+        return tciSwiftNumber;
     }
 
-    public void setTciswiftnumber(String tciswiftnumber) {
-        this.tciswiftnumber = tciswiftnumber == null ? null : tciswiftnumber.trim();
+    public void setTciSwiftNumber(String tciSwiftNumber) {
+        this.tciSwiftNumber = tciSwiftNumber == null ? null : tciSwiftNumber.trim();
     }
 
-    public Integer getTccdishid() {
-        return tccdishid;
+    public Integer getTccDishId() {
+        return tccDishId;
     }
 
-    public void setTccdishid(Integer tccdishid) {
-        this.tccdishid = tccdishid;
+    public void setTccDishId(Integer tccDishId) {
+        this.tccDishId = tccDishId;
     }
 
-    public Byte getTccdishnum() {
-        return tccdishnum;
+    public Integer getTccDishNum() {
+        return tccDishNum;
     }
 
-    public void setTccdishnum(Byte tccdishnum) {
-        this.tccdishnum = tccdishnum;
+    public void setTccDishNum(Integer tccDishNum) {
+        this.tccDishNum = tccDishNum;
     }
 
-    public BigDecimal getTcctotalprice() {
-        return tcctotalprice;
+    public BigDecimal getTccTotalPrice() {
+        return tccTotalPrice;
     }
 
-    public void setTcctotalprice(BigDecimal tcctotalprice) {
-        this.tcctotalprice = tcctotalprice;
+    public void setTccTotalPrice(BigDecimal tccTotalPrice) {
+        this.tccTotalPrice = tccTotalPrice;
     }
 
-    public String getTccspecildesc() {
-        return tccspecildesc;
+    public String getTccSpecilDesc() {
+        return tccSpecilDesc;
     }
 
-    public void setTccspecildesc(String tccspecildesc) {
-        this.tccspecildesc = tccspecildesc == null ? null : tccspecildesc.trim();
+    public void setTccSpecilDesc(String tccSpecilDesc) {
+        this.tccSpecilDesc = tccSpecilDesc == null ? null : tccSpecilDesc.trim();
     }
 
-    public Byte getDelflag() {
-        return delflag;
+    public Byte getDelFlag() {
+        return delFlag;
     }
 
-    public void setDelflag(Byte delflag) {
-        this.delflag = delflag;
+    public void setDelFlag(Byte delFlag) {
+        this.delFlag = delFlag;
     }
 
-    public Date getLastsubtime() {
-        return lastsubtime;
+    public Date getLastSubtime() {
+        return lastSubtime;
     }
 
-    public void setLastsubtime(Date lastsubtime) {
-        this.lastsubtime = lastsubtime;
+    public void setLastSubtime(Date lastSubtime) {
+        this.lastSubtime = lastSubtime;
     }
 
     public Integer getSubby() {

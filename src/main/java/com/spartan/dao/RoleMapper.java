@@ -5,11 +5,11 @@ import com.spartan.model.Role;
 import java.util.List;
 
 public interface RoleMapper {
-    int deleteByPrimaryKey(Byte roleid);
+    int deleteByPrimaryKey(Integer roleId);
 
     int insert(Role record);
 
-    Role selectByPrimaryKey(Byte roleid);
+    Role selectByPrimaryKey(Integer roleId);
 
     List<Role> selectAll();
 

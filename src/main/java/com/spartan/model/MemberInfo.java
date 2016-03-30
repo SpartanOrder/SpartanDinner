@@ -4,166 +4,166 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 public class MemberInfo {
-    private Integer memid;
+    private Integer memId;
 
-    private Integer memtypeid;
+    private Integer memTypeId;
 
-    private String memname;
+    private String memName;
 
-    private String memusername;
+    private String memUserName;
 
-    private String mempassword;
+    private String memPassword;
 
-    private String memtel;
+    private String memTel;
 
-    private String memphone;
+    private String memPhone;
 
-    private String memaddress;
+    private String memAddress;
 
-    private Byte memgender;
+    private Byte memGender;
 
-    private BigDecimal memmoney;
+    private BigDecimal memMoney;
 
-    private Integer memintegral;
+    private Integer memIntegral;
 
-    private Date membirthday;
+    private Date memBirthday;
 
-    private Date membegintime;
+    private Date memBeginTime;
 
-    private Date memendtime;
+    private Date memEndTime;
 
-    private Byte delflag;
+    private Byte delFlag;
 
-    private Date lastsubtime;
+    private Date lastSubtime;
 
     private Integer subby;
 
-    public Integer getMemid() {
-        return memid;
+    public Integer getMemId() {
+        return memId;
     }
 
-    public void setMemid(Integer memid) {
-        this.memid = memid;
+    public void setMemId(Integer memId) {
+        this.memId = memId;
     }
 
-    public Integer getMemtypeid() {
-        return memtypeid;
+    public Integer getMemTypeId() {
+        return memTypeId;
     }
 
-    public void setMemtypeid(Integer memtypeid) {
-        this.memtypeid = memtypeid;
+    public void setMemTypeId(Integer memTypeId) {
+        this.memTypeId = memTypeId;
     }
 
-    public String getMemname() {
-        return memname;
+    public String getMemName() {
+        return memName;
     }
 
-    public void setMemname(String memname) {
-        this.memname = memname == null ? null : memname.trim();
+    public void setMemName(String memName) {
+        this.memName = memName == null ? null : memName.trim();
     }
 
-    public String getMemusername() {
-        return memusername;
+    public String getMemUserName() {
+        return memUserName;
     }
 
-    public void setMemusername(String memusername) {
-        this.memusername = memusername == null ? null : memusername.trim();
+    public void setMemUserName(String memUserName) {
+        this.memUserName = memUserName == null ? null : memUserName.trim();
     }
 
-    public String getMempassword() {
-        return mempassword;
+    public String getMemPassword() {
+        return memPassword;
     }
 
-    public void setMempassword(String mempassword) {
-        this.mempassword = mempassword == null ? null : mempassword.trim();
+    public void setMemPassword(String memPassword) {
+        this.memPassword = memPassword == null ? null : memPassword.trim();
     }
 
-    public String getMemtel() {
-        return memtel;
+    public String getMemTel() {
+        return memTel;
     }
 
-    public void setMemtel(String memtel) {
-        this.memtel = memtel == null ? null : memtel.trim();
+    public void setMemTel(String memTel) {
+        this.memTel = memTel == null ? null : memTel.trim();
     }
 
-    public String getMemphone() {
-        return memphone;
+    public String getMemPhone() {
+        return memPhone;
     }
 
-    public void setMemphone(String memphone) {
-        this.memphone = memphone == null ? null : memphone.trim();
+    public void setMemPhone(String memPhone) {
+        this.memPhone = memPhone == null ? null : memPhone.trim();
     }
 
-    public String getMemaddress() {
-        return memaddress;
+    public String getMemAddress() {
+        return memAddress;
     }
 
-    public void setMemaddress(String memaddress) {
-        this.memaddress = memaddress == null ? null : memaddress.trim();
+    public void setMemAddress(String memAddress) {
+        this.memAddress = memAddress == null ? null : memAddress.trim();
     }
 
-    public Byte getMemgender() {
-        return memgender;
+    public Byte getMemGender() {
+        return memGender;
     }
 
-    public void setMemgender(Byte memgender) {
-        this.memgender = memgender;
+    public void setMemGender(Byte memGender) {
+        this.memGender = memGender;
     }
 
-    public BigDecimal getMemmoney() {
-        return memmoney;
+    public BigDecimal getMemMoney() {
+        return memMoney;
     }
 
-    public void setMemmoney(BigDecimal memmoney) {
-        this.memmoney = memmoney;
+    public void setMemMoney(BigDecimal memMoney) {
+        this.memMoney = memMoney;
     }
 
-    public Integer getMemintegral() {
-        return memintegral;
+    public Integer getMemIntegral() {
+        return memIntegral;
     }
 
-    public void setMemintegral(Integer memintegral) {
-        this.memintegral = memintegral;
+    public void setMemIntegral(Integer memIntegral) {
+        this.memIntegral = memIntegral;
     }
 
-    public Date getMembirthday() {
-        return membirthday;
+    public Date getMemBirthday() {
+        return memBirthday;
     }
 
-    public void setMembirthday(Date membirthday) {
-        this.membirthday = membirthday;
+    public void setMemBirthday(Date memBirthday) {
+        this.memBirthday = memBirthday;
     }
 
-    public Date getMembegintime() {
-        return membegintime;
+    public Date getMemBeginTime() {
+        return memBeginTime;
     }
 
-    public void setMembegintime(Date membegintime) {
-        this.membegintime = membegintime;
+    public void setMemBeginTime(Date memBeginTime) {
+        this.memBeginTime = memBeginTime;
     }
 
-    public Date getMemendtime() {
-        return memendtime;
+    public Date getMemEndTime() {
+        return memEndTime;
     }
 
-    public void setMemendtime(Date memendtime) {
-        this.memendtime = memendtime;
+    public void setMemEndTime(Date memEndTime) {
+        this.memEndTime = memEndTime;
     }
 
-    public Byte getDelflag() {
-        return delflag;
+    public Byte getDelFlag() {
+        return delFlag;
     }
 
-    public void setDelflag(Byte delflag) {
-        this.delflag = delflag;
+    public void setDelFlag(Byte delFlag) {
+        this.delFlag = delFlag;
     }
 
-    public Date getLastsubtime() {
-        return lastsubtime;
+    public Date getLastSubtime() {
+        return lastSubtime;
     }
 
-    public void setLastsubtime(Date lastsubtime) {
-        this.lastsubtime = lastsubtime;
+    public void setLastSubtime(Date lastSubtime) {
+        this.lastSubtime = lastSubtime;
     }
 
     public Integer getSubby() {

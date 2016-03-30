@@ -39,9 +39,9 @@ public class SpringTest {
 
     @Test
     public void test1() {
-        Dish dish = dishService.getDish(1);
+        Dish dish = dishService.selectByPrimaryKey(1);
         System.out.println(dish);
-        dish = dishService.getDish(4);
+        dish = dishService.selectByPrimaryKey(4);
         System.out.println(dish);
         // System.out.println(user.getUserName());
         // logger.info("值："+user.getUserName());

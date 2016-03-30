@@ -5,11 +5,11 @@ import com.spartan.model.Department;
 import java.util.List;
 
 public interface DepartmentMapper {
-    int deleteByPrimaryKey(Integer roleid);
+    int deleteByPrimaryKey(Integer roleId);
 
     int insert(Department record);
 
-    Department selectByPrimaryKey(Integer roleid);
+    Department selectByPrimaryKey(Integer roleId);
 
     List<Department> selectAll();
 

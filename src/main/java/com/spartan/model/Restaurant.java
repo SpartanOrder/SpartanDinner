@@ -5,9 +5,9 @@ import java.util.Date;
 public class Restaurant {
     private Integer id;
 
-    private String restaurantname;
+    private String restaurantName;
 
-    private String shortname;
+    private String shortName;
 
     private String tel;
 
@@ -17,15 +17,15 @@ public class Restaurant {
 
     private String url;
 
-    private Date begindate;
+    private Date beginDate;
 
     private String account;
 
-    private String taxregistrationcertificate;
+    private String taxRegistrationCertificate;
 
-    private Byte delflag;
+    private Byte delFlag;
 
-    private Date lastsubtime;
+    private Date lastSubtime;
 
     private Integer subby;
 
@@ -37,20 +37,20 @@ public class Restaurant {
         this.id = id;
     }
 
-    public String getRestaurantname() {
-        return restaurantname;
+    public String getRestaurantName() {
+        return restaurantName;
     }
 
-    public void setRestaurantname(String restaurantname) {
-        this.restaurantname = restaurantname == null ? null : restaurantname.trim();
+    public void setRestaurantName(String restaurantName) {
+        this.restaurantName = restaurantName == null ? null : restaurantName.trim();
     }
 
-    public String getShortname() {
-        return shortname;
+    public String getShortName() {
+        return shortName;
     }
 
-    public void setShortname(String shortname) {
-        this.shortname = shortname == null ? null : shortname.trim();
+    public void setShortName(String shortName) {
+        this.shortName = shortName == null ? null : shortName.trim();
     }
 
     public String getTel() {
@@ -85,12 +85,12 @@ public class Restaurant {
         this.url = url == null ? null : url.trim();
     }
 
-    public Date getBegindate() {
-        return begindate;
+    public Date getBeginDate() {
+        return beginDate;
     }
 
-    public void setBegindate(Date begindate) {
-        this.begindate = begindate;
+    public void setBeginDate(Date beginDate) {
+        this.beginDate = beginDate;
     }
 
     public String getAccount() {
@@ -101,28 +101,28 @@ public class Restaurant {
         this.account = account == null ? null : account.trim();
     }
 
-    public String getTaxregistrationcertificate() {
-        return taxregistrationcertificate;
+    public String getTaxRegistrationCertificate() {
+        return taxRegistrationCertificate;
     }
 
-    public void setTaxregistrationcertificate(String taxregistrationcertificate) {
-        this.taxregistrationcertificate = taxregistrationcertificate == null ? null : taxregistrationcertificate.trim();
+    public void setTaxRegistrationCertificate(String taxRegistrationCertificate) {
+        this.taxRegistrationCertificate = taxRegistrationCertificate == null ? null : taxRegistrationCertificate.trim();
     }
 
-    public Byte getDelflag() {
-        return delflag;
+    public Byte getDelFlag() {
+        return delFlag;
     }
 
-    public void setDelflag(Byte delflag) {
-        this.delflag = delflag;
+    public void setDelFlag(Byte delFlag) {
+        this.delFlag = delFlag;
     }
 
-    public Date getLastsubtime() {
-        return lastsubtime;
+    public Date getLastSubtime() {
+        return lastSubtime;
     }
 
-    public void setLastsubtime(Date lastsubtime) {
-        this.lastsubtime = lastsubtime;
+    public void setLastSubtime(Date lastSubtime) {
+        this.lastSubtime = lastSubtime;
     }
 
     public Integer getSubby() {

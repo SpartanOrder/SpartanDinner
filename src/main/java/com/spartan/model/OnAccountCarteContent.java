@@ -4,86 +4,86 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 public class OnAccountCarteContent {
-    private Integer eccid;
+    private Integer eccId;
 
-    private Integer eccdishid;
+    private Integer eccDishId;
 
-    private Byte eccdishnum;
+    private Integer eccDishNum;
 
-    private BigDecimal ecctotalprice;
+    private BigDecimal eccTotalPrice;
 
-    private Integer ecceciid;
+    private Integer eccEciId;
 
-    private String eccspecildesc;
+    private String eccSpecilDesc;
 
-    private Byte delflag;
+    private Byte delFlag;
 
-    private Date lastsubtime;
+    private Date lastSubtime;
 
     private Integer subby;
 
-    public Integer getEccid() {
-        return eccid;
+    public Integer getEccId() {
+        return eccId;
     }
 
-    public void setEccid(Integer eccid) {
-        this.eccid = eccid;
+    public void setEccId(Integer eccId) {
+        this.eccId = eccId;
     }
 
-    public Integer getEccdishid() {
-        return eccdishid;
+    public Integer getEccDishId() {
+        return eccDishId;
     }
 
-    public void setEccdishid(Integer eccdishid) {
-        this.eccdishid = eccdishid;
+    public void setEccDishId(Integer eccDishId) {
+        this.eccDishId = eccDishId;
     }
 
-    public Byte getEccdishnum() {
-        return eccdishnum;
+    public Integer getEccDishNum() {
+        return eccDishNum;
     }
 
-    public void setEccdishnum(Byte eccdishnum) {
-        this.eccdishnum = eccdishnum;
+    public void setEccDishNum(Integer eccDishNum) {
+        this.eccDishNum = eccDishNum;
     }
 
-    public BigDecimal getEcctotalprice() {
-        return ecctotalprice;
+    public BigDecimal getEccTotalPrice() {
+        return eccTotalPrice;
     }
 
-    public void setEcctotalprice(BigDecimal ecctotalprice) {
-        this.ecctotalprice = ecctotalprice;
+    public void setEccTotalPrice(BigDecimal eccTotalPrice) {
+        this.eccTotalPrice = eccTotalPrice;
     }
 
-    public Integer getEcceciid() {
-        return ecceciid;
+    public Integer getEccEciId() {
+        return eccEciId;
     }
 
-    public void setEcceciid(Integer ecceciid) {
-        this.ecceciid = ecceciid;
+    public void setEccEciId(Integer eccEciId) {
+        this.eccEciId = eccEciId;
     }
 
-    public String getEccspecildesc() {
-        return eccspecildesc;
+    public String getEccSpecilDesc() {
+        return eccSpecilDesc;
     }
 
-    public void setEccspecildesc(String eccspecildesc) {
-        this.eccspecildesc = eccspecildesc == null ? null : eccspecildesc.trim();
+    public void setEccSpecilDesc(String eccSpecilDesc) {
+        this.eccSpecilDesc = eccSpecilDesc == null ? null : eccSpecilDesc.trim();
     }
 
-    public Byte getDelflag() {
-        return delflag;
+    public Byte getDelFlag() {
+        return delFlag;
     }
 
-    public void setDelflag(Byte delflag) {
-        this.delflag = delflag;
+    public void setDelFlag(Byte delFlag) {
+        this.delFlag = delFlag;
     }
 
-    public Date getLastsubtime() {
-        return lastsubtime;
+    public Date getLastSubtime() {
+        return lastSubtime;
     }
 
-    public void setLastsubtime(Date lastsubtime) {
-        this.lastsubtime = lastsubtime;
+    public void setLastSubtime(Date lastSubtime) {
+        this.lastSubtime = lastSubtime;
     }
 
     public Integer getSubby() {

@@ -5,11 +5,11 @@ import com.spartan.model.OnAccountCarteContent;
 import java.util.List;
 
 public interface OnAccountCarteContentMapper {
-    int deleteByPrimaryKey(Integer eccid);
+    int deleteByPrimaryKey(Integer eccId);
 
     int insert(OnAccountCarteContent record);
 
-    OnAccountCarteContent selectByPrimaryKey(Integer eccid);
+    OnAccountCarteContent selectByPrimaryKey(Integer eccId);
 
     List<OnAccountCarteContent> selectAll();
 

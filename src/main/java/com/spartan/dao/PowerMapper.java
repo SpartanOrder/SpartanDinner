@@ -5,11 +5,11 @@ import com.spartan.model.Power;
 import java.util.List;
 
 public interface PowerMapper {
-    int deleteByPrimaryKey(Byte powerid);
+    int deleteByPrimaryKey(Integer powerId);
 
     int insert(Power record);
 
-    Power selectByPrimaryKey(Byte powerid);
+    Power selectByPrimaryKey(Integer powerId);
 
     List<Power> selectAll();
 

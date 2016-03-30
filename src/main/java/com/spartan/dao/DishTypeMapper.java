@@ -5,11 +5,11 @@ import com.spartan.model.DishType;
 import java.util.List;
 
 public interface DishTypeMapper {
-    int deleteByPrimaryKey(Byte dishtypeid);
+    int deleteByPrimaryKey(Integer dishTypeId);
 
     int insert(DishType record);
 
-    DishType selectByPrimaryKey(Byte dishtypeid);
+    DishType selectByPrimaryKey(Integer dishTypeId);
 
     List<DishType> selectAll();
 

@@ -5,11 +5,11 @@ import com.spartan.model.EndCarteContent;
 import java.util.List;
 
 public interface EndCarteContentMapper {
-    int deleteByPrimaryKey(Integer eccid);
+    int deleteByPrimaryKey(Integer eccId);
 
     int insert(EndCarteContent record);
 
-    EndCarteContent selectByPrimaryKey(Integer eccid);
+    EndCarteContent selectByPrimaryKey(Integer eccId);
 
     List<EndCarteContent> selectAll();
 

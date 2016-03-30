@@ -5,11 +5,11 @@ import com.spartan.model.Region;
 import java.util.List;
 
 public interface RegionMapper {
-    int deleteByPrimaryKey(Byte regionid);
+    int deleteByPrimaryKey(Integer regionId);
 
     int insert(Region record);
 
-    Region selectByPrimaryKey(Byte regionid);
+    Region selectByPrimaryKey(Integer regionId);
 
     List<Region> selectAll();
 

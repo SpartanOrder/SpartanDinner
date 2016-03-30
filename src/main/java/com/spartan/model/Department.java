@@ -3,36 +3,36 @@ package com.spartan.model;
 import java.util.Date;
 
 public class Department {
-    private Integer roleid;
+    private Integer roleId;
 
-    private String rolename;
+    private String roleName;
 
     private Integer priority;
 
-    private Long parentid;
+    private Integer parentId;
 
-    private String parentids;
+    private String parentIds;
 
-    private Byte delflag;
+    private Byte delFlag;
 
-    private Date lastsubtime;
+    private Date lastSubtime;
 
     private Integer subby;
 
-    public Integer getRoleid() {
-        return roleid;
+    public Integer getRoleId() {
+        return roleId;
     }
 
-    public void setRoleid(Integer roleid) {
-        this.roleid = roleid;
+    public void setRoleId(Integer roleId) {
+        this.roleId = roleId;
     }
 
-    public String getRolename() {
-        return rolename;
+    public String getRoleName() {
+        return roleName;
     }
 
-    public void setRolename(String rolename) {
-        this.rolename = rolename == null ? null : rolename.trim();
+    public void setRoleName(String roleName) {
+        this.roleName = roleName == null ? null : roleName.trim();
     }
 
     public Integer getPriority() {
@@ -43,36 +43,36 @@ public class Department {
         this.priority = priority;
     }
 
-    public Long getParentid() {
-        return parentid;
+    public Integer getParentId() {
+        return parentId;
     }
 
-    public void setParentid(Long parentid) {
-        this.parentid = parentid;
+    public void setParentId(Integer parentId) {
+        this.parentId = parentId;
     }
 
-    public String getParentids() {
-        return parentids;
+    public String getParentIds() {
+        return parentIds;
     }
 
-    public void setParentids(String parentids) {
-        this.parentids = parentids == null ? null : parentids.trim();
+    public void setParentIds(String parentIds) {
+        this.parentIds = parentIds == null ? null : parentIds.trim();
     }
 
-    public Byte getDelflag() {
-        return delflag;
+    public Byte getDelFlag() {
+        return delFlag;
     }
 
-    public void setDelflag(Byte delflag) {
-        this.delflag = delflag;
+    public void setDelFlag(Byte delFlag) {
+        this.delFlag = delFlag;
     }
 
-    public Date getLastsubtime() {
-        return lastsubtime;
+    public Date getLastSubtime() {
+        return lastSubtime;
     }
 
-    public void setLastsubtime(Date lastsubtime) {
-        this.lastsubtime = lastsubtime;
+    public void setLastSubtime(Date lastSubtime) {
+        this.lastSubtime = lastSubtime;
     }
 
     public Integer getSubby() {

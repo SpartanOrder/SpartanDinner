@@ -5,11 +5,11 @@ import com.spartan.model.MemberInfo;
 import java.util.List;
 
 public interface MemberInfoMapper {
-    int deleteByPrimaryKey(Integer memid);
+    int deleteByPrimaryKey(Integer memId);
 
     int insert(MemberInfo record);
 
-    MemberInfo selectByPrimaryKey(Integer memid);
+    MemberInfo selectByPrimaryKey(Integer memId);
 
     List<MemberInfo> selectAll();
 

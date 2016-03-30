@@ -5,11 +5,11 @@ import com.spartan.model.TempCarteContent;
 import java.util.List;
 
 public interface TempCarteContentMapper {
-    int deleteByPrimaryKey(Integer tccid);
+    int deleteByPrimaryKey(Integer tccId);
 
     int insert(TempCarteContent record);
 
-    TempCarteContent selectByPrimaryKey(Integer tccid);
+    TempCarteContent selectByPrimaryKey(Integer tccId);
 
     List<TempCarteContent> selectAll();
 

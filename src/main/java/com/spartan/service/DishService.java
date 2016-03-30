@@ -1,5 +1,6 @@
 package com.spartan.service;
 
+import com.spartan.dao.BaseMapper;
 import com.spartan.dao.DishMapper;
 import com.spartan.model.Dish;
 
@@ -10,6 +11,5 @@ import com.spartan.model.Dish;
  * @Description: .
  * @Date 2016/3/18 15:30
  */
-public interface DishService {
-    public Dish getDish(int id);
+public interface DishService extends BaseMapper<Dish, Integer> {
 }

@@ -4,66 +4,66 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 public class Region {
-    private Byte regionid;
+    private Integer regionId;
 
-    private String regionname;
+    private String regionName;
 
-    private BigDecimal regionminconsume;
+    private BigDecimal regionMinConsume;
 
-    private Integer regionmaxconsumer;
+    private Integer regionMaxConsumer;
 
-    private Byte delflag;
+    private Byte delFlag;
 
-    private Date lastsubtime;
+    private Date lastSubtime;
 
     private Integer subby;
 
-    public Byte getRegionid() {
-        return regionid;
+    public Integer getRegionId() {
+        return regionId;
     }
 
-    public void setRegionid(Byte regionid) {
-        this.regionid = regionid;
+    public void setRegionId(Integer regionId) {
+        this.regionId = regionId;
     }
 
-    public String getRegionname() {
-        return regionname;
+    public String getRegionName() {
+        return regionName;
     }
 
-    public void setRegionname(String regionname) {
-        this.regionname = regionname == null ? null : regionname.trim();
+    public void setRegionName(String regionName) {
+        this.regionName = regionName == null ? null : regionName.trim();
     }
 
-    public BigDecimal getRegionminconsume() {
-        return regionminconsume;
+    public BigDecimal getRegionMinConsume() {
+        return regionMinConsume;
     }
 
-    public void setRegionminconsume(BigDecimal regionminconsume) {
-        this.regionminconsume = regionminconsume;
+    public void setRegionMinConsume(BigDecimal regionMinConsume) {
+        this.regionMinConsume = regionMinConsume;
     }
 
-    public Integer getRegionmaxconsumer() {
-        return regionmaxconsumer;
+    public Integer getRegionMaxConsumer() {
+        return regionMaxConsumer;
     }
 
-    public void setRegionmaxconsumer(Integer regionmaxconsumer) {
-        this.regionmaxconsumer = regionmaxconsumer;
+    public void setRegionMaxConsumer(Integer regionMaxConsumer) {
+        this.regionMaxConsumer = regionMaxConsumer;
     }
 
-    public Byte getDelflag() {
-        return delflag;
+    public Byte getDelFlag() {
+        return delFlag;
     }
 
-    public void setDelflag(Byte delflag) {
-        this.delflag = delflag;
+    public void setDelFlag(Byte delFlag) {
+        this.delFlag = delFlag;
     }
 
-    public Date getLastsubtime() {
-        return lastsubtime;
+    public Date getLastSubtime() {
+        return lastSubtime;
     }
 
-    public void setLastsubtime(Date lastsubtime) {
-        this.lastsubtime = lastsubtime;
+    public void setLastSubtime(Date lastSubtime) {
+        this.lastSubtime = lastSubtime;
     }
 
     public Integer getSubby() {

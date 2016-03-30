@@ -4,126 +4,126 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 public class Dish {
-    private Integer dishid;
+    private Integer dishId;
 
-    private Byte dishtypeid;
+    private Integer dishTypeId;
 
-    private String dishname;
+    private String dishName;
 
-    private String dishspeel;
+    private String dishSpeel;
 
-    private BigDecimal dishcost;
+    private BigDecimal dishCost;
 
-    private String dishunit;
+    private String dishUnit;
 
-    private BigDecimal dishprice;
+    private BigDecimal dishPrice;
 
-    private String dishdescription;
+    private String dishDescription;
 
-    private String dishcooking;
+    private String dishCooking;
 
-    private String dishimgurl;
+    private String dishImgUrl;
 
-    private Byte delflag;
+    private Byte delFlag;
 
-    private Date lastsubtime;
+    private Date lastSubtime;
 
     private Integer subby;
 
-    public Integer getDishid() {
-        return dishid;
+    public Integer getDishId() {
+        return dishId;
     }
 
-    public void setDishid(Integer dishid) {
-        this.dishid = dishid;
+    public void setDishId(Integer dishId) {
+        this.dishId = dishId;
     }
 
-    public Byte getDishtypeid() {
-        return dishtypeid;
+    public Integer getDishTypeId() {
+        return dishTypeId;
     }
 
-    public void setDishtypeid(Byte dishtypeid) {
-        this.dishtypeid = dishtypeid;
+    public void setDishTypeId(Integer dishTypeId) {
+        this.dishTypeId = dishTypeId;
     }
 
-    public String getDishname() {
-        return dishname;
+    public String getDishName() {
+        return dishName;
     }
 
-    public void setDishname(String dishname) {
-        this.dishname = dishname == null ? null : dishname.trim();
+    public void setDishName(String dishName) {
+        this.dishName = dishName == null ? null : dishName.trim();
     }
 
-    public String getDishspeel() {
-        return dishspeel;
+    public String getDishSpeel() {
+        return dishSpeel;
     }
 
-    public void setDishspeel(String dishspeel) {
-        this.dishspeel = dishspeel == null ? null : dishspeel.trim();
+    public void setDishSpeel(String dishSpeel) {
+        this.dishSpeel = dishSpeel == null ? null : dishSpeel.trim();
     }
 
-    public BigDecimal getDishcost() {
-        return dishcost;
+    public BigDecimal getDishCost() {
+        return dishCost;
     }
 
-    public void setDishcost(BigDecimal dishcost) {
-        this.dishcost = dishcost;
+    public void setDishCost(BigDecimal dishCost) {
+        this.dishCost = dishCost;
     }
 
-    public String getDishunit() {
-        return dishunit;
+    public String getDishUnit() {
+        return dishUnit;
     }
 
-    public void setDishunit(String dishunit) {
-        this.dishunit = dishunit == null ? null : dishunit.trim();
+    public void setDishUnit(String dishUnit) {
+        this.dishUnit = dishUnit == null ? null : dishUnit.trim();
     }
 
-    public BigDecimal getDishprice() {
-        return dishprice;
+    public BigDecimal getDishPrice() {
+        return dishPrice;
     }
 
-    public void setDishprice(BigDecimal dishprice) {
-        this.dishprice = dishprice;
+    public void setDishPrice(BigDecimal dishPrice) {
+        this.dishPrice = dishPrice;
     }
 
-    public String getDishdescription() {
-        return dishdescription;
+    public String getDishDescription() {
+        return dishDescription;
     }
 
-    public void setDishdescription(String dishdescription) {
-        this.dishdescription = dishdescription == null ? null : dishdescription.trim();
+    public void setDishDescription(String dishDescription) {
+        this.dishDescription = dishDescription == null ? null : dishDescription.trim();
     }
 
-    public String getDishcooking() {
-        return dishcooking;
+    public String getDishCooking() {
+        return dishCooking;
     }
 
-    public void setDishcooking(String dishcooking) {
-        this.dishcooking = dishcooking == null ? null : dishcooking.trim();
+    public void setDishCooking(String dishCooking) {
+        this.dishCooking = dishCooking == null ? null : dishCooking.trim();
     }
 
-    public String getDishimgurl() {
-        return dishimgurl;
+    public String getDishImgUrl() {
+        return dishImgUrl;
     }
 
-    public void setDishimgurl(String dishimgurl) {
-        this.dishimgurl = dishimgurl == null ? null : dishimgurl.trim();
+    public void setDishImgUrl(String dishImgUrl) {
+        this.dishImgUrl = dishImgUrl == null ? null : dishImgUrl.trim();
     }
 
-    public Byte getDelflag() {
-        return delflag;
+    public Byte getDelFlag() {
+        return delFlag;
     }
 
-    public void setDelflag(Byte delflag) {
-        this.delflag = delflag;
+    public void setDelFlag(Byte delFlag) {
+        this.delFlag = delFlag;
     }
 
-    public Date getLastsubtime() {
-        return lastsubtime;
+    public Date getLastSubtime() {
+        return lastSubtime;
     }
 
-    public void setLastsubtime(Date lastsubtime) {
-        this.lastsubtime = lastsubtime;
+    public void setLastSubtime(Date lastSubtime) {
+        this.lastSubtime = lastSubtime;
     }
 
     public Integer getSubby() {

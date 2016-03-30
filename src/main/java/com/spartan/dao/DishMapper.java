@@ -4,14 +4,6 @@ import com.spartan.model.Dish;
 
 import java.util.List;
 
-public interface DishMapper {
-    int deleteByPrimaryKey(Integer dishid);
+public interface DishMapper extends BaseMapper<Dish, Integer> {
 
-    int insert(Dish record);
-
-    Dish selectByPrimaryKey(Integer dishid);
-
-    List<Dish> selectAll();
-
-    int updateByPrimaryKey(Dish record);
 }

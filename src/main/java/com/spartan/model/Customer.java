@@ -3,66 +3,66 @@ package com.spartan.model;
 import java.util.Date;
 
 public class Customer {
-    private Integer customerid;
+    private Integer customerId;
 
-    private String customername;
+    private String customerName;
 
-    private String customertel;
+    private String customerTel;
 
-    private Byte customergender;
+    private Byte customerGender;
 
-    private Byte delflag;
+    private Byte delFlag;
 
-    private Date lastsubtime;
+    private Date lastSubtime;
 
     private Integer subby;
 
-    public Integer getCustomerid() {
-        return customerid;
+    public Integer getCustomerId() {
+        return customerId;
     }
 
-    public void setCustomerid(Integer customerid) {
-        this.customerid = customerid;
+    public void setCustomerId(Integer customerId) {
+        this.customerId = customerId;
     }
 
-    public String getCustomername() {
-        return customername;
+    public String getCustomerName() {
+        return customerName;
     }
 
-    public void setCustomername(String customername) {
-        this.customername = customername == null ? null : customername.trim();
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName == null ? null : customerName.trim();
     }
 
-    public String getCustomertel() {
-        return customertel;
+    public String getCustomerTel() {
+        return customerTel;
     }
 
-    public void setCustomertel(String customertel) {
-        this.customertel = customertel == null ? null : customertel.trim();
+    public void setCustomerTel(String customerTel) {
+        this.customerTel = customerTel == null ? null : customerTel.trim();
     }
 
-    public Byte getCustomergender() {
-        return customergender;
+    public Byte getCustomerGender() {
+        return customerGender;
     }
 
-    public void setCustomergender(Byte customergender) {
-        this.customergender = customergender;
+    public void setCustomerGender(Byte customerGender) {
+        this.customerGender = customerGender;
     }
 
-    public Byte getDelflag() {
-        return delflag;
+    public Byte getDelFlag() {
+        return delFlag;
     }
 
-    public void setDelflag(Byte delflag) {
-        this.delflag = delflag;
+    public void setDelFlag(Byte delFlag) {
+        this.delFlag = delFlag;
     }
 
-    public Date getLastsubtime() {
-        return lastsubtime;
+    public Date getLastSubtime() {
+        return lastSubtime;
     }
 
-    public void setLastsubtime(Date lastsubtime) {
-        this.lastsubtime = lastsubtime;
+    public void setLastSubtime(Date lastSubtime) {
+        this.lastSubtime = lastSubtime;
     }
 
     public Integer getSubby() {

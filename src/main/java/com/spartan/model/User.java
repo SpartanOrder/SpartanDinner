@@ -3,64 +3,64 @@ package com.spartan.model;
 import java.util.Date;
 
 public class User {
-    private Integer userid;
+    private Integer userId;
 
-    private String username;
+    private String userName;
 
-    private Byte roleid;
+    private Integer roleId;
 
-    private String userrealname;
+    private String userRealname;
 
-    private String userpassword;
+    private String userPassword;
 
     private String salt;
 
-    private Date lastlogintime;
+    private Date lastLogintime;
 
-    private String lastloginip;
+    private String lastLoginip;
 
-    private Byte delflag;
+    private Byte delFlag;
 
-    private Date lastsubtime;
+    private Date lastSubtime;
 
-    public Integer getUserid() {
-        return userid;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setUserid(Integer userid) {
-        this.userid = userid;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
-    public String getUsername() {
-        return username;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setUsername(String username) {
-        this.username = username == null ? null : username.trim();
+    public void setUserName(String userName) {
+        this.userName = userName == null ? null : userName.trim();
     }
 
-    public Byte getRoleid() {
-        return roleid;
+    public Integer getRoleId() {
+        return roleId;
     }
 
-    public void setRoleid(Byte roleid) {
-        this.roleid = roleid;
+    public void setRoleId(Integer roleId) {
+        this.roleId = roleId;
     }
 
-    public String getUserrealname() {
-        return userrealname;
+    public String getUserRealname() {
+        return userRealname;
     }
 
-    public void setUserrealname(String userrealname) {
-        this.userrealname = userrealname == null ? null : userrealname.trim();
+    public void setUserRealname(String userRealname) {
+        this.userRealname = userRealname == null ? null : userRealname.trim();
     }
 
-    public String getUserpassword() {
-        return userpassword;
+    public String getUserPassword() {
+        return userPassword;
     }
 
-    public void setUserpassword(String userpassword) {
-        this.userpassword = userpassword == null ? null : userpassword.trim();
+    public void setUserPassword(String userPassword) {
+        this.userPassword = userPassword == null ? null : userPassword.trim();
     }
 
     public String getSalt() {
@@ -71,35 +71,35 @@ public class User {
         this.salt = salt == null ? null : salt.trim();
     }
 
-    public Date getLastlogintime() {
-        return lastlogintime;
+    public Date getLastLogintime() {
+        return lastLogintime;
     }
 
-    public void setLastlogintime(Date lastlogintime) {
-        this.lastlogintime = lastlogintime;
+    public void setLastLogintime(Date lastLogintime) {
+        this.lastLogintime = lastLogintime;
     }
 
-    public String getLastloginip() {
-        return lastloginip;
+    public String getLastLoginip() {
+        return lastLoginip;
     }
 
-    public void setLastloginip(String lastloginip) {
-        this.lastloginip = lastloginip == null ? null : lastloginip.trim();
+    public void setLastLoginip(String lastLoginip) {
+        this.lastLoginip = lastLoginip == null ? null : lastLoginip.trim();
     }
 
-    public Byte getDelflag() {
-        return delflag;
+    public Byte getDelFlag() {
+        return delFlag;
     }
 
-    public void setDelflag(Byte delflag) {
-        this.delflag = delflag;
+    public void setDelFlag(Byte delFlag) {
+        this.delFlag = delFlag;
     }
 
-    public Date getLastsubtime() {
-        return lastsubtime;
+    public Date getLastSubtime() {
+        return lastSubtime;
     }
 
-    public void setLastsubtime(Date lastsubtime) {
-        this.lastsubtime = lastsubtime;
+    public void setLastSubtime(Date lastSubtime) {
+        this.lastSubtime = lastSubtime;
     }
 }

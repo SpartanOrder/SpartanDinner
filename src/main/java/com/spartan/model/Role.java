@@ -3,34 +3,34 @@ package com.spartan.model;
 import java.util.Date;
 
 public class Role {
-    private Byte roleid;
+    private Integer roleId;
 
-    private String rolename;
+    private String roleName;
 
     private String description;
 
-    private String powerids;
+    private String powerIds;
 
-    private Byte delflag;
+    private Byte delFlag;
 
-    private Date lastsubtime;
+    private Date lastSubtime;
 
     private Integer subby;
 
-    public Byte getRoleid() {
-        return roleid;
+    public Integer getRoleId() {
+        return roleId;
     }
 
-    public void setRoleid(Byte roleid) {
-        this.roleid = roleid;
+    public void setRoleId(Integer roleId) {
+        this.roleId = roleId;
     }
 
-    public String getRolename() {
-        return rolename;
+    public String getRoleName() {
+        return roleName;
     }
 
-    public void setRolename(String rolename) {
-        this.rolename = rolename == null ? null : rolename.trim();
+    public void setRoleName(String roleName) {
+        this.roleName = roleName == null ? null : roleName.trim();
     }
 
     public String getDescription() {
@@ -41,28 +41,28 @@ public class Role {
         this.description = description == null ? null : description.trim();
     }
 
-    public String getPowerids() {
-        return powerids;
+    public String getPowerIds() {
+        return powerIds;
     }
 
-    public void setPowerids(String powerids) {
-        this.powerids = powerids == null ? null : powerids.trim();
+    public void setPowerIds(String powerIds) {
+        this.powerIds = powerIds == null ? null : powerIds.trim();
     }
 
-    public Byte getDelflag() {
-        return delflag;
+    public Byte getDelFlag() {
+        return delFlag;
     }
 
-    public void setDelflag(Byte delflag) {
-        this.delflag = delflag;
+    public void setDelFlag(Byte delFlag) {
+        this.delFlag = delFlag;
     }
 
-    public Date getLastsubtime() {
-        return lastsubtime;
+    public Date getLastSubtime() {
+        return lastSubtime;
     }
 
-    public void setLastsubtime(Date lastsubtime) {
-        this.lastsubtime = lastsubtime;
+    public void setLastSubtime(Date lastSubtime) {
+        this.lastSubtime = lastSubtime;
     }
 
     public Integer getSubby() {

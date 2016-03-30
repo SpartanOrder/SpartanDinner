@@ -3,21 +3,21 @@ package com.spartan.model;
 import java.util.Date;
 
 public class EmployeeInfo {
-    private Integer employeeid;
+    private Integer employeeId;
 
-    private Integer userid;
+    private Integer userId;
 
-    private String employeename;
+    private String employeeName;
 
-    private Byte employeesex;
+    private Byte employeeSex;
 
-    private Date birthdate;
+    private Date birthDate;
 
-    private String idcard;
+    private String idCard;
 
     private String tel;
 
-    private String fixedphone;
+    private String fixedPhone;
 
     private String degree;
 
@@ -25,66 +25,66 @@ public class EmployeeInfo {
 
     private String address;
 
-    private Integer departmentid;
+    private Integer departmentId;
 
     private Integer salary;
 
-    private Date employeedate;
+    private Date employeeDate;
 
-    private Date firedate;
+    private Date fireDate;
 
-    private Byte delflag;
+    private Byte delFlag;
 
-    private Date lastsubtime;
+    private Date lastSubtime;
 
     private Integer subby;
 
-    public Integer getEmployeeid() {
-        return employeeid;
+    public Integer getEmployeeId() {
+        return employeeId;
     }
 
-    public void setEmployeeid(Integer employeeid) {
-        this.employeeid = employeeid;
+    public void setEmployeeId(Integer employeeId) {
+        this.employeeId = employeeId;
     }
 
-    public Integer getUserid() {
-        return userid;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setUserid(Integer userid) {
-        this.userid = userid;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
-    public String getEmployeename() {
-        return employeename;
+    public String getEmployeeName() {
+        return employeeName;
     }
 
-    public void setEmployeename(String employeename) {
-        this.employeename = employeename == null ? null : employeename.trim();
+    public void setEmployeeName(String employeeName) {
+        this.employeeName = employeeName == null ? null : employeeName.trim();
     }
 
-    public Byte getEmployeesex() {
-        return employeesex;
+    public Byte getEmployeeSex() {
+        return employeeSex;
     }
 
-    public void setEmployeesex(Byte employeesex) {
-        this.employeesex = employeesex;
+    public void setEmployeeSex(Byte employeeSex) {
+        this.employeeSex = employeeSex;
     }
 
-    public Date getBirthdate() {
-        return birthdate;
+    public Date getBirthDate() {
+        return birthDate;
     }
 
-    public void setBirthdate(Date birthdate) {
-        this.birthdate = birthdate;
+    public void setBirthDate(Date birthDate) {
+        this.birthDate = birthDate;
     }
 
-    public String getIdcard() {
-        return idcard;
+    public String getIdCard() {
+        return idCard;
     }
 
-    public void setIdcard(String idcard) {
-        this.idcard = idcard == null ? null : idcard.trim();
+    public void setIdCard(String idCard) {
+        this.idCard = idCard == null ? null : idCard.trim();
     }
 
     public String getTel() {
@@ -95,12 +95,12 @@ public class EmployeeInfo {
         this.tel = tel == null ? null : tel.trim();
     }
 
-    public String getFixedphone() {
-        return fixedphone;
+    public String getFixedPhone() {
+        return fixedPhone;
     }
 
-    public void setFixedphone(String fixedphone) {
-        this.fixedphone = fixedphone == null ? null : fixedphone.trim();
+    public void setFixedPhone(String fixedPhone) {
+        this.fixedPhone = fixedPhone == null ? null : fixedPhone.trim();
     }
 
     public String getDegree() {
@@ -127,12 +127,12 @@ public class EmployeeInfo {
         this.address = address == null ? null : address.trim();
     }
 
-    public Integer getDepartmentid() {
-        return departmentid;
+    public Integer getDepartmentId() {
+        return departmentId;
     }
 
-    public void setDepartmentid(Integer departmentid) {
-        this.departmentid = departmentid;
+    public void setDepartmentId(Integer departmentId) {
+        this.departmentId = departmentId;
     }
 
     public Integer getSalary() {
@@ -143,36 +143,36 @@ public class EmployeeInfo {
         this.salary = salary;
     }
 
-    public Date getEmployeedate() {
-        return employeedate;
+    public Date getEmployeeDate() {
+        return employeeDate;
     }
 
-    public void setEmployeedate(Date employeedate) {
-        this.employeedate = employeedate;
+    public void setEmployeeDate(Date employeeDate) {
+        this.employeeDate = employeeDate;
     }
 
-    public Date getFiredate() {
-        return firedate;
+    public Date getFireDate() {
+        return fireDate;
     }
 
-    public void setFiredate(Date firedate) {
-        this.firedate = firedate;
+    public void setFireDate(Date fireDate) {
+        this.fireDate = fireDate;
     }
 
-    public Byte getDelflag() {
-        return delflag;
+    public Byte getDelFlag() {
+        return delFlag;
     }
 
-    public void setDelflag(Byte delflag) {
-        this.delflag = delflag;
+    public void setDelFlag(Byte delFlag) {
+        this.delFlag = delFlag;
     }
 
-    public Date getLastsubtime() {
-        return lastsubtime;
+    public Date getLastSubtime() {
+        return lastSubtime;
     }
 
-    public void setLastsubtime(Date lastsubtime) {
-        this.lastsubtime = lastsubtime;
+    public void setLastSubtime(Date lastSubtime) {
+        this.lastSubtime = lastSubtime;
     }
 
     public Integer getSubby() {

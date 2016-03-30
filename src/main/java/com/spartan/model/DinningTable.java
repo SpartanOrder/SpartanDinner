@@ -3,96 +3,96 @@ package com.spartan.model;
 import java.util.Date;
 
 public class DinningTable {
-    private Integer dtableid;
+    private Integer tableId;
 
-    private Byte regionid;
+    private Integer regionId;
 
-    private String dtablename;
+    private String tableName;
 
-    private Byte dtablestate;
+    private Byte tableState;
 
-    private String dtabledesc;
+    private String tableDesc;
 
-    private Integer dmaxconsumer;
+    private Integer maxConsumer;
 
-    private String dtableremark;
+    private String tableRemark;
 
-    private Byte delflag;
+    private Byte delFlag;
 
-    private Date lastsubtime;
+    private Date lastSubtime;
 
     private Integer subby;
 
-    public Integer getDtableid() {
-        return dtableid;
+    public Integer getTableId() {
+        return tableId;
     }
 
-    public void setDtableid(Integer dtableid) {
-        this.dtableid = dtableid;
+    public void setTableId(Integer tableId) {
+        this.tableId = tableId;
     }
 
-    public Byte getRegionid() {
-        return regionid;
+    public Integer getRegionId() {
+        return regionId;
     }
 
-    public void setRegionid(Byte regionid) {
-        this.regionid = regionid;
+    public void setRegionId(Integer regionId) {
+        this.regionId = regionId;
     }
 
-    public String getDtablename() {
-        return dtablename;
+    public String getTableName() {
+        return tableName;
     }
 
-    public void setDtablename(String dtablename) {
-        this.dtablename = dtablename == null ? null : dtablename.trim();
+    public void setTableName(String tableName) {
+        this.tableName = tableName == null ? null : tableName.trim();
     }
 
-    public Byte getDtablestate() {
-        return dtablestate;
+    public Byte getTableState() {
+        return tableState;
     }
 
-    public void setDtablestate(Byte dtablestate) {
-        this.dtablestate = dtablestate;
+    public void setTableState(Byte tableState) {
+        this.tableState = tableState;
     }
 
-    public String getDtabledesc() {
-        return dtabledesc;
+    public String getTableDesc() {
+        return tableDesc;
     }
 
-    public void setDtabledesc(String dtabledesc) {
-        this.dtabledesc = dtabledesc == null ? null : dtabledesc.trim();
+    public void setTableDesc(String tableDesc) {
+        this.tableDesc = tableDesc == null ? null : tableDesc.trim();
     }
 
-    public Integer getDmaxconsumer() {
-        return dmaxconsumer;
+    public Integer getMaxConsumer() {
+        return maxConsumer;
     }
 
-    public void setDmaxconsumer(Integer dmaxconsumer) {
-        this.dmaxconsumer = dmaxconsumer;
+    public void setMaxConsumer(Integer maxConsumer) {
+        this.maxConsumer = maxConsumer;
     }
 
-    public String getDtableremark() {
-        return dtableremark;
+    public String getTableRemark() {
+        return tableRemark;
     }
 
-    public void setDtableremark(String dtableremark) {
-        this.dtableremark = dtableremark == null ? null : dtableremark.trim();
+    public void setTableRemark(String tableRemark) {
+        this.tableRemark = tableRemark == null ? null : tableRemark.trim();
     }
 
-    public Byte getDelflag() {
-        return delflag;
+    public Byte getDelFlag() {
+        return delFlag;
     }
 
-    public void setDelflag(Byte delflag) {
-        this.delflag = delflag;
+    public void setDelFlag(Byte delFlag) {
+        this.delFlag = delFlag;
     }
 
-    public Date getLastsubtime() {
-        return lastsubtime;
+    public Date getLastSubtime() {
+        return lastSubtime;
     }
 
-    public void setLastsubtime(Date lastsubtime) {
-        this.lastsubtime = lastsubtime;
+    public void setLastSubtime(Date lastSubtime) {
+        this.lastSubtime = lastSubtime;
     }
 
     public Integer getSubby() {

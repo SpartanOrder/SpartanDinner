@@ -1,0 +1,24 @@
+.menu-first {
+    font-size: 20px;
+}
+
+.menu-second {
+    font-size: 18px;
+    padding-left: 30px;
+    color: #999;
+}
+
+.nav-list > li {
+    line-height: 30px;
+    letter-spacing: 0.1em;
+}
+
+.nav-list > li > a {
+    padding: 5px 15px;
+}
+
+@media (min-width: 1200px) {
+    .container, .navbar-static-top .container, .navbar-fixed-top .container, .navbar-fixed-bottom .container {
+        width: 80%;
+    }
+}

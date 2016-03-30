@@ -3,48 +3,48 @@ package com.spartan.model;
 import java.util.Date;
 
 public class Power {
-    private Byte powerid;
+    private Integer powerId;
 
-    private String powername;
+    private String powerName;
 
-    private String powertype;
+    private String powerType;
 
     private Integer priority;
 
-    private Long parentid;
+    private Integer parentId;
 
-    private String parentids;
+    private String parentIds;
 
     private String permission;
 
-    private Byte delflag;
+    private Byte delFlag;
 
-    private Date lastsubtime;
+    private Date lastSubtime;
 
     private Integer subby;
 
-    public Byte getPowerid() {
-        return powerid;
+    public Integer getPowerId() {
+        return powerId;
     }
 
-    public void setPowerid(Byte powerid) {
-        this.powerid = powerid;
+    public void setPowerId(Integer powerId) {
+        this.powerId = powerId;
     }
 
-    public String getPowername() {
-        return powername;
+    public String getPowerName() {
+        return powerName;
     }
 
-    public void setPowername(String powername) {
-        this.powername = powername == null ? null : powername.trim();
+    public void setPowerName(String powerName) {
+        this.powerName = powerName == null ? null : powerName.trim();
     }
 
-    public String getPowertype() {
-        return powertype;
+    public String getPowerType() {
+        return powerType;
     }
 
-    public void setPowertype(String powertype) {
-        this.powertype = powertype == null ? null : powertype.trim();
+    public void setPowerType(String powerType) {
+        this.powerType = powerType == null ? null : powerType.trim();
     }
 
     public Integer getPriority() {
@@ -55,20 +55,20 @@ public class Power {
         this.priority = priority;
     }
 
-    public Long getParentid() {
-        return parentid;
+    public Integer getParentId() {
+        return parentId;
     }
 
-    public void setParentid(Long parentid) {
-        this.parentid = parentid;
+    public void setParentId(Integer parentId) {
+        this.parentId = parentId;
     }
 
-    public String getParentids() {
-        return parentids;
+    public String getParentIds() {
+        return parentIds;
     }
 
-    public void setParentids(String parentids) {
-        this.parentids = parentids == null ? null : parentids.trim();
+    public void setParentIds(String parentIds) {
+        this.parentIds = parentIds == null ? null : parentIds.trim();
     }
 
     public String getPermission() {
@@ -79,20 +79,20 @@ public class Power {
         this.permission = permission == null ? null : permission.trim();
     }
 
-    public Byte getDelflag() {
-        return delflag;
+    public Byte getDelFlag() {
+        return delFlag;
     }
 
-    public void setDelflag(Byte delflag) {
-        this.delflag = delflag;
+    public void setDelFlag(Byte delFlag) {
+        this.delFlag = delFlag;
     }
 
-    public Date getLastsubtime() {
-        return lastsubtime;
+    public Date getLastSubtime() {
+        return lastSubtime;
     }
 
-    public void setLastsubtime(Date lastsubtime) {
-        this.lastsubtime = lastsubtime;
+    public void setLastSubtime(Date lastSubtime) {
+        this.lastSubtime = lastSubtime;
     }
 
     public Integer getSubby() {

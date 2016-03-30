@@ -4,158 +4,158 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 public class TempCarteInfo {
-    private Integer tciid;
+    private Integer tciId;
 
-    private String tciswiftnumber;
+    private String tciSwiftNumber;
 
-    private Byte tcistate;
+    private Byte tciState;
 
-    private Integer tcidtableid;
+    private Integer tciTableId;
 
-    private Integer tcicustomerid;
+    private Integer tciCustomerId;
 
-    private Integer tcimemid;
+    private Integer tciMemId;
 
-    private Integer tciwaiterid;
+    private Integer tciWaiterId;
 
-    private Integer tcidishnums;
+    private Integer tciDishNums;
 
-    private Integer tciamountpeoplo;
+    private Integer tciAmountPeoplo;
 
-    private Date tcirepasttime;
+    private Date tciRepastTime;
 
-    private BigDecimal tciconsumeamount;
+    private BigDecimal tciConsumeAmount;
 
-    private BigDecimal tcicostamount;
+    private BigDecimal tciCostAmount;
 
-    private BigDecimal tcidiscount;
+    private BigDecimal tciDiscount;
 
-    private Byte delflag;
+    private Byte delFlag;
 
-    private Date lastsubtime;
+    private Date lastSubtime;
 
     private Integer subby;
 
-    private byte[] tciremark;
+    private byte[] tciRemark;
 
-    public Integer getTciid() {
-        return tciid;
+    public Integer getTciId() {
+        return tciId;
     }
 
-    public void setTciid(Integer tciid) {
-        this.tciid = tciid;
+    public void setTciId(Integer tciId) {
+        this.tciId = tciId;
     }
 
-    public String getTciswiftnumber() {
-        return tciswiftnumber;
+    public String getTciSwiftNumber() {
+        return tciSwiftNumber;
     }
 
-    public void setTciswiftnumber(String tciswiftnumber) {
-        this.tciswiftnumber = tciswiftnumber == null ? null : tciswiftnumber.trim();
+    public void setTciSwiftNumber(String tciSwiftNumber) {
+        this.tciSwiftNumber = tciSwiftNumber == null ? null : tciSwiftNumber.trim();
     }
 
-    public Byte getTcistate() {
-        return tcistate;
+    public Byte getTciState() {
+        return tciState;
     }
 
-    public void setTcistate(Byte tcistate) {
-        this.tcistate = tcistate;
+    public void setTciState(Byte tciState) {
+        this.tciState = tciState;
     }
 
-    public Integer getTcidtableid() {
-        return tcidtableid;
+    public Integer getTciTableId() {
+        return tciTableId;
     }
 
-    public void setTcidtableid(Integer tcidtableid) {
-        this.tcidtableid = tcidtableid;
+    public void setTciTableId(Integer tciTableId) {
+        this.tciTableId = tciTableId;
     }
 
-    public Integer getTcicustomerid() {
-        return tcicustomerid;
+    public Integer getTciCustomerId() {
+        return tciCustomerId;
     }
 
-    public void setTcicustomerid(Integer tcicustomerid) {
-        this.tcicustomerid = tcicustomerid;
+    public void setTciCustomerId(Integer tciCustomerId) {
+        this.tciCustomerId = tciCustomerId;
     }
 
-    public Integer getTcimemid() {
-        return tcimemid;
+    public Integer getTciMemId() {
+        return tciMemId;
     }
 
-    public void setTcimemid(Integer tcimemid) {
-        this.tcimemid = tcimemid;
+    public void setTciMemId(Integer tciMemId) {
+        this.tciMemId = tciMemId;
     }
 
-    public Integer getTciwaiterid() {
-        return tciwaiterid;
+    public Integer getTciWaiterId() {
+        return tciWaiterId;
     }
 
-    public void setTciwaiterid(Integer tciwaiterid) {
-        this.tciwaiterid = tciwaiterid;
+    public void setTciWaiterId(Integer tciWaiterId) {
+        this.tciWaiterId = tciWaiterId;
     }
 
-    public Integer getTcidishnums() {
-        return tcidishnums;
+    public Integer getTciDishNums() {
+        return tciDishNums;
     }
 
-    public void setTcidishnums(Integer tcidishnums) {
-        this.tcidishnums = tcidishnums;
+    public void setTciDishNums(Integer tciDishNums) {
+        this.tciDishNums = tciDishNums;
     }
 
-    public Integer getTciamountpeoplo() {
-        return tciamountpeoplo;
+    public Integer getTciAmountPeoplo() {
+        return tciAmountPeoplo;
     }
 
-    public void setTciamountpeoplo(Integer tciamountpeoplo) {
-        this.tciamountpeoplo = tciamountpeoplo;
+    public void setTciAmountPeoplo(Integer tciAmountPeoplo) {
+        this.tciAmountPeoplo = tciAmountPeoplo;
     }
 
-    public Date getTcirepasttime() {
-        return tcirepasttime;
+    public Date getTciRepastTime() {
+        return tciRepastTime;
     }
 
-    public void setTcirepasttime(Date tcirepasttime) {
-        this.tcirepasttime = tcirepasttime;
+    public void setTciRepastTime(Date tciRepastTime) {
+        this.tciRepastTime = tciRepastTime;
     }
 
-    public BigDecimal getTciconsumeamount() {
-        return tciconsumeamount;
+    public BigDecimal getTciConsumeAmount() {
+        return tciConsumeAmount;
     }
 
-    public void setTciconsumeamount(BigDecimal tciconsumeamount) {
-        this.tciconsumeamount = tciconsumeamount;
+    public void setTciConsumeAmount(BigDecimal tciConsumeAmount) {
+        this.tciConsumeAmount = tciConsumeAmount;
     }
 
-    public BigDecimal getTcicostamount() {
-        return tcicostamount;
+    public BigDecimal getTciCostAmount() {
+        return tciCostAmount;
     }
 
-    public void setTcicostamount(BigDecimal tcicostamount) {
-        this.tcicostamount = tcicostamount;
+    public void setTciCostAmount(BigDecimal tciCostAmount) {
+        this.tciCostAmount = tciCostAmount;
     }
 
-    public BigDecimal getTcidiscount() {
-        return tcidiscount;
+    public BigDecimal getTciDiscount() {
+        return tciDiscount;
     }
 
-    public void setTcidiscount(BigDecimal tcidiscount) {
-        this.tcidiscount = tcidiscount;
+    public void setTciDiscount(BigDecimal tciDiscount) {
+        this.tciDiscount = tciDiscount;
     }
 
-    public Byte getDelflag() {
-        return delflag;
+    public Byte getDelFlag() {
+        return delFlag;
     }
 
-    public void setDelflag(Byte delflag) {
-        this.delflag = delflag;
+    public void setDelFlag(Byte delFlag) {
+        this.delFlag = delFlag;
     }
 
-    public Date getLastsubtime() {
-        return lastsubtime;
+    public Date getLastSubtime() {
+        return lastSubtime;
     }
 
-    public void setLastsubtime(Date lastsubtime) {
-        this.lastsubtime = lastsubtime;
+    public void setLastSubtime(Date lastSubtime) {
+        this.lastSubtime = lastSubtime;
     }
 
     public Integer getSubby() {
@@ -166,11 +166,11 @@ public class TempCarteInfo {
         this.subby = subby;
     }
 
-    public byte[] getTciremark() {
-        return tciremark;
+    public byte[] getTciRemark() {
+        return tciRemark;
     }
 
-    public void setTciremark(byte[] tciremark) {
-        this.tciremark = tciremark;
+    public void setTciRemark(byte[] tciRemark) {
+        this.tciRemark = tciRemark;
     }
 }

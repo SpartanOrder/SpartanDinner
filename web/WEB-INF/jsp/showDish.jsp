@@ -15,8 +15,8 @@
     <title></title>
 </head>
 <body>
-${dish.dishid}<br/>
-${dish.dishname}<br/>
-${dish.dishprice}
+${dish.dishId}<br/>
+${dish.dishName}<br/>
+${dish.dishPrice}
 </body>
 </html>

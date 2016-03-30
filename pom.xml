@@ -102,6 +102,12 @@
             <artifactId>jstl</artifactId>
             <version>1.2</version>
         </dependency>
+        <dependency>
+            <groupId>tk.mybatis</groupId>
+            <artifactId>mapper</artifactId>
+            <!-- 建议使用最新版本,最新版本请从项目首页查找 -->
+            <version>3.3.8</version>
+        </dependency>
     </dependencies>
     <build>
         <finalName>xxx</finalName>
@@ -124,6 +130,5 @@
                 </configuration>
             </plugin>
         </plugins>
-
     </build>
 </project>

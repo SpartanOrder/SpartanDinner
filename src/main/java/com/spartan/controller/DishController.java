@@ -20,7 +20,7 @@ import javax.annotation.Resource;
  */
 @Controller
 @RequestMapping("/dish")
-public class DishController {
+public class DishController extends BaseController {
     @Resource
     private DishService dishService;
 
@@ -28,7 +28,7 @@ public class DishController {
     public String toIndex(HttpServletRequest request, Model model) {
         System.out.println("进来了");
         int dishId = Integer.parseInt(request.getParameter("id"));
-        Dish dish = dishService.getDish(dishId);
+        Dish dish = dishService.selectByPrimaryKey(dishId);
         model.addAttribute("dish", dish);
         return "showDish";
     }
