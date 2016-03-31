@@ -4,5 +4,5 @@ import com.spartan.model.Customer;
 
 import java.util.List;
 
-public interface CustomerMapper {
+public interface CustomerMapper extends BaseMapper<Customer, Integer> {
 }

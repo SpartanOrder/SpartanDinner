@@ -26,9 +26,4 @@ public class DishServiceImpl extends AbstractService<Dish, Integer> implements D
     public void setBaseMapper() {
         super.setBaseMapper(dishMapper);
     }
-
-    public Dish getDish(int id) {
-        return dishMapper.selectByPrimaryKey(id);
-    }
-
 }

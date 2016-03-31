@@ -15,6 +15,7 @@
     <title></title>
 </head>
 <body>
+<%=basePath %>
 ${dish.dishId}<br/>
 ${dish.dishName}<br/>
 ${dish.dishPrice}
