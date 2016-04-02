@@ -17,14 +17,12 @@
     where ECC_ID = #{eccId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.spartan.model.EndCarteContent" >
-    insert into t_endcartecontent (ECC_ID, ECC_Dish_ID, ECC_Dish_Num, 
-      ECC_Total_Price, ECC_ECI_ID, ECC_Specil_Desc, 
-      del_Flag, last_SubTime, subBy
-      )
-    values (#{eccId,jdbcType=INTEGER}, #{eccDishId,jdbcType=INTEGER}, #{eccDishNum,jdbcType=INTEGER}, 
-      #{eccTotalPrice,jdbcType=DECIMAL}, #{eccEciId,jdbcType=INTEGER}, #{eccSpecilDesc,jdbcType=VARCHAR}, 
-      #{delFlag,jdbcType=TINYINT}, #{lastSubtime,jdbcType=TIMESTAMP}, #{subby,jdbcType=INTEGER}
-      )
+    insert into t_endcartecontent (ECC_ID, ECC_Dish_ID, ECC_Dish_Num,
+    ECC_Total_Price, ECC_ECI_ID, ECC_Specil_Desc,
+    del_Flag, subBy)
+    values (#{eccId,jdbcType=INTEGER}, #{eccDishId,jdbcType=INTEGER}, #{eccDishNum,jdbcType=INTEGER},
+    #{eccTotalPrice,jdbcType=DECIMAL}, #{eccEciId,jdbcType=INTEGER}, #{eccSpecilDesc,jdbcType=VARCHAR},
+    #{delFlag,jdbcType=TINYINT}, #{subby,jdbcType=INTEGER})
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.spartan.model.EndCarteContent" >
     update t_endcartecontent
@@ -34,7 +32,6 @@
       ECC_ECI_ID = #{eccEciId,jdbcType=INTEGER},
       ECC_Specil_Desc = #{eccSpecilDesc,jdbcType=VARCHAR},
       del_Flag = #{delFlag,jdbcType=TINYINT},
-      last_SubTime = #{lastSubtime,jdbcType=TIMESTAMP},
       subBy = #{subby,jdbcType=INTEGER}
     where ECC_ID = #{eccId,jdbcType=INTEGER}
   </update>

@@ -4,6 +4,8 @@ import com.spartan.dao.BaseMapper;
 import com.spartan.dao.DishMapper;
 import com.spartan.model.Dish;
 
+import java.util.List;
+
 /**
  * Created with IntelliJ IDEA.
  * @author Wind

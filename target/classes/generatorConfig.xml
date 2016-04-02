@@ -7,6 +7,7 @@
     <properties resource="dbconfig.properties"></properties>
     <!--数据库驱动jar -->
     <classPathEntry location="${jdbc_driverLocation}"/>
+
     <context id="DB2Tables" targetRuntime="MyBatis3Simple">
         <!--去除注释  -->
         <commentGenerator>
@@ -18,6 +19,7 @@
                         userId="${jdbc_username}"
                         password="${jdbc_password}">
         </jdbcConnection>
+        <!--Java类型解析器不应该强制型对象字段BigDecimal的使用，这意味着整数类型(短、整型、长等)如果可能的话将被取代。 此功能是为了使数据库DECIMAL和NUMERIC列容易处理。-->
         <!--默认false
            Java type resolver will always use java.math.BigDecimal if the database column is of type DECIMAL or NUMERIC.
          -->
@@ -40,43 +42,62 @@
         </javaClientGenerator>
 
         <!--对应数据库表 mysql可以加入主键自增 字段命名 忽略某字段等-->
-        <table tableName="t_customer" domainObjectName="Customer">
+        <table tableName="t_customer" domainObjectName="Customer" enableSelectByPrimaryKey="false">
+            <ignoreColumn column="last_SubTime"/>
         </table>
-        <table tableName="t_department" domainObjectName="Department">
+        <table tableName="t_department" domainObjectName="Department" enableSelectByPrimaryKey="false">
+            <ignoreColumn column="last_SubTime"/>
         </table>
-        <table tableName="t_dinningtable" domainObjectName="DinningTable">
+        <table tableName="t_dinningtable" domainObjectName="DinningTable" enableSelectByPrimaryKey="false">
+            <ignoreColumn column="last_SubTime"/>
         </table>
-        <table tableName="t_dish" domainObjectName="Dish">
+        <table tableName="t_dish" domainObjectName="Dish" enableSelectByPrimaryKey="false">
+            <ignoreColumn column="last_SubTime"/>
         </table>
-        <table tableName="t_dishtype" domainObjectName="DishType">
+        <table tableName="t_dishtype" domainObjectName="DishType" enableSelectByPrimaryKey="false">
+            <ignoreColumn column="last_SubTime"/>
         </table>
-        <table tableName="t_employeeinfo" domainObjectName="EmployeeInfo">
+        <table tableName="t_employeeinfo" domainObjectName="EmployeeInfo" enableSelectByPrimaryKey="false">
+            <ignoreColumn column="last_SubTime"/>
         </table>
-        <table tableName="t_endcartecontent" domainObjectName="EndCarteContent">
+        <table tableName="t_endcartecontent" domainObjectName="EndCarteContent" enableSelectByPrimaryKey="false">
+            <ignoreColumn column="last_SubTime"/>
         </table>
-        <table tableName="t_endcarteinfo" domainObjectName="EndCarteInfo">
+        <table tableName="t_endcarteinfo" domainObjectName="EndCarteInfo" enableSelectByPrimaryKey="false">
+            <ignoreColumn column="last_SubTime"/>
         </table>
-        <table tableName="t_memberinfo" domainObjectName="MemberInfo">
+        <table tableName="t_memberinfo" domainObjectName="MemberInfo" enableSelectByPrimaryKey="false">
+            <ignoreColumn column="last_SubTime"/>
         </table>
-        <table tableName="t_membertype" domainObjectName="MemberType">
+        <table tableName="t_membertype" domainObjectName="MemberType" enableSelectByPrimaryKey="false">
+            <ignoreColumn column="last_SubTime"/>
         </table>
-        <table tableName="t_onaccountcartecontent" domainObjectName="OnAccountCarteContent">
+        <table tableName="t_onaccountcartecontent" domainObjectName="OnAccountCarteContent" enableSelectByPrimaryKey="false">
+            <ignoreColumn column="last_SubTime"/>
         </table>
-        <table tableName="t_onaccountcarteinfo" domainObjectName="OnAccountCarteInfo">
+        <table tableName="t_onaccountcarteinfo" domainObjectName="OnAccountCarteInfo" enableSelectByPrimaryKey="false">
+            <ignoreColumn column="last_SubTime"/>
         </table>
-        <table tableName="t_power" domainObjectName="Power">
+        <table tableName="t_power" domainObjectName="Power" enableSelectByPrimaryKey="false">
+            <ignoreColumn column="last_SubTime"/>
         </table>
-        <table tableName="t_region" domainObjectName="Region">
+        <table tableName="t_region" domainObjectName="Region" enableSelectByPrimaryKey="false">
+            <ignoreColumn column="last_SubTime"/>
         </table>
-        <table tableName="t_restaurant" domainObjectName="Restaurant">
+        <table tableName="t_restaurant" domainObjectName="Restaurant" enableSelectByPrimaryKey="false">
+            <ignoreColumn column="last_SubTime"/>
         </table>
-        <table tableName="t_role" domainObjectName="Role">
+        <table tableName="t_role" domainObjectName="Role" enableSelectByPrimaryKey="false">
+            <ignoreColumn column="last_SubTime"/>
         </table>
-        <table tableName="t_tempcartecontent" domainObjectName="TempCarteContent">
+        <table tableName="t_tempcartecontent" domainObjectName="TempCarteContent" enableSelectByPrimaryKey="false">
+            <ignoreColumn column="last_SubTime"/>
         </table>
-        <table tableName="t_tempcarteinfo" domainObjectName="TempCarteInfo">
+        <table tableName="t_tempcarteinfo" domainObjectName="TempCarteInfo" enableSelectByPrimaryKey="false">
+            <ignoreColumn column="last_SubTime"/>
         </table>
-        <table tableName="t_user" domainObjectName="User">
+        <table tableName="t_user" domainObjectName="User" enableSelectByPrimaryKey="false">
+            <ignoreColumn column="last_SubTime"/>
         </table>
     </context>
 </generatorConfiguration>

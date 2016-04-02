@@ -32,15 +32,15 @@
       ECI_Customer_ID, ECI_Mem_ID, ECI_Dish_Nums, 
       ECI_Amount_Peoplo, ECI_Repast_Time, ECI_Bill_Time, 
       ECI_Consume_Amount, ECI_Discount, ECI_Paid_Amount, 
-      del_Flag, last_SubTime, subBy, 
-      ECI_Remark)
-    values (#{eciId,jdbcType=INTEGER}, #{eciSwiftNumber,jdbcType=VARCHAR}, #{eciState,jdbcType=TINYINT}, 
-      #{eciTableId,jdbcType=INTEGER}, #{eciWaiterId,jdbcType=INTEGER}, #{eciCashierId,jdbcType=INTEGER}, 
-      #{eciCustomerId,jdbcType=INTEGER}, #{eciMemId,jdbcType=INTEGER}, #{eciDishNums,jdbcType=INTEGER}, 
-      #{eciAmountPeoplo,jdbcType=INTEGER}, #{eciRepastTime,jdbcType=TIMESTAMP}, #{eciBillTime,jdbcType=TIMESTAMP}, 
-      #{eciConsumeAmount,jdbcType=DECIMAL}, #{eciDiscount,jdbcType=DECIMAL}, #{eciPaidAmount,jdbcType=DECIMAL}, 
-      #{delFlag,jdbcType=TINYINT}, #{lastSubtime,jdbcType=TIMESTAMP}, #{subby,jdbcType=INTEGER}, 
-      #{eciRemark,jdbcType=VARBINARY})
+      del_Flag, subBy, ECI_Remark
+      )
+    values (#{eciId,jdbcType=INTEGER}, #{eciSwiftNumber,jdbcType=VARCHAR}, #{eciState,jdbcType=TINYINT},
+      #{eciTableId,jdbcType=INTEGER}, #{eciWaiterId,jdbcType=INTEGER}, #{eciCashierId,jdbcType=INTEGER},
+      #{eciCustomerId,jdbcType=INTEGER}, #{eciMemId,jdbcType=INTEGER}, #{eciDishNums,jdbcType=INTEGER},
+      #{eciAmountPeoplo,jdbcType=INTEGER}, #{eciRepastTime,jdbcType=TIMESTAMP}, #{eciBillTime,jdbcType=TIMESTAMP},
+      #{eciConsumeAmount,jdbcType=DECIMAL}, #{eciDiscount,jdbcType=DECIMAL}, #{eciPaidAmount,jdbcType=DECIMAL},
+      #{delFlag,jdbcType=TINYINT}, #{subby,jdbcType=INTEGER}, #{eciRemark,jdbcType=VARBINARY}
+      )
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.spartan.model.OnAccountCarteInfo" >
     update t_onaccountcarteinfo
@@ -59,7 +59,6 @@
       ECI_Discount = #{eciDiscount,jdbcType=DECIMAL},
       ECI_Paid_Amount = #{eciPaidAmount,jdbcType=DECIMAL},
       del_Flag = #{delFlag,jdbcType=TINYINT},
-      last_SubTime = #{lastSubtime,jdbcType=TIMESTAMP},
       subBy = #{subby,jdbcType=INTEGER},
       ECI_Remark = #{eciRemark,jdbcType=VARBINARY}
     where ECI_ID = #{eciId,jdbcType=INTEGER}

@@ -1,60 +1,59 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.spartan.dao.DishMapper" >
-  <resultMap id="BaseResultMap" type="com.spartan.model.Dish" >
-    <id column="dish_ID" property="dishId" jdbcType="INTEGER" />
-    <result column="dish_Type_ID" property="dishTypeId" jdbcType="INTEGER" />
-    <result column="dish_Name" property="dishName" jdbcType="VARCHAR" />
-    <result column="dish_Speel" property="dishSpeel" jdbcType="VARCHAR" />
-    <result column="dish_Cost" property="dishCost" jdbcType="DECIMAL" />
-    <result column="dish_Unit" property="dishUnit" jdbcType="VARCHAR" />
-    <result column="dish_Price" property="dishPrice" jdbcType="DECIMAL" />
-    <result column="dish_Description" property="dishDescription" jdbcType="VARCHAR" />
-    <result column="dish_Cooking" property="dishCooking" jdbcType="VARCHAR" />
-    <result column="dish_Img_Url" property="dishImgUrl" jdbcType="VARCHAR" />
-    <result column="del_Flag" property="delFlag" jdbcType="TINYINT" />
-    <result column="last_SubTime" property="lastSubtime" jdbcType="TIMESTAMP" />
-    <result column="subBy" property="subby" jdbcType="INTEGER" />
-  </resultMap>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from t_dish
-    where dish_ID = #{dishId,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.spartan.model.Dish" >
-    insert into t_dish (dish_ID, dish_Type_ID, dish_Name, 
-      dish_Speel, dish_Cost, dish_Unit, 
-      dish_Price, dish_Description, dish_Cooking, 
-      dish_Img_Url, del_Flag, last_SubTime, 
-      subBy)
-    values (#{dishId,jdbcType=INTEGER}, #{dishTypeId,jdbcType=INTEGER}, #{dishName,jdbcType=VARCHAR}, 
-      #{dishSpeel,jdbcType=VARCHAR}, #{dishCost,jdbcType=DECIMAL}, #{dishUnit,jdbcType=VARCHAR}, 
-      #{dishPrice,jdbcType=DECIMAL}, #{dishDescription,jdbcType=VARCHAR}, #{dishCooking,jdbcType=VARCHAR}, 
-      #{dishImgUrl,jdbcType=VARCHAR}, #{delFlag,jdbcType=TINYINT}, #{lastSubtime,jdbcType=TIMESTAMP}, 
-      #{subby,jdbcType=INTEGER})
-  </insert>
-  <update id="updateByPrimaryKey" parameterType="com.spartan.model.Dish" >
-    update t_dish
-    set dish_Type_ID = #{dishTypeId,jdbcType=INTEGER},
-      dish_Name = #{dishName,jdbcType=VARCHAR},
-      dish_Speel = #{dishSpeel,jdbcType=VARCHAR},
-      dish_Cost = #{dishCost,jdbcType=DECIMAL},
-      dish_Unit = #{dishUnit,jdbcType=VARCHAR},
-      dish_Price = #{dishPrice,jdbcType=DECIMAL},
-      dish_Description = #{dishDescription,jdbcType=VARCHAR},
-      dish_Cooking = #{dishCooking,jdbcType=VARCHAR},
-      dish_Img_Url = #{dishImgUrl,jdbcType=VARCHAR},
-      del_Flag = #{delFlag,jdbcType=TINYINT},
-      last_SubTime = #{lastSubtime,jdbcType=TIMESTAMP},
-      subBy = #{subby,jdbcType=INTEGER}
-    where dish_ID = #{dishId,jdbcType=INTEGER}
-  </update>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select dish_ID, dish_Type_ID, dish_Name, dish_Speel, dish_Cost, dish_Unit, dish_Price, 
+<mapper namespace="com.spartan.dao.DishMapper">
+    <resultMap id="BaseResultMap" type="com.spartan.model.Dish">
+        <id column="dish_ID" property="dishId" jdbcType="INTEGER"/>
+        <result column="dish_Type_ID" property="dishTypeId" jdbcType="INTEGER"/>
+        <result column="dish_Name" property="dishName" jdbcType="VARCHAR"/>
+        <result column="dish_Speel" property="dishSpeel" jdbcType="VARCHAR"/>
+        <result column="dish_Cost" property="dishCost" jdbcType="DECIMAL"/>
+        <result column="dish_Unit" property="dishUnit" jdbcType="VARCHAR"/>
+        <result column="dish_Price" property="dishPrice" jdbcType="DECIMAL"/>
+        <result column="dish_Description" property="dishDescription" jdbcType="VARCHAR"/>
+        <result column="dish_Cooking" property="dishCooking" jdbcType="VARCHAR"/>
+        <result column="dish_Img_Url" property="dishImgUrl" jdbcType="VARCHAR"/>
+        <result column="del_Flag" property="delFlag" jdbcType="TINYINT"/>
+        <result column="last_SubTime" property="lastSubtime" jdbcType="TIMESTAMP"/>
+        <result column="subBy" property="subby" jdbcType="INTEGER"/>
+    </resultMap>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from t_dish
+        where dish_ID = #{dishId,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.spartan.model.Dish">
+        insert into t_dish (dish_ID, dish_Type_ID, dish_Name,
+        dish_Speel, dish_Cost, dish_Unit,
+        dish_Price, dish_Description, dish_Cooking,
+        dish_Img_Url, del_Flag, subBy
+        )
+        values (#{dishId,jdbcType=INTEGER}, #{dishTypeId,jdbcType=INTEGER}, #{dishName,jdbcType=VARCHAR},
+        #{dishSpeel,jdbcType=VARCHAR}, #{dishCost,jdbcType=DECIMAL}, #{dishUnit,jdbcType=VARCHAR},
+        #{dishPrice,jdbcType=DECIMAL}, #{dishDescription,jdbcType=VARCHAR}, #{dishCooking,jdbcType=VARCHAR},
+        #{dishImgUrl,jdbcType=VARCHAR}, #{delFlag,jdbcType=TINYINT}, #{subby,jdbcType=INTEGER}
+        )
+    </insert>
+    <update id="updateByPrimaryKey" parameterType="com.spartan.model.Dish">
+        update t_dish
+        set dish_Type_ID = #{dishTypeId,jdbcType=INTEGER},
+        dish_Name = #{dishName,jdbcType=VARCHAR},
+        dish_Speel = #{dishSpeel,jdbcType=VARCHAR},
+        dish_Cost = #{dishCost,jdbcType=DECIMAL},
+        dish_Unit = #{dishUnit,jdbcType=VARCHAR},
+        dish_Price = #{dishPrice,jdbcType=DECIMAL},
+        dish_Description = #{dishDescription,jdbcType=VARCHAR},
+        dish_Cooking = #{dishCooking,jdbcType=VARCHAR},
+        dish_Img_Url = #{dishImgUrl,jdbcType=VARCHAR},
+        del_Flag = #{delFlag,jdbcType=TINYINT},
+        subBy = #{subby,jdbcType=INTEGER}
+        where dish_ID = #{dishId,jdbcType=INTEGER}
+    </update>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    select dish_ID, dish_Type_ID, dish_Name, dish_Speel, dish_Cost, dish_Unit, dish_Price,
     dish_Description, dish_Cooking, dish_Img_Url, del_Flag, last_SubTime, subBy
     from t_dish
     where dish_ID = #{dishId,jdbcType=INTEGER}
   </select>
-  <select id="selectAll" resultMap="BaseResultMap" >
+    <select id="selectAll" resultMap="BaseResultMap">
     select dish_ID, dish_Type_ID, dish_Name, dish_Speel, dish_Cost, dish_Unit, dish_Price, 
     dish_Description, dish_Cooking, dish_Img_Url, del_Flag, last_SubTime, subBy
     from t_dish

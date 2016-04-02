@@ -1,44 +1,43 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.spartan.dao.CustomerMapper" >
-  <resultMap id="BaseResultMap" type="com.spartan.model.Customer" >
-    <id column="customer_ID" property="customerId" jdbcType="INTEGER" />
-    <result column="customer_Name" property="customerName" jdbcType="VARCHAR" />
-    <result column="customer_Tel" property="customerTel" jdbcType="VARCHAR" />
-    <result column="customer_Gender" property="customerGender" jdbcType="TINYINT" />
-    <result column="del_Flag" property="delFlag" jdbcType="TINYINT" />
-    <result column="last_SubTime" property="lastSubtime" jdbcType="TIMESTAMP" />
-    <result column="subBy" property="subby" jdbcType="INTEGER" />
-  </resultMap>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from t_customer
-    where customer_ID = #{customerId,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.spartan.model.Customer" >
-    insert into t_customer (customer_ID, customer_Name, customer_Tel, 
-      customer_Gender, del_Flag, last_SubTime, 
-      subBy)
-    values (#{customerId,jdbcType=INTEGER}, #{customerName,jdbcType=VARCHAR}, #{customerTel,jdbcType=VARCHAR}, 
-      #{customerGender,jdbcType=TINYINT}, #{delFlag,jdbcType=TINYINT}, #{lastSubtime,jdbcType=TIMESTAMP}, 
-      #{subby,jdbcType=INTEGER})
-  </insert>
-  <update id="updateByPrimaryKey" parameterType="com.spartan.model.Customer" >
+<mapper namespace="com.spartan.dao.CustomerMapper">
+    <resultMap id="BaseResultMap" type="com.spartan.model.Customer">
+        <id column="customer_ID" property="customerId" jdbcType="INTEGER"/>
+        <result column="customer_Name" property="customerName" jdbcType="VARCHAR"/>
+        <result column="customer_Tel" property="customerTel" jdbcType="VARCHAR"/>
+        <result column="customer_Gender" property="customerGender" jdbcType="TINYINT"/>
+        <result column="del_Flag" property="delFlag" jdbcType="TINYINT"/>
+        <result column="last_SubTime" property="lastSubtime" jdbcType="TIMESTAMP"/>
+        <result column="subBy" property="subby" jdbcType="INTEGER"/>
+    </resultMap>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from t_customer
+        where customer_ID = #{customerId,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.spartan.model.Customer">
+        insert into t_customer (customer_ID, customer_Name, customer_Tel,
+        customer_Gender, del_Flag, subBy
+        )
+        values (#{customerId,jdbcType=INTEGER}, #{customerName,jdbcType=VARCHAR}, #{customerTel,jdbcType=VARCHAR},
+        #{customerGender,jdbcType=TINYINT}, #{delFlag,jdbcType=TINYINT}, #{subby,jdbcType=INTEGER}
+        )
+    </insert>
+    <update id="updateByPrimaryKey" parameterType="com.spartan.model.Customer">
     update t_customer
     set customer_Name = #{customerName,jdbcType=VARCHAR},
       customer_Tel = #{customerTel,jdbcType=VARCHAR},
       customer_Gender = #{customerGender,jdbcType=TINYINT},
       del_Flag = #{delFlag,jdbcType=TINYINT},
-      last_SubTime = #{lastSubtime,jdbcType=TIMESTAMP},
       subBy = #{subby,jdbcType=INTEGER}
     where customer_ID = #{customerId,jdbcType=INTEGER}
   </update>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
     select customer_ID, customer_Name, customer_Tel, customer_Gender, del_Flag, last_SubTime, 
     subBy
     from t_customer
     where customer_ID = #{customerId,jdbcType=INTEGER}
   </select>
-  <select id="selectAll" resultMap="BaseResultMap" >
+    <select id="selectAll" resultMap="BaseResultMap">
     select customer_ID, customer_Name, customer_Tel, customer_Gender, del_Flag, last_SubTime, 
     subBy
     from t_customer

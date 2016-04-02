@@ -15,12 +15,12 @@
     where mem_Type_ID = #{memTypeId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.spartan.model.MemberType" >
-    insert into t_membertype (mem_Type_ID, mem_Type_Name, mem_Type_Discount, 
-      mem_Type_Desc, del_Flag, last_SubTime, 
-      subBy)
-    values (#{memTypeId,jdbcType=INTEGER}, #{memTypeName,jdbcType=VARCHAR}, #{memTypeDiscount,jdbcType=DECIMAL}, 
-      #{memTypeDesc,jdbcType=VARCHAR}, #{delFlag,jdbcType=TINYINT}, #{lastSubtime,jdbcType=TIMESTAMP}, 
-      #{subby,jdbcType=INTEGER})
+    insert into t_membertype (mem_Type_ID, mem_Type_Name, mem_Type_Discount,
+    mem_Type_Desc, del_Flag, subBy
+    )
+    values (#{memTypeId,jdbcType=INTEGER}, #{memTypeName,jdbcType=VARCHAR}, #{memTypeDiscount,jdbcType=DECIMAL},
+    #{memTypeDesc,jdbcType=VARCHAR}, #{delFlag,jdbcType=TINYINT}, #{subby,jdbcType=INTEGER}
+    )
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.spartan.model.MemberType" >
     update t_membertype
@@ -28,7 +28,6 @@
       mem_Type_Discount = #{memTypeDiscount,jdbcType=DECIMAL},
       mem_Type_Desc = #{memTypeDesc,jdbcType=VARCHAR},
       del_Flag = #{delFlag,jdbcType=TINYINT},
-      last_SubTime = #{lastSubtime,jdbcType=TIMESTAMP},
       subBy = #{subby,jdbcType=INTEGER}
     where mem_Type_ID = #{memTypeId,jdbcType=INTEGER}
   </update>

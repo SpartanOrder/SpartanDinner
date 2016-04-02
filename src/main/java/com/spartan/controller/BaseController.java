@@ -8,4 +8,5 @@ package com.spartan.controller;
  * @Date 2016/3/30 22:43
  */
 public abstract class BaseController {
+
 }

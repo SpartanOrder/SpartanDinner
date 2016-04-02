@@ -24,13 +24,13 @@
     insert into t_restaurant (id, restaurant_Name, short_Name, 
       tel, adderss, description, 
       url, begin_Date, account, 
-      tax_Registration_Certificate, del_Flag, last_SubTime, 
-      subBy)
-    values (#{id,jdbcType=INTEGER}, #{restaurantName,jdbcType=VARCHAR}, #{shortName,jdbcType=VARCHAR}, 
-      #{tel,jdbcType=VARCHAR}, #{adderss,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
-      #{url,jdbcType=VARCHAR}, #{beginDate,jdbcType=DATE}, #{account,jdbcType=VARCHAR}, 
-      #{taxRegistrationCertificate,jdbcType=VARCHAR}, #{delFlag,jdbcType=TINYINT}, #{lastSubtime,jdbcType=TIMESTAMP}, 
-      #{subby,jdbcType=INTEGER})
+      tax_Registration_Certificate, del_Flag, subBy
+      )
+    values (#{id,jdbcType=INTEGER}, #{restaurantName,jdbcType=VARCHAR}, #{shortName,jdbcType=VARCHAR},
+      #{tel,jdbcType=VARCHAR}, #{adderss,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR},
+      #{url,jdbcType=VARCHAR}, #{beginDate,jdbcType=DATE}, #{account,jdbcType=VARCHAR},
+      #{taxRegistrationCertificate,jdbcType=VARCHAR}, #{delFlag,jdbcType=TINYINT}, #{subby,jdbcType=INTEGER}
+      )
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.spartan.model.Restaurant" >
     update t_restaurant
@@ -44,7 +44,6 @@
       account = #{account,jdbcType=VARCHAR},
       tax_Registration_Certificate = #{taxRegistrationCertificate,jdbcType=VARCHAR},
       del_Flag = #{delFlag,jdbcType=TINYINT},
-      last_SubTime = #{lastSubtime,jdbcType=TIMESTAMP},
       subBy = #{subby,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>

@@ -16,11 +16,11 @@
   </delete>
   <insert id="insert" parameterType="com.spartan.model.Region" >
     insert into t_region (region_ID, region_Name, region_Min_Consume, 
-      region_Max_Consumer, del_Flag, last_SubTime, 
-      subBy)
-    values (#{regionId,jdbcType=INTEGER}, #{regionName,jdbcType=VARCHAR}, #{regionMinConsume,jdbcType=DECIMAL}, 
-      #{regionMaxConsumer,jdbcType=INTEGER}, #{delFlag,jdbcType=TINYINT}, #{lastSubtime,jdbcType=TIMESTAMP}, 
-      #{subby,jdbcType=INTEGER})
+      region_Max_Consumer, del_Flag, subBy
+      )
+    values (#{regionId,jdbcType=INTEGER}, #{regionName,jdbcType=VARCHAR}, #{regionMinConsume,jdbcType=DECIMAL},
+      #{regionMaxConsumer,jdbcType=INTEGER}, #{delFlag,jdbcType=TINYINT}, #{subby,jdbcType=INTEGER}
+      )
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.spartan.model.Region" >
     update t_region
@@ -28,7 +28,6 @@
       region_Min_Consume = #{regionMinConsume,jdbcType=DECIMAL},
       region_Max_Consumer = #{regionMaxConsumer,jdbcType=INTEGER},
       del_Flag = #{delFlag,jdbcType=TINYINT},
-      last_SubTime = #{lastSubtime,jdbcType=TIMESTAMP},
       subBy = #{subby,jdbcType=INTEGER}
     where region_ID = #{regionId,jdbcType=INTEGER}
   </update>

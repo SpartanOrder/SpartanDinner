@@ -25,37 +25,36 @@
     where mem_ID = #{memId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.spartan.model.MemberInfo" >
-    insert into t_memberinfo (mem_ID, mem_Type_ID, mem_Name, 
-      mem_User_Name, mem_Password, mem_Tel, 
-      mem_Phone, mem_Address, mem_Gender, 
-      mem_Money, mem_Integral, mem_Birthday, 
-      mem_Begin_Time, mem_End_Time, del_Flag, 
-      last_SubTime, subBy)
-    values (#{memId,jdbcType=INTEGER}, #{memTypeId,jdbcType=INTEGER}, #{memName,jdbcType=VARCHAR}, 
-      #{memUserName,jdbcType=VARCHAR}, #{memPassword,jdbcType=VARCHAR}, #{memTel,jdbcType=VARCHAR}, 
-      #{memPhone,jdbcType=VARCHAR}, #{memAddress,jdbcType=VARCHAR}, #{memGender,jdbcType=TINYINT}, 
-      #{memMoney,jdbcType=DECIMAL}, #{memIntegral,jdbcType=INTEGER}, #{memBirthday,jdbcType=DATE}, 
-      #{memBeginTime,jdbcType=TIMESTAMP}, #{memEndTime,jdbcType=TIMESTAMP}, #{delFlag,jdbcType=TINYINT}, 
-      #{lastSubtime,jdbcType=TIMESTAMP}, #{subby,jdbcType=INTEGER})
+    insert into t_memberinfo (mem_ID, mem_Type_ID, mem_Name,
+    mem_User_Name, mem_Password, mem_Tel,
+    mem_Phone, mem_Address, mem_Gender,
+    mem_Money, mem_Integral, mem_Birthday,
+    mem_Begin_Time, mem_End_Time, del_Flag,
+    subBy)
+    values (#{memId,jdbcType=INTEGER}, #{memTypeId,jdbcType=INTEGER}, #{memName,jdbcType=VARCHAR},
+    #{memUserName,jdbcType=VARCHAR}, #{memPassword,jdbcType=VARCHAR}, #{memTel,jdbcType=VARCHAR},
+    #{memPhone,jdbcType=VARCHAR}, #{memAddress,jdbcType=VARCHAR}, #{memGender,jdbcType=TINYINT},
+    #{memMoney,jdbcType=DECIMAL}, #{memIntegral,jdbcType=INTEGER}, #{memBirthday,jdbcType=DATE},
+    #{memBeginTime,jdbcType=TIMESTAMP}, #{memEndTime,jdbcType=TIMESTAMP}, #{delFlag,jdbcType=TINYINT},
+    #{subby,jdbcType=INTEGER})
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.spartan.model.MemberInfo" >
     update t_memberinfo
     set mem_Type_ID = #{memTypeId,jdbcType=INTEGER},
-      mem_Name = #{memName,jdbcType=VARCHAR},
-      mem_User_Name = #{memUserName,jdbcType=VARCHAR},
-      mem_Password = #{memPassword,jdbcType=VARCHAR},
-      mem_Tel = #{memTel,jdbcType=VARCHAR},
-      mem_Phone = #{memPhone,jdbcType=VARCHAR},
-      mem_Address = #{memAddress,jdbcType=VARCHAR},
-      mem_Gender = #{memGender,jdbcType=TINYINT},
-      mem_Money = #{memMoney,jdbcType=DECIMAL},
-      mem_Integral = #{memIntegral,jdbcType=INTEGER},
-      mem_Birthday = #{memBirthday,jdbcType=DATE},
-      mem_Begin_Time = #{memBeginTime,jdbcType=TIMESTAMP},
-      mem_End_Time = #{memEndTime,jdbcType=TIMESTAMP},
-      del_Flag = #{delFlag,jdbcType=TINYINT},
-      last_SubTime = #{lastSubtime,jdbcType=TIMESTAMP},
-      subBy = #{subby,jdbcType=INTEGER}
+    mem_Name = #{memName,jdbcType=VARCHAR},
+    mem_User_Name = #{memUserName,jdbcType=VARCHAR},
+    mem_Password = #{memPassword,jdbcType=VARCHAR},
+    mem_Tel = #{memTel,jdbcType=VARCHAR},
+    mem_Phone = #{memPhone,jdbcType=VARCHAR},
+    mem_Address = #{memAddress,jdbcType=VARCHAR},
+    mem_Gender = #{memGender,jdbcType=TINYINT},
+    mem_Money = #{memMoney,jdbcType=DECIMAL},
+    mem_Integral = #{memIntegral,jdbcType=INTEGER},
+    mem_Birthday = #{memBirthday,jdbcType=DATE},
+    mem_Begin_Time = #{memBeginTime,jdbcType=TIMESTAMP},
+    mem_End_Time = #{memEndTime,jdbcType=TIMESTAMP},
+    del_Flag = #{delFlag,jdbcType=TINYINT},
+    subBy = #{subby,jdbcType=INTEGER}
     where mem_ID = #{memId,jdbcType=INTEGER}
   </update>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >

@@ -133,4 +133,23 @@ public class Dish {
     public void setSubby(Integer subby) {
         this.subby = subby;
     }
+
+    @Override
+    public String toString() {
+        return "Dish{" +
+                "dishId=" + dishId +
+                ", dishTypeId=" + dishTypeId +
+                ", dishName='" + dishName + '\'' +
+                ", dishSpeel='" + dishSpeel + '\'' +
+                ", dishCost=" + dishCost +
+                ", dishUnit='" + dishUnit + '\'' +
+                ", dishPrice=" + dishPrice +
+                ", dishDescription='" + dishDescription + '\'' +
+
+                ", dishCooking='" + dishCooking + '\'' +
+                ", dishImgUrl='" + dishImgUrl + '\'' +
+                ", delFlag=" + delFlag +
+                ", lastSubtime=" + lastSubtime +
+                '}';
+    }
 }

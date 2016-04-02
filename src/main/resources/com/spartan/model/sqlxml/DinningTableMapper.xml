@@ -1,33 +1,33 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.spartan.dao.DinningTableMapper" >
-  <resultMap id="BaseResultMap" type="com.spartan.model.DinningTable" >
-    <id column="table_ID" property="tableId" jdbcType="INTEGER" />
-    <result column="region_ID" property="regionId" jdbcType="INTEGER" />
-    <result column="table_Name" property="tableName" jdbcType="VARCHAR" />
-    <result column="table_State" property="tableState" jdbcType="TINYINT" />
-    <result column="table_Desc" property="tableDesc" jdbcType="VARCHAR" />
-    <result column="max_Consumer" property="maxConsumer" jdbcType="INTEGER" />
-    <result column="table_Remark" property="tableRemark" jdbcType="VARCHAR" />
-    <result column="del_Flag" property="delFlag" jdbcType="TINYINT" />
-    <result column="last_SubTime" property="lastSubtime" jdbcType="TIMESTAMP" />
-    <result column="subBy" property="subby" jdbcType="INTEGER" />
-  </resultMap>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+<mapper namespace="com.spartan.dao.DinningTableMapper">
+    <resultMap id="BaseResultMap" type="com.spartan.model.DinningTable">
+        <id column="table_ID" property="tableId" jdbcType="INTEGER"/>
+        <result column="region_ID" property="regionId" jdbcType="INTEGER"/>
+        <result column="table_Name" property="tableName" jdbcType="VARCHAR"/>
+        <result column="table_State" property="tableState" jdbcType="TINYINT"/>
+        <result column="table_Desc" property="tableDesc" jdbcType="VARCHAR"/>
+        <result column="max_Consumer" property="maxConsumer" jdbcType="INTEGER"/>
+        <result column="table_Remark" property="tableRemark" jdbcType="VARCHAR"/>
+        <result column="del_Flag" property="delFlag" jdbcType="TINYINT"/>
+        <result column="last_SubTime" property="lastSubtime" jdbcType="TIMESTAMP"/>
+        <result column="subBy" property="subby" jdbcType="INTEGER"/>
+    </resultMap>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from t_dinningtable
     where table_ID = #{tableId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.spartan.model.DinningTable" >
-    insert into t_dinningtable (table_ID, region_ID, table_Name, 
-      table_State, table_Desc, max_Consumer, 
-      table_Remark, del_Flag, last_SubTime, 
-      subBy)
-    values (#{tableId,jdbcType=INTEGER}, #{regionId,jdbcType=INTEGER}, #{tableName,jdbcType=VARCHAR}, 
-      #{tableState,jdbcType=TINYINT}, #{tableDesc,jdbcType=VARCHAR}, #{maxConsumer,jdbcType=INTEGER}, 
-      #{tableRemark,jdbcType=VARCHAR}, #{delFlag,jdbcType=TINYINT}, #{lastSubtime,jdbcType=TIMESTAMP}, 
-      #{subby,jdbcType=INTEGER})
+    <insert id="insert" parameterType="com.spartan.model.DinningTable">
+    insert into t_dinningtable (table_ID, region_ID, table_Name,
+    table_State, table_Desc, max_Consumer,
+    table_Remark, del_Flag, subBy
+    )
+    values (#{tableId,jdbcType=INTEGER}, #{regionId,jdbcType=INTEGER}, #{tableName,jdbcType=VARCHAR},
+    #{tableState,jdbcType=TINYINT}, #{tableDesc,jdbcType=VARCHAR}, #{maxConsumer,jdbcType=INTEGER},
+    #{tableRemark,jdbcType=VARCHAR}, #{delFlag,jdbcType=TINYINT}, #{subby,jdbcType=INTEGER}
+    )
   </insert>
-  <update id="updateByPrimaryKey" parameterType="com.spartan.model.DinningTable" >
+    <update id="updateByPrimaryKey" parameterType="com.spartan.model.DinningTable">
     update t_dinningtable
     set region_ID = #{regionId,jdbcType=INTEGER},
       table_Name = #{tableName,jdbcType=VARCHAR},
@@ -36,17 +36,16 @@
       max_Consumer = #{maxConsumer,jdbcType=INTEGER},
       table_Remark = #{tableRemark,jdbcType=VARCHAR},
       del_Flag = #{delFlag,jdbcType=TINYINT},
-      last_SubTime = #{lastSubtime,jdbcType=TIMESTAMP},
       subBy = #{subby,jdbcType=INTEGER}
     where table_ID = #{tableId,jdbcType=INTEGER}
   </update>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
     select table_ID, region_ID, table_Name, table_State, table_Desc, max_Consumer, table_Remark, 
     del_Flag, last_SubTime, subBy
     from t_dinningtable
     where table_ID = #{tableId,jdbcType=INTEGER}
   </select>
-  <select id="selectAll" resultMap="BaseResultMap" >
+    <select id="selectAll" resultMap="BaseResultMap">
     select table_ID, region_ID, table_Name, table_State, table_Desc, max_Consumer, table_Remark, 
     del_Flag, last_SubTime, subBy
     from t_dinningtable

@@ -22,6 +22,6 @@
 欢迎d
 <%=basePath %>
 <%--<%=path %>--%>
-
+${pageContext.request.contextPath}
 </body>
 </html>

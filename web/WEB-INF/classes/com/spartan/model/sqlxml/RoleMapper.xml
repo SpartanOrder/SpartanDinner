@@ -15,12 +15,12 @@
     where role_ID = #{roleId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.spartan.model.Role" >
-    insert into t_role (role_ID, role_Name, description, 
-      power_Ids, del_Flag, last_SubTime, 
-      subBy)
-    values (#{roleId,jdbcType=INTEGER}, #{roleName,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
-      #{powerIds,jdbcType=VARCHAR}, #{delFlag,jdbcType=TINYINT}, #{lastSubtime,jdbcType=TIMESTAMP}, 
-      #{subby,jdbcType=INTEGER})
+    insert into t_role (role_ID, role_Name, description,
+    power_Ids, del_Flag, subBy
+    )
+    values (#{roleId,jdbcType=INTEGER}, #{roleName,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR},
+    #{powerIds,jdbcType=VARCHAR}, #{delFlag,jdbcType=TINYINT}, #{subby,jdbcType=INTEGER}
+    )
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.spartan.model.Role" >
     update t_role
@@ -28,7 +28,6 @@
       description = #{description,jdbcType=VARCHAR},
       power_Ids = #{powerIds,jdbcType=VARCHAR},
       del_Flag = #{delFlag,jdbcType=TINYINT},
-      last_SubTime = #{lastSubtime,jdbcType=TIMESTAMP},
       subBy = #{subby,jdbcType=INTEGER}
     where role_ID = #{roleId,jdbcType=INTEGER}
   </update>

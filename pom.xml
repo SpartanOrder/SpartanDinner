@@ -108,6 +108,12 @@
             <!-- 建议使用最新版本,最新版本请从项目首页查找 -->
             <version>3.3.8</version>
         </dependency>
+        <!--mybatis的pageHelper-->
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper</artifactId>
+            <version>4.1.2</version>
+        </dependency>
     </dependencies>
     <build>
         <finalName>xxx</finalName>

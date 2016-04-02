@@ -2,7 +2,11 @@
 /* DBMS name:      MySQL 5.0                                    */
 /* Created on:     2016/3/30 21:38:33                           */
 /*==============================================================*/
-
+# CREATE DATABASE IF NOT EXISTS `SpartanDinner`
+# 	DEFAULT CHARSET utf8
+# 	COLLATE utf8_general_ci;
+#
+# USE SpartanDinner;
 
 DROP TABLE IF EXISTS t_Customer;
 
@@ -128,7 +132,8 @@ CREATE TABLE t_Dish (
 	dish_Img_Url VARCHAR(100) COMMENT '菜肴图片地址',
 	del_Flag TINYINT DEFAULT 1
 	COMMENT '删除标志',
-	last_SubTime DATETIME COMMENT '最后提交时间',
+	last_SubTime DATETIME NOT NULL DEFAULT NOW()
+	COMMENT '最后提交时间',
 	subBy INT COMMENT '提交人',
 	PRIMARY KEY (dish_ID),
 	UNIQUE KEY AK_dishName (dish_Name)

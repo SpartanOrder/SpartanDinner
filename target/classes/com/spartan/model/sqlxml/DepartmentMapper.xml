@@ -1,46 +1,45 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.spartan.dao.DepartmentMapper" >
-  <resultMap id="BaseResultMap" type="com.spartan.model.Department" >
-    <id column="role_ID" property="roleId" jdbcType="INTEGER" />
-    <result column="role_Name" property="roleName" jdbcType="VARCHAR" />
-    <result column="priority" property="priority" jdbcType="INTEGER" />
-    <result column="parent_Id" property="parentId" jdbcType="INTEGER" />
-    <result column="parent_Ids" property="parentIds" jdbcType="VARCHAR" />
-    <result column="del_Flag" property="delFlag" jdbcType="TINYINT" />
-    <result column="last_SubTime" property="lastSubtime" jdbcType="TIMESTAMP" />
-    <result column="subBy" property="subby" jdbcType="INTEGER" />
-  </resultMap>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+<mapper namespace="com.spartan.dao.DepartmentMapper">
+    <resultMap id="BaseResultMap" type="com.spartan.model.Department">
+        <id column="role_ID" property="roleId" jdbcType="INTEGER"/>
+        <result column="role_Name" property="roleName" jdbcType="VARCHAR"/>
+        <result column="priority" property="priority" jdbcType="INTEGER"/>
+        <result column="parent_Id" property="parentId" jdbcType="INTEGER"/>
+        <result column="parent_Ids" property="parentIds" jdbcType="VARCHAR"/>
+        <result column="del_Flag" property="delFlag" jdbcType="TINYINT"/>
+        <result column="last_SubTime" property="lastSubtime" jdbcType="TIMESTAMP"/>
+        <result column="subBy" property="subby" jdbcType="INTEGER"/>
+    </resultMap>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from t_department
     where role_ID = #{roleId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.spartan.model.Department" >
+    <insert id="insert" parameterType="com.spartan.model.Department">
     insert into t_department (role_ID, role_Name, priority, 
       parent_Id, parent_Ids, del_Flag, 
-      last_SubTime, subBy)
-    values (#{roleId,jdbcType=INTEGER}, #{roleName,jdbcType=VARCHAR}, #{priority,jdbcType=INTEGER}, 
-      #{parentId,jdbcType=INTEGER}, #{parentIds,jdbcType=VARCHAR}, #{delFlag,jdbcType=TINYINT}, 
-      #{lastSubtime,jdbcType=TIMESTAMP}, #{subby,jdbcType=INTEGER})
+      subBy)
+    values (#{roleId,jdbcType=INTEGER}, #{roleName,jdbcType=VARCHAR}, #{priority,jdbcType=INTEGER},
+      #{parentId,jdbcType=INTEGER}, #{parentIds,jdbcType=VARCHAR}, #{delFlag,jdbcType=TINYINT},
+      #{subby,jdbcType=INTEGER})
   </insert>
-  <update id="updateByPrimaryKey" parameterType="com.spartan.model.Department" >
+    <update id="updateByPrimaryKey" parameterType="com.spartan.model.Department">
     update t_department
     set role_Name = #{roleName,jdbcType=VARCHAR},
       priority = #{priority,jdbcType=INTEGER},
       parent_Id = #{parentId,jdbcType=INTEGER},
       parent_Ids = #{parentIds,jdbcType=VARCHAR},
       del_Flag = #{delFlag,jdbcType=TINYINT},
-      last_SubTime = #{lastSubtime,jdbcType=TIMESTAMP},
       subBy = #{subby,jdbcType=INTEGER}
     where role_ID = #{roleId,jdbcType=INTEGER}
   </update>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
     select role_ID, role_Name, priority, parent_Id, parent_Ids, del_Flag, last_SubTime, 
     subBy
     from t_department
     where role_ID = #{roleId,jdbcType=INTEGER}
   </select>
-  <select id="selectAll" resultMap="BaseResultMap" >
+    <select id="selectAll" resultMap="BaseResultMap">
     select role_ID, role_Name, priority, parent_Id, parent_Ids, del_Flag, last_SubTime, 
     subBy
     from t_department

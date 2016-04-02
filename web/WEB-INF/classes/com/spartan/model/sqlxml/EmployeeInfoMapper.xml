@@ -22,25 +22,23 @@
         <result column="subBy" property="subby" jdbcType="INTEGER"/>
     </resultMap>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from t_employeeinfo
-    where employee_ID = #{employeeId,jdbcType=INTEGER}
-  </delete>
+        delete from t_employeeinfo
+        where employee_ID = #{employeeId,jdbcType=INTEGER}
+    </delete>
     <insert id="insert" parameterType="com.spartan.model.EmployeeInfo">
-    insert into t_employeeinfo (employee_ID, user_Id, employee_Name, 
-      employee_Sex, birth_Date, ID_Card, 
-      tel, fixed_Phone, degree, 
-      description, address, department_Id, 
-      salary, employee_Date, fire_Date, 
-      del_Flag, last_SubTime, subBy
-      )
-    values (#{employeeId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{employeeName,jdbcType=VARCHAR}, 
-      #{employeeSex,jdbcType=TINYINT}, #{birthDate,jdbcType=DATE}, #{idCard,jdbcType=VARCHAR}, 
-      #{tel,jdbcType=VARCHAR}, #{fixedPhone,jdbcType=VARCHAR}, #{degree,jdbcType=VARCHAR}, 
-      #{description,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{departmentId,jdbcType=INTEGER}, 
-      #{salary,jdbcType=INTEGER}, #{employeeDate,jdbcType=DATE}, #{fireDate,jdbcType=DATE}, 
-      #{delFlag,jdbcType=TINYINT}, #{lastSubtime,jdbcType=TIMESTAMP}, #{subby,jdbcType=INTEGER}
-      )
-  </insert>
+        insert into t_employeeinfo (employee_ID, user_Id, employee_Name,
+        employee_Sex, birth_Date, ID_Card,
+        tel, fixed_Phone, degree,
+        description, address, department_Id,
+        salary, employee_Date, fire_Date,
+        del_Flag, subBy)
+        values (#{employeeId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{employeeName,jdbcType=VARCHAR},
+        #{employeeSex,jdbcType=TINYINT}, #{birthDate,jdbcType=DATE}, #{idCard,jdbcType=VARCHAR},
+        #{tel,jdbcType=VARCHAR}, #{fixedPhone,jdbcType=VARCHAR}, #{degree,jdbcType=VARCHAR},
+        #{description,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{departmentId,jdbcType=INTEGER},
+        #{salary,jdbcType=INTEGER}, #{employeeDate,jdbcType=DATE}, #{fireDate,jdbcType=DATE},
+        #{delFlag,jdbcType=TINYINT}, #{subby,jdbcType=INTEGER})
+    </insert>
     <update id="updateByPrimaryKey" parameterType="com.spartan.model.EmployeeInfo">
     update t_employeeinfo
     set user_Id = #{userId,jdbcType=INTEGER},
@@ -58,7 +56,6 @@
       employee_Date = #{employeeDate,jdbcType=DATE},
       fire_Date = #{fireDate,jdbcType=DATE},
       del_Flag = #{delFlag,jdbcType=TINYINT},
-      last_SubTime = #{lastSubtime,jdbcType=TIMESTAMP},
       subBy = #{subby,jdbcType=INTEGER}
     where employee_ID = #{employeeId,jdbcType=INTEGER}
   </update>
