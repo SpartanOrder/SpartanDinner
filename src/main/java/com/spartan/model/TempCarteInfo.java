@@ -3,6 +3,13 @@ package com.spartan.model;
 import java.math.BigDecimal;
 import java.util.Date;
 
+/**
+ * Created with IntelliJ IDEA.
+ * @author Wind
+ * @version V1.0
+ * @Description:挂账餐单内容TCI .
+ * @Date 2016/3/30 22:43
+ */
 public class TempCarteInfo {
     private Integer tciId;
 
@@ -10,13 +17,13 @@ public class TempCarteInfo {
 
     private Byte tciState;
 
-    private Integer tciTableId;
+    private DinningTable dinningTable;
 
-    private Integer tciCustomerId;
+    private EmployeeInfo tciWaiter;
 
-    private Integer tciMemId;
+    private Customer customer;
 
-    private Integer tciWaiterId;
+    private MemberInfo memberInfo;
 
     private Integer tciDishNums;
 
@@ -34,7 +41,7 @@ public class TempCarteInfo {
 
     private Date lastSubtime;
 
-    private Integer subby;
+    private User user;
 
     private byte[] tciRemark;
 
@@ -62,36 +69,52 @@ public class TempCarteInfo {
         this.tciState = tciState;
     }
 
-    public Integer getTciTableId() {
-        return tciTableId;
+    public DinningTable getDinningTable() {
+        return dinningTable;
     }
 
-    public void setTciTableId(Integer tciTableId) {
-        this.tciTableId = tciTableId;
+    public void setDinningTable(DinningTable dinningTable) {
+        if (dinningTable.getTableId() == null) {
+            this.dinningTable = null;
+        } else {
+            this.dinningTable = dinningTable;
+        }
     }
 
-    public Integer getTciCustomerId() {
-        return tciCustomerId;
+    public EmployeeInfo getTciWaiter() {
+        return tciWaiter;
     }
 
-    public void setTciCustomerId(Integer tciCustomerId) {
-        this.tciCustomerId = tciCustomerId;
+    public void setTciWaiter(EmployeeInfo tciWaiter) {
+        if (tciWaiter.getEmployeeId() == null) {
+            this.tciWaiter = null;
+        } else {
+            this.tciWaiter = tciWaiter;
+        }
     }
 
-    public Integer getTciMemId() {
-        return tciMemId;
+    public Customer getCustomer() {
+        return customer;
     }
 
-    public void setTciMemId(Integer tciMemId) {
-        this.tciMemId = tciMemId;
+    public void setCustomer(Customer customer) {
+        if (customer.getCustomerId() == null) {
+            this.customer = null;
+        } else {
+            this.customer = customer;
+        }
     }
 
-    public Integer getTciWaiterId() {
-        return tciWaiterId;
+    public MemberInfo getMemberInfo() {
+        return memberInfo;
     }
 
-    public void setTciWaiterId(Integer tciWaiterId) {
-        this.tciWaiterId = tciWaiterId;
+    public void setMemberInfo(MemberInfo memberInfo) {
+        if (memberInfo.getMemId() == null) {
+            this.memberInfo = null;
+        } else {
+            this.memberInfo = memberInfo;
+        }
     }
 
     public Integer getTciDishNums() {
@@ -158,12 +181,16 @@ public class TempCarteInfo {
         this.lastSubtime = lastSubtime;
     }
 
-    public Integer getSubby() {
-        return subby;
+    public User getUser() {
+        return user;
     }
 
-    public void setSubby(Integer subby) {
-        this.subby = subby;
+    public void setUser(User user) {
+        if (user.getUserId() == null) {
+            this.user = null;
+        } else {
+            this.user = user;
+        }
     }
 
     public byte[] getTciRemark() {

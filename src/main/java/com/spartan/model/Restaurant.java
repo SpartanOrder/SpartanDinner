@@ -27,7 +27,7 @@ public class Restaurant {
 
     private Date lastSubtime;
 
-    private Integer subby;
+    private User user;
 
     public Integer getId() {
         return id;
@@ -125,11 +125,15 @@ public class Restaurant {
         this.lastSubtime = lastSubtime;
     }
 
-    public Integer getSubby() {
-        return subby;
+    public User getUser() {
+        return user;
     }
 
-    public void setSubby(Integer subby) {
-        this.subby = subby;
+    public void setUser(User user) {
+        if (user.getUserId() == null) {
+            this.user = null;
+        } else {
+            this.user = user;
+        }
     }
 }

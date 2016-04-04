@@ -5,7 +5,7 @@ import java.util.Date;
 public class EmployeeInfo {
     private Integer employeeId;
 
-    private Integer userId;
+    private User account;
 
     private String employeeName;
 
@@ -25,7 +25,7 @@ public class EmployeeInfo {
 
     private String address;
 
-    private Integer departmentId;
+    private Department department;
 
     private Integer salary;
 
@@ -37,7 +37,10 @@ public class EmployeeInfo {
 
     private Date lastSubtime;
 
-    private Integer subby;
+    private User user;
+
+    public EmployeeInfo() {
+    }
 
     public Integer getEmployeeId() {
         return employeeId;
@@ -47,12 +50,16 @@ public class EmployeeInfo {
         this.employeeId = employeeId;
     }
 
-    public Integer getUserId() {
-        return userId;
+    public User getAccount() {
+        return account;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setAccount(User account) {
+        if (account.getUserId() == null) {
+            this.account = null;
+        } else {
+            this.account = account;
+        }
     }
 
     public String getEmployeeName() {
@@ -127,12 +134,16 @@ public class EmployeeInfo {
         this.address = address == null ? null : address.trim();
     }
 
-    public Integer getDepartmentId() {
-        return departmentId;
+    public Department getDepartment() {
+        return department;
     }
 
-    public void setDepartmentId(Integer departmentId) {
-        this.departmentId = departmentId;
+    public void setDepartment(Department department) {
+        if (department.getDepartmentId() == null) {
+            this.department = null;
+        } else {
+            this.department = department;
+        }
     }
 
     public Integer getSalary() {
@@ -175,11 +186,40 @@ public class EmployeeInfo {
         this.lastSubtime = lastSubtime;
     }
 
-    public Integer getSubby() {
-        return subby;
+    public User getUser() {
+        return user;
     }
 
-    public void setSubby(Integer subby) {
-        this.subby = subby;
+    public void setUser(User user) {
+        if (user.getUserId() == null) {
+            this.user = null;
+        } else {
+            this.user = user;
+        }
+
+    }
+
+    @Override
+    public String toString() {
+        return "EmployeeInfo{" +
+                "employeeId=" + employeeId +
+                ", account=" + account +
+                ", employeeName='" + employeeName + '\'' +
+                ", employeeSex=" + employeeSex +
+                ", birthDate=" + birthDate +
+                ", idCard='" + idCard + '\'' +
+                ", tel='" + tel + '\'' +
+                ", fixedPhone='" + fixedPhone + '\'' +
+                ", degree='" + degree + '\'' +
+                ", description='" + description + '\'' +
+                ", address='" + address + '\'' +
+                ", department=" + department +
+                ", salary=" + salary +
+                ", employeeDate=" + employeeDate +
+                ", fireDate=" + fireDate +
+                ", delFlag=" + delFlag +
+                ", lastSubtime=" + lastSubtime +
+                ", user=" + user +
+                '}';
     }
 }

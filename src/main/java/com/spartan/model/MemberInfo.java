@@ -6,7 +6,7 @@ import java.util.Date;
 public class MemberInfo {
     private Integer memId;
 
-    private Integer memTypeId;
+    private MemberType memberType;
 
     private String memName;
 
@@ -36,7 +36,7 @@ public class MemberInfo {
 
     private Date lastSubtime;
 
-    private Integer subby;
+    private User user;
 
     public Integer getMemId() {
         return memId;
@@ -46,12 +46,16 @@ public class MemberInfo {
         this.memId = memId;
     }
 
-    public Integer getMemTypeId() {
-        return memTypeId;
+    public MemberType getMemberType() {
+        return memberType;
     }
 
-    public void setMemTypeId(Integer memTypeId) {
-        this.memTypeId = memTypeId;
+    public void setMemberType(MemberType memberType) {
+        if (memberType.getMemTypeId() == null) {
+            this.memberType = null;
+        } else {
+            this.memberType = memberType;
+        }
     }
 
     public String getMemName() {
@@ -166,11 +170,15 @@ public class MemberInfo {
         this.lastSubtime = lastSubtime;
     }
 
-    public Integer getSubby() {
-        return subby;
+    public User getUser() {
+        return user;
     }
 
-    public void setSubby(Integer subby) {
-        this.subby = subby;
+    public void setUser(User user) {
+        if (user.getUserId() == null) {
+            this.user = null;
+        } else {
+            this.user = user;
+        }
     }
 }

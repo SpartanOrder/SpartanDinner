@@ -3,6 +3,13 @@ package com.spartan.model;
 import java.math.BigDecimal;
 import java.util.Date;
 
+/**
+ * Created with IntelliJ IDEA.
+ * @author Wind
+ * @version V1.0
+ * @Description:消费餐单内容ECI .
+ * @Date 2016/3/30 22:43
+ */
 public class EndCarteInfo {
     private Integer eciId;
 
@@ -10,15 +17,15 @@ public class EndCarteInfo {
 
     private Byte eciState;
 
-    private Integer eciTableId;
+    private DinningTable dinningTable;
 
-    private Integer eciWaiterId;
+    private EmployeeInfo eciWaiter;
 
-    private Integer eciCashierId;
+    private EmployeeInfo eciCashier;
 
-    private Integer eciCustomerId;
+    private Customer customer;
 
-    private Integer eciMemId;
+    private MemberInfo memberInfo;
 
     private Integer eciDishNums;
 
@@ -40,7 +47,7 @@ public class EndCarteInfo {
 
     private Date lastSubtime;
 
-    private Integer subby;
+    private User user;
 
     private byte[] eciRemark;
 
@@ -68,44 +75,64 @@ public class EndCarteInfo {
         this.eciState = eciState;
     }
 
-    public Integer getEciTableId() {
-        return eciTableId;
+    public DinningTable getDinningTable() {
+        return dinningTable;
     }
 
-    public void setEciTableId(Integer eciTableId) {
-        this.eciTableId = eciTableId;
+    public void setDinningTable(DinningTable dinningTable) {
+        if (dinningTable.getTableId() == null) {
+            this.dinningTable = null;
+        } else {
+            this.dinningTable = dinningTable;
+        }
     }
 
-    public Integer getEciWaiterId() {
-        return eciWaiterId;
+    public EmployeeInfo getEciWaiter() {
+        return eciWaiter;
     }
 
-    public void setEciWaiterId(Integer eciWaiterId) {
-        this.eciWaiterId = eciWaiterId;
+    public void setEciWaiter(EmployeeInfo eciWaiter) {
+        if (eciWaiter.getEmployeeId() == null) {
+            this.eciWaiter = null;
+        } else {
+            this.eciWaiter = eciWaiter;
+        }
     }
 
-    public Integer getEciCashierId() {
-        return eciCashierId;
+    public EmployeeInfo getEciCashier() {
+        return eciCashier;
     }
 
-    public void setEciCashierId(Integer eciCashierId) {
-        this.eciCashierId = eciCashierId;
+    public void setEciCashier(EmployeeInfo eciCashier) {
+        if (eciCashier.getEmployeeId() == null) {
+            this.eciCashier = null;
+        } else {
+            this.eciCashier = eciCashier;
+        }
     }
 
-    public Integer getEciCustomerId() {
-        return eciCustomerId;
+    public Customer getCustomer() {
+        return customer;
     }
 
-    public void setEciCustomerId(Integer eciCustomerId) {
-        this.eciCustomerId = eciCustomerId;
+    public void setCustomer(Customer customer) {
+        if (customer.getCustomerId() == null) {
+            this.customer = null;
+        } else {
+            this.customer = customer;
+        }
     }
 
-    public Integer getEciMemId() {
-        return eciMemId;
+    public MemberInfo getMemberInfo() {
+        return memberInfo;
     }
 
-    public void setEciMemId(Integer eciMemId) {
-        this.eciMemId = eciMemId;
+    public void setMemberInfo(MemberInfo memberInfo) {
+        if (memberInfo.getMemId() == null) {
+            this.memberInfo = null;
+        } else {
+            this.memberInfo = memberInfo;
+        }
     }
 
     public Integer getEciDishNums() {
@@ -188,12 +215,16 @@ public class EndCarteInfo {
         this.lastSubtime = lastSubtime;
     }
 
-    public Integer getSubby() {
-        return subby;
+    public User getUser() {
+        return user;
     }
 
-    public void setSubby(Integer subby) {
-        this.subby = subby;
+    public void setUser(User user) {
+        if (user.getUserId() == null) {
+            this.user = null;
+        } else {
+            this.user = user;
+        }
     }
 
     public byte[] getEciRemark() {

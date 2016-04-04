@@ -15,7 +15,10 @@ public class Customer {
 
     private Date lastSubtime;
 
-    private Integer subby;
+    private User user;
+
+    public Customer() {
+    }
 
     public Integer getCustomerId() {
         return customerId;
@@ -65,11 +68,15 @@ public class Customer {
         this.lastSubtime = lastSubtime;
     }
 
-    public Integer getSubby() {
-        return subby;
+    public User getUser() {
+        return user;
     }
 
-    public void setSubby(Integer subby) {
-        this.subby = subby;
+    public void setUser(User user) {
+        if (user.getUserId() == null) {
+            this.user = null;
+        } else {
+            this.user = user;
+        }
     }
 }

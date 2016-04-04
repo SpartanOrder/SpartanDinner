@@ -7,6 +7,8 @@ public class Role {
 
     private String roleName;
 
+    private Department department;
+
     private String description;
 
     private String powerIds;
@@ -15,7 +17,7 @@ public class Role {
 
     private Date lastSubtime;
 
-    private Integer subby;
+    private User user;
 
     public Integer getRoleId() {
         return roleId;
@@ -31,6 +33,18 @@ public class Role {
 
     public void setRoleName(String roleName) {
         this.roleName = roleName == null ? null : roleName.trim();
+    }
+
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        if (department.getDepartmentId() == null) {
+            this.department = null;
+        } else {
+            this.department = department;
+        }
     }
 
     public String getDescription() {
@@ -65,11 +79,15 @@ public class Role {
         this.lastSubtime = lastSubtime;
     }
 
-    public Integer getSubby() {
-        return subby;
+    public User getUser() {
+        return user;
     }
 
-    public void setSubby(Integer subby) {
-        this.subby = subby;
+    public void setUser(User user) {
+        if (user.getUserId() == null) {
+            this.user = null;
+        } else {
+            this.user = user;
+        }
     }
 }

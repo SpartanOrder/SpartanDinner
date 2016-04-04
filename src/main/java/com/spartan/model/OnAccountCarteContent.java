@@ -2,72 +2,86 @@ package com.spartan.model;
 
 import java.math.BigDecimal;
 import java.util.Date;
-
+/**
+ * Created with IntelliJ IDEA.
+ * @author Wind
+ * @version V1.0
+ * @Description:挂账餐单内容OCC .
+ * @Date 2016/3/30 22:43
+ */
 public class OnAccountCarteContent {
-    private Integer eccId;
+    private Integer occId;
 
-    private Integer eccDishId;
+    private OnAccountCarteInfo onAccountCarteInfo;
 
-    private Integer eccDishNum;
+    private Dish dish;
 
-    private BigDecimal eccTotalPrice;
+    private Integer occDishNum;
 
-    private Integer eccEciId;
+    private BigDecimal occTotalPrice;
 
-    private String eccSpecilDesc;
+    private String occSpecilDesc;
 
     private Byte delFlag;
 
     private Date lastSubtime;
 
-    private Integer subby;
+    private User user;
 
-    public Integer getEccId() {
-        return eccId;
+    public Integer getOccId() {
+        return occId;
     }
 
-    public void setEccId(Integer eccId) {
-        this.eccId = eccId;
+    public void setOccId(Integer occId) {
+        this.occId = occId;
     }
 
-    public Integer getEccDishId() {
-        return eccDishId;
+    public OnAccountCarteInfo getOnAccountCarteInfo() {
+        return onAccountCarteInfo;
     }
 
-    public void setEccDishId(Integer eccDishId) {
-        this.eccDishId = eccDishId;
+    public void setOnAccountCarteInfo(OnAccountCarteInfo onAccountCarteInfo) {
+        if (onAccountCarteInfo.getOciId() == null) {
+            this.onAccountCarteInfo = null;
+        } else {
+            this.onAccountCarteInfo = onAccountCarteInfo;
+        }
     }
 
-    public Integer getEccDishNum() {
-        return eccDishNum;
+    public Dish getDish() {
+        return dish;
     }
 
-    public void setEccDishNum(Integer eccDishNum) {
-        this.eccDishNum = eccDishNum;
+    public void setDish(Dish dish) {
+        if (dish.getDishId() == null) {
+            this.dish = null;
+        } else {
+            this.dish = dish;
+        }
     }
 
-    public BigDecimal getEccTotalPrice() {
-        return eccTotalPrice;
+    public Integer getOccDishNum() {
+        return occDishNum;
     }
 
-    public void setEccTotalPrice(BigDecimal eccTotalPrice) {
-        this.eccTotalPrice = eccTotalPrice;
+    public void setOccDishNum(Integer occDishNum) {
+        this.occDishNum = occDishNum;
     }
 
-    public Integer getEccEciId() {
-        return eccEciId;
+    public BigDecimal getOccTotalPrice() {
+        return occTotalPrice;
     }
 
-    public void setEccEciId(Integer eccEciId) {
-        this.eccEciId = eccEciId;
+    public void setOccTotalPrice(BigDecimal occTotalPrice) {
+        this.occTotalPrice = occTotalPrice;
     }
 
-    public String getEccSpecilDesc() {
-        return eccSpecilDesc;
+    public String getOccSpecilDesc() {
+        return occSpecilDesc;
     }
 
-    public void setEccSpecilDesc(String eccSpecilDesc) {
-        this.eccSpecilDesc = eccSpecilDesc == null ? null : eccSpecilDesc.trim();
+    public void setOccSpecilDesc(String occSpecilDesc) {
+        this.occSpecilDesc = occSpecilDesc == null ? null : occSpecilDesc.trim();
     }
 
     public Byte getDelFlag() {
@@ -86,11 +100,15 @@ public class OnAccountCarteContent {
         this.lastSubtime = lastSubtime;
     }
 
-    public Integer getSubby() {
-        return subby;
+    public User getUser() {
+        return user;
     }
 
-    public void setSubby(Integer subby) {
-        this.subby = subby;
+    public void setUser(User user) {
+        if (user.getUserId() == null) {
+            this.user = null;
+        } else {
+            this.user = user;
+        }
     }
 }

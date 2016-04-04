@@ -1,7 +1,9 @@
 package com.spartan.page;
 
 import com.github.pagehelper.PageHelper;
+import com.spartan.dao.DishMapper;
 import com.spartan.model.Dish;
+import com.spartan.model.DishExample;
 import com.spartan.service.DishService;
 import org.apache.log4j.Logger;
 import org.junit.Test;
@@ -19,6 +21,8 @@ public class TestQueryPage {
     private static Logger logger = Logger.getLogger(TestQueryPage.class);
     @Resource
     private DishService dishService = null;
+    @Resource
+    private DishMapper dishMapper;
 
 
     @Test
@@ -41,5 +45,17 @@ public class TestQueryPage {
             System.out.println(dish.toString());
         }
         System.out.println(pageBean.toString());
+    }
+
+    @Test
+    public void testQueryExample() {
+        PageHelper.startPage(2, 10);
+        DishExample dishExample = new DishExample();
+        DishExample.Criteria criteria = dishExample.createCriteria();
+        criteria.andDDishTypeIdEqualTo(1);
+        List<Dish> list = dishMapper.selectByExample(dishExample);
+        for (Dish dish : list) {
+            System.out.println(dish.toString());
+        }
     }
 }

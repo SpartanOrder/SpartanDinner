@@ -1,49 +1,290 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.spartan.dao.OnAccountCarteContentMapper" >
-  <resultMap id="BaseResultMap" type="com.spartan.model.OnAccountCarteContent" >
-    <id column="ECC_ID" property="eccId" jdbcType="INTEGER" />
-    <result column="ECC_Dish_ID" property="eccDishId" jdbcType="INTEGER" />
-    <result column="ECC_Dish_Num" property="eccDishNum" jdbcType="INTEGER" />
-    <result column="ECC_Total_Price" property="eccTotalPrice" jdbcType="DECIMAL" />
-    <result column="ECC_ECI_ID" property="eccEciId" jdbcType="INTEGER" />
-    <result column="ECC_Specil_Desc" property="eccSpecilDesc" jdbcType="VARCHAR" />
-    <result column="del_Flag" property="delFlag" jdbcType="TINYINT" />
-    <result column="last_SubTime" property="lastSubtime" jdbcType="TIMESTAMP" />
-    <result column="subBy" property="subby" jdbcType="INTEGER" />
-  </resultMap>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+<mapper namespace="com.spartan.dao.OnAccountCarteContentMapper">
+    <resultMap id="BaseResultMap" type="com.spartan.model.OnAccountCarteContent">
+        <id column="OCC_ID" property="occId" jdbcType="INTEGER"/>
+        <result column="OCC_Dish_Num" property="occDishNum" jdbcType="INTEGER"/>
+        <result column="OCC_Total_Price" property="occTotalPrice" jdbcType="DECIMAL"/>
+        <result column="OCC_Specil_Desc" property="occSpecilDesc" jdbcType="VARCHAR"/>
+        <result column="del_Flag" property="delFlag" jdbcType="TINYINT"/>
+        <result column="last_SubTime" property="lastSubtime" jdbcType="TIMESTAMP"/>
+        <association property="onAccountCarteInfo" column="OCC_OCI_ID" javaType="com.spartan.model.OnAccountCarteInfo"
+                     resultMap="com.spartan.dao.OnAccountCarteInfoMapper.SimpleResultMap">
+        </association>
+        <association property="dish" column="OCC_Dish_ID" javaType="com.spartan.model.Dish" resultMap="com.spartan.dao.DishMapper.SimpleResultMap">
+        </association>
+        <association property="user" column="subBy" javaType="com.spartan.model.User" resultMap="com.spartan.dao.UserMapper.SimpleResultMap">
+        </association>
+    </resultMap>
+    <resultMap id="SimpleResultMap" type="com.spartan.model.OnAccountCarteContent">
+        <id column="OCC_ID" property="occId" jdbcType="INTEGER"/>
+        <result column="OCC_Total_Price" property="occTotalPrice" jdbcType="DECIMAL"/>
+        <result column="OCC_Specil_Desc" property="occSpecilDesc" jdbcType="VARCHAR"/>
+        <association property="onAccountCarteInfo" column="OCC_OCI_ID" javaType="com.spartan.model.OnAccountCarteInfo"
+                     resultMap="com.spartan.dao.OnAccountCarteInfoMapper.SimpleResultMap">
+        </association>
+        <association property="dish" column="OCC_Dish_ID" javaType="com.spartan.model.Dish" resultMap="com.spartan.dao.DishMapper.SimpleResultMap">
+        </association>
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")" separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")" separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
+    OCC_ID, OCC_OCI_ID, OCC_Dish_ID, OCC_Dish_Num, OCC_Total_Price, OCC_Specil_Desc, 
+    del_Flag, last_SubTime, subBy
+  </sql>
+    <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.spartan.model.OnAccountCarteContentExample">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List"/>
+        from t_onaccountcartecontent
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from t_onaccountcartecontent
+        where OCC_ID = #{occId,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from t_onaccountcartecontent
-    where ECC_ID = #{eccId,jdbcType=INTEGER}
+    where OCC_ID = #{occId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.spartan.model.OnAccountCarteContent" >
-    insert into t_onaccountcartecontent (ECC_ID, ECC_Dish_ID, ECC_Dish_Num,
-    ECC_Total_Price, ECC_ECI_ID, ECC_Specil_Desc,
-    del_Flag, subBy)
-    values (#{eccId,jdbcType=INTEGER}, #{eccDishId,jdbcType=INTEGER}, #{eccDishNum,jdbcType=INTEGER},
-    #{eccTotalPrice,jdbcType=DECIMAL}, #{eccEciId,jdbcType=INTEGER}, #{eccSpecilDesc,jdbcType=VARCHAR},
-    #{delFlag,jdbcType=TINYINT}, #{subby,jdbcType=INTEGER})
+    <delete id="deleteByExample" parameterType="com.spartan.model.OnAccountCarteContentExample">
+        delete from t_onaccountcartecontent
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </delete>
+    <insert id="insert" parameterType="com.spartan.model.OnAccountCarteContent">
+    insert into t_onaccountcartecontent (OCC_ID, OCC_OCI_ID, OCC_Dish_ID, 
+      OCC_Dish_Num, OCC_Total_Price, OCC_Specil_Desc, 
+      del_Flag, last_SubTime, subBy
+      )
+    values (#{occId,jdbcType=INTEGER}, #{occOciId,jdbcType=INTEGER}, #{occDishId,jdbcType=INTEGER}, 
+      #{occDishNum,jdbcType=INTEGER}, #{occTotalPrice,jdbcType=DECIMAL}, #{occSpecilDesc,jdbcType=VARCHAR}, 
+      #{delFlag,jdbcType=TINYINT}, #{lastSubtime,jdbcType=TIMESTAMP}, #{subby,jdbcType=INTEGER}
+      )
   </insert>
-  <update id="updateByPrimaryKey" parameterType="com.spartan.model.OnAccountCarteContent" >
+    <insert id="insertSelective" parameterType="com.spartan.model.OnAccountCarteContent">
+        insert into t_onaccountcartecontent
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="occId != null">
+                OCC_ID,
+            </if>
+            <if test="occOciId != null">
+                OCC_OCI_ID,
+            </if>
+            <if test="occDishId != null">
+                OCC_Dish_ID,
+            </if>
+            <if test="occDishNum != null">
+                OCC_Dish_Num,
+            </if>
+            <if test="occTotalPrice != null">
+                OCC_Total_Price,
+            </if>
+            <if test="occSpecilDesc != null">
+                OCC_Specil_Desc,
+            </if>
+            <if test="delFlag != null">
+                del_Flag,
+            </if>
+            <if test="lastSubtime != null">
+                last_SubTime,
+            </if>
+            <if test="subby != null">
+                subBy,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="occId != null">
+                #{occId,jdbcType=INTEGER},
+            </if>
+            <if test="occOciId != null">
+                #{occOciId,jdbcType=INTEGER},
+            </if>
+            <if test="occDishId != null">
+                #{occDishId,jdbcType=INTEGER},
+            </if>
+            <if test="occDishNum != null">
+                #{occDishNum,jdbcType=INTEGER},
+            </if>
+            <if test="occTotalPrice != null">
+                #{occTotalPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="occSpecilDesc != null">
+                #{occSpecilDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="delFlag != null">
+                #{delFlag,jdbcType=TINYINT},
+            </if>
+            <if test="lastSubtime != null">
+                #{lastSubtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="subby != null">
+                #{subby,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByExample" parameterType="com.spartan.model.OnAccountCarteContentExample" resultType="java.lang.Integer">
+        select count(*) from t_onaccountcartecontent
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
+        update t_onaccountcartecontent
+        <set>
+            <if test="record.occId != null">
+                OCC_ID = #{record.occId,jdbcType=INTEGER},
+            </if>
+            <if test="record.occOciId != null">
+                OCC_OCI_ID = #{record.occOciId,jdbcType=INTEGER},
+            </if>
+            <if test="record.occDishId != null">
+                OCC_Dish_ID = #{record.occDishId,jdbcType=INTEGER},
+            </if>
+            <if test="record.occDishNum != null">
+                OCC_Dish_Num = #{record.occDishNum,jdbcType=INTEGER},
+            </if>
+            <if test="record.occTotalPrice != null">
+                OCC_Total_Price = #{record.occTotalPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="record.occSpecilDesc != null">
+                OCC_Specil_Desc = #{record.occSpecilDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="record.delFlag != null">
+                del_Flag = #{record.delFlag,jdbcType=TINYINT},
+            </if>
+            <if test="record.lastSubtime != null">
+                last_SubTime = #{record.lastSubtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.subby != null">
+                subBy = #{record.subby,jdbcType=INTEGER},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map">
+        update t_onaccountcartecontent
+        set OCC_ID = #{record.occId,jdbcType=INTEGER},
+        OCC_OCI_ID = #{record.occOciId,jdbcType=INTEGER},
+        OCC_Dish_ID = #{record.occDishId,jdbcType=INTEGER},
+        OCC_Dish_Num = #{record.occDishNum,jdbcType=INTEGER},
+        OCC_Total_Price = #{record.occTotalPrice,jdbcType=DECIMAL},
+        OCC_Specil_Desc = #{record.occSpecilDesc,jdbcType=VARCHAR},
+        del_Flag = #{record.delFlag,jdbcType=TINYINT},
+        last_SubTime = #{record.lastSubtime,jdbcType=TIMESTAMP},
+        subBy = #{record.subby,jdbcType=INTEGER}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="com.spartan.model.OnAccountCarteContent">
+        update t_onaccountcartecontent
+        <set>
+            <if test="occOciId != null">
+                OCC_OCI_ID = #{occOciId,jdbcType=INTEGER},
+            </if>
+            <if test="occDishId != null">
+                OCC_Dish_ID = #{occDishId,jdbcType=INTEGER},
+            </if>
+            <if test="occDishNum != null">
+                OCC_Dish_Num = #{occDishNum,jdbcType=INTEGER},
+            </if>
+            <if test="occTotalPrice != null">
+                OCC_Total_Price = #{occTotalPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="occSpecilDesc != null">
+                OCC_Specil_Desc = #{occSpecilDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="delFlag != null">
+                del_Flag = #{delFlag,jdbcType=TINYINT},
+            </if>
+            <if test="lastSubtime != null">
+                last_SubTime = #{lastSubtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="subby != null">
+                subBy = #{subby,jdbcType=INTEGER},
+            </if>
+        </set>
+        where OCC_ID = #{occId,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.spartan.model.OnAccountCarteContent">
     update t_onaccountcartecontent
-    set ECC_Dish_ID = #{eccDishId,jdbcType=INTEGER},
-      ECC_Dish_Num = #{eccDishNum,jdbcType=INTEGER},
-      ECC_Total_Price = #{eccTotalPrice,jdbcType=DECIMAL},
-      ECC_ECI_ID = #{eccEciId,jdbcType=INTEGER},
-      ECC_Specil_Desc = #{eccSpecilDesc,jdbcType=VARCHAR},
+    set OCC_OCI_ID = #{occOciId,jdbcType=INTEGER},
+      OCC_Dish_ID = #{occDishId,jdbcType=INTEGER},
+      OCC_Dish_Num = #{occDishNum,jdbcType=INTEGER},
+      OCC_Total_Price = #{occTotalPrice,jdbcType=DECIMAL},
+      OCC_Specil_Desc = #{occSpecilDesc,jdbcType=VARCHAR},
       del_Flag = #{delFlag,jdbcType=TINYINT},
+      last_SubTime = #{lastSubtime,jdbcType=TIMESTAMP},
       subBy = #{subby,jdbcType=INTEGER}
-    where ECC_ID = #{eccId,jdbcType=INTEGER}
+    where OCC_ID = #{occId,jdbcType=INTEGER}
   </update>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select ECC_ID, ECC_Dish_ID, ECC_Dish_Num, ECC_Total_Price, ECC_ECI_ID, ECC_Specil_Desc, 
-    del_Flag, last_SubTime, subBy
-    from t_onaccountcartecontent
-    where ECC_ID = #{eccId,jdbcType=INTEGER}
-  </select>
-  <select id="selectAll" resultMap="BaseResultMap" >
-    select ECC_ID, ECC_Dish_ID, ECC_Dish_Num, ECC_Total_Price, ECC_ECI_ID, ECC_Specil_Desc, 
-    del_Flag, last_SubTime, subBy
-    from t_onaccountcartecontent
-  </select>
 </mapper>

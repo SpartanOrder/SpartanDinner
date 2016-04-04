@@ -16,7 +16,7 @@ public class Region {
 
     private Date lastSubtime;
 
-    private Integer subby;
+    private User user;
 
     public Integer getRegionId() {
         return regionId;
@@ -66,11 +66,15 @@ public class Region {
         this.lastSubtime = lastSubtime;
     }
 
-    public Integer getSubby() {
-        return subby;
+    public User getUser() {
+        return user;
     }
 
-    public void setSubby(Integer subby) {
-        this.subby = subby;
+    public void setUser(User user) {
+        if (user.getUserId() == null) {
+            this.user = null;
+        } else {
+            this.user = user;
+        }
     }
 }

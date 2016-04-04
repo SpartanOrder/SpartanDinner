@@ -1,73 +1,419 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.spartan.dao.MemberInfoMapper" >
-  <resultMap id="BaseResultMap" type="com.spartan.model.MemberInfo" >
-    <id column="mem_ID" property="memId" jdbcType="INTEGER" />
-    <result column="mem_Type_ID" property="memTypeId" jdbcType="INTEGER" />
-    <result column="mem_Name" property="memName" jdbcType="VARCHAR" />
-    <result column="mem_User_Name" property="memUserName" jdbcType="VARCHAR" />
-    <result column="mem_Password" property="memPassword" jdbcType="VARCHAR" />
-    <result column="mem_Tel" property="memTel" jdbcType="VARCHAR" />
-    <result column="mem_Phone" property="memPhone" jdbcType="VARCHAR" />
-    <result column="mem_Address" property="memAddress" jdbcType="VARCHAR" />
-    <result column="mem_Gender" property="memGender" jdbcType="TINYINT" />
-    <result column="mem_Money" property="memMoney" jdbcType="DECIMAL" />
-    <result column="mem_Integral" property="memIntegral" jdbcType="INTEGER" />
-    <result column="mem_Birthday" property="memBirthday" jdbcType="DATE" />
-    <result column="mem_Begin_Time" property="memBeginTime" jdbcType="TIMESTAMP" />
-    <result column="mem_End_Time" property="memEndTime" jdbcType="TIMESTAMP" />
-    <result column="del_Flag" property="delFlag" jdbcType="TINYINT" />
-    <result column="last_SubTime" property="lastSubtime" jdbcType="TIMESTAMP" />
-    <result column="subBy" property="subby" jdbcType="INTEGER" />
-  </resultMap>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+<mapper namespace="com.spartan.dao.MemberInfoMapper">
+    <resultMap id="BaseResultMap" type="com.spartan.model.MemberInfo">
+        <id column="mem_ID" property="memId" jdbcType="INTEGER"/>
+        <result column="mem_Name" property="memName" jdbcType="VARCHAR"/>
+        <result column="mem_User_Name" property="memUserName" jdbcType="VARCHAR"/>
+        <result column="mem_Password" property="memPassword" jdbcType="VARCHAR"/>
+        <result column="mem_Tel" property="memTel" jdbcType="VARCHAR"/>
+        <result column="mem_Phone" property="memPhone" jdbcType="VARCHAR"/>
+        <result column="mem_Address" property="memAddress" jdbcType="VARCHAR"/>
+        <result column="mem_Gender" property="memGender" jdbcType="TINYINT"/>
+        <result column="mem_Money" property="memMoney" jdbcType="DECIMAL"/>
+        <result column="mem_Integral" property="memIntegral" jdbcType="INTEGER"/>
+        <result column="mem_Birthday" property="memBirthday" jdbcType="DATE"/>
+        <result column="mem_Begin_Time" property="memBeginTime" jdbcType="DATE"/>
+        <result column="mem_End_Time" property="memEndTime" jdbcType="DATE"/>
+        <result column="del_Flag" property="delFlag" jdbcType="TINYINT"/>
+        <result column="last_SubTime" property="lastSubtime" jdbcType="TIMESTAMP"/>
+        <association property="memberType" column="mem_Type_ID" javaType="com.spartan.model.MemberType"
+                     resultMap="com.spartan.dao.MemberTypeMapper.SimpleResultMap">
+        </association>
+        <association property="user" column="subBy" javaType="com.spartan.model.User" resultMap="com.spartan.dao.UserMapper.SimpleResultMap">
+        </association>
+    </resultMap>
+    <resultMap id="SimpleResultMap" type="com.spartan.model.MemberInfo">
+        <id column="mem_ID" property="memId" jdbcType="INTEGER"/>
+        <result column="mem_Name" property="memName" jdbcType="VARCHAR"/>
+        <result column="mem_User_Name" property="memUserName" jdbcType="VARCHAR"/>
+        <result column="mem_Password" property="memPassword" jdbcType="VARCHAR"/>
+        <result column="mem_Tel" property="memTel" jdbcType="VARCHAR"/>
+        <result column="mem_Gender" property="memGender" jdbcType="TINYINT"/>
+        <result column="mem_Money" property="memMoney" jdbcType="DECIMAL"/>
+        <result column="mem_Integral" property="memIntegral" jdbcType="INTEGER"/>
+        <result column="mem_Begin_Time" property="memBeginTime" jdbcType="DATE"/>
+        <result column="mem_End_Time" property="memEndTime" jdbcType="DATE"/>
+        <association property="memberType" column="mem_Type_ID" javaType="com.spartan.model.MemberType"
+                     resultMap="com.spartan.dao.MemberTypeMapper.SimpleResultMap">
+        </association>
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")" separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")" separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
+    mem_ID, mem_Type_ID, mem_Name, mem_User_Name, mem_Password, mem_Tel, mem_Phone, mem_Address, 
+    mem_Gender, mem_Money, mem_Integral, mem_Birthday, mem_Begin_Time, mem_End_Time, 
+    del_Flag, last_SubTime, subBy
+  </sql>
+    <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.spartan.model.MemberInfoExample">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List"/>
+        from t_memberinfo
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from t_memberinfo
+        where mem_ID = #{memId,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from t_memberinfo
     where mem_ID = #{memId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.spartan.model.MemberInfo" >
-    insert into t_memberinfo (mem_ID, mem_Type_ID, mem_Name,
-    mem_User_Name, mem_Password, mem_Tel,
-    mem_Phone, mem_Address, mem_Gender,
-    mem_Money, mem_Integral, mem_Birthday,
-    mem_Begin_Time, mem_End_Time, del_Flag,
-    subBy)
-    values (#{memId,jdbcType=INTEGER}, #{memTypeId,jdbcType=INTEGER}, #{memName,jdbcType=VARCHAR},
-    #{memUserName,jdbcType=VARCHAR}, #{memPassword,jdbcType=VARCHAR}, #{memTel,jdbcType=VARCHAR},
-    #{memPhone,jdbcType=VARCHAR}, #{memAddress,jdbcType=VARCHAR}, #{memGender,jdbcType=TINYINT},
-    #{memMoney,jdbcType=DECIMAL}, #{memIntegral,jdbcType=INTEGER}, #{memBirthday,jdbcType=DATE},
-    #{memBeginTime,jdbcType=TIMESTAMP}, #{memEndTime,jdbcType=TIMESTAMP}, #{delFlag,jdbcType=TINYINT},
-    #{subby,jdbcType=INTEGER})
+    <delete id="deleteByExample" parameterType="com.spartan.model.MemberInfoExample">
+        delete from t_memberinfo
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </delete>
+    <insert id="insert" parameterType="com.spartan.model.MemberInfo">
+    insert into t_memberinfo (mem_ID, mem_Type_ID, mem_Name, 
+      mem_User_Name, mem_Password, mem_Tel, 
+      mem_Phone, mem_Address, mem_Gender, 
+      mem_Money, mem_Integral, mem_Birthday, 
+      mem_Begin_Time, mem_End_Time, del_Flag, 
+      last_SubTime, subBy)
+    values (#{memId,jdbcType=INTEGER}, #{memTypeId,jdbcType=INTEGER}, #{memName,jdbcType=VARCHAR}, 
+      #{memUserName,jdbcType=VARCHAR}, #{memPassword,jdbcType=VARCHAR}, #{memTel,jdbcType=VARCHAR}, 
+      #{memPhone,jdbcType=VARCHAR}, #{memAddress,jdbcType=VARCHAR}, #{memGender,jdbcType=TINYINT}, 
+      #{memMoney,jdbcType=DECIMAL}, #{memIntegral,jdbcType=INTEGER}, #{memBirthday,jdbcType=DATE}, 
+      #{memBeginTime,jdbcType=DATE}, #{memEndTime,jdbcType=DATE}, #{delFlag,jdbcType=TINYINT}, 
+      #{lastSubtime,jdbcType=TIMESTAMP}, #{subby,jdbcType=INTEGER})
   </insert>
-  <update id="updateByPrimaryKey" parameterType="com.spartan.model.MemberInfo" >
+    <insert id="insertSelective" parameterType="com.spartan.model.MemberInfo">
+        insert into t_memberinfo
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="memId != null">
+                mem_ID,
+            </if>
+            <if test="memTypeId != null">
+                mem_Type_ID,
+            </if>
+            <if test="memName != null">
+                mem_Name,
+            </if>
+            <if test="memUserName != null">
+                mem_User_Name,
+            </if>
+            <if test="memPassword != null">
+                mem_Password,
+            </if>
+            <if test="memTel != null">
+                mem_Tel,
+            </if>
+            <if test="memPhone != null">
+                mem_Phone,
+            </if>
+            <if test="memAddress != null">
+                mem_Address,
+            </if>
+            <if test="memGender != null">
+                mem_Gender,
+            </if>
+            <if test="memMoney != null">
+                mem_Money,
+            </if>
+            <if test="memIntegral != null">
+                mem_Integral,
+            </if>
+            <if test="memBirthday != null">
+                mem_Birthday,
+            </if>
+            <if test="memBeginTime != null">
+                mem_Begin_Time,
+            </if>
+            <if test="memEndTime != null">
+                mem_End_Time,
+            </if>
+            <if test="delFlag != null">
+                del_Flag,
+            </if>
+            <if test="lastSubtime != null">
+                last_SubTime,
+            </if>
+            <if test="subby != null">
+                subBy,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="memId != null">
+                #{memId,jdbcType=INTEGER},
+            </if>
+            <if test="memTypeId != null">
+                #{memTypeId,jdbcType=INTEGER},
+            </if>
+            <if test="memName != null">
+                #{memName,jdbcType=VARCHAR},
+            </if>
+            <if test="memUserName != null">
+                #{memUserName,jdbcType=VARCHAR},
+            </if>
+            <if test="memPassword != null">
+                #{memPassword,jdbcType=VARCHAR},
+            </if>
+            <if test="memTel != null">
+                #{memTel,jdbcType=VARCHAR},
+            </if>
+            <if test="memPhone != null">
+                #{memPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="memAddress != null">
+                #{memAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="memGender != null">
+                #{memGender,jdbcType=TINYINT},
+            </if>
+            <if test="memMoney != null">
+                #{memMoney,jdbcType=DECIMAL},
+            </if>
+            <if test="memIntegral != null">
+                #{memIntegral,jdbcType=INTEGER},
+            </if>
+            <if test="memBirthday != null">
+                #{memBirthday,jdbcType=DATE},
+            </if>
+            <if test="memBeginTime != null">
+                #{memBeginTime,jdbcType=DATE},
+            </if>
+            <if test="memEndTime != null">
+                #{memEndTime,jdbcType=DATE},
+            </if>
+            <if test="delFlag != null">
+                #{delFlag,jdbcType=TINYINT},
+            </if>
+            <if test="lastSubtime != null">
+                #{lastSubtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="subby != null">
+                #{subby,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByExample" parameterType="com.spartan.model.MemberInfoExample" resultType="java.lang.Integer">
+        select count(*) from t_memberinfo
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
+        update t_memberinfo
+        <set>
+            <if test="record.memId != null">
+                mem_ID = #{record.memId,jdbcType=INTEGER},
+            </if>
+            <if test="record.memTypeId != null">
+                mem_Type_ID = #{record.memTypeId,jdbcType=INTEGER},
+            </if>
+            <if test="record.memName != null">
+                mem_Name = #{record.memName,jdbcType=VARCHAR},
+            </if>
+            <if test="record.memUserName != null">
+                mem_User_Name = #{record.memUserName,jdbcType=VARCHAR},
+            </if>
+            <if test="record.memPassword != null">
+                mem_Password = #{record.memPassword,jdbcType=VARCHAR},
+            </if>
+            <if test="record.memTel != null">
+                mem_Tel = #{record.memTel,jdbcType=VARCHAR},
+            </if>
+            <if test="record.memPhone != null">
+                mem_Phone = #{record.memPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="record.memAddress != null">
+                mem_Address = #{record.memAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="record.memGender != null">
+                mem_Gender = #{record.memGender,jdbcType=TINYINT},
+            </if>
+            <if test="record.memMoney != null">
+                mem_Money = #{record.memMoney,jdbcType=DECIMAL},
+            </if>
+            <if test="record.memIntegral != null">
+                mem_Integral = #{record.memIntegral,jdbcType=INTEGER},
+            </if>
+            <if test="record.memBirthday != null">
+                mem_Birthday = #{record.memBirthday,jdbcType=DATE},
+            </if>
+            <if test="record.memBeginTime != null">
+                mem_Begin_Time = #{record.memBeginTime,jdbcType=DATE},
+            </if>
+            <if test="record.memEndTime != null">
+                mem_End_Time = #{record.memEndTime,jdbcType=DATE},
+            </if>
+            <if test="record.delFlag != null">
+                del_Flag = #{record.delFlag,jdbcType=TINYINT},
+            </if>
+            <if test="record.lastSubtime != null">
+                last_SubTime = #{record.lastSubtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.subby != null">
+                subBy = #{record.subby,jdbcType=INTEGER},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map">
+        update t_memberinfo
+        set mem_ID = #{record.memId,jdbcType=INTEGER},
+        mem_Type_ID = #{record.memTypeId,jdbcType=INTEGER},
+        mem_Name = #{record.memName,jdbcType=VARCHAR},
+        mem_User_Name = #{record.memUserName,jdbcType=VARCHAR},
+        mem_Password = #{record.memPassword,jdbcType=VARCHAR},
+        mem_Tel = #{record.memTel,jdbcType=VARCHAR},
+        mem_Phone = #{record.memPhone,jdbcType=VARCHAR},
+        mem_Address = #{record.memAddress,jdbcType=VARCHAR},
+        mem_Gender = #{record.memGender,jdbcType=TINYINT},
+        mem_Money = #{record.memMoney,jdbcType=DECIMAL},
+        mem_Integral = #{record.memIntegral,jdbcType=INTEGER},
+        mem_Birthday = #{record.memBirthday,jdbcType=DATE},
+        mem_Begin_Time = #{record.memBeginTime,jdbcType=DATE},
+        mem_End_Time = #{record.memEndTime,jdbcType=DATE},
+        del_Flag = #{record.delFlag,jdbcType=TINYINT},
+        last_SubTime = #{record.lastSubtime,jdbcType=TIMESTAMP},
+        subBy = #{record.subby,jdbcType=INTEGER}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="com.spartan.model.MemberInfo">
+        update t_memberinfo
+        <set>
+            <if test="memTypeId != null">
+                mem_Type_ID = #{memTypeId,jdbcType=INTEGER},
+            </if>
+            <if test="memName != null">
+                mem_Name = #{memName,jdbcType=VARCHAR},
+            </if>
+            <if test="memUserName != null">
+                mem_User_Name = #{memUserName,jdbcType=VARCHAR},
+            </if>
+            <if test="memPassword != null">
+                mem_Password = #{memPassword,jdbcType=VARCHAR},
+            </if>
+            <if test="memTel != null">
+                mem_Tel = #{memTel,jdbcType=VARCHAR},
+            </if>
+            <if test="memPhone != null">
+                mem_Phone = #{memPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="memAddress != null">
+                mem_Address = #{memAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="memGender != null">
+                mem_Gender = #{memGender,jdbcType=TINYINT},
+            </if>
+            <if test="memMoney != null">
+                mem_Money = #{memMoney,jdbcType=DECIMAL},
+            </if>
+            <if test="memIntegral != null">
+                mem_Integral = #{memIntegral,jdbcType=INTEGER},
+            </if>
+            <if test="memBirthday != null">
+                mem_Birthday = #{memBirthday,jdbcType=DATE},
+            </if>
+            <if test="memBeginTime != null">
+                mem_Begin_Time = #{memBeginTime,jdbcType=DATE},
+            </if>
+            <if test="memEndTime != null">
+                mem_End_Time = #{memEndTime,jdbcType=DATE},
+            </if>
+            <if test="delFlag != null">
+                del_Flag = #{delFlag,jdbcType=TINYINT},
+            </if>
+            <if test="lastSubtime != null">
+                last_SubTime = #{lastSubtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="subby != null">
+                subBy = #{subby,jdbcType=INTEGER},
+            </if>
+        </set>
+        where mem_ID = #{memId,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.spartan.model.MemberInfo">
     update t_memberinfo
     set mem_Type_ID = #{memTypeId,jdbcType=INTEGER},
-    mem_Name = #{memName,jdbcType=VARCHAR},
-    mem_User_Name = #{memUserName,jdbcType=VARCHAR},
-    mem_Password = #{memPassword,jdbcType=VARCHAR},
-    mem_Tel = #{memTel,jdbcType=VARCHAR},
-    mem_Phone = #{memPhone,jdbcType=VARCHAR},
-    mem_Address = #{memAddress,jdbcType=VARCHAR},
-    mem_Gender = #{memGender,jdbcType=TINYINT},
-    mem_Money = #{memMoney,jdbcType=DECIMAL},
-    mem_Integral = #{memIntegral,jdbcType=INTEGER},
-    mem_Birthday = #{memBirthday,jdbcType=DATE},
-    mem_Begin_Time = #{memBeginTime,jdbcType=TIMESTAMP},
-    mem_End_Time = #{memEndTime,jdbcType=TIMESTAMP},
-    del_Flag = #{delFlag,jdbcType=TINYINT},
-    subBy = #{subby,jdbcType=INTEGER}
+      mem_Name = #{memName,jdbcType=VARCHAR},
+      mem_User_Name = #{memUserName,jdbcType=VARCHAR},
+      mem_Password = #{memPassword,jdbcType=VARCHAR},
+      mem_Tel = #{memTel,jdbcType=VARCHAR},
+      mem_Phone = #{memPhone,jdbcType=VARCHAR},
+      mem_Address = #{memAddress,jdbcType=VARCHAR},
+      mem_Gender = #{memGender,jdbcType=TINYINT},
+      mem_Money = #{memMoney,jdbcType=DECIMAL},
+      mem_Integral = #{memIntegral,jdbcType=INTEGER},
+      mem_Birthday = #{memBirthday,jdbcType=DATE},
+      mem_Begin_Time = #{memBeginTime,jdbcType=DATE},
+      mem_End_Time = #{memEndTime,jdbcType=DATE},
+      del_Flag = #{delFlag,jdbcType=TINYINT},
+      last_SubTime = #{lastSubtime,jdbcType=TIMESTAMP},
+      subBy = #{subby,jdbcType=INTEGER}
     where mem_ID = #{memId,jdbcType=INTEGER}
   </update>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select mem_ID, mem_Type_ID, mem_Name, mem_User_Name, mem_Password, mem_Tel, mem_Phone, 
-    mem_Address, mem_Gender, mem_Money, mem_Integral, mem_Birthday, mem_Begin_Time, mem_End_Time, 
-    del_Flag, last_SubTime, subBy
-    from t_memberinfo
-    where mem_ID = #{memId,jdbcType=INTEGER}
-  </select>
-  <select id="selectAll" resultMap="BaseResultMap" >
-    select mem_ID, mem_Type_ID, mem_Name, mem_User_Name, mem_Password, mem_Tel, mem_Phone, 
-    mem_Address, mem_Gender, mem_Money, mem_Integral, mem_Birthday, mem_Begin_Time, mem_End_Time, 
-    del_Flag, last_SubTime, subBy
-    from t_memberinfo
-  </select>
 </mapper>

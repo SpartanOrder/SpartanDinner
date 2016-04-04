@@ -2,13 +2,19 @@ package com.spartan.model;
 
 import java.math.BigDecimal;
 import java.util.Date;
-
+/**
+ * Created with IntelliJ IDEA.
+ * @author Wind
+ * @version V1.0
+ * @Description:临时餐单内容TCC .
+ * @Date 2016/3/30 22:43
+ */
 public class TempCarteContent {
     private Integer tccId;
 
     private String tciSwiftNumber;
 
-    private Integer tccDishId;
+    private Dish dish;
 
     private Integer tccDishNum;
 
@@ -20,7 +26,7 @@ public class TempCarteContent {
 
     private Date lastSubtime;
 
-    private Integer subby;
+    private User user;
 
     public Integer getTccId() {
         return tccId;
@@ -38,12 +44,16 @@ public class TempCarteContent {
         this.tciSwiftNumber = tciSwiftNumber == null ? null : tciSwiftNumber.trim();
     }
 
-    public Integer getTccDishId() {
-        return tccDishId;
+    public Dish getDish() {
+        return dish;
     }
 
-    public void setTccDishId(Integer tccDishId) {
-        this.tccDishId = tccDishId;
+    public void setDish(Dish dish) {
+        if (dish.getDishId() == null) {
+            this.dish = null;
+        } else {
+            this.dish = dish;
+        }
     }
 
     public Integer getTccDishNum() {
@@ -86,11 +96,15 @@ public class TempCarteContent {
         this.lastSubtime = lastSubtime;
     }
 
-    public Integer getSubby() {
-        return subby;
+    public User getUser() {
+        return user;
     }
 
-    public void setSubby(Integer subby) {
-        this.subby = subby;
+    public void setUser(User user) {
+        if (user.getUserId() == null) {
+            this.user = null;
+        } else {
+            this.user = user;
+        }
     }
 }

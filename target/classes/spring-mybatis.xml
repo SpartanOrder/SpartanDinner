@@ -60,6 +60,7 @@ http://www.springframework.org/schema/aop/spring-aop-3.0.xsd http://www.springfr
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <!-- 扫描com.spartan.dao这个包以及它的子包下的所有映射接口类 -->
         <property name="basePackage" value="com.spartan.dao"/>
+        <property name="markerInterface" value="com.spartan.dao.BaseMapper"/>
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
     </bean>
     <!-- ========================================分隔线========================================= -->

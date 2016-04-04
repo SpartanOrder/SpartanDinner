@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.spartan.dao.common">
+    <!--针对最后面的三列，如果单表查询则使用Column_Common,多表查询按表顺序使用master，salve，third,fourth-->
+    <!--master：代表主表
+        salve:代表xml里面sub的user
+        third：代表sub里面的user的EmployeeInfo
+    -->
+    <sql id="Column_Common_Rest">
+        del_Flag, subBy,  lastSubtime
+    </sql>
+    <sql id="Column_Common_CUD">
+        del_Flag, subBy
+    </sql>
+    <sql id="Column_Common_DelFlag">
+        del_Flag
+    </sql>
+    <sql id="Column_Common_LastSubtime">
+        last_SubTime
+    </sql>
+    <sql id="Column_Master_Rest">
+        m.del_Flag, m.subBy,  m.lastSubtime
+    </sql>
+    <sql id="Column_Master_CUD">
+        m.del_Flag, m.subBy
+    </sql>
+    <sql id="Column_Master_DelFlag">
+        m.del_Flag
+    </sql>
+    <sql id="Column_Master_LastSubtime">
+        m.last_SubTime
+    </sql>
+    <sql id="Column_Slave_Rest">
+        s.del_Flag, s.subBy,  s.lastSubtime
+    </sql>
+    <sql id="Column_Slave_CUD">
+        s.del_Flag, s.subBy
+    </sql>
+    <sql id="Column_Slave_DelFlag">
+        s.del_Flag
+    </sql>
+    <sql id="Column_Slave_LastSubtime">
+        s.last_SubTime
+    </sql>
+    <sql id="Column_Third_Rest">
+        t.del_Flag,t.subBy,  t.lastSubtime
+    </sql>
+    <sql id="Column_Third_CUD">
+        t.del_Flag, t.subBy
+    </sql>
+    <sql id="Column_Third_DelFlag">
+        t.del_Flag
+    </sql>
+    <sql id="Column_Third_LastSubtime">
+        t.last_SubTime
+    </sql>
+    <sql id="Column_Fourth_Rest">
+        f.del_Flag, f.subBy,  f.lastSubtime
+    </sql>
+    <sql id="Column_Fourth_CUD">
+        f.del_Flag, f.subBy
+    </sql>
+    <sql id="Column_Fourth_DelFlag">
+        f.del_Flag
+    </sql>
+    <sql id="Column_Fourth_LastSubtime">
+        f.last_SubTime
+    </sql>
+</mapper>

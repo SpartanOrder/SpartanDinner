@@ -7,21 +7,23 @@ public class User {
 
     private String userName;
 
-    private Integer roleId;
+    private Role role;
 
-    private String userRealname;
+    private Byte userState;
 
     private String userPassword;
 
     private String salt;
-
-    private Date lastLogintime;
 
     private String lastLoginip;
 
     private Byte delFlag;
 
     private Date lastSubtime;
+
+    private User user;
+
+    private EmployeeInfo employeeInfo;
 
     public Integer getUserId() {
         return userId;
@@ -39,20 +41,24 @@ public class User {
         this.userName = userName == null ? null : userName.trim();
     }
 
-    public Integer getRoleId() {
-        return roleId;
+    public Role getRole() {
+        return role;
     }
 
-    public void setRoleId(Integer roleId) {
-        this.roleId = roleId;
+    public void setRole(Role role) {
+        if (role.getRoleId() == null) {
+            this.role = null;
+        } else {
+            this.role = role;
+        }
     }
 
-    public String getUserRealname() {
-        return userRealname;
+    public Byte getUserState() {
+        return userState;
     }
 
-    public void setUserRealname(String userRealname) {
-        this.userRealname = userRealname == null ? null : userRealname.trim();
+    public void setUserState(Byte userState) {
+        this.userState = userState;
     }
 
     public String getUserPassword() {
@@ -69,14 +75,6 @@ public class User {
 
     public void setSalt(String salt) {
         this.salt = salt == null ? null : salt.trim();
-    }
-
-    public Date getLastLogintime() {
-        return lastLogintime;
-    }
-
-    public void setLastLogintime(Date lastLogintime) {
-        this.lastLogintime = lastLogintime;
     }
 
     public String getLastLoginip() {
@@ -101,5 +99,46 @@ public class User {
 
     public void setLastSubtime(Date lastSubtime) {
         this.lastSubtime = lastSubtime;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        if (user.getUserId() == null) {
+            this.user = null;
+        } else {
+            this.user = user;
+        }
+    }
+
+    public EmployeeInfo getEmployeeInfo() {
+        return employeeInfo;
+    }
+
+    public void setEmployeeInfo(EmployeeInfo employeeInfo) {
+        if (employeeInfo.getEmployeeId() == null) {
+            this.employeeInfo = null;
+        } else {
+            this.employeeInfo = employeeInfo;
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userId=" + userId +
+                ", userName='" + userName + '\'' +
+                ", role=" + role +
+                ", userState=" + userState +
+                ", userPassword='" + userPassword + '\'' +
+                ", salt='" + salt + '\'' +
+                ", lastLoginip='" + lastLoginip + '\'' +
+                ", delFlag=" + delFlag +
+                ", lastSubtime=" + lastSubtime +
+                ", user=" + user +
+                ", employeeInfo=" + employeeInfo +
+                '}';
     }
 }

@@ -15,7 +15,7 @@ import java.util.List;
  */
 public abstract class AbstractService<T, ID extends Serializable> implements BaseService<T, ID> {
 
-    private BaseMapper<T, ID> baseMapper;
+    protected BaseMapper<T, ID> baseMapper;
 
     public void setBaseMapper(BaseMapper<T, ID> baseMapper) {
         this.baseMapper = baseMapper;
@@ -25,33 +25,27 @@ public abstract class AbstractService<T, ID extends Serializable> implements Bas
         return baseMapper.deleteByPrimaryKey(id);
     }
 
-    //    public int insertSelective(T record) {
-    //        return baseMapper.insertSelective(record);
-    //    }
+    public int insert(T t) {
+        return baseMapper.insert(t);
+    }
+
+    public int insertSelective(T t) {
+        return baseMapper.insertSelective(t);
+    }
 
     public T selectByPrimaryKey(ID id) {
         return baseMapper.selectByPrimaryKey(id);
     }
 
     public List<T> selectAll() {
-        return (List<T>) baseMapper.selectAll();
+        return baseMapper.selectAll();
     }
 
-    //    public int updateByPrimaryKeySelective(T record) {
-    //        return baseMapper.updateByPrimaryKey(record);
-    //    }
-
-    //    public int updateByPrimaryKeyWithBLOBs(T record) {
-    //        return baseMapper.updateByPrimaryKeyWithBLOBs(record);
-    //    }
-
-    public int updateByPrimaryKey(T record) {
-        return baseMapper.updateByPrimaryKey(record);
+    public int updateByPrimaryKeySelective(T t) {
+        return baseMapper.updateByPrimaryKeySelective(t);
     }
 
-    public int insert(T record) {
-        return baseMapper.insert(record);
+    public int updateByPrimaryKey(T t) {
+        return baseMapper.updateByPrimaryKey(t);
     }
-
-
 }

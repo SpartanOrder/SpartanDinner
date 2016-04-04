@@ -3,60 +3,53 @@ package com.spartan.model;
 import java.util.Date;
 
 public class Department {
-    private Integer roleId;
+    private Integer departmentId;
 
-    private String roleName;
+    private String departmentName;
 
-    private Integer priority;
+    private String description;
 
-    private Integer parentId;
-
-    private String parentIds;
+    private String remark;
 
     private Byte delFlag;
 
     private Date lastSubtime;
 
-    private Integer subby;
+    private User user;
 
-    public Integer getRoleId() {
-        return roleId;
+    public Department() {
     }
 
-    public void setRoleId(Integer roleId) {
-        this.roleId = roleId;
+    public Integer getDepartmentId() {
+        return departmentId;
     }
 
-    public String getRoleName() {
-        return roleName;
+    public void setDepartmentId(Integer departmentId) {
+        this.departmentId = departmentId;
     }
 
-    public void setRoleName(String roleName) {
-        this.roleName = roleName == null ? null : roleName.trim();
+    public String getDepartmentName() {
+        return departmentName;
     }
 
-    public Integer getPriority() {
-        return priority;
+    public void setDepartmentName(String departmentName) {
+        this.departmentName = departmentName == null ? null : departmentName.trim();
     }
 
-    public void setPriority(Integer priority) {
-        this.priority = priority;
+    public String getDescription() {
+        return description;
     }
 
-    public Integer getParentId() {
-        return parentId;
+    public void setDescription(String description) {
+        this.description = description == null ? null : description.trim();
     }
 
-    public void setParentId(Integer parentId) {
-        this.parentId = parentId;
+    public String getRemark() {
+        return remark;
     }
 
-    public String getParentIds() {
-        return parentIds;
-    }
-
-    public void setParentIds(String parentIds) {
-        this.parentIds = parentIds == null ? null : parentIds.trim();
+    public void setRemark(String remark) {
+        this.remark = remark == null ? null : remark.trim();
     }
 
     public Byte getDelFlag() {
@@ -75,11 +68,16 @@ public class Department {
         this.lastSubtime = lastSubtime;
     }
 
-    public Integer getSubby() {
-        return subby;
+    public User getUser() {
+        return user;
     }
 
-    public void setSubby(Integer subby) {
-        this.subby = subby;
+    public void setUser(User user) {
+        if (user.getUserId() == null) {
+            this.user = null;
+        } else {
+            this.user = user;
+        }
+
     }
 }

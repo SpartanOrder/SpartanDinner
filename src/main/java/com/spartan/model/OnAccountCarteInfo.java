@@ -2,164 +2,182 @@ package com.spartan.model;
 
 import java.math.BigDecimal;
 import java.util.Date;
-
+/**
+ * Created with IntelliJ IDEA.
+ * @author Wind
+ * @version V1.0
+ * @Description:挂账餐单信息OCI .
+ * @Date 2016/3/30 22:43
+ */
 public class OnAccountCarteInfo {
-    private Integer eciId;
+    private Integer ociId;
 
-    private String eciSwiftNumber;
+    private String ociSwiftNumber;
 
-    private Byte eciState;
+    private Byte ociState;
 
-    private Integer eciTableId;
+    private DinningTable dinningTable;
 
-    private Integer eciWaiterId;
+    private EmployeeInfo ociWaiter;
 
-    private Integer eciCashierId;
+    private EmployeeInfo ociCashier;
 
-    private Integer eciCustomerId;
+    private Customer customer;
 
-    private Integer eciMemId;
+    private MemberInfo memberInfo;
 
-    private Integer eciDishNums;
+    private Integer ociDishNums;
 
-    private Integer eciAmountPeoplo;
+    private Integer ociAmountPeoplo;
 
-    private Date eciRepastTime;
+    private Date ociRepastTime;
 
-    private Date eciBillTime;
+    private BigDecimal ociConsumeAmount;
 
-    private BigDecimal eciConsumeAmount;
+    private BigDecimal ociDiscount;
 
-    private BigDecimal eciDiscount;
-
-    private BigDecimal eciPaidAmount;
+    private BigDecimal ociPaidAmount;
 
     private Byte delFlag;
 
     private Date lastSubtime;
 
-    private Integer subby;
+    private User user;
 
-    private byte[] eciRemark;
+    private byte[] ociRemark;
 
-    public Integer getEciId() {
-        return eciId;
+    public Integer getOciId() {
+        return ociId;
     }
 
-    public void setEciId(Integer eciId) {
-        this.eciId = eciId;
+    public void setOciId(Integer ociId) {
+        this.ociId = ociId;
     }
 
-    public String getEciSwiftNumber() {
-        return eciSwiftNumber;
+    public String getOciSwiftNumber() {
+        return ociSwiftNumber;
     }
 
-    public void setEciSwiftNumber(String eciSwiftNumber) {
-        this.eciSwiftNumber = eciSwiftNumber == null ? null : eciSwiftNumber.trim();
+    public void setOciSwiftNumber(String ociSwiftNumber) {
+        this.ociSwiftNumber = ociSwiftNumber == null ? null : ociSwiftNumber.trim();
     }
 
-    public Byte getEciState() {
-        return eciState;
+    public Byte getOciState() {
+        return ociState;
     }
 
-    public void setEciState(Byte eciState) {
-        this.eciState = eciState;
+    public void setOciState(Byte ociState) {
+        this.ociState = ociState;
     }
 
-    public Integer getEciTableId() {
-        return eciTableId;
+
+    public DinningTable getDinningTable() {
+        return dinningTable;
     }
 
-    public void setEciTableId(Integer eciTableId) {
-        this.eciTableId = eciTableId;
+    public void setDinningTable(DinningTable dinningTable) {
+        if (dinningTable.getTableId() == null) {
+            this.dinningTable = null;
+        } else {
+            this.dinningTable = dinningTable;
+        }
     }
 
-    public Integer getEciWaiterId() {
-        return eciWaiterId;
+    public EmployeeInfo getOciWaiter() {
+        return ociWaiter;
     }
 
-    public void setEciWaiterId(Integer eciWaiterId) {
-        this.eciWaiterId = eciWaiterId;
+    public void setOciWaiter(EmployeeInfo ociWaiter) {
+        if (ociWaiter.getEmployeeId() == null) {
+            this.ociWaiter = null;
+        } else {
+            this.ociWaiter = ociWaiter;
+        }
     }
 
-    public Integer getEciCashierId() {
-        return eciCashierId;
+    public EmployeeInfo getOciCashier() {
+        return ociCashier;
     }
 
-    public void setEciCashierId(Integer eciCashierId) {
-        this.eciCashierId = eciCashierId;
+    public void setOciCashier(EmployeeInfo ociCashier) {
+        if (ociCashier.getEmployeeId() == null) {
+            this.ociCashier = null;
+        } else {
+            this.ociCashier = ociCashier;
+        }
     }
 
-    public Integer getEciCustomerId() {
-        return eciCustomerId;
+    public Customer getCustomer() {
+        return customer;
     }
 
-    public void setEciCustomerId(Integer eciCustomerId) {
-        this.eciCustomerId = eciCustomerId;
+    public void setCustomer(Customer customer) {
+        if (customer.getCustomerId() == null) {
+            this.customer = null;
+        } else {
+            this.customer = customer;
+        }
     }
 
-    public Integer getEciMemId() {
-        return eciMemId;
+    public MemberInfo getMemberInfo() {
+        return memberInfo;
     }
 
-    public void setEciMemId(Integer eciMemId) {
-        this.eciMemId = eciMemId;
+    public void setMemberInfo(MemberInfo memberInfo) {
+        if (memberInfo.getMemId() == null) {
+            this.memberInfo = null;
+        } else {
+            this.memberInfo = memberInfo;
+        }
     }
 
-    public Integer getEciDishNums() {
-        return eciDishNums;
+
+    public Integer getOciDishNums() {
+        return ociDishNums;
     }
 
-    public void setEciDishNums(Integer eciDishNums) {
-        this.eciDishNums = eciDishNums;
+    public void setOciDishNums(Integer ociDishNums) {
+        this.ociDishNums = ociDishNums;
     }
 
-    public Integer getEciAmountPeoplo() {
-        return eciAmountPeoplo;
+    public Integer getOciAmountPeoplo() {
+        return ociAmountPeoplo;
     }
 
-    public void setEciAmountPeoplo(Integer eciAmountPeoplo) {
-        this.eciAmountPeoplo = eciAmountPeoplo;
+    public void setOciAmountPeoplo(Integer ociAmountPeoplo) {
+        this.ociAmountPeoplo = ociAmountPeoplo;
     }
 
-    public Date getEciRepastTime() {
-        return eciRepastTime;
+    public Date getOciRepastTime() {
+        return ociRepastTime;
     }
 
-    public void setEciRepastTime(Date eciRepastTime) {
-        this.eciRepastTime = eciRepastTime;
+    public void setOciRepastTime(Date ociRepastTime) {
+        this.ociRepastTime = ociRepastTime;
     }
 
-    public Date getEciBillTime() {
-        return eciBillTime;
+    public BigDecimal getOciConsumeAmount() {
+        return ociConsumeAmount;
     }
 
-    public void setEciBillTime(Date eciBillTime) {
-        this.eciBillTime = eciBillTime;
+    public void setOciConsumeAmount(BigDecimal ociConsumeAmount) {
+        this.ociConsumeAmount = ociConsumeAmount;
     }
 
-    public BigDecimal getEciConsumeAmount() {
-        return eciConsumeAmount;
+    public BigDecimal getOciDiscount() {
+        return ociDiscount;
     }
 
-    public void setEciConsumeAmount(BigDecimal eciConsumeAmount) {
-        this.eciConsumeAmount = eciConsumeAmount;
+    public void setOciDiscount(BigDecimal ociDiscount) {
+        this.ociDiscount = ociDiscount;
     }
 
-    public BigDecimal getEciDiscount() {
-        return eciDiscount;
+    public BigDecimal getOciPaidAmount() {
+        return ociPaidAmount;
     }
 
-    public void setEciDiscount(BigDecimal eciDiscount) {
-        this.eciDiscount = eciDiscount;
-    }
-
-    public BigDecimal getEciPaidAmount() {
-        return eciPaidAmount;
-    }
-
-    public void setEciPaidAmount(BigDecimal eciPaidAmount) {
-        this.eciPaidAmount = eciPaidAmount;
+    public void setOciPaidAmount(BigDecimal ociPaidAmount) {
+        this.ociPaidAmount = ociPaidAmount;
     }
 
     public Byte getDelFlag() {
@@ -178,19 +196,23 @@ public class OnAccountCarteInfo {
         this.lastSubtime = lastSubtime;
     }
 
-    public Integer getSubby() {
-        return subby;
+    public User getUser() {
+        return user;
     }
 
-    public void setSubby(Integer subby) {
-        this.subby = subby;
+    public void setUser(User user) {
+        if (user.getUserId() == null) {
+            this.user = null;
+        } else {
+            this.user = user;
+        }
     }
 
-    public byte[] getEciRemark() {
-        return eciRemark;
+    public byte[] getOciRemark() {
+        return ociRemark;
     }
 
-    public void setEciRemark(byte[] eciRemark) {
-        this.eciRemark = eciRemark;
+    public void setOciRemark(byte[] ociRemark) {
+        this.ociRemark = ociRemark;
     }
 }

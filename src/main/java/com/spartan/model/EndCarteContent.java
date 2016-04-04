@@ -1,18 +1,26 @@
 package com.spartan.model;
 
+
 import java.math.BigDecimal;
 import java.util.Date;
 
+/**
+ * Created with IntelliJ IDEA.
+ * @author Wind
+ * @version V1.0
+ * @Description:消费餐单信息ECC .
+ * @Date 2016/3/30 22:43
+ */
 public class EndCarteContent {
     private Integer eccId;
 
-    private Integer eccDishId;
+    private EndCarteInfo endCarteInfo;
+
+    private Dish dish;
 
     private Integer eccDishNum;
 
     private BigDecimal eccTotalPrice;
-
-    private Integer eccEciId;
 
     private String eccSpecilDesc;
 
@@ -20,7 +28,10 @@ public class EndCarteContent {
 
     private Date lastSubtime;
 
-    private Integer subby;
+    private User user;
+
+    public EndCarteContent() {
+    }
 
     public Integer getEccId() {
         return eccId;
@@ -30,12 +41,28 @@ public class EndCarteContent {
         this.eccId = eccId;
     }
 
-    public Integer getEccDishId() {
-        return eccDishId;
+    public EndCarteInfo getEndCarteInfo() {
+        return endCarteInfo;
     }
 
-    public void setEccDishId(Integer eccDishId) {
-        this.eccDishId = eccDishId;
+    public void setEndCarteInfo(EndCarteInfo endCarteInfo) {
+        if (endCarteInfo.getEciId() == null) {
+            this.endCarteInfo = null;
+        } else {
+            this.endCarteInfo = endCarteInfo;
+        }
+    }
+
+    public Dish getDish() {
+        return dish;
+    }
+
+    public void setDish(Dish dish) {
+        if (dish.getDishId() == null) {
+            this.dish = null;
+        } else {
+            this.dish = dish;
+        }
     }
 
     public Integer getEccDishNum() {
@@ -52,14 +79,6 @@ public class EndCarteContent {
 
     public void setEccTotalPrice(BigDecimal eccTotalPrice) {
         this.eccTotalPrice = eccTotalPrice;
-    }
-
-    public Integer getEccEciId() {
-        return eccEciId;
-    }
-
-    public void setEccEciId(Integer eccEciId) {
-        this.eccEciId = eccEciId;
     }
 
     public String getEccSpecilDesc() {
@@ -86,11 +105,16 @@ public class EndCarteContent {
         this.lastSubtime = lastSubtime;
     }
 
-    public Integer getSubby() {
-        return subby;
+    public User getUser() {
+        return user;
     }
 
-    public void setSubby(Integer subby) {
-        this.subby = subby;
+    public void setUser(User user) {
+        if (user.getUserId() == null) {
+            this.user = null;
+        } else {
+            this.user = user;
+        }
+
     }
 }

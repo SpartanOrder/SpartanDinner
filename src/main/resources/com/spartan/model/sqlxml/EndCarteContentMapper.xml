@@ -1,49 +1,287 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.spartan.dao.EndCarteContentMapper" >
-  <resultMap id="BaseResultMap" type="com.spartan.model.EndCarteContent" >
-    <id column="ECC_ID" property="eccId" jdbcType="INTEGER" />
-    <result column="ECC_Dish_ID" property="eccDishId" jdbcType="INTEGER" />
-    <result column="ECC_Dish_Num" property="eccDishNum" jdbcType="INTEGER" />
-    <result column="ECC_Total_Price" property="eccTotalPrice" jdbcType="DECIMAL" />
-    <result column="ECC_ECI_ID" property="eccEciId" jdbcType="INTEGER" />
-    <result column="ECC_Specil_Desc" property="eccSpecilDesc" jdbcType="VARCHAR" />
-    <result column="del_Flag" property="delFlag" jdbcType="TINYINT" />
-    <result column="last_SubTime" property="lastSubtime" jdbcType="TIMESTAMP" />
-    <result column="subBy" property="subby" jdbcType="INTEGER" />
-  </resultMap>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+<mapper namespace="com.spartan.dao.EndCarteContentMapper">
+    <resultMap id="BaseResultMap" type="com.spartan.model.EndCarteContent">
+        <id column="ECC_ID" property="eccId" jdbcType="INTEGER"/>
+        <result column="ECC_Dish_Num" property="eccDishNum" jdbcType="INTEGER"/>
+        <result column="ECC_Total_Price" property="eccTotalPrice" jdbcType="DECIMAL"/>
+        <result column="ECC_Specil_Desc" property="eccSpecilDesc" jdbcType="VARCHAR"/>
+        <result column="del_Flag" property="delFlag" jdbcType="TINYINT"/>
+        <result column="last_SubTime" property="lastSubtime" jdbcType="TIMESTAMP"/>
+        <association property="endCarteInfo" column="ECC_ECI_ID" javaType="com.spartan.model.EndCarteInfo"
+                     resultMap="com.spartan.dao.EndCarteInfoMapper.SimpleResultMap"></association>
+        <association property="dish" column="ECC_Dish_ID" javaType="com.spartan.model.Dish"
+                     resultMap="com.spartan.dao.DishMapper.SimpleResultMap"></association>
+        <association property="user" column="subBy" javaType="com.spartan.model.User" resultMap="com.spartan.dao.UserMapper.SimpleResultMap">
+        </association>
+    </resultMap>
+    <resultMap id="SimpleResultMap" type="com.spartan.model.EndCarteContent">
+        <id column="ECC_ID" property="eccId" jdbcType="INTEGER"/>
+        <result column="ECC_Total_Price" property="eccTotalPrice" jdbcType="DECIMAL"/>
+        <association property="endCarteInfo" column="ECC_ECI_ID" javaType="com.spartan.model.EndCarteInfo"
+                     resultMap="com.spartan.dao.EndCarteInfoMapper.SimpleResultMap"></association>
+        <association property="dish" column="ECC_Dish_ID" javaType="com.spartan.model.Dish"
+                     resultMap="com.spartan.dao.DishMapper.SimpleResultMap"></association>
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")" separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")" separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
+    ECC_ID, ECC_ECI_ID, ECC_Dish_ID, ECC_Dish_Num, ECC_Total_Price, ECC_Specil_Desc, 
+    del_Flag, last_SubTime, subBy
+  </sql>
+    <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.spartan.model.EndCarteContentExample">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List"/>
+        from t_endcartecontent
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from t_endcartecontent
+        where ECC_ID = #{eccId,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from t_endcartecontent
     where ECC_ID = #{eccId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.spartan.model.EndCarteContent" >
-    insert into t_endcartecontent (ECC_ID, ECC_Dish_ID, ECC_Dish_Num,
-    ECC_Total_Price, ECC_ECI_ID, ECC_Specil_Desc,
-    del_Flag, subBy)
-    values (#{eccId,jdbcType=INTEGER}, #{eccDishId,jdbcType=INTEGER}, #{eccDishNum,jdbcType=INTEGER},
-    #{eccTotalPrice,jdbcType=DECIMAL}, #{eccEciId,jdbcType=INTEGER}, #{eccSpecilDesc,jdbcType=VARCHAR},
-    #{delFlag,jdbcType=TINYINT}, #{subby,jdbcType=INTEGER})
+    <delete id="deleteByExample" parameterType="com.spartan.model.EndCarteContentExample">
+        delete from t_endcartecontent
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </delete>
+    <insert id="insert" parameterType="com.spartan.model.EndCarteContent">
+    insert into t_endcartecontent (ECC_ID, ECC_ECI_ID, ECC_Dish_ID, 
+      ECC_Dish_Num, ECC_Total_Price, ECC_Specil_Desc, 
+      del_Flag, last_SubTime, subBy
+      )
+    values (#{eccId,jdbcType=INTEGER}, #{eccEciId,jdbcType=INTEGER}, #{eccDishId,jdbcType=INTEGER}, 
+      #{eccDishNum,jdbcType=INTEGER}, #{eccTotalPrice,jdbcType=DECIMAL}, #{eccSpecilDesc,jdbcType=VARCHAR}, 
+      #{delFlag,jdbcType=TINYINT}, #{lastSubtime,jdbcType=TIMESTAMP}, #{subby,jdbcType=INTEGER}
+      )
   </insert>
-  <update id="updateByPrimaryKey" parameterType="com.spartan.model.EndCarteContent" >
+    <insert id="insertSelective" parameterType="com.spartan.model.EndCarteContent">
+        insert into t_endcartecontent
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="eccId != null">
+                ECC_ID,
+            </if>
+            <if test="eccEciId != null">
+                ECC_ECI_ID,
+            </if>
+            <if test="eccDishId != null">
+                ECC_Dish_ID,
+            </if>
+            <if test="eccDishNum != null">
+                ECC_Dish_Num,
+            </if>
+            <if test="eccTotalPrice != null">
+                ECC_Total_Price,
+            </if>
+            <if test="eccSpecilDesc != null">
+                ECC_Specil_Desc,
+            </if>
+            <if test="delFlag != null">
+                del_Flag,
+            </if>
+            <if test="lastSubtime != null">
+                last_SubTime,
+            </if>
+            <if test="subby != null">
+                subBy,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="eccId != null">
+                #{eccId,jdbcType=INTEGER},
+            </if>
+            <if test="eccEciId != null">
+                #{eccEciId,jdbcType=INTEGER},
+            </if>
+            <if test="eccDishId != null">
+                #{eccDishId,jdbcType=INTEGER},
+            </if>
+            <if test="eccDishNum != null">
+                #{eccDishNum,jdbcType=INTEGER},
+            </if>
+            <if test="eccTotalPrice != null">
+                #{eccTotalPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="eccSpecilDesc != null">
+                #{eccSpecilDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="delFlag != null">
+                #{delFlag,jdbcType=TINYINT},
+            </if>
+            <if test="lastSubtime != null">
+                #{lastSubtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="subby != null">
+                #{subby,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByExample" parameterType="com.spartan.model.EndCarteContentExample" resultType="java.lang.Integer">
+        select count(*) from t_endcartecontent
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
+        update t_endcartecontent
+        <set>
+            <if test="record.eccId != null">
+                ECC_ID = #{record.eccId,jdbcType=INTEGER},
+            </if>
+            <if test="record.eccEciId != null">
+                ECC_ECI_ID = #{record.eccEciId,jdbcType=INTEGER},
+            </if>
+            <if test="record.eccDishId != null">
+                ECC_Dish_ID = #{record.eccDishId,jdbcType=INTEGER},
+            </if>
+            <if test="record.eccDishNum != null">
+                ECC_Dish_Num = #{record.eccDishNum,jdbcType=INTEGER},
+            </if>
+            <if test="record.eccTotalPrice != null">
+                ECC_Total_Price = #{record.eccTotalPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="record.eccSpecilDesc != null">
+                ECC_Specil_Desc = #{record.eccSpecilDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="record.delFlag != null">
+                del_Flag = #{record.delFlag,jdbcType=TINYINT},
+            </if>
+            <if test="record.lastSubtime != null">
+                last_SubTime = #{record.lastSubtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.subby != null">
+                subBy = #{record.subby,jdbcType=INTEGER},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map">
+        update t_endcartecontent
+        set ECC_ID = #{record.eccId,jdbcType=INTEGER},
+        ECC_ECI_ID = #{record.eccEciId,jdbcType=INTEGER},
+        ECC_Dish_ID = #{record.eccDishId,jdbcType=INTEGER},
+        ECC_Dish_Num = #{record.eccDishNum,jdbcType=INTEGER},
+        ECC_Total_Price = #{record.eccTotalPrice,jdbcType=DECIMAL},
+        ECC_Specil_Desc = #{record.eccSpecilDesc,jdbcType=VARCHAR},
+        del_Flag = #{record.delFlag,jdbcType=TINYINT},
+        last_SubTime = #{record.lastSubtime,jdbcType=TIMESTAMP},
+        subBy = #{record.subby,jdbcType=INTEGER}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="com.spartan.model.EndCarteContent">
+        update t_endcartecontent
+        <set>
+            <if test="eccEciId != null">
+                ECC_ECI_ID = #{eccEciId,jdbcType=INTEGER},
+            </if>
+            <if test="eccDishId != null">
+                ECC_Dish_ID = #{eccDishId,jdbcType=INTEGER},
+            </if>
+            <if test="eccDishNum != null">
+                ECC_Dish_Num = #{eccDishNum,jdbcType=INTEGER},
+            </if>
+            <if test="eccTotalPrice != null">
+                ECC_Total_Price = #{eccTotalPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="eccSpecilDesc != null">
+                ECC_Specil_Desc = #{eccSpecilDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="delFlag != null">
+                del_Flag = #{delFlag,jdbcType=TINYINT},
+            </if>
+            <if test="lastSubtime != null">
+                last_SubTime = #{lastSubtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="subby != null">
+                subBy = #{subby,jdbcType=INTEGER},
+            </if>
+        </set>
+        where ECC_ID = #{eccId,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.spartan.model.EndCarteContent">
     update t_endcartecontent
-    set ECC_Dish_ID = #{eccDishId,jdbcType=INTEGER},
+    set ECC_ECI_ID = #{eccEciId,jdbcType=INTEGER},
+      ECC_Dish_ID = #{eccDishId,jdbcType=INTEGER},
       ECC_Dish_Num = #{eccDishNum,jdbcType=INTEGER},
       ECC_Total_Price = #{eccTotalPrice,jdbcType=DECIMAL},
-      ECC_ECI_ID = #{eccEciId,jdbcType=INTEGER},
       ECC_Specil_Desc = #{eccSpecilDesc,jdbcType=VARCHAR},
       del_Flag = #{delFlag,jdbcType=TINYINT},
+      last_SubTime = #{lastSubtime,jdbcType=TIMESTAMP},
       subBy = #{subby,jdbcType=INTEGER}
     where ECC_ID = #{eccId,jdbcType=INTEGER}
   </update>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select ECC_ID, ECC_Dish_ID, ECC_Dish_Num, ECC_Total_Price, ECC_ECI_ID, ECC_Specil_Desc, 
-    del_Flag, last_SubTime, subBy
-    from t_endcartecontent
-    where ECC_ID = #{eccId,jdbcType=INTEGER}
-  </select>
-  <select id="selectAll" resultMap="BaseResultMap" >
-    select ECC_ID, ECC_Dish_ID, ECC_Dish_Num, ECC_Total_Price, ECC_ECI_ID, ECC_Specil_Desc, 
-    del_Flag, last_SubTime, subBy
-    from t_endcartecontent
-  </select>
 </mapper>

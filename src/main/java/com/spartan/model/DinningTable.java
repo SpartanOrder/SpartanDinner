@@ -5,7 +5,7 @@ import java.util.Date;
 public class DinningTable {
     private Integer tableId;
 
-    private Integer regionId;
+    private Region region;
 
     private String tableName;
 
@@ -21,7 +21,10 @@ public class DinningTable {
 
     private Date lastSubtime;
 
-    private Integer subby;
+    private User user;
+
+    public DinningTable() {
+    }
 
     public Integer getTableId() {
         return tableId;
@@ -31,12 +34,16 @@ public class DinningTable {
         this.tableId = tableId;
     }
 
-    public Integer getRegionId() {
-        return regionId;
+    public Region getRegion() {
+        return region;
     }
 
-    public void setRegionId(Integer regionId) {
-        this.regionId = regionId;
+    public void setRegion(Region region) {
+        if (region.getRegionId() == null) {
+            this.region = null;
+        } else {
+            this.region = region;
+        }
     }
 
     public String getTableName() {
@@ -95,11 +102,16 @@ public class DinningTable {
         this.lastSubtime = lastSubtime;
     }
 
-    public Integer getSubby() {
-        return subby;
+    public User getUser() {
+        return user;
     }
 
-    public void setSubby(Integer subby) {
-        this.subby = subby;
+    public void setUser(User user) {
+        if (user.getUserId() == null) {
+            this.user = null;
+        } else {
+            this.user = user;
+        }
+
     }
 }

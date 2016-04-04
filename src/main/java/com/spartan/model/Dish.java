@@ -6,7 +6,7 @@ import java.util.Date;
 public class Dish {
     private Integer dishId;
 
-    private Integer dishTypeId;
+    private DishType dishType;
 
     private String dishName;
 
@@ -28,7 +28,10 @@ public class Dish {
 
     private Date lastSubtime;
 
-    private Integer subby;
+    private User user;
+
+    public Dish() {
+    }
 
     public Integer getDishId() {
         return dishId;
@@ -38,12 +41,16 @@ public class Dish {
         this.dishId = dishId;
     }
 
-    public Integer getDishTypeId() {
-        return dishTypeId;
+    public DishType getDishType() {
+        return dishType;
     }
 
-    public void setDishTypeId(Integer dishTypeId) {
-        this.dishTypeId = dishTypeId;
+    public void setDishType(DishType dishType) {
+        if (dishType.getDishTypeId() == null) {
+            this.dishType = null;
+        } else {
+            this.dishType = dishType;
+        }
     }
 
     public String getDishName() {
@@ -126,30 +133,34 @@ public class Dish {
         this.lastSubtime = lastSubtime;
     }
 
-    public Integer getSubby() {
-        return subby;
+    public User getUser() {
+        return user;
     }
 
-    public void setSubby(Integer subby) {
-        this.subby = subby;
+    public void setUser(User user) {
+        if (user.getUserId() == null) {
+            this.user = null;
+        } else {
+            this.user = user;
+        }
     }
 
     @Override
     public String toString() {
         return "Dish{" +
                 "dishId=" + dishId +
-                ", dishTypeId=" + dishTypeId +
+                ", dishType=" + dishType +
                 ", dishName='" + dishName + '\'' +
                 ", dishSpeel='" + dishSpeel + '\'' +
                 ", dishCost=" + dishCost +
                 ", dishUnit='" + dishUnit + '\'' +
                 ", dishPrice=" + dishPrice +
                 ", dishDescription='" + dishDescription + '\'' +
-
                 ", dishCooking='" + dishCooking + '\'' +
                 ", dishImgUrl='" + dishImgUrl + '\'' +
                 ", delFlag=" + delFlag +
                 ", lastSubtime=" + lastSubtime +
+                ", user=" + user +
                 '}';
     }
 }

@@ -1,81 +1,508 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.spartan.dao.OnAccountCarteInfoMapper" >
-  <resultMap id="BaseResultMap" type="com.spartan.model.OnAccountCarteInfo" >
-    <id column="ECI_ID" property="eciId" jdbcType="INTEGER" />
-    <result column="ECI_Swift_Number" property="eciSwiftNumber" jdbcType="VARCHAR" />
-    <result column="ECI_State" property="eciState" jdbcType="TINYINT" />
-    <result column="ECI_Table_ID" property="eciTableId" jdbcType="INTEGER" />
-    <result column="ECI_Waiter_ID" property="eciWaiterId" jdbcType="INTEGER" />
-    <result column="ECI_Cashier_ID" property="eciCashierId" jdbcType="INTEGER" />
-    <result column="ECI_Customer_ID" property="eciCustomerId" jdbcType="INTEGER" />
-    <result column="ECI_Mem_ID" property="eciMemId" jdbcType="INTEGER" />
-    <result column="ECI_Dish_Nums" property="eciDishNums" jdbcType="INTEGER" />
-    <result column="ECI_Amount_Peoplo" property="eciAmountPeoplo" jdbcType="INTEGER" />
-    <result column="ECI_Repast_Time" property="eciRepastTime" jdbcType="TIMESTAMP" />
-    <result column="ECI_Bill_Time" property="eciBillTime" jdbcType="TIMESTAMP" />
-    <result column="ECI_Consume_Amount" property="eciConsumeAmount" jdbcType="DECIMAL" />
-    <result column="ECI_Discount" property="eciDiscount" jdbcType="DECIMAL" />
-    <result column="ECI_Paid_Amount" property="eciPaidAmount" jdbcType="DECIMAL" />
-    <result column="del_Flag" property="delFlag" jdbcType="TINYINT" />
-    <result column="last_SubTime" property="lastSubtime" jdbcType="TIMESTAMP" />
-    <result column="subBy" property="subby" jdbcType="INTEGER" />
-    <result column="ECI_Remark" property="eciRemark" jdbcType="VARBINARY" />
-  </resultMap>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+<mapper namespace="com.spartan.dao.OnAccountCarteInfoMapper">
+    <resultMap id="BaseResultMap" type="com.spartan.model.OnAccountCarteInfo">
+        <id column="OCI_ID" property="ociId" jdbcType="INTEGER"/>
+        <result column="OCI_Swift_Number" property="ociSwiftNumber" jdbcType="VARCHAR"/>
+        <result column="OCI_State" property="ociState" jdbcType="TINYINT"/>
+        <result column="OCI_Dish_Nums" property="ociDishNums" jdbcType="INTEGER"/>
+        <result column="OCI_Amount_Peoplo" property="ociAmountPeoplo" jdbcType="INTEGER"/>
+        <result column="OCI_Repast_Time" property="ociRepastTime" jdbcType="TIMESTAMP"/>
+        <result column="OCI_Consume_Amount" property="ociConsumeAmount" jdbcType="DECIMAL"/>
+        <result column="OCI_Discount" property="ociDiscount" jdbcType="DECIMAL"/>
+        <result column="OCI_Paid_Amount" property="ociPaidAmount" jdbcType="DECIMAL"/>
+        <result column="del_Flag" property="delFlag" jdbcType="TINYINT"/>
+        <result column="last_SubTime" property="lastSubtime" jdbcType="TIMESTAMP"/>
+        <association property="dinningTable" column="OCI_Table_ID" javaType="com.spartan.model.DinningTable"
+                     resultMap="com.spartan.dao.DinningTableMapper.SimpleResultMap">
+        </association>
+        <association property="ociWaiter" column="OCI_Waiter_ID" javaType="com.spartan.model.EmployeeInfo"
+                     resultMap="com.spartan.dao.EmployeeInfoMapper.SimpleResultMap">
+        </association>
+        <association property="ociCashier" column="OCI_Cashier_ID" javaType="com.spartan.model.EmployeeInfo"
+                     resultMap="com.spartan.dao.EmployeeInfoMapper.SimpleResultMap">
+        </association>
+        <association property="customer" column="OCI_Customer_ID" javaType="com.spartan.model.Customer"
+                     resultMap="com.spartan.dao.CustomerMapper.SimpleResultMap">
+        </association>
+        <association property="user" column="subBy" javaType="com.spartan.model.User" resultMap="com.spartan.dao.UserMapper.SimpleResultMap">
+        </association>
+    </resultMap>
+    <resultMap id="SimpleResultMap" type="com.spartan.model.OnAccountCarteInfo">
+        <id column="OCI_ID" property="ociId" jdbcType="INTEGER"/>
+        <result column="OCI_Swift_Number" property="ociSwiftNumber" jdbcType="VARCHAR"/>
+        <result column="OCI_Repast_Time" property="ociRepastTime" jdbcType="TIMESTAMP"/>
+        <result column="OCI_Consume_Amount" property="ociConsumeAmount" jdbcType="DECIMAL"/>
+        <result column="OCI_Paid_Amount" property="ociPaidAmount" jdbcType="DECIMAL"/>
+        <association property="dinningTable" column="OCI_Table_ID" javaType="com.spartan.model.DinningTable"
+                     resultMap="com.spartan.dao.DinningTableMapper.SimpleResultMap">
+        </association>
+        <association property="ociWaiter" column="OCI_Waiter_ID" javaType="com.spartan.model.EmployeeInfo"
+                     resultMap="com.spartan.dao.EmployeeInfoMapper.SimpleResultMap">
+        </association>
+        <association property="customer" column="OCI_Customer_ID" javaType="com.spartan.model.Customer"
+                     resultMap="com.spartan.dao.CustomerMapper.SimpleResultMap">
+        </association>
+    </resultMap>
+    <resultMap id="ResultMapWithBLOBs" type="com.spartan.model.OnAccountCarteInfo" extends="BaseResultMap">
+        <result column="OCI_Remark" property="ociRemark" jdbcType="VARBINARY"/>
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")" separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")" separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
+    OCI_ID, OCI_Swift_Number, OCI_State, OCI_Table_ID, OCI_Waiter_ID, OCI_Cashier_ID, 
+    OCI_Customer_ID, OCI_Mem_ID, OCI_Dish_Nums, OCI_Amount_Peoplo, OCI_Repast_Time, OCI_Consume_Amount, 
+    OCI_Discount, OCI_Paid_Amount, del_Flag, last_SubTime, subBy
+  </sql>
+    <sql id="Blob_Column_List">
+    OCI_Remark
+  </sql>
+    <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.spartan.model.OnAccountCarteInfoExample">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List"/>
+        ,
+        <include refid="Blob_Column_List"/>
+        from t_onaccountcarteinfo
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.spartan.model.OnAccountCarteInfoExample">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List"/>
+        from t_onaccountcarteinfo
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        ,
+        <include refid="Blob_Column_List"/>
+        from t_onaccountcarteinfo
+        where OCI_ID = #{ociId,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from t_onaccountcarteinfo
-    where ECI_ID = #{eciId,jdbcType=INTEGER}
+    where OCI_ID = #{ociId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.spartan.model.OnAccountCarteInfo" >
-    insert into t_onaccountcarteinfo (ECI_ID, ECI_Swift_Number, ECI_State, 
-      ECI_Table_ID, ECI_Waiter_ID, ECI_Cashier_ID, 
-      ECI_Customer_ID, ECI_Mem_ID, ECI_Dish_Nums, 
-      ECI_Amount_Peoplo, ECI_Repast_Time, ECI_Bill_Time, 
-      ECI_Consume_Amount, ECI_Discount, ECI_Paid_Amount, 
-      del_Flag, subBy, ECI_Remark
+    <delete id="deleteByExample" parameterType="com.spartan.model.OnAccountCarteInfoExample">
+        delete from t_onaccountcarteinfo
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </delete>
+    <insert id="insert" parameterType="com.spartan.model.OnAccountCarteInfo">
+    insert into t_onaccountcarteinfo (OCI_ID, OCI_Swift_Number, OCI_State, 
+      OCI_Table_ID, OCI_Waiter_ID, OCI_Cashier_ID, 
+      OCI_Customer_ID, OCI_Mem_ID, OCI_Dish_Nums, 
+      OCI_Amount_Peoplo, OCI_Repast_Time, OCI_Consume_Amount, 
+      OCI_Discount, OCI_Paid_Amount, del_Flag, 
+      last_SubTime, subBy, OCI_Remark
       )
-    values (#{eciId,jdbcType=INTEGER}, #{eciSwiftNumber,jdbcType=VARCHAR}, #{eciState,jdbcType=TINYINT},
-      #{eciTableId,jdbcType=INTEGER}, #{eciWaiterId,jdbcType=INTEGER}, #{eciCashierId,jdbcType=INTEGER},
-      #{eciCustomerId,jdbcType=INTEGER}, #{eciMemId,jdbcType=INTEGER}, #{eciDishNums,jdbcType=INTEGER},
-      #{eciAmountPeoplo,jdbcType=INTEGER}, #{eciRepastTime,jdbcType=TIMESTAMP}, #{eciBillTime,jdbcType=TIMESTAMP},
-      #{eciConsumeAmount,jdbcType=DECIMAL}, #{eciDiscount,jdbcType=DECIMAL}, #{eciPaidAmount,jdbcType=DECIMAL},
-      #{delFlag,jdbcType=TINYINT}, #{subby,jdbcType=INTEGER}, #{eciRemark,jdbcType=VARBINARY}
+    values (#{ociId,jdbcType=INTEGER}, #{ociSwiftNumber,jdbcType=VARCHAR}, #{ociState,jdbcType=TINYINT}, 
+      #{ociTableId,jdbcType=INTEGER}, #{ociWaiterId,jdbcType=INTEGER}, #{ociCashierId,jdbcType=INTEGER}, 
+      #{ociCustomerId,jdbcType=INTEGER}, #{ociMemId,jdbcType=INTEGER}, #{ociDishNums,jdbcType=INTEGER}, 
+      #{ociAmountPeoplo,jdbcType=INTEGER}, #{ociRepastTime,jdbcType=TIMESTAMP}, #{ociConsumeAmount,jdbcType=DECIMAL},
+      #{ociDiscount,jdbcType=DECIMAL}, #{ociPaidAmount,jdbcType=DECIMAL}, #{delFlag,jdbcType=TINYINT},
+      #{lastSubtime,jdbcType=TIMESTAMP}, #{subby,jdbcType=INTEGER}, #{ociRemark,jdbcType=VARBINARY}
       )
   </insert>
-  <update id="updateByPrimaryKey" parameterType="com.spartan.model.OnAccountCarteInfo" >
+    <insert id="insertSelective" parameterType="com.spartan.model.OnAccountCarteInfo">
+        insert into t_onaccountcarteinfo
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="ociId != null">
+                OCI_ID,
+            </if>
+            <if test="ociSwiftNumber != null">
+                OCI_Swift_Number,
+            </if>
+            <if test="ociState != null">
+                OCI_State,
+            </if>
+            <if test="ociTableId != null">
+                OCI_Table_ID,
+            </if>
+            <if test="ociWaiterId != null">
+                OCI_Waiter_ID,
+            </if>
+            <if test="ociCashierId != null">
+                OCI_Cashier_ID,
+            </if>
+            <if test="ociCustomerId != null">
+                OCI_Customer_ID,
+            </if>
+            <if test="ociMemId != null">
+                OCI_Mem_ID,
+            </if>
+            <if test="ociDishNums != null">
+                OCI_Dish_Nums,
+            </if>
+            <if test="ociAmountPeoplo != null">
+                OCI_Amount_Peoplo,
+            </if>
+            <if test="ociRepastTime != null">
+                OCI_Repast_Time,
+            </if>
+            <if test="ociConsumeAmount != null">
+                OCI_Consume_Amount,
+            </if>
+            <if test="ociDiscount != null">
+                OCI_Discount,
+            </if>
+            <if test="ociPaidAmount != null">
+                OCI_Paid_Amount,
+            </if>
+            <if test="delFlag != null">
+                del_Flag,
+            </if>
+            <if test="lastSubtime != null">
+                last_SubTime,
+            </if>
+            <if test="subby != null">
+                subBy,
+            </if>
+            <if test="ociRemark != null">
+                OCI_Remark,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="ociId != null">
+                #{ociId,jdbcType=INTEGER},
+            </if>
+            <if test="ociSwiftNumber != null">
+                #{ociSwiftNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="ociState != null">
+                #{ociState,jdbcType=TINYINT},
+            </if>
+            <if test="ociTableId != null">
+                #{ociTableId,jdbcType=INTEGER},
+            </if>
+            <if test="ociWaiterId != null">
+                #{ociWaiterId,jdbcType=INTEGER},
+            </if>
+            <if test="ociCashierId != null">
+                #{ociCashierId,jdbcType=INTEGER},
+            </if>
+            <if test="ociCustomerId != null">
+                #{ociCustomerId,jdbcType=INTEGER},
+            </if>
+            <if test="ociMemId != null">
+                #{ociMemId,jdbcType=INTEGER},
+            </if>
+            <if test="ociDishNums != null">
+                #{ociDishNums,jdbcType=INTEGER},
+            </if>
+            <if test="ociAmountPeoplo != null">
+                #{ociAmountPeoplo,jdbcType=INTEGER},
+            </if>
+            <if test="ociRepastTime != null">
+                #{ociRepastTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="ociConsumeAmount != null">
+                #{ociConsumeAmount,jdbcType=DECIMAL},
+            </if>
+            <if test="ociDiscount != null">
+                #{ociDiscount,jdbcType=DECIMAL},
+            </if>
+            <if test="ociPaidAmount != null">
+                #{ociPaidAmount,jdbcType=DECIMAL},
+            </if>
+            <if test="delFlag != null">
+                #{delFlag,jdbcType=TINYINT},
+            </if>
+            <if test="lastSubtime != null">
+                #{lastSubtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="subby != null">
+                #{subby,jdbcType=INTEGER},
+            </if>
+            <if test="ociRemark != null">
+                #{ociRemark,jdbcType=VARBINARY},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByExample" parameterType="com.spartan.model.OnAccountCarteInfoExample" resultType="java.lang.Integer">
+        select count(*) from t_onaccountcarteinfo
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
+        update t_onaccountcarteinfo
+        <set>
+            <if test="record.ociId != null">
+                OCI_ID = #{record.ociId,jdbcType=INTEGER},
+            </if>
+            <if test="record.ociSwiftNumber != null">
+                OCI_Swift_Number = #{record.ociSwiftNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="record.ociState != null">
+                OCI_State = #{record.ociState,jdbcType=TINYINT},
+            </if>
+            <if test="record.ociTableId != null">
+                OCI_Table_ID = #{record.ociTableId,jdbcType=INTEGER},
+            </if>
+            <if test="record.ociWaiterId != null">
+                OCI_Waiter_ID = #{record.ociWaiterId,jdbcType=INTEGER},
+            </if>
+            <if test="record.ociCashierId != null">
+                OCI_Cashier_ID = #{record.ociCashierId,jdbcType=INTEGER},
+            </if>
+            <if test="record.ociCustomerId != null">
+                OCI_Customer_ID = #{record.ociCustomerId,jdbcType=INTEGER},
+            </if>
+            <if test="record.ociMemId != null">
+                OCI_Mem_ID = #{record.ociMemId,jdbcType=INTEGER},
+            </if>
+            <if test="record.ociDishNums != null">
+                OCI_Dish_Nums = #{record.ociDishNums,jdbcType=INTEGER},
+            </if>
+            <if test="record.ociAmountPeoplo != null">
+                OCI_Amount_Peoplo = #{record.ociAmountPeoplo,jdbcType=INTEGER},
+            </if>
+            <if test="record.ociRepastTime != null">
+                OCI_Repast_Time = #{record.ociRepastTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.ociConsumeAmount != null">
+                OCI_Consume_Amount = #{record.ociConsumeAmount,jdbcType=DECIMAL},
+            </if>
+            <if test="record.ociDiscount != null">
+                OCI_Discount = #{record.ociDiscount,jdbcType=DECIMAL},
+            </if>
+            <if test="record.ociPaidAmount != null">
+                OCI_Paid_Amount = #{record.ociPaidAmount,jdbcType=DECIMAL},
+            </if>
+            <if test="record.delFlag != null">
+                del_Flag = #{record.delFlag,jdbcType=TINYINT},
+            </if>
+            <if test="record.lastSubtime != null">
+                last_SubTime = #{record.lastSubtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.subby != null">
+                subBy = #{record.subby,jdbcType=INTEGER},
+            </if>
+            <if test="record.ociRemark != null">
+                OCI_Remark = #{record.ociRemark,jdbcType=VARBINARY},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByExampleWithBLOBs" parameterType="map">
+        update t_onaccountcarteinfo
+        set OCI_ID = #{record.ociId,jdbcType=INTEGER},
+        OCI_Swift_Number = #{record.ociSwiftNumber,jdbcType=VARCHAR},
+        OCI_State = #{record.ociState,jdbcType=TINYINT},
+        OCI_Table_ID = #{record.ociTableId,jdbcType=INTEGER},
+        OCI_Waiter_ID = #{record.ociWaiterId,jdbcType=INTEGER},
+        OCI_Cashier_ID = #{record.ociCashierId,jdbcType=INTEGER},
+        OCI_Customer_ID = #{record.ociCustomerId,jdbcType=INTEGER},
+        OCI_Mem_ID = #{record.ociMemId,jdbcType=INTEGER},
+        OCI_Dish_Nums = #{record.ociDishNums,jdbcType=INTEGER},
+        OCI_Amount_Peoplo = #{record.ociAmountPeoplo,jdbcType=INTEGER},
+        OCI_Repast_Time = #{record.ociRepastTime,jdbcType=TIMESTAMP},
+        OCI_Consume_Amount = #{record.ociConsumeAmount,jdbcType=DECIMAL},
+        OCI_Discount = #{record.ociDiscount,jdbcType=DECIMAL},
+        OCI_Paid_Amount = #{record.ociPaidAmount,jdbcType=DECIMAL},
+        del_Flag = #{record.delFlag,jdbcType=TINYINT},
+        last_SubTime = #{record.lastSubtime,jdbcType=TIMESTAMP},
+        subBy = #{record.subby,jdbcType=INTEGER},
+        OCI_Remark = #{record.ociRemark,jdbcType=VARBINARY}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map">
+        update t_onaccountcarteinfo
+        set OCI_ID = #{record.ociId,jdbcType=INTEGER},
+        OCI_Swift_Number = #{record.ociSwiftNumber,jdbcType=VARCHAR},
+        OCI_State = #{record.ociState,jdbcType=TINYINT},
+        OCI_Table_ID = #{record.ociTableId,jdbcType=INTEGER},
+        OCI_Waiter_ID = #{record.ociWaiterId,jdbcType=INTEGER},
+        OCI_Cashier_ID = #{record.ociCashierId,jdbcType=INTEGER},
+        OCI_Customer_ID = #{record.ociCustomerId,jdbcType=INTEGER},
+        OCI_Mem_ID = #{record.ociMemId,jdbcType=INTEGER},
+        OCI_Dish_Nums = #{record.ociDishNums,jdbcType=INTEGER},
+        OCI_Amount_Peoplo = #{record.ociAmountPeoplo,jdbcType=INTEGER},
+        OCI_Repast_Time = #{record.ociRepastTime,jdbcType=TIMESTAMP},
+        OCI_Consume_Amount = #{record.ociConsumeAmount,jdbcType=DECIMAL},
+        OCI_Discount = #{record.ociDiscount,jdbcType=DECIMAL},
+        OCI_Paid_Amount = #{record.ociPaidAmount,jdbcType=DECIMAL},
+        del_Flag = #{record.delFlag,jdbcType=TINYINT},
+        last_SubTime = #{record.lastSubtime,jdbcType=TIMESTAMP},
+        subBy = #{record.subby,jdbcType=INTEGER}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="com.spartan.model.OnAccountCarteInfo">
+        update t_onaccountcarteinfo
+        <set>
+            <if test="ociSwiftNumber != null">
+                OCI_Swift_Number = #{ociSwiftNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="ociState != null">
+                OCI_State = #{ociState,jdbcType=TINYINT},
+            </if>
+            <if test="ociTableId != null">
+                OCI_Table_ID = #{ociTableId,jdbcType=INTEGER},
+            </if>
+            <if test="ociWaiterId != null">
+                OCI_Waiter_ID = #{ociWaiterId,jdbcType=INTEGER},
+            </if>
+            <if test="ociCashierId != null">
+                OCI_Cashier_ID = #{ociCashierId,jdbcType=INTEGER},
+            </if>
+            <if test="ociCustomerId != null">
+                OCI_Customer_ID = #{ociCustomerId,jdbcType=INTEGER},
+            </if>
+            <if test="ociMemId != null">
+                OCI_Mem_ID = #{ociMemId,jdbcType=INTEGER},
+            </if>
+            <if test="ociDishNums != null">
+                OCI_Dish_Nums = #{ociDishNums,jdbcType=INTEGER},
+            </if>
+            <if test="ociAmountPeoplo != null">
+                OCI_Amount_Peoplo = #{ociAmountPeoplo,jdbcType=INTEGER},
+            </if>
+            <if test="ociRepastTime != null">
+                OCI_Repast_Time = #{ociRepastTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="ociConsumeAmount != null">
+                OCI_Consume_Amount = #{ociConsumeAmount,jdbcType=DECIMAL},
+            </if>
+            <if test="ociDiscount != null">
+                OCI_Discount = #{ociDiscount,jdbcType=DECIMAL},
+            </if>
+            <if test="ociPaidAmount != null">
+                OCI_Paid_Amount = #{ociPaidAmount,jdbcType=DECIMAL},
+            </if>
+            <if test="delFlag != null">
+                del_Flag = #{delFlag,jdbcType=TINYINT},
+            </if>
+            <if test="lastSubtime != null">
+                last_SubTime = #{lastSubtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="subby != null">
+                subBy = #{subby,jdbcType=INTEGER},
+            </if>
+            <if test="ociRemark != null">
+                OCI_Remark = #{ociRemark,jdbcType=VARBINARY},
+            </if>
+        </set>
+        where OCI_ID = #{ociId,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.spartan.model.OnAccountCarteInfo">
     update t_onaccountcarteinfo
-    set ECI_Swift_Number = #{eciSwiftNumber,jdbcType=VARCHAR},
-      ECI_State = #{eciState,jdbcType=TINYINT},
-      ECI_Table_ID = #{eciTableId,jdbcType=INTEGER},
-      ECI_Waiter_ID = #{eciWaiterId,jdbcType=INTEGER},
-      ECI_Cashier_ID = #{eciCashierId,jdbcType=INTEGER},
-      ECI_Customer_ID = #{eciCustomerId,jdbcType=INTEGER},
-      ECI_Mem_ID = #{eciMemId,jdbcType=INTEGER},
-      ECI_Dish_Nums = #{eciDishNums,jdbcType=INTEGER},
-      ECI_Amount_Peoplo = #{eciAmountPeoplo,jdbcType=INTEGER},
-      ECI_Repast_Time = #{eciRepastTime,jdbcType=TIMESTAMP},
-      ECI_Bill_Time = #{eciBillTime,jdbcType=TIMESTAMP},
-      ECI_Consume_Amount = #{eciConsumeAmount,jdbcType=DECIMAL},
-      ECI_Discount = #{eciDiscount,jdbcType=DECIMAL},
-      ECI_Paid_Amount = #{eciPaidAmount,jdbcType=DECIMAL},
+    set OCI_Swift_Number = #{ociSwiftNumber,jdbcType=VARCHAR},
+      OCI_State = #{ociState,jdbcType=TINYINT},
+      OCI_Table_ID = #{ociTableId,jdbcType=INTEGER},
+      OCI_Waiter_ID = #{ociWaiterId,jdbcType=INTEGER},
+      OCI_Cashier_ID = #{ociCashierId,jdbcType=INTEGER},
+      OCI_Customer_ID = #{ociCustomerId,jdbcType=INTEGER},
+      OCI_Mem_ID = #{ociMemId,jdbcType=INTEGER},
+      OCI_Dish_Nums = #{ociDishNums,jdbcType=INTEGER},
+      OCI_Amount_Peoplo = #{ociAmountPeoplo,jdbcType=INTEGER},
+      OCI_Repast_Time = #{ociRepastTime,jdbcType=TIMESTAMP},
+      OCI_Consume_Amount = #{ociConsumeAmount,jdbcType=DECIMAL},
+      OCI_Discount = #{ociDiscount,jdbcType=DECIMAL},
+      OCI_Paid_Amount = #{ociPaidAmount,jdbcType=DECIMAL},
       del_Flag = #{delFlag,jdbcType=TINYINT},
+      last_SubTime = #{lastSubtime,jdbcType=TIMESTAMP},
       subBy = #{subby,jdbcType=INTEGER},
-      ECI_Remark = #{eciRemark,jdbcType=VARBINARY}
-    where ECI_ID = #{eciId,jdbcType=INTEGER}
+      OCI_Remark = #{ociRemark,jdbcType=VARBINARY}
+    where OCI_ID = #{ociId,jdbcType=INTEGER}
   </update>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select ECI_ID, ECI_Swift_Number, ECI_State, ECI_Table_ID, ECI_Waiter_ID, ECI_Cashier_ID, 
-    ECI_Customer_ID, ECI_Mem_ID, ECI_Dish_Nums, ECI_Amount_Peoplo, ECI_Repast_Time, ECI_Bill_Time, 
-    ECI_Consume_Amount, ECI_Discount, ECI_Paid_Amount, del_Flag, last_SubTime, subBy, 
-    ECI_Remark
-    from t_onaccountcarteinfo
-    where ECI_ID = #{eciId,jdbcType=INTEGER}
-  </select>
-  <select id="selectAll" resultMap="BaseResultMap" >
-    select ECI_ID, ECI_Swift_Number, ECI_State, ECI_Table_ID, ECI_Waiter_ID, ECI_Cashier_ID, 
-    ECI_Customer_ID, ECI_Mem_ID, ECI_Dish_Nums, ECI_Amount_Peoplo, ECI_Repast_Time, ECI_Bill_Time, 
-    ECI_Consume_Amount, ECI_Discount, ECI_Paid_Amount, del_Flag, last_SubTime, subBy, 
-    ECI_Remark
-    from t_onaccountcarteinfo
-  </select>
+    <update id="updateByPrimaryKey" parameterType="com.spartan.model.OnAccountCarteInfo">
+    update t_onaccountcarteinfo
+    set OCI_Swift_Number = #{ociSwiftNumber,jdbcType=VARCHAR},
+      OCI_State = #{ociState,jdbcType=TINYINT},
+      OCI_Table_ID = #{ociTableId,jdbcType=INTEGER},
+      OCI_Waiter_ID = #{ociWaiterId,jdbcType=INTEGER},
+      OCI_Cashier_ID = #{ociCashierId,jdbcType=INTEGER},
+      OCI_Customer_ID = #{ociCustomerId,jdbcType=INTEGER},
+      OCI_Mem_ID = #{ociMemId,jdbcType=INTEGER},
+      OCI_Dish_Nums = #{ociDishNums,jdbcType=INTEGER},
+      OCI_Amount_Peoplo = #{ociAmountPeoplo,jdbcType=INTEGER},
+      OCI_Repast_Time = #{ociRepastTime,jdbcType=TIMESTAMP},
+      OCI_Consume_Amount = #{ociConsumeAmount,jdbcType=DECIMAL},
+      OCI_Discount = #{ociDiscount,jdbcType=DECIMAL},
+      OCI_Paid_Amount = #{ociPaidAmount,jdbcType=DECIMAL},
+      del_Flag = #{delFlag,jdbcType=TINYINT},
+      last_SubTime = #{lastSubtime,jdbcType=TIMESTAMP},
+      subBy = #{subby,jdbcType=INTEGER}
+    where OCI_ID = #{ociId,jdbcType=INTEGER}
+  </update>
 </mapper>

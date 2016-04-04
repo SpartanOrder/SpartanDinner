@@ -1,22 +1,114 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.spartan.dao.TempCarteContentMapper" >
-  <resultMap id="BaseResultMap" type="com.spartan.model.TempCarteContent" >
-    <id column="TCC_ID" property="tccId" jdbcType="INTEGER" />
-    <result column="TCI_Swift_Number" property="tciSwiftNumber" jdbcType="VARCHAR" />
-    <result column="TCC_Dish_ID" property="tccDishId" jdbcType="INTEGER" />
-    <result column="TCC_Dish_Num" property="tccDishNum" jdbcType="INTEGER" />
-    <result column="TCC_Total_Price" property="tccTotalPrice" jdbcType="DECIMAL" />
-    <result column="TCC_Specil_Desc" property="tccSpecilDesc" jdbcType="VARCHAR" />
-    <result column="del_Flag" property="delFlag" jdbcType="TINYINT" />
-    <result column="last_SubTime" property="lastSubtime" jdbcType="TIMESTAMP" />
-    <result column="subBy" property="subby" jdbcType="INTEGER" />
-  </resultMap>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+<mapper namespace="com.spartan.dao.TempCarteContentMapper">
+    <resultMap id="BaseResultMap" type="com.spartan.model.TempCarteContent">
+        <id column="TCC_ID" property="tccId" jdbcType="INTEGER"/>
+        <result column="TCI_Swift_Number" property="tciSwiftNumber" jdbcType="VARCHAR"/>
+        <result column="TCC_Dish_Num" property="tccDishNum" jdbcType="INTEGER"/>
+        <result column="TCC_Total_Price" property="tccTotalPrice" jdbcType="DECIMAL"/>
+        <result column="TCC_Specil_Desc" property="tccSpecilDesc" jdbcType="VARCHAR"/>
+        <result column="del_Flag" property="delFlag" jdbcType="TINYINT"/>
+        <result column="last_SubTime" property="lastSubtime" jdbcType="TIMESTAMP"/>
+        <association property="dish" column="TCC_Dish_ID" javaType="com.spartan.model.Dish" resultMap="com.spartan.dao.DishMapper.SimpleResultMap">
+        </association>
+        <association property="user" column="subBy" javaType="com.spartan.model.User" resultMap="com.spartan.dao.UserMapper.SimpleResultMap">
+        </association>
+    </resultMap>
+    <resultMap id="SimpleResultMap" type="com.spartan.model.TempCarteContent">
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")" separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")" separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
+    TCC_ID, TCI_Swift_Number, TCC_Dish_ID, TCC_Dish_Num, TCC_Total_Price, TCC_Specil_Desc, 
+    del_Flag, last_SubTime, subBy
+  </sql>
+    <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.spartan.model.TempCarteContentExample">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List"/>
+        from t_tempcartecontent
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from t_tempcartecontent
+        where TCC_ID = #{tccId,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from t_tempcartecontent
     where TCC_ID = #{tccId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.spartan.model.TempCarteContent" >
+    <delete id="deleteByExample" parameterType="com.spartan.model.TempCarteContentExample">
+        delete from t_tempcartecontent
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </delete>
+    <insert id="insert" parameterType="com.spartan.model.TempCarteContent">
     insert into t_tempcartecontent (TCC_ID, TCI_Swift_Number, TCC_Dish_ID, 
       TCC_Dish_Num, TCC_Total_Price, TCC_Specil_Desc, 
       del_Flag, last_SubTime, subBy
@@ -26,7 +118,154 @@
       #{delFlag,jdbcType=TINYINT}, #{lastSubtime,jdbcType=TIMESTAMP}, #{subby,jdbcType=INTEGER}
       )
   </insert>
-  <update id="updateByPrimaryKey" parameterType="com.spartan.model.TempCarteContent" >
+    <insert id="insertSelective" parameterType="com.spartan.model.TempCarteContent">
+        insert into t_tempcartecontent
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="tccId != null">
+                TCC_ID,
+            </if>
+            <if test="tciSwiftNumber != null">
+                TCI_Swift_Number,
+            </if>
+            <if test="tccDishId != null">
+                TCC_Dish_ID,
+            </if>
+            <if test="tccDishNum != null">
+                TCC_Dish_Num,
+            </if>
+            <if test="tccTotalPrice != null">
+                TCC_Total_Price,
+            </if>
+            <if test="tccSpecilDesc != null">
+                TCC_Specil_Desc,
+            </if>
+            <if test="delFlag != null">
+                del_Flag,
+            </if>
+            <if test="lastSubtime != null">
+                last_SubTime,
+            </if>
+            <if test="subby != null">
+                subBy,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="tccId != null">
+                #{tccId,jdbcType=INTEGER},
+            </if>
+            <if test="tciSwiftNumber != null">
+                #{tciSwiftNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="tccDishId != null">
+                #{tccDishId,jdbcType=INTEGER},
+            </if>
+            <if test="tccDishNum != null">
+                #{tccDishNum,jdbcType=INTEGER},
+            </if>
+            <if test="tccTotalPrice != null">
+                #{tccTotalPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="tccSpecilDesc != null">
+                #{tccSpecilDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="delFlag != null">
+                #{delFlag,jdbcType=TINYINT},
+            </if>
+            <if test="lastSubtime != null">
+                #{lastSubtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="subby != null">
+                #{subby,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByExample" parameterType="com.spartan.model.TempCarteContentExample" resultType="java.lang.Integer">
+        select count(*) from t_tempcartecontent
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
+        update t_tempcartecontent
+        <set>
+            <if test="record.tccId != null">
+                TCC_ID = #{record.tccId,jdbcType=INTEGER},
+            </if>
+            <if test="record.tciSwiftNumber != null">
+                TCI_Swift_Number = #{record.tciSwiftNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="record.tccDishId != null">
+                TCC_Dish_ID = #{record.tccDishId,jdbcType=INTEGER},
+            </if>
+            <if test="record.tccDishNum != null">
+                TCC_Dish_Num = #{record.tccDishNum,jdbcType=INTEGER},
+            </if>
+            <if test="record.tccTotalPrice != null">
+                TCC_Total_Price = #{record.tccTotalPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="record.tccSpecilDesc != null">
+                TCC_Specil_Desc = #{record.tccSpecilDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="record.delFlag != null">
+                del_Flag = #{record.delFlag,jdbcType=TINYINT},
+            </if>
+            <if test="record.lastSubtime != null">
+                last_SubTime = #{record.lastSubtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.subby != null">
+                subBy = #{record.subby,jdbcType=INTEGER},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map">
+        update t_tempcartecontent
+        set TCC_ID = #{record.tccId,jdbcType=INTEGER},
+        TCI_Swift_Number = #{record.tciSwiftNumber,jdbcType=VARCHAR},
+        TCC_Dish_ID = #{record.tccDishId,jdbcType=INTEGER},
+        TCC_Dish_Num = #{record.tccDishNum,jdbcType=INTEGER},
+        TCC_Total_Price = #{record.tccTotalPrice,jdbcType=DECIMAL},
+        TCC_Specil_Desc = #{record.tccSpecilDesc,jdbcType=VARCHAR},
+        del_Flag = #{record.delFlag,jdbcType=TINYINT},
+        last_SubTime = #{record.lastSubtime,jdbcType=TIMESTAMP},
+        subBy = #{record.subby,jdbcType=INTEGER}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="com.spartan.model.TempCarteContent">
+        update t_tempcartecontent
+        <set>
+            <if test="tciSwiftNumber != null">
+                TCI_Swift_Number = #{tciSwiftNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="tccDishId != null">
+                TCC_Dish_ID = #{tccDishId,jdbcType=INTEGER},
+            </if>
+            <if test="tccDishNum != null">
+                TCC_Dish_Num = #{tccDishNum,jdbcType=INTEGER},
+            </if>
+            <if test="tccTotalPrice != null">
+                TCC_Total_Price = #{tccTotalPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="tccSpecilDesc != null">
+                TCC_Specil_Desc = #{tccSpecilDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="delFlag != null">
+                del_Flag = #{delFlag,jdbcType=TINYINT},
+            </if>
+            <if test="lastSubtime != null">
+                last_SubTime = #{lastSubtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="subby != null">
+                subBy = #{subby,jdbcType=INTEGER},
+            </if>
+        </set>
+        where TCC_ID = #{tccId,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.spartan.model.TempCarteContent">
     update t_tempcartecontent
     set TCI_Swift_Number = #{tciSwiftNumber,jdbcType=VARCHAR},
       TCC_Dish_ID = #{tccDishId,jdbcType=INTEGER},
@@ -38,15 +277,4 @@
       subBy = #{subby,jdbcType=INTEGER}
     where TCC_ID = #{tccId,jdbcType=INTEGER}
   </update>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select TCC_ID, TCI_Swift_Number, TCC_Dish_ID, TCC_Dish_Num, TCC_Total_Price, TCC_Specil_Desc, 
-    del_Flag, last_SubTime, subBy
-    from t_tempcartecontent
-    where TCC_ID = #{tccId,jdbcType=INTEGER}
-  </select>
-  <select id="selectAll" resultMap="BaseResultMap" >
-    select TCC_ID, TCI_Swift_Number, TCC_Dish_ID, TCC_Dish_Num, TCC_Total_Price, TCC_Specil_Desc, 
-    del_Flag, last_SubTime, subBy
-    from t_tempcartecontent
-  </select>
 </mapper>
