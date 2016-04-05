@@ -29,8 +29,8 @@ public class BaseModelTest {
         System.out.println(dish);
         dish = dishService.selectByPrimaryKey(2);
         System.out.println(dish);
-        // System.out.println(user.getUserName());
-        // logger.info("值："+user.getUserName());
-        // logger.info(JSON.toJSONString(user));
+        // System.out.println(dish.getUserName());
+        // logger.info("值："+dish.getUserName());
+        // logger.info(JSON.toJSONString(dish));
     }
 }

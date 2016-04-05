@@ -2,7 +2,6 @@ package com.spartan.dao;
 
 import com.spartan.model.TempCarteContent;
 import com.spartan.model.TempCarteContentExample;
-import com.spartan.model.TempCarteInfo;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

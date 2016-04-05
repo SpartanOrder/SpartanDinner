@@ -43,7 +43,7 @@ public class TempCarteInfo {
 
     private User user;
 
-    private byte[] tciRemark;
+    private String tciRemark;
 
     public Integer getTciId() {
         return tciId;
@@ -193,11 +193,11 @@ public class TempCarteInfo {
         }
     }
 
-    public byte[] getTciRemark() {
+    public String getTciRemark() {
         return tciRemark;
     }
 
-    public void setTciRemark(byte[] tciRemark) {
+    public void setTciRemark(String tciRemark) {
         this.tciRemark = tciRemark;
     }
 }

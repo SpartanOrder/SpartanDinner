@@ -486,62 +486,62 @@ public class CustomerExample {
         }
 
         public Criteria andSubbyIsNull() {
-            addCriterion("subBy is null");
+            addCriterion("m.subBy is null");
             return (Criteria) this;
         }
 
         public Criteria andSubbyIsNotNull() {
-            addCriterion("subBy is not null");
+            addCriterion("m.subBy is not null");
             return (Criteria) this;
         }
 
         public Criteria andSubbyEqualTo(Integer value) {
-            addCriterion("subBy =", value, "subby");
+            addCriterion("m.subBy =", value, "subby");
             return (Criteria) this;
         }
 
         public Criteria andSubbyNotEqualTo(Integer value) {
-            addCriterion("subBy <>", value, "subby");
+            addCriterion("m.subBy <>", value, "subby");
             return (Criteria) this;
         }
 
         public Criteria andSubbyGreaterThan(Integer value) {
-            addCriterion("subBy >", value, "subby");
+            addCriterion("m.subBy >", value, "subby");
             return (Criteria) this;
         }
 
         public Criteria andSubbyGreaterThanOrEqualTo(Integer value) {
-            addCriterion("subBy >=", value, "subby");
+            addCriterion("m.subBy >=", value, "subby");
             return (Criteria) this;
         }
 
         public Criteria andSubbyLessThan(Integer value) {
-            addCriterion("subBy <", value, "subby");
+            addCriterion("m.subBy <", value, "subby");
             return (Criteria) this;
         }
 
         public Criteria andSubbyLessThanOrEqualTo(Integer value) {
-            addCriterion("subBy <=", value, "subby");
+            addCriterion("m.subBy <=", value, "subby");
             return (Criteria) this;
         }
 
         public Criteria andSubbyIn(List<Integer> values) {
-            addCriterion("subBy in", values, "subby");
+            addCriterion("m.subBy in", values, "subby");
             return (Criteria) this;
         }
 
         public Criteria andSubbyNotIn(List<Integer> values) {
-            addCriterion("subBy not in", values, "subby");
+            addCriterion("m.subBy not in", values, "subby");
             return (Criteria) this;
         }
 
         public Criteria andSubbyBetween(Integer value1, Integer value2) {
-            addCriterion("subBy between", value1, value2, "subby");
+            addCriterion("m.subBy between", value1, value2, "subby");
             return (Criteria) this;
         }
 
         public Criteria andSubbyNotBetween(Integer value1, Integer value2) {
-            addCriterion("subBy not between", value1, value2, "subby");
+            addCriterion("m.subBy not between", value1, value2, "subby");
             return (Criteria) this;
         }
     }

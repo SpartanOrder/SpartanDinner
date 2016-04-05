@@ -11,6 +11,7 @@
         <result column="TCI_Consume_Amount" property="tciConsumeAmount" jdbcType="DECIMAL"/>
         <result column="TCI_Cost_Amount" property="tciCostAmount" jdbcType="DECIMAL"/>
         <result column="TCI_Discount" property="tciDiscount" jdbcType="DECIMAL"/>
+        <result column="TCI_Remark" property="tciRemark" jdbcType="VARCHAR"/>
         <result column="del_Flag" property="delFlag" jdbcType="TINYINT"/>
         <result column="last_SubTime" property="lastSubtime" jdbcType="TIMESTAMP"/>
         <association property="dinningTable" column="ECI_Table_ID" javaType="com.spartan.model.DinningTable"
@@ -109,35 +110,19 @@
         </where>
     </sql>
     <sql id="Base_Column_List">
-    TCI_ID, TCI_Swift_Number, TCI_State, TCI_Table_ID, TCI_Customer_ID, TCI_Mem_ID, TCI_Waiter_ID, 
-    TCI_Dish_Nums, TCI_Amount_Peoplo, TCI_Repast_Time, TCI_Consume_Amount, TCI_Cost_Amount, 
-    TCI_Discount, del_Flag, last_SubTime, subBy
+    TCI_ID, TCI_Swift_Number, TCI_State, TCI_Table_ID, TCI_Customer_ID, TCI_Mem_ID, TCI_Waiter_ID,
+    TCI_Dish_Nums, TCI_Amount_Peoplo, TCI_Repast_Time, TCI_Consume_Amount, TCI_Cost_Amount,
+    TCI_Discount, TCI_Remark, del_Flag, last_SubTime, subBy
   </sql>
-    <sql id="Blob_Column_List">
-    TCI_Remark
-  </sql>
-    <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.spartan.model.TempCarteInfoExample">
-        select
-        <if test="distinct">
-            distinct
-        </if>
-        <include refid="Base_Column_List"/>
-        ,
-        <include refid="Blob_Column_List"/>
-        from t_tempcarteinfo
-        <if test="_parameter != null">
-            <include refid="Example_Where_Clause"/>
-        </if>
-        <if test="orderByClause != null">
-            order by ${orderByClause}
-        </if>
-    </select>
     <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.spartan.model.TempCarteInfoExample">
         select
         <if test="distinct">
             distinct
         </if>
-        <include refid="Base_Column_List"/>
+        <include refid="Base_Column_List"/>,
+        <include refid="com.spartan.dao.common.Column_Master_LastSubtime"/>,
+        <include refid="com.spartan.dao.common.Column_Master_CUD"/>,
+        <include refid="com.spartan.dao.UserMapper.Column_SubBy_Employee"/>
         from t_tempcarteinfo
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
@@ -146,213 +131,214 @@
             order by ${orderByClause}
         </if>
     </select>
-    <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer">
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
         select
-        <include refid="Base_Column_List"/>
-        ,
-        <include refid="Blob_Column_List"/>
+        <include refid="Base_Column_List"/>,
+        <include refid="com.spartan.dao.common.Column_Master_LastSubtime"/>,
+        <include refid="com.spartan.dao.common.Column_Master_CUD"/>,
+        <include refid="com.spartan.dao.UserMapper.Column_SubBy_Employee"/>
         from t_tempcarteinfo
         where TCI_ID = #{tciId,jdbcType=INTEGER}
     </select>
-    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from t_tempcarteinfo
-    where TCI_ID = #{tciId,jdbcType=INTEGER}
-  </delete>
-    <delete id="deleteByExample" parameterType="com.spartan.model.TempCarteInfoExample">
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
         delete from t_tempcarteinfo
-        <if test="_parameter != null">
-            <include refid="Example_Where_Clause"/>
+        where TCI_ID = #{tciId,jdbcType=INTEGER}
+    </delete>
+    <delete id="deleteByExample" parameterType="com.spartan.model.TempCarteInfoExample" >
+        delete from t_tempcarteinfo
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
         </if>
     </delete>
-    <insert id="insert" parameterType="com.spartan.model.TempCarteInfo">
-    insert into t_tempcarteinfo (TCI_ID, TCI_Swift_Number, TCI_State, 
-      TCI_Table_ID, TCI_Customer_ID, TCI_Mem_ID, 
-      TCI_Waiter_ID, TCI_Dish_Nums, TCI_Amount_Peoplo, 
-      TCI_Repast_Time, TCI_Consume_Amount, TCI_Cost_Amount, 
-      TCI_Discount, del_Flag, last_SubTime, 
-      subBy, TCI_Remark)
-    values (#{tciId,jdbcType=INTEGER}, #{tciSwiftNumber,jdbcType=VARCHAR}, #{tciState,jdbcType=TINYINT}, 
-      #{tciTableId,jdbcType=INTEGER}, #{tciCustomerId,jdbcType=INTEGER}, #{tciMemId,jdbcType=INTEGER}, 
-      #{tciWaiterId,jdbcType=INTEGER}, #{tciDishNums,jdbcType=INTEGER}, #{tciAmountPeoplo,jdbcType=INTEGER}, 
-      #{tciRepastTime,jdbcType=TIMESTAMP}, #{tciConsumeAmount,jdbcType=DECIMAL}, #{tciCostAmount,jdbcType=DECIMAL}, 
-      #{tciDiscount,jdbcType=DECIMAL}, #{delFlag,jdbcType=TINYINT}, #{lastSubtime,jdbcType=TIMESTAMP}, 
-      #{subby,jdbcType=INTEGER}, #{tciRemark,jdbcType=VARBINARY})
-  </insert>
-    <insert id="insertSelective" parameterType="com.spartan.model.TempCarteInfo">
+    <insert id="insert" parameterType="com.spartan.model.TempCarteInfo" >
+        insert into t_tempcarteinfo (TCI_ID, TCI_Swift_Number, TCI_State,
+        TCI_Table_ID, TCI_Customer_ID, TCI_Mem_ID,
+        TCI_Waiter_ID, TCI_Dish_Nums, TCI_Amount_Peoplo,
+        TCI_Repast_Time, TCI_Consume_Amount, TCI_Cost_Amount,
+        TCI_Discount, TCI_Remark, del_Flag,
+        last_SubTime, subBy)
+        values (#{tciId,jdbcType=INTEGER}, #{tciSwiftNumber,jdbcType=VARCHAR}, #{tciState,jdbcType=TINYINT},
+        #{tciTableId,jdbcType=INTEGER}, #{tciCustomerId,jdbcType=INTEGER}, #{tciMemId,jdbcType=INTEGER},
+        #{tciWaiterId,jdbcType=INTEGER}, #{tciDishNums,jdbcType=INTEGER}, #{tciAmountPeoplo,jdbcType=INTEGER},
+        #{tciRepastTime,jdbcType=TIMESTAMP}, #{tciConsumeAmount,jdbcType=DECIMAL}, #{tciCostAmount,jdbcType=DECIMAL},
+        #{tciDiscount,jdbcType=DECIMAL}, #{tciRemark,jdbcType=VARCHAR}, #{delFlag,jdbcType=TINYINT},
+        #{lastSubtime,jdbcType=TIMESTAMP}, #{subby,jdbcType=INTEGER})
+    </insert>
+    <insert id="insertSelective" parameterType="com.spartan.model.TempCarteInfo" >
         insert into t_tempcarteinfo
-        <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="tciId != null">
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="tciId != null" >
                 TCI_ID,
             </if>
-            <if test="tciSwiftNumber != null">
+            <if test="tciSwiftNumber != null" >
                 TCI_Swift_Number,
             </if>
-            <if test="tciState != null">
+            <if test="tciState != null" >
                 TCI_State,
             </if>
-            <if test="tciTableId != null">
+            <if test="tciTableId != null" >
                 TCI_Table_ID,
             </if>
-            <if test="tciCustomerId != null">
+            <if test="tciCustomerId != null" >
                 TCI_Customer_ID,
             </if>
-            <if test="tciMemId != null">
+            <if test="tciMemId != null" >
                 TCI_Mem_ID,
             </if>
-            <if test="tciWaiterId != null">
+            <if test="tciWaiterId != null" >
                 TCI_Waiter_ID,
             </if>
-            <if test="tciDishNums != null">
+            <if test="tciDishNums != null" >
                 TCI_Dish_Nums,
             </if>
-            <if test="tciAmountPeoplo != null">
+            <if test="tciAmountPeoplo != null" >
                 TCI_Amount_Peoplo,
             </if>
-            <if test="tciRepastTime != null">
+            <if test="tciRepastTime != null" >
                 TCI_Repast_Time,
             </if>
-            <if test="tciConsumeAmount != null">
+            <if test="tciConsumeAmount != null" >
                 TCI_Consume_Amount,
             </if>
-            <if test="tciCostAmount != null">
+            <if test="tciCostAmount != null" >
                 TCI_Cost_Amount,
             </if>
-            <if test="tciDiscount != null">
+            <if test="tciDiscount != null" >
                 TCI_Discount,
             </if>
-            <if test="delFlag != null">
-                del_Flag,
-            </if>
-            <if test="lastSubtime != null">
-                last_SubTime,
-            </if>
-            <if test="subby != null">
-                subBy,
-            </if>
-            <if test="tciRemark != null">
+            <if test="tciRemark != null" >
                 TCI_Remark,
             </if>
+            <if test="delFlag != null" >
+                del_Flag,
+            </if>
+            <if test="lastSubtime != null" >
+                last_SubTime,
+            </if>
+            <if test="subby != null" >
+                subBy,
+            </if>
         </trim>
-        <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="tciId != null">
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="tciId != null" >
                 #{tciId,jdbcType=INTEGER},
             </if>
-            <if test="tciSwiftNumber != null">
+            <if test="tciSwiftNumber != null" >
                 #{tciSwiftNumber,jdbcType=VARCHAR},
             </if>
-            <if test="tciState != null">
+            <if test="tciState != null" >
                 #{tciState,jdbcType=TINYINT},
             </if>
-            <if test="tciTableId != null">
+            <if test="tciTableId != null" >
                 #{tciTableId,jdbcType=INTEGER},
             </if>
-            <if test="tciCustomerId != null">
+            <if test="tciCustomerId != null" >
                 #{tciCustomerId,jdbcType=INTEGER},
             </if>
-            <if test="tciMemId != null">
+            <if test="tciMemId != null" >
                 #{tciMemId,jdbcType=INTEGER},
             </if>
-            <if test="tciWaiterId != null">
+            <if test="tciWaiterId != null" >
                 #{tciWaiterId,jdbcType=INTEGER},
             </if>
-            <if test="tciDishNums != null">
+            <if test="tciDishNums != null" >
                 #{tciDishNums,jdbcType=INTEGER},
             </if>
-            <if test="tciAmountPeoplo != null">
+            <if test="tciAmountPeoplo != null" >
                 #{tciAmountPeoplo,jdbcType=INTEGER},
             </if>
-            <if test="tciRepastTime != null">
+            <if test="tciRepastTime != null" >
                 #{tciRepastTime,jdbcType=TIMESTAMP},
             </if>
-            <if test="tciConsumeAmount != null">
+            <if test="tciConsumeAmount != null" >
                 #{tciConsumeAmount,jdbcType=DECIMAL},
             </if>
-            <if test="tciCostAmount != null">
+            <if test="tciCostAmount != null" >
                 #{tciCostAmount,jdbcType=DECIMAL},
             </if>
-            <if test="tciDiscount != null">
+            <if test="tciDiscount != null" >
                 #{tciDiscount,jdbcType=DECIMAL},
             </if>
-            <if test="delFlag != null">
+            <if test="tciRemark != null" >
+                #{tciRemark,jdbcType=VARCHAR},
+            </if>
+            <if test="delFlag != null" >
                 #{delFlag,jdbcType=TINYINT},
             </if>
-            <if test="lastSubtime != null">
+            <if test="lastSubtime != null" >
                 #{lastSubtime,jdbcType=TIMESTAMP},
             </if>
-            <if test="subby != null">
+            <if test="subby != null" >
                 #{subby,jdbcType=INTEGER},
-            </if>
-            <if test="tciRemark != null">
-                #{tciRemark,jdbcType=VARBINARY},
             </if>
         </trim>
     </insert>
-    <select id="countByExample" parameterType="com.spartan.model.TempCarteInfoExample" resultType="java.lang.Integer">
+    <select id="countByExample" parameterType="com.spartan.model.TempCarteInfoExample" resultType="java.lang.Integer" >
         select count(*) from t_tempcarteinfo
-        <if test="_parameter != null">
-            <include refid="Example_Where_Clause"/>
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
         </if>
     </select>
-    <update id="updateByExampleSelective" parameterType="map">
+    <update id="updateByExampleSelective" parameterType="map" >
         update t_tempcarteinfo
-        <set>
-            <if test="record.tciId != null">
+        <set >
+            <if test="record.tciId != null" >
                 TCI_ID = #{record.tciId,jdbcType=INTEGER},
             </if>
-            <if test="record.tciSwiftNumber != null">
+            <if test="record.tciSwiftNumber != null" >
                 TCI_Swift_Number = #{record.tciSwiftNumber,jdbcType=VARCHAR},
             </if>
-            <if test="record.tciState != null">
+            <if test="record.tciState != null" >
                 TCI_State = #{record.tciState,jdbcType=TINYINT},
             </if>
-            <if test="record.tciTableId != null">
+            <if test="record.tciTableId != null" >
                 TCI_Table_ID = #{record.tciTableId,jdbcType=INTEGER},
             </if>
-            <if test="record.tciCustomerId != null">
+            <if test="record.tciCustomerId != null" >
                 TCI_Customer_ID = #{record.tciCustomerId,jdbcType=INTEGER},
             </if>
-            <if test="record.tciMemId != null">
+            <if test="record.tciMemId != null" >
                 TCI_Mem_ID = #{record.tciMemId,jdbcType=INTEGER},
             </if>
-            <if test="record.tciWaiterId != null">
+            <if test="record.tciWaiterId != null" >
                 TCI_Waiter_ID = #{record.tciWaiterId,jdbcType=INTEGER},
             </if>
-            <if test="record.tciDishNums != null">
+            <if test="record.tciDishNums != null" >
                 TCI_Dish_Nums = #{record.tciDishNums,jdbcType=INTEGER},
             </if>
-            <if test="record.tciAmountPeoplo != null">
+            <if test="record.tciAmountPeoplo != null" >
                 TCI_Amount_Peoplo = #{record.tciAmountPeoplo,jdbcType=INTEGER},
             </if>
-            <if test="record.tciRepastTime != null">
+            <if test="record.tciRepastTime != null" >
                 TCI_Repast_Time = #{record.tciRepastTime,jdbcType=TIMESTAMP},
             </if>
-            <if test="record.tciConsumeAmount != null">
+            <if test="record.tciConsumeAmount != null" >
                 TCI_Consume_Amount = #{record.tciConsumeAmount,jdbcType=DECIMAL},
             </if>
-            <if test="record.tciCostAmount != null">
+            <if test="record.tciCostAmount != null" >
                 TCI_Cost_Amount = #{record.tciCostAmount,jdbcType=DECIMAL},
             </if>
-            <if test="record.tciDiscount != null">
+            <if test="record.tciDiscount != null" >
                 TCI_Discount = #{record.tciDiscount,jdbcType=DECIMAL},
             </if>
-            <if test="record.delFlag != null">
+            <if test="record.tciRemark != null" >
+                TCI_Remark = #{record.tciRemark,jdbcType=VARCHAR},
+            </if>
+            <if test="record.delFlag != null" >
                 del_Flag = #{record.delFlag,jdbcType=TINYINT},
             </if>
-            <if test="record.lastSubtime != null">
+            <if test="record.lastSubtime != null" >
                 last_SubTime = #{record.lastSubtime,jdbcType=TIMESTAMP},
             </if>
-            <if test="record.subby != null">
+            <if test="record.subby != null" >
                 subBy = #{record.subby,jdbcType=INTEGER},
             </if>
-            <if test="record.tciRemark != null">
-                TCI_Remark = #{record.tciRemark,jdbcType=VARBINARY},
-            </if>
         </set>
-        <if test="_parameter != null">
-            <include refid="Update_By_Example_Where_Clause"/>
+        <if test="_parameter != null" >
+            <include refid="Update_By_Example_Where_Clause" />
         </if>
     </update>
-    <update id="updateByExampleWithBLOBs" parameterType="map">
+    <update id="updateByExample" parameterType="map" >
         update t_tempcarteinfo
         set TCI_ID = #{record.tciId,jdbcType=INTEGER},
         TCI_Swift_Number = #{record.tciSwiftNumber,jdbcType=VARCHAR},
@@ -367,91 +353,69 @@
         TCI_Consume_Amount = #{record.tciConsumeAmount,jdbcType=DECIMAL},
         TCI_Cost_Amount = #{record.tciCostAmount,jdbcType=DECIMAL},
         TCI_Discount = #{record.tciDiscount,jdbcType=DECIMAL},
-        del_Flag = #{record.delFlag,jdbcType=TINYINT},
-        last_SubTime = #{record.lastSubtime,jdbcType=TIMESTAMP},
-        subBy = #{record.subby,jdbcType=INTEGER},
-        TCI_Remark = #{record.tciRemark,jdbcType=VARBINARY}
-        <if test="_parameter != null">
-            <include refid="Update_By_Example_Where_Clause"/>
-        </if>
-    </update>
-    <update id="updateByExample" parameterType="map">
-        update t_tempcarteinfo
-        set TCI_ID = #{record.tciId,jdbcType=INTEGER},
-        TCI_Swift_Number = #{record.tciSwiftNumber,jdbcType=VARCHAR},
-        TCI_State = #{record.tciState,jdbcType=TINYINT},
-        TCI_Table_ID = #{record.tciTableId,jdbcType=INTEGER},
-        TCI_Customer_ID = #{record.tciCustomerId,jdbcType=INTEGER},
-        TCI_Mem_ID = #{record.tciMemId,jdbcType=INTEGER},
-        TCI_Waiter_ID = #{record.tciWaiterId,jdbcType=INTEGER},
-        TCI_Dish_Nums = #{record.tciDishNums,jdbcType=INTEGER},
-        TCI_Amount_Peoplo = #{record.tciAmountPeoplo,jdbcType=INTEGER},
-        TCI_Repast_Time = #{record.tciRepastTime,jdbcType=TIMESTAMP},
-        TCI_Consume_Amount = #{record.tciConsumeAmount,jdbcType=DECIMAL},
-        TCI_Cost_Amount = #{record.tciCostAmount,jdbcType=DECIMAL},
-        TCI_Discount = #{record.tciDiscount,jdbcType=DECIMAL},
+        TCI_Remark = #{record.tciRemark,jdbcType=VARCHAR},
         del_Flag = #{record.delFlag,jdbcType=TINYINT},
         last_SubTime = #{record.lastSubtime,jdbcType=TIMESTAMP},
         subBy = #{record.subby,jdbcType=INTEGER}
-        <if test="_parameter != null">
-            <include refid="Update_By_Example_Where_Clause"/>
+        <if test="_parameter != null" >
+            <include refid="Update_By_Example_Where_Clause" />
         </if>
     </update>
-    <update id="updateByPrimaryKeySelective" parameterType="com.spartan.model.TempCarteInfo">
+    <update id="updateByPrimaryKeySelective" parameterType="com.spartan.model.TempCarteInfo" >
         update t_tempcarteinfo
-        <set>
-            <if test="tciSwiftNumber != null">
+        <set >
+            <if test="tciSwiftNumber != null" >
                 TCI_Swift_Number = #{tciSwiftNumber,jdbcType=VARCHAR},
             </if>
-            <if test="tciState != null">
+            <if test="tciState != null" >
                 TCI_State = #{tciState,jdbcType=TINYINT},
             </if>
-            <if test="tciTableId != null">
+            <if test="tciTableId != null" >
                 TCI_Table_ID = #{tciTableId,jdbcType=INTEGER},
             </if>
-            <if test="tciCustomerId != null">
+            <if test="tciCustomerId != null" >
                 TCI_Customer_ID = #{tciCustomerId,jdbcType=INTEGER},
             </if>
-            <if test="tciMemId != null">
+            <if test="tciMemId != null" >
                 TCI_Mem_ID = #{tciMemId,jdbcType=INTEGER},
             </if>
-            <if test="tciWaiterId != null">
+            <if test="tciWaiterId != null" >
                 TCI_Waiter_ID = #{tciWaiterId,jdbcType=INTEGER},
             </if>
-            <if test="tciDishNums != null">
+            <if test="tciDishNums != null" >
                 TCI_Dish_Nums = #{tciDishNums,jdbcType=INTEGER},
             </if>
-            <if test="tciAmountPeoplo != null">
+            <if test="tciAmountPeoplo != null" >
                 TCI_Amount_Peoplo = #{tciAmountPeoplo,jdbcType=INTEGER},
             </if>
-            <if test="tciRepastTime != null">
+            <if test="tciRepastTime != null" >
                 TCI_Repast_Time = #{tciRepastTime,jdbcType=TIMESTAMP},
             </if>
-            <if test="tciConsumeAmount != null">
+            <if test="tciConsumeAmount != null" >
                 TCI_Consume_Amount = #{tciConsumeAmount,jdbcType=DECIMAL},
             </if>
-            <if test="tciCostAmount != null">
+            <if test="tciCostAmount != null" >
                 TCI_Cost_Amount = #{tciCostAmount,jdbcType=DECIMAL},
             </if>
-            <if test="tciDiscount != null">
+            <if test="tciDiscount != null" >
                 TCI_Discount = #{tciDiscount,jdbcType=DECIMAL},
             </if>
-            <if test="delFlag != null">
+            <if test="tciRemark != null" >
+                TCI_Remark = #{tciRemark,jdbcType=VARCHAR},
+            </if>
+            <if test="delFlag != null" >
                 del_Flag = #{delFlag,jdbcType=TINYINT},
             </if>
-            <if test="lastSubtime != null">
+            <if test="lastSubtime != null" >
                 last_SubTime = #{lastSubtime,jdbcType=TIMESTAMP},
             </if>
-            <if test="subby != null">
+            <if test="subby != null" >
                 subBy = #{subby,jdbcType=INTEGER},
-            </if>
-            <if test="tciRemark != null">
-                TCI_Remark = #{tciRemark,jdbcType=VARBINARY},
             </if>
         </set>
         where TCI_ID = #{tciId,jdbcType=INTEGER}
     </update>
-    <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.spartan.model.TempCarteInfo">
+    <update id="updateByPrimaryKey" parameterType="com.spartan.model.TempCarteInfo" >
     update t_tempcarteinfo
     set TCI_Swift_Number = #{tciSwiftNumber,jdbcType=VARCHAR},
       TCI_State = #{tciState,jdbcType=TINYINT},
@@ -465,26 +429,7 @@
       TCI_Consume_Amount = #{tciConsumeAmount,jdbcType=DECIMAL},
       TCI_Cost_Amount = #{tciCostAmount,jdbcType=DECIMAL},
       TCI_Discount = #{tciDiscount,jdbcType=DECIMAL},
-      del_Flag = #{delFlag,jdbcType=TINYINT},
-      last_SubTime = #{lastSubtime,jdbcType=TIMESTAMP},
-      subBy = #{subby,jdbcType=INTEGER},
-      TCI_Remark = #{tciRemark,jdbcType=VARBINARY}
-    where TCI_ID = #{tciId,jdbcType=INTEGER}
-  </update>
-    <update id="updateByPrimaryKey" parameterType="com.spartan.model.TempCarteInfo">
-    update t_tempcarteinfo
-    set TCI_Swift_Number = #{tciSwiftNumber,jdbcType=VARCHAR},
-      TCI_State = #{tciState,jdbcType=TINYINT},
-      TCI_Table_ID = #{tciTableId,jdbcType=INTEGER},
-      TCI_Customer_ID = #{tciCustomerId,jdbcType=INTEGER},
-      TCI_Mem_ID = #{tciMemId,jdbcType=INTEGER},
-      TCI_Waiter_ID = #{tciWaiterId,jdbcType=INTEGER},
-      TCI_Dish_Nums = #{tciDishNums,jdbcType=INTEGER},
-      TCI_Amount_Peoplo = #{tciAmountPeoplo,jdbcType=INTEGER},
-      TCI_Repast_Time = #{tciRepastTime,jdbcType=TIMESTAMP},
-      TCI_Consume_Amount = #{tciConsumeAmount,jdbcType=DECIMAL},
-      TCI_Cost_Amount = #{tciCostAmount,jdbcType=DECIMAL},
-      TCI_Discount = #{tciDiscount,jdbcType=DECIMAL},
+      TCI_Remark = #{tciRemark,jdbcType=VARCHAR},
       del_Flag = #{delFlag,jdbcType=TINYINT},
       last_SubTime = #{lastSubtime,jdbcType=TIMESTAMP},
       subBy = #{subby,jdbcType=INTEGER}

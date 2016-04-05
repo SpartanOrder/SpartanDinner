@@ -90,4 +90,18 @@ public class Role {
             this.user = user;
         }
     }
+
+    @Override
+    public String toString() {
+        return "Role{" +
+                "roleId=" + roleId +
+                ", roleName='" + roleName + '\'' +
+                ", department=" + department +
+                ", description='" + description + '\'' +
+                ", powerIds='" + powerIds + '\'' +
+                ", delFlag=" + delFlag +
+                ", lastSubtime=" + lastSubtime +
+                ", user=" + user +
+                '}';
+    }
 }

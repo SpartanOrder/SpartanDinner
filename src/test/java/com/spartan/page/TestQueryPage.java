@@ -24,28 +24,28 @@ public class TestQueryPage {
     @Resource
     private DishMapper dishMapper;
 
+//
+    //    @Test
+    //    public void testQuery() {
+    //        PageHelper.startPage(1, 10);
+    //        List<Dish> list = dishService.selectAll();
+    //        PageBean<Dish> pageBean = new PageBean<>(list);
+    //        for (Dish dish : list) {
+    //            System.out.println(dish.toString());
+    //        }
+    //        System.out.println(pageBean.toString());
+    //    }
 
-    @Test
-    public void testQuery() {
-        PageHelper.startPage(1, 10);
-        List<Dish> list = dishService.selectAll();
-        PageBean<Dish> pageBean = new PageBean<>(list);
-        for (Dish dish : list) {
-            System.out.println(dish.toString());
-        }
-        System.out.println(pageBean.toString());
-    }
-
-    @Test
-    public void testQueryReasonable() {
-        PageHelper.startPage(-11, 10);
-        List<Dish> list = dishService.selectAll();
-        PageBean<Dish> pageBean = new PageBean<>(list);
-        for (Dish dish : list) {
-            System.out.println(dish.toString());
-        }
-        System.out.println(pageBean.toString());
-    }
+//    @Test
+    //    public void testQueryReasonable() {
+    //        PageHelper.startPage(-11, 10);
+    //        List<Dish> list = dishService.selectAll();
+    //        PageBean<Dish> pageBean = new PageBean<>(list);
+    //        for (Dish dish : list) {
+    //            System.out.println(dish.toString());
+    //        }
+    //        System.out.println(pageBean.toString());
+    //    }
 
     @Test
     public void testQueryExample() {

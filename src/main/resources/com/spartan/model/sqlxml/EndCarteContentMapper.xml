@@ -82,16 +82,22 @@
         </where>
     </sql>
     <sql id="Base_Column_List">
-    ECC_ID, ECC_ECI_ID, ECC_Dish_ID, ECC_Dish_Num, ECC_Total_Price, ECC_Specil_Desc, 
-    del_Flag, last_SubTime, subBy
+    ECC_ID, ECC_ECI_ID, ECC_Dish_ID, ECC_Dish_Num, ECC_Total_Price, ECC_Specil_Desc
   </sql>
     <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.spartan.model.EndCarteContentExample">
         select
         <if test="distinct">
             distinct
         </if>
-        <include refid="Base_Column_List"/>
-        from t_endcartecontent
+        <include refid="Base_Column_List"/>,
+        <include refid="com.spartan.dao.common.Column_Master_LastSubtime"/>,
+        <include refid="com.spartan.dao.common.Column_Master_CUD"/>,
+        <include refid="com.spartan.dao.UserMapper.Column_SubBy_Employee"/>,
+        f.ECI_ID,f.ECI_Swift_Number,fi.dish_Id,fi.dish_Name,fi.dish_Speel,fi.dish_Price,fi.dish_Img_Url
+        from t_endcartecontent m
+        <include refid="com.spartan.dao.UserMapper.LEFTJOIN_SubBy_Employee"/>
+        LEFT JOIN t_endCarteInfo f ON m.ECI_ID=f.ECC_ECI_ID
+        LEFT JOIN t_dish fi ON m.ECC_Dish_ID=fi.dish_Id
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
@@ -101,28 +107,35 @@
     </select>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
         select
-        <include refid="Base_Column_List"/>
-        from t_endcartecontent
+        <include refid="Base_Column_List"/>,
+        <include refid="com.spartan.dao.common.Column_Master_LastSubtime"/>,
+        <include refid="com.spartan.dao.common.Column_Master_CUD"/>,
+        <include refid="com.spartan.dao.UserMapper.Column_SubBy_Employee"/>,
+        f.ECI_ID,f.ECI_Swift_Number,fi.dish_Id,fi.dish_Name,fi.dish_Speel,fi.dish_Price,fi.dish_Img_Url
+        from t_endcartecontent m
+        <include refid="com.spartan.dao.UserMapper.LEFTJOIN_SubBy_Employee"/>
+        LEFT JOIN t_endCarteInfo f ON m.ECI_ID=f.ECC_ECI_ID
+        LEFT JOIN t_dish fi ON m.ECC_Dish_ID=fi.dish_Id
         where ECC_ID = #{eccId,jdbcType=INTEGER}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from t_endcartecontent
+    delete m from t_endcartecontent m
     where ECC_ID = #{eccId,jdbcType=INTEGER}
   </delete>
     <delete id="deleteByExample" parameterType="com.spartan.model.EndCarteContentExample">
-        delete from t_endcartecontent
+        delete m from t_endcartecontent m
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
     </delete>
     <insert id="insert" parameterType="com.spartan.model.EndCarteContent">
     insert into t_endcartecontent (ECC_ID, ECC_ECI_ID, ECC_Dish_ID, 
-      ECC_Dish_Num, ECC_Total_Price, ECC_Specil_Desc, 
+      ECC_Dish_Num, ECC_Total_Price, ECC_Specil_Desc,
       del_Flag, last_SubTime, subBy
       )
-    values (#{eccId,jdbcType=INTEGER}, #{eccEciId,jdbcType=INTEGER}, #{eccDishId,jdbcType=INTEGER}, 
+    values (#{eccId,jdbcType=INTEGER}, #{endCarteInfo.eciId,jdbcType=INTEGER}, #{dish.dishId,jdbcType=INTEGER},
       #{eccDishNum,jdbcType=INTEGER}, #{eccTotalPrice,jdbcType=DECIMAL}, #{eccSpecilDesc,jdbcType=VARCHAR}, 
-      #{delFlag,jdbcType=TINYINT}, #{lastSubtime,jdbcType=TIMESTAMP}, #{subby,jdbcType=INTEGER}
+      #{delFlag,jdbcType=TINYINT}, #{lastSubtime,jdbcType=TIMESTAMP}, #{user.userId,jdbcType=INTEGER}
       )
   </insert>
     <insert id="insertSelective" parameterType="com.spartan.model.EndCarteContent">
@@ -131,10 +144,10 @@
             <if test="eccId != null">
                 ECC_ID,
             </if>
-            <if test="eccEciId != null">
+            <if test="endCarteInfo != null">
                 ECC_ECI_ID,
             </if>
-            <if test="eccDishId != null">
+            <if test="dish!= null">
                 ECC_Dish_ID,
             </if>
             <if test="eccDishNum != null">
@@ -152,7 +165,7 @@
             <if test="lastSubtime != null">
                 last_SubTime,
             </if>
-            <if test="subby != null">
+            <if test="user != null">
                 subBy,
             </if>
         </trim>
@@ -160,11 +173,11 @@
             <if test="eccId != null">
                 #{eccId,jdbcType=INTEGER},
             </if>
-            <if test="eccEciId != null">
-                #{eccEciId,jdbcType=INTEGER},
+            <if test="endCarteInfo != null">
+                #{endCarteInfo.eciId,jdbcType=INTEGER},
             </if>
-            <if test="eccDishId != null">
-                #{eccDishId,jdbcType=INTEGER},
+            <if test="dish != null">
+                #{dish.dishId,jdbcType=INTEGER},
             </if>
             <if test="eccDishNum != null">
                 #{eccDishNum,jdbcType=INTEGER},
@@ -181,28 +194,28 @@
             <if test="lastSubtime != null">
                 #{lastSubtime,jdbcType=TIMESTAMP},
             </if>
-            <if test="subby != null">
-                #{subby,jdbcType=INTEGER},
+            <if test="user != null">
+                #{user.userId,jdbcType=INTEGER},
             </if>
         </trim>
     </insert>
     <select id="countByExample" parameterType="com.spartan.model.EndCarteContentExample" resultType="java.lang.Integer">
-        select count(*) from t_endcartecontent
+        select count(*) from t_endcartecontent m
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
     </select>
     <update id="updateByExampleSelective" parameterType="map">
-        update t_endcartecontent
+        update t_endcartecontent m
         <set>
             <if test="record.eccId != null">
                 ECC_ID = #{record.eccId,jdbcType=INTEGER},
             </if>
-            <if test="record.eccEciId != null">
-                ECC_ECI_ID = #{record.eccEciId,jdbcType=INTEGER},
+            <if test="record.endCarteInfo!= null">
+                ECC_ECI_ID = #{record.endCarteInfo.eciId,jdbcType=INTEGER},
             </if>
-            <if test="record.eccDishId != null">
-                ECC_Dish_ID = #{record.eccDishId,jdbcType=INTEGER},
+            <if test="record.dish != null">
+                ECC_Dish_ID = #{record.dish.dishId,jdbcType=INTEGER},
             </if>
             <if test="record.eccDishNum != null">
                 ECC_Dish_Num = #{record.eccDishNum,jdbcType=INTEGER},
@@ -219,8 +232,8 @@
             <if test="record.lastSubtime != null">
                 last_SubTime = #{record.lastSubtime,jdbcType=TIMESTAMP},
             </if>
-            <if test="record.subby != null">
-                subBy = #{record.subby,jdbcType=INTEGER},
+            <if test="record.user != null">
+                subBy = #{record.user.userId,jdbcType=INTEGER},
             </if>
         </set>
         <if test="_parameter != null">
@@ -228,28 +241,28 @@
         </if>
     </update>
     <update id="updateByExample" parameterType="map">
-        update t_endcartecontent
+        update t_endcartecontent m
         set ECC_ID = #{record.eccId,jdbcType=INTEGER},
-        ECC_ECI_ID = #{record.eccEciId,jdbcType=INTEGER},
-        ECC_Dish_ID = #{record.eccDishId,jdbcType=INTEGER},
+        ECC_ECI_ID = #{record.endCarteInfo.eciId,jdbcType=INTEGER},
+        ECC_Dish_ID = #{record.dish.dishId,jdbcType=INTEGER},
         ECC_Dish_Num = #{record.eccDishNum,jdbcType=INTEGER},
         ECC_Total_Price = #{record.eccTotalPrice,jdbcType=DECIMAL},
         ECC_Specil_Desc = #{record.eccSpecilDesc,jdbcType=VARCHAR},
         del_Flag = #{record.delFlag,jdbcType=TINYINT},
         last_SubTime = #{record.lastSubtime,jdbcType=TIMESTAMP},
-        subBy = #{record.subby,jdbcType=INTEGER}
+        subBy = #{record.user.userId,jdbcType=INTEGER}
         <if test="_parameter != null">
             <include refid="Update_By_Example_Where_Clause"/>
         </if>
     </update>
     <update id="updateByPrimaryKeySelective" parameterType="com.spartan.model.EndCarteContent">
-        update t_endcartecontent
+        update t_endcartecontent m
         <set>
-            <if test="eccEciId != null">
-                ECC_ECI_ID = #{eccEciId,jdbcType=INTEGER},
+            <if test="endCarteInfo.eciId != null">
+                ECC_ECI_ID = #{endCarteInfo.eciId,jdbcType=INTEGER},
             </if>
-            <if test="eccDishId != null">
-                ECC_Dish_ID = #{eccDishId,jdbcType=INTEGER},
+            <if test="dish!= null">
+                ECC_Dish_ID = #{dish.dishId,jdbcType=INTEGER},
             </if>
             <if test="eccDishNum != null">
                 ECC_Dish_Num = #{eccDishNum,jdbcType=INTEGER},
@@ -266,22 +279,22 @@
             <if test="lastSubtime != null">
                 last_SubTime = #{lastSubtime,jdbcType=TIMESTAMP},
             </if>
-            <if test="subby != null">
-                subBy = #{subby,jdbcType=INTEGER},
+            <if test="user != null">
+                subBy = #{user.userId,jdbcType=INTEGER},
             </if>
         </set>
         where ECC_ID = #{eccId,jdbcType=INTEGER}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.spartan.model.EndCarteContent">
-    update t_endcartecontent
-    set ECC_ECI_ID = #{eccEciId,jdbcType=INTEGER},
-      ECC_Dish_ID = #{eccDishId,jdbcType=INTEGER},
+    update t_endcartecontent m
+    set ECC_ECI_ID = #{endCarteInfo.eciId,jdbcType=INTEGER},
+      ECC_Dish_ID = #{dish.dishId,jdbcType=INTEGER},
       ECC_Dish_Num = #{eccDishNum,jdbcType=INTEGER},
       ECC_Total_Price = #{eccTotalPrice,jdbcType=DECIMAL},
       ECC_Specil_Desc = #{eccSpecilDesc,jdbcType=VARCHAR},
       del_Flag = #{delFlag,jdbcType=TINYINT},
       last_SubTime = #{lastSubtime,jdbcType=TIMESTAMP},
-      subBy = #{subby,jdbcType=INTEGER}
+      subBy = #{user.userId,jdbcType=INTEGER}
     where ECC_ID = #{eccId,jdbcType=INTEGER}
   </update>
 </mapper>

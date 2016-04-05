@@ -17,7 +17,7 @@ public interface BaseMapper<T, ID extends Serializable> {
 
     T selectByPrimaryKey(ID id);//按主键查询
 
-    List<T> selectAll();//查找所有
+    //List<T> selectAll();//查找所有
 
     int updateByPrimaryKeySelective(T t);//按主键部分更新
 

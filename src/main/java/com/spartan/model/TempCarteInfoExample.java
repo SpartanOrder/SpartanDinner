@@ -896,6 +896,76 @@ public class TempCarteInfoExample {
             return (Criteria) this;
         }
 
+        public Criteria andTciRemarkIsNull() {
+            addCriterion("TCI_Remark is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTciRemarkIsNotNull() {
+            addCriterion("TCI_Remark is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTciRemarkEqualTo(String value) {
+            addCriterion("TCI_Remark =", value, "tciRemark");
+            return (Criteria) this;
+        }
+
+        public Criteria andTciRemarkNotEqualTo(String value) {
+            addCriterion("TCI_Remark <>", value, "tciRemark");
+            return (Criteria) this;
+        }
+
+        public Criteria andTciRemarkGreaterThan(String value) {
+            addCriterion("TCI_Remark >", value, "tciRemark");
+            return (Criteria) this;
+        }
+
+        public Criteria andTciRemarkGreaterThanOrEqualTo(String value) {
+            addCriterion("TCI_Remark >=", value, "tciRemark");
+            return (Criteria) this;
+        }
+
+        public Criteria andTciRemarkLessThan(String value) {
+            addCriterion("TCI_Remark <", value, "tciRemark");
+            return (Criteria) this;
+        }
+
+        public Criteria andTciRemarkLessThanOrEqualTo(String value) {
+            addCriterion("TCI_Remark <=", value, "tciRemark");
+            return (Criteria) this;
+        }
+
+        public Criteria andTciRemarkLike(String value) {
+            addCriterion("TCI_Remark like", value, "tciRemark");
+            return (Criteria) this;
+        }
+
+        public Criteria andTciRemarkNotLike(String value) {
+            addCriterion("TCI_Remark not like", value, "tciRemark");
+            return (Criteria) this;
+        }
+
+        public Criteria andTciRemarkIn(List<String> values) {
+            addCriterion("TCI_Remark in", values, "tciRemark");
+            return (Criteria) this;
+        }
+
+        public Criteria andTciRemarkNotIn(List<String> values) {
+            addCriterion("TCI_Remark not in", values, "tciRemark");
+            return (Criteria) this;
+        }
+
+        public Criteria andTciRemarkBetween(String value1, String value2) {
+            addCriterion("TCI_Remark between", value1, value2, "tciRemark");
+            return (Criteria) this;
+        }
+
+        public Criteria andTciRemarkNotBetween(String value1, String value2) {
+            addCriterion("TCI_Remark not between", value1, value2, "tciRemark");
+            return (Criteria) this;
+        }
+
         public Criteria andDelFlagIsNull() {
             addCriterion("del_Flag is null");
             return (Criteria) this;

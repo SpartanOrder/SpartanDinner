@@ -160,7 +160,7 @@ public class Dish {
                 ", dishImgUrl='" + dishImgUrl + '\'' +
                 ", delFlag=" + delFlag +
                 ", lastSubtime=" + lastSubtime +
-                ", user=" + user +
+                ", dish=" + user +
                 '}';
     }
 }

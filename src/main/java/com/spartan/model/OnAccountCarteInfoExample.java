@@ -956,6 +956,76 @@ public class OnAccountCarteInfoExample {
             return (Criteria) this;
         }
 
+        public Criteria andOciRemarkIsNull() {
+            addCriterion("OCI_Remark is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andOciRemarkIsNotNull() {
+            addCriterion("OCI_Remark is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andOciRemarkEqualTo(String value) {
+            addCriterion("OCI_Remark =", value, "ociRemark");
+            return (Criteria) this;
+        }
+
+        public Criteria andOciRemarkNotEqualTo(String value) {
+            addCriterion("OCI_Remark <>", value, "ociRemark");
+            return (Criteria) this;
+        }
+
+        public Criteria andOciRemarkGreaterThan(String value) {
+            addCriterion("OCI_Remark >", value, "ociRemark");
+            return (Criteria) this;
+        }
+
+        public Criteria andOciRemarkGreaterThanOrEqualTo(String value) {
+            addCriterion("OCI_Remark >=", value, "ociRemark");
+            return (Criteria) this;
+        }
+
+        public Criteria andOciRemarkLessThan(String value) {
+            addCriterion("OCI_Remark <", value, "ociRemark");
+            return (Criteria) this;
+        }
+
+        public Criteria andOciRemarkLessThanOrEqualTo(String value) {
+            addCriterion("OCI_Remark <=", value, "ociRemark");
+            return (Criteria) this;
+        }
+
+        public Criteria andOciRemarkLike(String value) {
+            addCriterion("OCI_Remark like", value, "ociRemark");
+            return (Criteria) this;
+        }
+
+        public Criteria andOciRemarkNotLike(String value) {
+            addCriterion("OCI_Remark not like", value, "ociRemark");
+            return (Criteria) this;
+        }
+
+        public Criteria andOciRemarkIn(List<String> values) {
+            addCriterion("OCI_Remark in", values, "ociRemark");
+            return (Criteria) this;
+        }
+
+        public Criteria andOciRemarkNotIn(List<String> values) {
+            addCriterion("OCI_Remark not in", values, "ociRemark");
+            return (Criteria) this;
+        }
+
+        public Criteria andOciRemarkBetween(String value1, String value2) {
+            addCriterion("OCI_Remark between", value1, value2, "ociRemark");
+            return (Criteria) this;
+        }
+
+        public Criteria andOciRemarkNotBetween(String value1, String value2) {
+            addCriterion("OCI_Remark not between", value1, value2, "ociRemark");
+            return (Criteria) this;
+        }
+
         public Criteria andDelFlagIsNull() {
             addCriterion("del_Flag is null");
             return (Criteria) this;

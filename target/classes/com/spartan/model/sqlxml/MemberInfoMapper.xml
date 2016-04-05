@@ -98,16 +98,21 @@
     </sql>
     <sql id="Base_Column_List">
     mem_ID, mem_Type_ID, mem_Name, mem_User_Name, mem_Password, mem_Tel, mem_Phone, mem_Address, 
-    mem_Gender, mem_Money, mem_Integral, mem_Birthday, mem_Begin_Time, mem_End_Time, 
-    del_Flag, last_SubTime, subBy
+    mem_Gender, mem_Money, mem_Integral, mem_Birthday, mem_Begin_Time, mem_End_Time,
   </sql>
     <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.spartan.model.MemberInfoExample">
         select
         <if test="distinct">
             distinct
         </if>
-        <include refid="Base_Column_List"/>
-        from t_memberinfo
+        <include refid="Base_Column_List"/>,
+        <include refid="com.spartan.dao.common.Column_Master_LastSubtime"/>,
+        <include refid="com.spartan.dao.common.Column_Master_CUD"/>,
+        <include refid="com.spartan.dao.UserMapper.Column_SubBy_Employee"/>
+        f.mem_Type_ID,f.mem_Type_Name,f.mem_Type_Discount
+        from t_memberinfo m
+        <include refid="com.spartan.dao.UserMapper.LEFTJOIN_SubBy_Employee"/>
+        LEFT JOIN t_memberType f ON m.mem_Type_ID=f.mem_Type_Id
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
@@ -117,16 +122,22 @@
     </select>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
         select
-        <include refid="Base_Column_List"/>
-        from t_memberinfo
+        <include refid="Base_Column_List"/>,
+        <include refid="com.spartan.dao.common.Column_Master_LastSubtime"/>,
+        <include refid="com.spartan.dao.common.Column_Master_CUD"/>,
+        <include refid="com.spartan.dao.UserMapper.Column_SubBy_Employee"/>
+        f.mem_Type_ID,f.mem_Type_Name,f.mem_Type_Discount
+        from t_memberinfo m
+        <include refid="com.spartan.dao.UserMapper.LEFTJOIN_SubBy_Employee"/>
+        LEFT JOIN t_memberType f ON m.mem_Type_ID=f.mem_Type_Id
         where mem_ID = #{memId,jdbcType=INTEGER}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from t_memberinfo
+    delete m from t_memberinfo m
     where mem_ID = #{memId,jdbcType=INTEGER}
   </delete>
     <delete id="deleteByExample" parameterType="com.spartan.model.MemberInfoExample">
-        delete from t_memberinfo
+        delete m from t_memberinfo m
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
@@ -138,12 +149,12 @@
       mem_Money, mem_Integral, mem_Birthday, 
       mem_Begin_Time, mem_End_Time, del_Flag, 
       last_SubTime, subBy)
-    values (#{memId,jdbcType=INTEGER}, #{memTypeId,jdbcType=INTEGER}, #{memName,jdbcType=VARCHAR}, 
+    values (#{memId,jdbcType=INTEGER}, #{memberType.memTypeId,jdbcType=INTEGER}, #{memName,jdbcType=VARCHAR},
       #{memUserName,jdbcType=VARCHAR}, #{memPassword,jdbcType=VARCHAR}, #{memTel,jdbcType=VARCHAR}, 
       #{memPhone,jdbcType=VARCHAR}, #{memAddress,jdbcType=VARCHAR}, #{memGender,jdbcType=TINYINT}, 
       #{memMoney,jdbcType=DECIMAL}, #{memIntegral,jdbcType=INTEGER}, #{memBirthday,jdbcType=DATE}, 
       #{memBeginTime,jdbcType=DATE}, #{memEndTime,jdbcType=DATE}, #{delFlag,jdbcType=TINYINT}, 
-      #{lastSubtime,jdbcType=TIMESTAMP}, #{subby,jdbcType=INTEGER})
+      #{lastSubtime,jdbcType=TIMESTAMP}, #{user.userId,jdbcType=INTEGER})
   </insert>
     <insert id="insertSelective" parameterType="com.spartan.model.MemberInfo">
         insert into t_memberinfo
@@ -151,7 +162,7 @@
             <if test="memId != null">
                 mem_ID,
             </if>
-            <if test="memTypeId != null">
+            <if test="memberType != null">
                 mem_Type_ID,
             </if>
             <if test="memName != null">
@@ -196,7 +207,7 @@
             <if test="lastSubtime != null">
                 last_SubTime,
             </if>
-            <if test="subby != null">
+            <if test="user != null">
                 subBy,
             </if>
         </trim>
@@ -204,8 +215,8 @@
             <if test="memId != null">
                 #{memId,jdbcType=INTEGER},
             </if>
-            <if test="memTypeId != null">
-                #{memTypeId,jdbcType=INTEGER},
+            <if test="memberType.memTypeId != null">
+                #{memberType.memTypeId,jdbcType=INTEGER},
             </if>
             <if test="memName != null">
                 #{memName,jdbcType=VARCHAR},
@@ -249,25 +260,25 @@
             <if test="lastSubtime != null">
                 #{lastSubtime,jdbcType=TIMESTAMP},
             </if>
-            <if test="subby != null">
-                #{subby,jdbcType=INTEGER},
+            <if test="user != null">
+                #{user.userId,jdbcType=INTEGER},
             </if>
         </trim>
     </insert>
     <select id="countByExample" parameterType="com.spartan.model.MemberInfoExample" resultType="java.lang.Integer">
-        select count(*) from t_memberinfo
+        select count(*) from t_memberinfo m
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
     </select>
     <update id="updateByExampleSelective" parameterType="map">
-        update t_memberinfo
+        update t_memberinfo m
         <set>
             <if test="record.memId != null">
                 mem_ID = #{record.memId,jdbcType=INTEGER},
             </if>
-            <if test="record.memTypeId != null">
-                mem_Type_ID = #{record.memTypeId,jdbcType=INTEGER},
+            <if test="record.memberType != null">
+                mem_Type_ID = #{record.memberType.memTypeId,jdbcType=INTEGER},
             </if>
             <if test="record.memName != null">
                 mem_Name = #{record.memName,jdbcType=VARCHAR},
@@ -311,8 +322,8 @@
             <if test="record.lastSubtime != null">
                 last_SubTime = #{record.lastSubtime,jdbcType=TIMESTAMP},
             </if>
-            <if test="record.subby != null">
-                subBy = #{record.subby,jdbcType=INTEGER},
+            <if test="record.user != null">
+                subBy = #{record.user.userId,jdbcType=INTEGER},
             </if>
         </set>
         <if test="_parameter != null">
@@ -320,9 +331,9 @@
         </if>
     </update>
     <update id="updateByExample" parameterType="map">
-        update t_memberinfo
+        update t_memberinfo m
         set mem_ID = #{record.memId,jdbcType=INTEGER},
-        mem_Type_ID = #{record.memTypeId,jdbcType=INTEGER},
+        mem_Type_ID = #{record.memberType.memTypeId,jdbcType=INTEGER},
         mem_Name = #{record.memName,jdbcType=VARCHAR},
         mem_User_Name = #{record.memUserName,jdbcType=VARCHAR},
         mem_Password = #{record.memPassword,jdbcType=VARCHAR},
@@ -337,16 +348,16 @@
         mem_End_Time = #{record.memEndTime,jdbcType=DATE},
         del_Flag = #{record.delFlag,jdbcType=TINYINT},
         last_SubTime = #{record.lastSubtime,jdbcType=TIMESTAMP},
-        subBy = #{record.subby,jdbcType=INTEGER}
+        subBy = #{record.user.userId,jdbcType=INTEGER}
         <if test="_parameter != null">
             <include refid="Update_By_Example_Where_Clause"/>
         </if>
     </update>
     <update id="updateByPrimaryKeySelective" parameterType="com.spartan.model.MemberInfo">
-        update t_memberinfo
+        update t_memberinfo m
         <set>
-            <if test="memTypeId != null">
-                mem_Type_ID = #{memTypeId,jdbcType=INTEGER},
+            <if test="memberType!= null">
+                mem_Type_ID = #{memberType.memTypeId,jdbcType=INTEGER},
             </if>
             <if test="memName != null">
                 mem_Name = #{memName,jdbcType=VARCHAR},
@@ -390,15 +401,15 @@
             <if test="lastSubtime != null">
                 last_SubTime = #{lastSubtime,jdbcType=TIMESTAMP},
             </if>
-            <if test="subby != null">
-                subBy = #{subby,jdbcType=INTEGER},
+            <if test="user != null">
+                subBy = #{user.userId,jdbcType=INTEGER},
             </if>
         </set>
         where mem_ID = #{memId,jdbcType=INTEGER}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.spartan.model.MemberInfo">
-    update t_memberinfo
-    set mem_Type_ID = #{memTypeId,jdbcType=INTEGER},
+    update t_memberinfo m
+    set mem_Type_ID = #{memberType.memTypeId,jdbcType=INTEGER},
       mem_Name = #{memName,jdbcType=VARCHAR},
       mem_User_Name = #{memUserName,jdbcType=VARCHAR},
       mem_Password = #{memPassword,jdbcType=VARCHAR},
@@ -413,7 +424,7 @@
       mem_End_Time = #{memEndTime,jdbcType=DATE},
       del_Flag = #{delFlag,jdbcType=TINYINT},
       last_SubTime = #{lastSubtime,jdbcType=TIMESTAMP},
-      subBy = #{subby,jdbcType=INTEGER}
+      subBy = #{user.userId,jdbcType=INTEGER}
     where mem_ID = #{memId,jdbcType=INTEGER}
   </update>
 </mapper>

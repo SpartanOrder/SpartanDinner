@@ -1,4 +1,4 @@
-package com.spartan.db;
+package com.spartan.db.dish;
 
 import com.spartan.model.Dish;
 import com.spartan.model.DishType;
@@ -26,14 +26,14 @@ public class TestDishInsert {
             dishType.setDishTypeId(2);
             dishType.setDishTypeName("青菜");
             dish.setDishType(dishType);
-            dish.setDishName("菜心" + i);
+            dish.setDishName("菜心二" + i);
             dish.setDishSpeel("dbc");
             dish.setDishCost(new BigDecimal(6));
             dish.setDishUnit("碟");
             dish.setDishPrice(new BigDecimal(10));
             dish.setDishDescription("清炒");
             dish.setDishCooking("清炒");
-            dish.setDishImgUrl("test.jpg");
+//            dish.setDishImgUrl("test.jpg");
             dish.setDelFlag(new Byte((byte) 1));
             User user = new User();
             user.setUserId(2);
@@ -50,7 +50,7 @@ public class TestDishInsert {
             dishType.setDishTypeId(1);
             dishType.setDishTypeName("热卖");
             dish.setDishType(dishType);
-            dish.setDishName("鱼香茄子煲四" + i);//尝试注释改行
+            dish.setDishName("鱼香茄子煲五" + i);//尝试注释改行
             dish.setDishSpeel("yxqzb");
             dish.setDishCost(new BigDecimal(6));
             dish.setDishUnit("堡");

@@ -101,7 +101,7 @@ public class DishType {
                 ", dishTypeOrderid=" + dishTypeOrderid +
                 ", delFlag=" + delFlag +
                 ", lastSubtime=" + lastSubtime +
-                ", user=" + user +
+                ", dish=" + user +
                 '}';
     }
 }

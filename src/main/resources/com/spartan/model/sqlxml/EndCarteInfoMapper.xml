@@ -13,6 +13,7 @@
         <result column="ECI_Consume_Amount" property="eciConsumeAmount" jdbcType="DECIMAL"/>
         <result column="ECI_Discount" property="eciDiscount" jdbcType="DECIMAL"/>
         <result column="ECI_Paid_Amount" property="eciPaidAmount" jdbcType="DECIMAL"/>
+        <result column="ECI_Remark" property="eciRemark" jdbcType="VARCHAR"/>
         <result column="del_Flag" property="delFlag" jdbcType="TINYINT"/>
         <result column="last_SubTime" property="lastSubtime" jdbcType="TIMESTAMP"/>
         <association property="dinningTable" column="ECI_Table_ID" javaType="com.spartan.model.DinningTable"
@@ -32,6 +33,8 @@
         </association>
         <association property="user" column="subBy" javaType="com.spartan.model.User" resultMap="com.spartan.dao.UserMapper.SimpleResultMap">
         </association>
+        <collection property="endCarteContentList" resultMap="com.spartan.model.EndCarteContent.SimpleResultMap">
+        </collection>
     </resultMap>
     <resultMap id="SimpleResultMap" type="com.spartan.model.EndCarteInfo">
         <id column="ECI_ID" property="eciId" jdbcType="INTEGER"/>
@@ -51,9 +54,6 @@
         <association property="memberInfo" column="ECI_Mem_ID" javaType="com.spartan.model.MemberInfo"
                      resultMap="com.spartan.dao.MemberInfoMapper.SimpleResultMap">
         </association>
-    </resultMap>
-    <resultMap id="ResultMapWithBLOBs" type="com.spartan.model.EndCarteInfo" extends="BaseResultMap">
-        <result column="ECI_Remark" property="eciRemark" jdbcType="VARBINARY"/>
     </resultMap>
     <sql id="Example_Where_Clause">
         <where>
@@ -114,37 +114,23 @@
         </where>
     </sql>
     <sql id="Base_Column_List">
-    ECI_ID, ECI_Swift_Number, ECI_State, ECI_Table_ID, ECI_Waiter_ID, ECI_Cashier_ID, 
-    ECI_Customer_ID, ECI_Mem_ID, ECI_Dish_Nums, ECI_Amount_Peoplo, ECI_Repast_Time, ECI_Bill_Time, 
-    ECI_Pay_Method, ECI_Consume_Amount, ECI_Discount, ECI_Paid_Amount, del_Flag, last_SubTime, 
-    subBy
+    ECI_ID, ECI_Swift_Number, ECI_State, ECI_Table_ID, ECI_Waiter_ID, ECI_Cashier_ID,
+    ECI_Customer_ID, ECI_Mem_ID, ECI_Dish_Nums, ECI_Amount_Peoplo, ECI_Repast_Time, ECI_Bill_Time,
+    ECI_Pay_Method, ECI_Consume_Amount, ECI_Discount, ECI_Paid_Amount, ECI_Remark
   </sql>
-    <sql id="Blob_Column_List">
-    ECI_Remark
-  </sql>
-    <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.spartan.model.EndCarteInfoExample">
-        select
-        <if test="distinct">
-            distinct
-        </if>
-        <include refid="Base_Column_List"/>
-        ,
-        <include refid="Blob_Column_List"/>
-        from t_endcarteinfo
-        <if test="_parameter != null">
-            <include refid="Example_Where_Clause"/>
-        </if>
-        <if test="orderByClause != null">
-            order by ${orderByClause}
-        </if>
-    </select>
     <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.spartan.model.EndCarteInfoExample">
         select
         <if test="distinct">
             distinct
         </if>
-        <include refid="Base_Column_List"/>
-        from t_endcarteinfo
+        <include refid="Base_Column_List"/>,
+        <include refid="com.spartan.dao.common.Column_Master_LastSubtime"/>,
+        <include refid="com.spartan.dao.common.Column_Master_CUD"/>,
+        <include refid="com.spartan.dao.UserMapper.Column_SubBy_Employee"/>,
+        f. ECC_ID,f.ECC_Total_Price,f.ECC_Dish_ID
+        from t_endcarteinfo m
+        <include refid="com.spartan.dao.UserMapper.LEFTJOIN_SubBy_Employee"/>
+        LEFT JOIN t_endCarteContent f ON m.ECI_ID=f.ECC_ID
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
@@ -152,12 +138,16 @@
             order by ${orderByClause}
         </if>
     </select>
-    <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer">
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
         select
-        <include refid="Base_Column_List"/>
-        ,
-        <include refid="Blob_Column_List"/>
-        from t_endcarteinfo
+        <include refid="Base_Column_List"/>,
+        <include refid="com.spartan.dao.common.Column_Master_LastSubtime"/>,
+        <include refid="com.spartan.dao.common.Column_Master_CUD"/>,
+        <include refid="com.spartan.dao.UserMapper.Column_SubBy_Employee"/>,
+        f. ECC_ID,f.ECC_Total_Price,f.ECC_Dish_ID
+        from t_endcarteinfo m
+        <include refid="com.spartan.dao.UserMapper.LEFTJOIN_SubBy_Employee"/>
+        LEFT JOIN t_endCarteContent f ON m.ECI_ID=f.ECC_ID
         where ECI_ID = #{eciId,jdbcType=INTEGER}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
@@ -171,20 +161,20 @@
         </if>
     </delete>
     <insert id="insert" parameterType="com.spartan.model.EndCarteInfo">
-    insert into t_endcarteinfo (ECI_ID, ECI_Swift_Number, ECI_State, 
-      ECI_Table_ID, ECI_Waiter_ID, ECI_Cashier_ID, 
-      ECI_Customer_ID, ECI_Mem_ID, ECI_Dish_Nums, 
-      ECI_Amount_Peoplo, ECI_Repast_Time, ECI_Bill_Time, 
-      ECI_Pay_Method, ECI_Consume_Amount, ECI_Discount, 
-      ECI_Paid_Amount, del_Flag, last_SubTime, 
-      subBy, ECI_Remark)
-    values (#{eciId,jdbcType=INTEGER}, #{eciSwiftNumber,jdbcType=VARCHAR}, #{eciState,jdbcType=TINYINT}, 
-      #{eciTableId,jdbcType=INTEGER}, #{eciWaiterId,jdbcType=INTEGER}, #{eciCashierId,jdbcType=INTEGER}, 
-      #{eciCustomerId,jdbcType=INTEGER}, #{eciMemId,jdbcType=INTEGER}, #{eciDishNums,jdbcType=INTEGER}, 
-      #{eciAmountPeoplo,jdbcType=INTEGER}, #{eciRepastTime,jdbcType=TIMESTAMP}, #{eciBillTime,jdbcType=TIMESTAMP}, 
-      #{eciPayMethod,jdbcType=VARCHAR}, #{eciConsumeAmount,jdbcType=DECIMAL}, #{eciDiscount,jdbcType=DECIMAL}, 
-      #{eciPaidAmount,jdbcType=DECIMAL}, #{delFlag,jdbcType=TINYINT}, #{lastSubtime,jdbcType=TIMESTAMP}, 
-      #{subby,jdbcType=INTEGER}, #{eciRemark,jdbcType=VARBINARY})
+   insert into t_endcarteinfo (ECI_ID, ECI_Swift_Number, ECI_State,
+      ECI_Table_ID, ECI_Waiter_ID, ECI_Cashier_ID,
+      ECI_Customer_ID, ECI_Mem_ID, ECI_Dish_Nums,
+      ECI_Amount_Peoplo, ECI_Repast_Time, ECI_Bill_Time,
+      ECI_Pay_Method, ECI_Consume_Amount, ECI_Discount,
+      ECI_Paid_Amount, ECI_Remark, del_Flag,
+      last_SubTime, subBy)
+    values (#{eciId,jdbcType=INTEGER}, #{eciSwiftNumber,jdbcType=VARCHAR}, #{eciState,jdbcType=TINYINT},
+      #{eciTableId,jdbcType=INTEGER}, #{eciWaiterId,jdbcType=INTEGER}, #{eciCashierId,jdbcType=INTEGER},
+      #{eciCustomerId,jdbcType=INTEGER}, #{eciMemId,jdbcType=INTEGER}, #{eciDishNums,jdbcType=INTEGER},
+      #{eciAmountPeoplo,jdbcType=INTEGER}, #{eciRepastTime,jdbcType=TIMESTAMP}, #{eciBillTime,jdbcType=TIMESTAMP},
+      #{eciPayMethod,jdbcType=VARCHAR}, #{eciConsumeAmount,jdbcType=DECIMAL}, #{eciDiscount,jdbcType=DECIMAL},
+      #{eciPaidAmount,jdbcType=DECIMAL}, #{eciRemark,jdbcType=VARCHAR}, #{delFlag,jdbcType=TINYINT},
+      #{lastSubtime,jdbcType=TIMESTAMP}, #{subby,jdbcType=INTEGER})
   </insert>
     <insert id="insertSelective" parameterType="com.spartan.model.EndCarteInfo">
         insert into t_endcarteinfo
@@ -237,6 +227,9 @@
             <if test="eciPaidAmount != null">
                 ECI_Paid_Amount,
             </if>
+            <if test="eciRemark != null">
+                ECI_Remark,
+            </if>
             <if test="delFlag != null">
                 del_Flag,
             </if>
@@ -245,9 +238,6 @@
             </if>
             <if test="subby != null">
                 subBy,
-            </if>
-            <if test="eciRemark != null">
-                ECI_Remark,
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -299,6 +289,9 @@
             <if test="eciPaidAmount != null">
                 #{eciPaidAmount,jdbcType=DECIMAL},
             </if>
+            <if test="eciRemark != null">
+                #{eciRemark,jdbcType=VARCHAR},
+            </if>
             <if test="delFlag != null">
                 #{delFlag,jdbcType=TINYINT},
             </if>
@@ -307,9 +300,6 @@
             </if>
             <if test="subby != null">
                 #{subby,jdbcType=INTEGER},
-            </if>
-            <if test="eciRemark != null">
-                #{eciRemark,jdbcType=VARBINARY},
             </if>
         </trim>
     </insert>
@@ -370,6 +360,9 @@
             <if test="record.eciPaidAmount != null">
                 ECI_Paid_Amount = #{record.eciPaidAmount,jdbcType=DECIMAL},
             </if>
+            <if test="record.eciRemark != null">
+                ECI_Remark = #{record.eciRemark,jdbcType=VARCHAR},
+            </if>
             <if test="record.delFlag != null">
                 del_Flag = #{record.delFlag,jdbcType=TINYINT},
             </if>
@@ -379,36 +372,7 @@
             <if test="record.subby != null">
                 subBy = #{record.subby,jdbcType=INTEGER},
             </if>
-            <if test="record.eciRemark != null">
-                ECI_Remark = #{record.eciRemark,jdbcType=VARBINARY},
-            </if>
         </set>
-        <if test="_parameter != null">
-            <include refid="Update_By_Example_Where_Clause"/>
-        </if>
-    </update>
-    <update id="updateByExampleWithBLOBs" parameterType="map">
-        update t_endcarteinfo
-        set ECI_ID = #{record.eciId,jdbcType=INTEGER},
-        ECI_Swift_Number = #{record.eciSwiftNumber,jdbcType=VARCHAR},
-        ECI_State = #{record.eciState,jdbcType=TINYINT},
-        ECI_Table_ID = #{record.eciTableId,jdbcType=INTEGER},
-        ECI_Waiter_ID = #{record.eciWaiterId,jdbcType=INTEGER},
-        ECI_Cashier_ID = #{record.eciCashierId,jdbcType=INTEGER},
-        ECI_Customer_ID = #{record.eciCustomerId,jdbcType=INTEGER},
-        ECI_Mem_ID = #{record.eciMemId,jdbcType=INTEGER},
-        ECI_Dish_Nums = #{record.eciDishNums,jdbcType=INTEGER},
-        ECI_Amount_Peoplo = #{record.eciAmountPeoplo,jdbcType=INTEGER},
-        ECI_Repast_Time = #{record.eciRepastTime,jdbcType=TIMESTAMP},
-        ECI_Bill_Time = #{record.eciBillTime,jdbcType=TIMESTAMP},
-        ECI_Pay_Method = #{record.eciPayMethod,jdbcType=VARCHAR},
-        ECI_Consume_Amount = #{record.eciConsumeAmount,jdbcType=DECIMAL},
-        ECI_Discount = #{record.eciDiscount,jdbcType=DECIMAL},
-        ECI_Paid_Amount = #{record.eciPaidAmount,jdbcType=DECIMAL},
-        del_Flag = #{record.delFlag,jdbcType=TINYINT},
-        last_SubTime = #{record.lastSubtime,jdbcType=TIMESTAMP},
-        subBy = #{record.subby,jdbcType=INTEGER},
-        ECI_Remark = #{record.eciRemark,jdbcType=VARBINARY}
         <if test="_parameter != null">
             <include refid="Update_By_Example_Where_Clause"/>
         </if>
@@ -431,6 +395,7 @@
         ECI_Consume_Amount = #{record.eciConsumeAmount,jdbcType=DECIMAL},
         ECI_Discount = #{record.eciDiscount,jdbcType=DECIMAL},
         ECI_Paid_Amount = #{record.eciPaidAmount,jdbcType=DECIMAL},
+        ECI_Remark = #{record.eciRemark,jdbcType=VARCHAR},
         del_Flag = #{record.delFlag,jdbcType=TINYINT},
         last_SubTime = #{record.lastSubtime,jdbcType=TIMESTAMP},
         subBy = #{record.subby,jdbcType=INTEGER}
@@ -486,6 +451,9 @@
             <if test="eciPaidAmount != null">
                 ECI_Paid_Amount = #{eciPaidAmount,jdbcType=DECIMAL},
             </if>
+            <if test="eciRemark != null">
+                ECI_Remark = #{eciRemark,jdbcType=VARCHAR},
+            </if>
             <if test="delFlag != null">
                 del_Flag = #{delFlag,jdbcType=TINYINT},
             </if>
@@ -495,33 +463,7 @@
             <if test="subby != null">
                 subBy = #{subby,jdbcType=INTEGER},
             </if>
-            <if test="eciRemark != null">
-                ECI_Remark = #{eciRemark,jdbcType=VARBINARY},
-            </if>
         </set>
-        where ECI_ID = #{eciId,jdbcType=INTEGER}
-    </update>
-    <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.spartan.model.EndCarteInfo">
-        update t_endcarteinfo
-        set ECI_Swift_Number = #{eciSwiftNumber,jdbcType=VARCHAR},
-        ECI_State = #{eciState,jdbcType=TINYINT},
-        ECI_Table_ID = #{eciTableId,jdbcType=INTEGER},
-        ECI_Waiter_ID = #{eciWaiterId,jdbcType=INTEGER},
-        ECI_Cashier_ID = #{eciCashierId,jdbcType=INTEGER},
-        ECI_Customer_ID = #{eciCustomerId,jdbcType=INTEGER},
-        ECI_Mem_ID = #{eciMemId,jdbcType=INTEGER},
-        ECI_Dish_Nums = #{eciDishNums,jdbcType=INTEGER},
-        ECI_Amount_Peoplo = #{eciAmountPeoplo,jdbcType=INTEGER},
-        ECI_Repast_Time = #{eciRepastTime,jdbcType=TIMESTAMP},
-        ECI_Bill_Time = #{eciBillTime,jdbcType=TIMESTAMP},
-        ECI_Pay_Method = #{eciPayMethod,jdbcType=VARCHAR},
-        ECI_Consume_Amount = #{eciConsumeAmount,jdbcType=DECIMAL},
-        ECI_Discount = #{eciDiscount,jdbcType=DECIMAL},
-        ECI_Paid_Amount = #{eciPaidAmount,jdbcType=DECIMAL},
-        del_Flag = #{delFlag,jdbcType=TINYINT},
-        last_SubTime = #{lastSubtime,jdbcType=TIMESTAMP},
-        subBy = #{subby,jdbcType=INTEGER},
-        ECI_Remark = #{eciRemark,jdbcType=VARBINARY}
         where ECI_ID = #{eciId,jdbcType=INTEGER}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.spartan.model.EndCarteInfo">
@@ -541,6 +483,7 @@
       ECI_Consume_Amount = #{eciConsumeAmount,jdbcType=DECIMAL},
       ECI_Discount = #{eciDiscount,jdbcType=DECIMAL},
       ECI_Paid_Amount = #{eciPaidAmount,jdbcType=DECIMAL},
+      ECI_Remark = #{eciRemark,jdbcType=VARCHAR},
       del_Flag = #{delFlag,jdbcType=TINYINT},
       last_SubTime = #{lastSubtime,jdbcType=TIMESTAMP},
       subBy = #{subby,jdbcType=INTEGER}

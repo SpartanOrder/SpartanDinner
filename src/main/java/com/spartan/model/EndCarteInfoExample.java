@@ -1086,6 +1086,76 @@ public class EndCarteInfoExample {
             return (Criteria) this;
         }
 
+        public Criteria andEciRemarkIsNull() {
+            addCriterion("ECI_Remark is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andEciRemarkIsNotNull() {
+            addCriterion("ECI_Remark is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andEciRemarkEqualTo(String value) {
+            addCriterion("ECI_Remark =", value, "eciRemark");
+            return (Criteria) this;
+        }
+
+        public Criteria andEciRemarkNotEqualTo(String value) {
+            addCriterion("ECI_Remark <>", value, "eciRemark");
+            return (Criteria) this;
+        }
+
+        public Criteria andEciRemarkGreaterThan(String value) {
+            addCriterion("ECI_Remark >", value, "eciRemark");
+            return (Criteria) this;
+        }
+
+        public Criteria andEciRemarkGreaterThanOrEqualTo(String value) {
+            addCriterion("ECI_Remark >=", value, "eciRemark");
+            return (Criteria) this;
+        }
+
+        public Criteria andEciRemarkLessThan(String value) {
+            addCriterion("ECI_Remark <", value, "eciRemark");
+            return (Criteria) this;
+        }
+
+        public Criteria andEciRemarkLessThanOrEqualTo(String value) {
+            addCriterion("ECI_Remark <=", value, "eciRemark");
+            return (Criteria) this;
+        }
+
+        public Criteria andEciRemarkLike(String value) {
+            addCriterion("ECI_Remark like", value, "eciRemark");
+            return (Criteria) this;
+        }
+
+        public Criteria andEciRemarkNotLike(String value) {
+            addCriterion("ECI_Remark not like", value, "eciRemark");
+            return (Criteria) this;
+        }
+
+        public Criteria andEciRemarkIn(List<String> values) {
+            addCriterion("ECI_Remark in", values, "eciRemark");
+            return (Criteria) this;
+        }
+
+        public Criteria andEciRemarkNotIn(List<String> values) {
+            addCriterion("ECI_Remark not in", values, "eciRemark");
+            return (Criteria) this;
+        }
+
+        public Criteria andEciRemarkBetween(String value1, String value2) {
+            addCriterion("ECI_Remark between", value1, value2, "eciRemark");
+            return (Criteria) this;
+        }
+
+        public Criteria andEciRemarkNotBetween(String value1, String value2) {
+            addCriterion("ECI_Remark not between", value1, value2, "eciRemark");
+            return (Criteria) this;
+        }
+
         public Criteria andDelFlagIsNull() {
             addCriterion("del_Flag is null");
             return (Criteria) this;

@@ -3,7 +3,6 @@ package com.spartan.dao;
 import com.spartan.model.Region;
 import com.spartan.model.RegionExample;
 import org.apache.ibatis.annotations.Param;
-import tk.mybatis.mapper.entity.Example;
 
 import java.util.List;
 

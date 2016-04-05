@@ -2,6 +2,7 @@ package com.spartan.model;
 
 import java.math.BigDecimal;
 import java.util.Date;
+
 /**
  * Created with IntelliJ IDEA.
  * @author Wind
@@ -44,7 +45,7 @@ public class OnAccountCarteInfo {
 
     private User user;
 
-    private byte[] ociRemark;
+    private String ociRemark;
 
     public Integer getOciId() {
         return ociId;
@@ -208,11 +209,11 @@ public class OnAccountCarteInfo {
         }
     }
 
-    public byte[] getOciRemark() {
+    public String getOciRemark() {
         return ociRemark;
     }
 
-    public void setOciRemark(byte[] ociRemark) {
+    public void setOciRemark(String ociRemark) {
         this.ociRemark = ociRemark;
     }
 }

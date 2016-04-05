@@ -79,4 +79,17 @@ public class Customer {
             this.user = user;
         }
     }
+
+    @Override
+    public String toString() {
+        return "customer{" +
+                "customerId=" + customerId +
+                ", customerName='" + customerName + '\'' +
+                ", customerTel='" + customerTel + '\'' +
+                ", customerGender=" + customerGender +
+                ", delFlag=" + delFlag +
+                ", lastSubtime=" + lastSubtime +
+                ", dish=" + user +
+                '}';
+    }
 }

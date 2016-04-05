@@ -37,9 +37,9 @@ public abstract class AbstractService<T, ID extends Serializable> implements Bas
         return baseMapper.selectByPrimaryKey(id);
     }
 
-    public List<T> selectAll() {
-        return baseMapper.selectAll();
-    }
+//    public List<T> selectAll() {
+    //        return baseMapper.selectAll();
+    //    }
 
     public int updateByPrimaryKeySelective(T t) {
         return baseMapper.updateByPrimaryKeySelective(t);

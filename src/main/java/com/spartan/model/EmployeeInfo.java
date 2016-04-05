@@ -219,7 +219,7 @@ public class EmployeeInfo {
                 ", fireDate=" + fireDate +
                 ", delFlag=" + delFlag +
                 ", lastSubtime=" + lastSubtime +
-                ", user=" + user +
+                ", dish=" + user +
                 '}';
     }
 }

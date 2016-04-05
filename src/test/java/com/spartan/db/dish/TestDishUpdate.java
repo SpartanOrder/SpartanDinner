@@ -1,4 +1,4 @@
-package com.spartan.db;
+package com.spartan.db.dish;
 
 import com.spartan.dao.DishMapper;
 import com.spartan.model.Dish;
@@ -22,6 +22,9 @@ public class TestDishUpdate {
     @Resource
     private DishMapper dishMapper;
 
+    /**
+     * 一般不使用
+     */
     @Test
     public void testUpdateByExampleSelective() {
         DishExample dishExample = new DishExample();
@@ -40,6 +43,9 @@ public class TestDishUpdate {
         dishMapper.updateByExampleSelective(dish, dishExample);
     }
 
+    /**
+     * 一般不使用
+     */
     @Test
     public void testUpdateByExample() {
         DishExample dishExample = new DishExample();
@@ -73,7 +79,7 @@ public class TestDishUpdate {
         DishType dishType = new DishType();
         dishType.setDishTypeId(6);
         dish.setDishType(dishType);
-        dish.setDishName("大白菜修改3");
+        dish.setDishName("大白菜修改5");
         dish.setDishImgUrl("test3.jpg");
         User user = new User();
         user.setUserId(2);
@@ -88,7 +94,7 @@ public class TestDishUpdate {
         DishType dishType = new DishType();
         dishType.setDishTypeId(2);
         dish.setDishType(dishType);
-        dish.setDishName("大白菜修改2");
+        dish.setDishName("大白菜修改3");
         dish.setDishSpeel("dbc");
         dish.setDishCost(new BigDecimal(6));
         dish.setDishUnit("碟");

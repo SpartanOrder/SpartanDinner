@@ -84,15 +84,19 @@
     </sql>
     <sql id="Base_Column_List">
     id, restaurant_Name, short_Name, tel, adderss, description, url, begin_Date, account, 
-    tax_Registration_Certificate, del_Flag, last_SubTime, subBy
+    tax_Registration_Certificate
   </sql>
     <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.spartan.model.RestaurantExample">
         select
         <if test="distinct">
             distinct
         </if>
-        <include refid="Base_Column_List"/>
-        from t_restaurant
+        <include refid="Base_Column_List"/>,
+        <include refid="com.spartan.dao.common.Column_Master_LastSubtime"/>,
+        <include refid="com.spartan.dao.common.Column_Master_CUD"/>,
+        <include refid="com.spartan.dao.UserMapper.Column_SubBy_Employee"/>
+        from t_restaurant m
+        <include refid="com.spartan.dao.UserMapper.LEFTJOIN_SubBy_Employee"/>
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
@@ -102,16 +106,20 @@
     </select>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
         select
-        <include refid="Base_Column_List"/>
-        from t_restaurant
+        <include refid="Base_Column_List"/>,
+        <include refid="com.spartan.dao.common.Column_Master_LastSubtime"/>,
+        <include refid="com.spartan.dao.common.Column_Master_CUD"/>,
+        <include refid="com.spartan.dao.UserMapper.Column_SubBy_Employee"/>
+        from t_restaurant m
+        <include refid="com.spartan.dao.UserMapper.LEFTJOIN_SubBy_Employee"/>
         where id = #{id,jdbcType=INTEGER}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from t_restaurant
+    delete m from t_restaurant m
     where id = #{id,jdbcType=INTEGER}
   </delete>
     <delete id="deleteByExample" parameterType="com.spartan.model.RestaurantExample">
-        delete from t_restaurant
+        delete m from t_restaurant m
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
@@ -126,7 +134,7 @@
       #{tel,jdbcType=VARCHAR}, #{adderss,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
       #{url,jdbcType=VARCHAR}, #{beginDate,jdbcType=DATE}, #{account,jdbcType=VARCHAR}, 
       #{taxRegistrationCertificate,jdbcType=VARCHAR}, #{delFlag,jdbcType=TINYINT}, #{lastSubtime,jdbcType=TIMESTAMP}, 
-      #{subby,jdbcType=INTEGER})
+      #{user.userId,jdbcType=INTEGER})
   </insert>
     <insert id="insertSelective" parameterType="com.spartan.model.Restaurant">
         insert into t_restaurant
@@ -167,7 +175,7 @@
             <if test="lastSubtime != null">
                 last_SubTime,
             </if>
-            <if test="subby != null">
+            <if test="user != null">
                 subBy,
             </if>
         </trim>
@@ -208,19 +216,19 @@
             <if test="lastSubtime != null">
                 #{lastSubtime,jdbcType=TIMESTAMP},
             </if>
-            <if test="subby != null">
-                #{subby,jdbcType=INTEGER},
+            <if test="user != null">
+                #{user.userId,jdbcType=INTEGER},
             </if>
         </trim>
     </insert>
     <select id="countByExample" parameterType="com.spartan.model.RestaurantExample" resultType="java.lang.Integer">
-        select count(*) from t_restaurant
+        select count(*) from t_restaurant m
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
     </select>
     <update id="updateByExampleSelective" parameterType="map">
-        update t_restaurant
+        update t_restaurant m
         <set>
             <if test="record.id != null">
                 id = #{record.id,jdbcType=INTEGER},
@@ -258,8 +266,8 @@
             <if test="record.lastSubtime != null">
                 last_SubTime = #{record.lastSubtime,jdbcType=TIMESTAMP},
             </if>
-            <if test="record.subby != null">
-                subBy = #{record.subby,jdbcType=INTEGER},
+            <if test="record.user != null">
+                subBy = #{record.user.userId,jdbcType=INTEGER},
             </if>
         </set>
         <if test="_parameter != null">
@@ -267,7 +275,7 @@
         </if>
     </update>
     <update id="updateByExample" parameterType="map">
-        update t_restaurant
+        update t_restaurant m
         set id = #{record.id,jdbcType=INTEGER},
         restaurant_Name = #{record.restaurantName,jdbcType=VARCHAR},
         short_Name = #{record.shortName,jdbcType=VARCHAR},
@@ -280,13 +288,13 @@
         tax_Registration_Certificate = #{record.taxRegistrationCertificate,jdbcType=VARCHAR},
         del_Flag = #{record.delFlag,jdbcType=TINYINT},
         last_SubTime = #{record.lastSubtime,jdbcType=TIMESTAMP},
-        subBy = #{record.subby,jdbcType=INTEGER}
+        subBy = #{record.user.userId,jdbcType=INTEGER}
         <if test="_parameter != null">
             <include refid="Update_By_Example_Where_Clause"/>
         </if>
     </update>
     <update id="updateByPrimaryKeySelective" parameterType="com.spartan.model.Restaurant">
-        update t_restaurant
+        update t_restaurant m
         <set>
             <if test="restaurantName != null">
                 restaurant_Name = #{restaurantName,jdbcType=VARCHAR},
@@ -321,14 +329,14 @@
             <if test="lastSubtime != null">
                 last_SubTime = #{lastSubtime,jdbcType=TIMESTAMP},
             </if>
-            <if test="subby != null">
-                subBy = #{subby,jdbcType=INTEGER},
+            <if test="user != null">
+                subBy = #{user.userId,jdbcType=INTEGER},
             </if>
         </set>
         where id = #{id,jdbcType=INTEGER}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.spartan.model.Restaurant">
-    update t_restaurant
+    update t_restaurant m
     set restaurant_Name = #{restaurantName,jdbcType=VARCHAR},
       short_Name = #{shortName,jdbcType=VARCHAR},
       tel = #{tel,jdbcType=VARCHAR},
@@ -340,7 +348,7 @@
       tax_Registration_Certificate = #{taxRegistrationCertificate,jdbcType=VARCHAR},
       del_Flag = #{delFlag,jdbcType=TINYINT},
       last_SubTime = #{lastSubtime,jdbcType=TIMESTAMP},
-      subBy = #{subby,jdbcType=INTEGER}
+      subBy = #{user.userId,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

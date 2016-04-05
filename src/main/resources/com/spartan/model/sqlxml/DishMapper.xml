@@ -94,17 +94,17 @@
         dish_ID, ddish_Type_ID, dish_Name, dish_Speel, dish_Cost, dish_Unit, dish_Price, dish_Description,
         dish_Cooking, dish_Img_Url
     </sql>
-    <select id="selectAll" resultMap="BaseResultMap">
-        select
-        <include refid="Base_Column_List"/>,
-        <include refid="com.spartan.dao.common.Column_Master_LastSubtime"/>,
-        <include refid="com.spartan.dao.common.Column_Master_CUD"/>,
-        <include refid="com.spartan.dao.UserMapper.Column_SubBy_Employee"/>,
-        f.dish_Type_Id,f.dish_Type_Name
-        from t_dish m
-        <include refid="com.spartan.dao.UserMapper.LEFTJOIN_SubBy_Employee"/>
-        LEFT JOIN t_dishType f on m.ddish_Type_Id=f.dish_Type_ID
-    </select>
+    <!--<select id="selectAll" resultMap="BaseResultMap">-->
+    <!--select-->
+    <!--<include refid="Base_Column_List"/>,-->
+    <!--<include refid="com.spartan.dao.common.Column_Master_LastSubtime"/>,-->
+    <!--<include refid="com.spartan.dao.common.Column_Master_CUD"/>,-->
+    <!--<include refid="com.spartan.dao.UserMapper.Column_SubBy_Employee"/>,-->
+    <!--f.dish_Type_Id,f.dish_Type_Name-->
+    <!--from t_dish m-->
+    <!--<include refid="com.spartan.dao.UserMapper.LEFTJOIN_SubBy_Employee"/>-->
+    <!--LEFT JOIN t_dishType f on m.ddish_Type_Id=f.dish_Type_ID-->
+    <!--</select>-->
     <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.spartan.model.DishExample">
         select
         <if test="distinct">
@@ -138,11 +138,11 @@
         where dish_ID = #{dishId,jdbcType=INTEGER}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-        delete from t_dish
+        delete m from t_dish m
         where dish_ID = #{dishId,jdbcType=INTEGER}
     </delete>
     <delete id="deleteByExample" parameterType="com.spartan.model.DishExample">
-        delete from t_dish
+        delete m from t_dish m
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
@@ -245,13 +245,13 @@
         </trim>
     </insert>
     <select id="countByExample" parameterType="com.spartan.model.DishExample" resultType="java.lang.Integer">
-        select count(*) from t_dish
+        select count(*) from t_dish m
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
     </select>
     <update id="updateByExampleSelective" parameterType="map">
-        update t_dish
+        update t_dish m
         <set>
             <if test="record.dishId != null">
                 dish_ID = #{record.dishId,jdbcType=INTEGER},
@@ -298,7 +298,7 @@
         </if>
     </update>
     <update id="updateByExample" parameterType="map">
-        update t_dish
+        update t_dish m
         set dish_ID = #{record.dishId,jdbcType=INTEGER},
         ddish_Type_ID = #{record.dishType.dishTypeId,jdbcType=INTEGER},
         dish_Name = #{record.dishName,jdbcType=VARCHAR},
@@ -317,7 +317,7 @@
         </if>
     </update>
     <update id="updateByPrimaryKeySelective" parameterType="com.spartan.model.Dish">
-        update t_dish
+        update t_dish m
         <set>
             <if test="dishType != null">
                 ddish_Type_ID = #{dishType.dishTypeId,jdbcType=INTEGER},
@@ -359,7 +359,7 @@
         where dish_ID = #{dishId,jdbcType=INTEGER}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.spartan.model.Dish">
-        update t_dish
+        update t_dish m
         set ddish_Type_ID = #{dishType.dishTypeId,jdbcType=INTEGER},
         dish_Name = #{dishName,jdbcType=VARCHAR},
         dish_Speel = #{dishSpeel,jdbcType=VARCHAR},

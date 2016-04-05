@@ -2,6 +2,7 @@ package com.spartan.model;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -49,7 +50,9 @@ public class EndCarteInfo {
 
     private User user;
 
-    private byte[] eciRemark;
+    private String eciRemark;
+
+    private List<EndCarteContent> endCarteContentList;
 
     public Integer getEciId() {
         return eciId;
@@ -227,11 +230,19 @@ public class EndCarteInfo {
         }
     }
 
-    public byte[] getEciRemark() {
+    public String getEciRemark() {
         return eciRemark;
     }
 
-    public void setEciRemark(byte[] eciRemark) {
+    public void setEciRemark(String eciRemark) {
         this.eciRemark = eciRemark;
+    }
+
+    public List<EndCarteContent> getEndCarteContentList() {
+        return endCarteContentList;
+    }
+
+    public void setEndCarteContentList(List<EndCarteContent> endCarteContentList) {
+        this.endCarteContentList = endCarteContentList;
     }
 }

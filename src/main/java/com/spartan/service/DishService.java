@@ -1,6 +1,5 @@
 package com.spartan.service;
 
-import com.spartan.dao.BaseMapper;
 import com.spartan.model.Dish;
 
 /**

@@ -4,7 +4,6 @@
     <resultMap id="BaseResultMap" type="com.spartan.model.User">
         <id column="user_ID" property="userId" jdbcType="INTEGER"/>
         <result column="user_Name" property="userName" jdbcType="VARCHAR"/>
-        <!--<result column="role_ID" property="roleId" jdbcType="INTEGER"/>-->
         <result column="user_state" property="userState" jdbcType="TINYINT"/>
         <result column="user_Password" property="userPassword" jdbcType="VARCHAR"/>
         <result column="salt" property="salt" jdbcType="VARCHAR"/>
@@ -12,6 +11,8 @@
         <result column="del_Flag" property="delFlag" jdbcType="TINYINT"/>
         <result column="last_SubTime" property="lastSubtime" jdbcType="TIMESTAMP"/>
         <association property="employeeInfo" resultMap="com.spartan.dao.EmployeeInfoMapper.SimpleResultMap">
+        </association>
+        <association property="role" column="role_Id" javaType="com.spartan.model.Role" resultMap="com.spartan.dao.RoleMapper.SimpleResultMap">
         </association>
         <association property="user" column="subBy" javaType="com.spartan.model.User" resultMap="com.spartan.dao.UserMapper.SimpleResultMap">
         </association>
@@ -87,17 +88,31 @@
         LEFT JOIN t_user s ON m.subby=s.user_id
         LEFT JOIN t_employeeinfo t ON s.user_ID=t.user_ID
     </sql>
+    <sql id="Self_SubBy_Employee">
+        t.employee_Id,t.employee_Name,t.user_Id
+    </sql>
+    <sql id="Self_LEFTJOIN_SubBy_Employee">
+        LEFT JOIN t_employeeinfo t ON m.user_ID=t.user_ID
+    </sql>
     <sql id="Base_Column_List">
-    user_ID, user_Name, role_ID, user_state, user_Password, salt, last_LoginIp, del_Flag, 
-    last_SubTime, subby
-  </sql>
+        user_ID, user_Name, role_ID, user_state, user_Password, salt, last_LoginIp
+   </sql>
+    <sql id="mBase_Column_List">
+        m.user_ID, m.user_Name, m.role_ID, m.user_state, m.user_Password, m.salt, m.last_LoginIp
+    </sql>
     <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.spartan.model.UserExample">
         select
         <if test="distinct">
             distinct
         </if>
-        <include refid="Base_Column_List"/>
-        from t_user
+        <include refid="mBase_Column_List"/>,
+        <include refid="com.spartan.dao.common.Column_Master_LastSubtime"/>,
+        <include refid="com.spartan.dao.common.Column_Master_CUD"/>,
+        <include refid="Self_SubBy_Employee"/>,
+        f.role_Id,f.role_Name,f.power_Ids
+        from t_user m
+        <include refid="Self_LEFTJOIN_SubBy_Employee"/>
+        LEFT JOIN t_Role f ON m.role_Id=f.role_Id
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
@@ -107,16 +122,22 @@
     </select>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
         select
-        <include refid="Base_Column_List"/>
-        from t_user
-        where user_ID = #{userId,jdbcType=INTEGER}
+        <include refid="mBase_Column_List"/>,
+        <include refid="com.spartan.dao.common.Column_Master_LastSubtime"/>,
+        <include refid="com.spartan.dao.common.Column_Master_CUD"/>,
+        <include refid="Self_SubBy_Employee"/>,
+        f.role_Id,f.role_Name,f.power_Ids
+        from t_user m
+        <include refid="Self_LEFTJOIN_SubBy_Employee"/>
+        LEFT JOIN t_Role f ON m.role_Id=f.role_Id
+        where m.user_ID = #{userId,jdbcType=INTEGER}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from t_user
+    delete m from t_user m
     where user_ID = #{userId,jdbcType=INTEGER}
   </delete>
     <delete id="deleteByExample" parameterType="com.spartan.model.UserExample">
-        delete from t_user
+        delete m from t_user m
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
@@ -126,10 +147,10 @@
       user_state, user_Password, salt, 
       last_LoginIp, del_Flag, last_SubTime, 
       subby)
-    values (#{userId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{roleId,jdbcType=INTEGER}, 
+    values (#{userId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{role.roleId,jdbcType=INTEGER},
       #{userState,jdbcType=TINYINT}, #{userPassword,jdbcType=VARCHAR}, #{salt,jdbcType=VARCHAR}, 
       #{lastLoginip,jdbcType=VARCHAR}, #{delFlag,jdbcType=TINYINT}, #{lastSubtime,jdbcType=TIMESTAMP}, 
-      #{subby,jdbcType=INTEGER})
+      #{user.userId,jdbcType=INTEGER})
   </insert>
     <insert id="insertSelective" parameterType="com.spartan.model.User">
         insert into t_user
@@ -140,7 +161,7 @@
             <if test="userName != null">
                 user_Name,
             </if>
-            <if test="roleId != null">
+            <if test="role != null">
                 role_ID,
             </if>
             <if test="userState != null">
@@ -161,7 +182,7 @@
             <if test="lastSubtime != null">
                 last_SubTime,
             </if>
-            <if test="subby != null">
+            <if test="user != null">
                 subby,
             </if>
         </trim>
@@ -172,8 +193,8 @@
             <if test="userName != null">
                 #{userName,jdbcType=VARCHAR},
             </if>
-            <if test="roleId != null">
-                #{roleId,jdbcType=INTEGER},
+            <if test="role != null">
+                #{role.roleId,jdbcType=INTEGER},
             </if>
             <if test="userState != null">
                 #{userState,jdbcType=TINYINT},
@@ -193,19 +214,19 @@
             <if test="lastSubtime != null">
                 #{lastSubtime,jdbcType=TIMESTAMP},
             </if>
-            <if test="subby != null">
-                #{subby,jdbcType=INTEGER},
+            <if test="user != null">
+                #{user.userId,jdbcType=INTEGER},
             </if>
         </trim>
     </insert>
     <select id="countByExample" parameterType="com.spartan.model.UserExample" resultType="java.lang.Integer">
-        select count(*) from t_user
+        select count(*) from t_user m
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
     </select>
     <update id="updateByExampleSelective" parameterType="map">
-        update t_user
+        update t_user m
         <set>
             <if test="record.userId != null">
                 user_ID = #{record.userId,jdbcType=INTEGER},
@@ -213,8 +234,8 @@
             <if test="record.userName != null">
                 user_Name = #{record.userName,jdbcType=VARCHAR},
             </if>
-            <if test="record.roleId != null">
-                role_ID = #{record.roleId,jdbcType=INTEGER},
+            <if test="record.role != null">
+                role_ID = #{record.role.roleId,jdbcType=INTEGER},
             </if>
             <if test="record.userState != null">
                 user_state = #{record.userState,jdbcType=TINYINT},
@@ -234,8 +255,8 @@
             <if test="record.lastSubtime != null">
                 last_SubTime = #{record.lastSubtime,jdbcType=TIMESTAMP},
             </if>
-            <if test="record.subby != null">
-                subby = #{record.subby,jdbcType=INTEGER},
+            <if test="record.user != null">
+                subby = #{record.user.userId,jdbcType=INTEGER},
             </if>
         </set>
         <if test="_parameter != null">
@@ -243,29 +264,29 @@
         </if>
     </update>
     <update id="updateByExample" parameterType="map">
-        update t_user
+        update t_user m
         set user_ID = #{record.userId,jdbcType=INTEGER},
         user_Name = #{record.userName,jdbcType=VARCHAR},
-        role_ID = #{record.roleId,jdbcType=INTEGER},
+        role_ID = #{record.role.roleId,jdbcType=INTEGER},
         user_state = #{record.userState,jdbcType=TINYINT},
         user_Password = #{record.userPassword,jdbcType=VARCHAR},
         salt = #{record.salt,jdbcType=VARCHAR},
         last_LoginIp = #{record.lastLoginip,jdbcType=VARCHAR},
         del_Flag = #{record.delFlag,jdbcType=TINYINT},
         last_SubTime = #{record.lastSubtime,jdbcType=TIMESTAMP},
-        subby = #{record.subby,jdbcType=INTEGER}
+        subby = #{record.user.userId,jdbcType=INTEGER}
         <if test="_parameter != null">
             <include refid="Update_By_Example_Where_Clause"/>
         </if>
     </update>
     <update id="updateByPrimaryKeySelective" parameterType="com.spartan.model.User">
-        update t_user
+        update t_user m
         <set>
             <if test="userName != null">
                 user_Name = #{userName,jdbcType=VARCHAR},
             </if>
-            <if test="roleId != null">
-                role_ID = #{roleId,jdbcType=INTEGER},
+            <if test="role != null">
+                role_ID = #{role.roleId,jdbcType=INTEGER},
             </if>
             <if test="userState != null">
                 user_state = #{userState,jdbcType=TINYINT},
@@ -285,23 +306,23 @@
             <if test="lastSubtime != null">
                 last_SubTime = #{lastSubtime,jdbcType=TIMESTAMP},
             </if>
-            <if test="subby != null">
-                subby = #{subby,jdbcType=INTEGER},
+            <if test="user != null">
+                subby = #{user.userId,jdbcType=INTEGER},
             </if>
         </set>
         where user_ID = #{userId,jdbcType=INTEGER}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.spartan.model.User">
-    update t_user
+    update t_user m
     set user_Name = #{userName,jdbcType=VARCHAR},
-      role_ID = #{roleId,jdbcType=INTEGER},
+      role_ID = #{role.roleId,jdbcType=INTEGER},
       user_state = #{userState,jdbcType=TINYINT},
       user_Password = #{userPassword,jdbcType=VARCHAR},
       salt = #{salt,jdbcType=VARCHAR},
       last_LoginIp = #{lastLoginip,jdbcType=VARCHAR},
       del_Flag = #{delFlag,jdbcType=TINYINT},
       last_SubTime = #{lastSubtime,jdbcType=TIMESTAMP},
-      subby = #{subby,jdbcType=INTEGER}
+      subby = #{user.userId,jdbcType=INTEGER}
     where user_ID = #{userId,jdbcType=INTEGER}
   </update>
 </mapper>
