@@ -96,7 +96,7 @@
         f.ECI_ID,f.ECI_Swift_Number,fi.dish_Id,fi.dish_Name,fi.dish_Speel,fi.dish_Price,fi.dish_Img_Url
         from t_endcartecontent m
         <include refid="com.spartan.dao.UserMapper.LEFTJOIN_SubBy_Employee"/>
-        LEFT JOIN t_endCarteInfo f ON m.ECI_ID=f.ECC_ECI_ID
+        LEFT JOIN t_endCarteInfo f ON m.ECC_ECI_ID=f.ECI_ID
         LEFT JOIN t_dish fi ON m.ECC_Dish_ID=fi.dish_Id
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
@@ -114,7 +114,7 @@
         f.ECI_ID,f.ECI_Swift_Number,fi.dish_Id,fi.dish_Name,fi.dish_Speel,fi.dish_Price,fi.dish_Img_Url
         from t_endcartecontent m
         <include refid="com.spartan.dao.UserMapper.LEFTJOIN_SubBy_Employee"/>
-        LEFT JOIN t_endCarteInfo f ON m.ECI_ID=f.ECC_ECI_ID
+        LEFT JOIN t_endCarteInfo f ON m.ECC_ECI_ID=f.ECI_ID
         LEFT JOIN t_dish fi ON m.ECC_Dish_ID=fi.dish_Id
         where m.ECC_ID = #{eccId,jdbcType=INTEGER}
     </select>
@@ -258,7 +258,7 @@
     <update id="updateByPrimaryKeySelective" parameterType="com.spartan.model.EndCarteContent">
         update t_endcartecontent m
         <set>
-            <if test="endCarteInfo.eciId != null">
+            <if test="endCarteInfo!= null">
                 ECC_ECI_ID = #{endCarteInfo.eciId,jdbcType=INTEGER},
             </if>
             <if test="dish!= null">

@@ -9,109 +9,42 @@
 #
 # USE SpartanDinner;
 
-DROP INDEX customer_Tel ON t_Customer;
-
-DROP INDEX customer_Name ON t_Customer;
 
 DROP TABLE IF EXISTS t_Customer;
 
-DROP INDEX department_department_Name ON t_Department;
-
 DROP TABLE IF EXISTS t_Department;
-
-DROP INDEX dinningTable_TableName ON t_DinningTable;
 
 DROP TABLE IF EXISTS t_DinningTable;
 
-DROP INDEX dish_Dish_Price ON t_Dish;
-
-DROP INDEX dish_dishType_Id ON t_Dish;
-
-DROP INDEX dish_Dish_Name ON t_Dish;
-
 DROP TABLE IF EXISTS t_Dish;
-
-DROP INDEX dishType_dishType_Name ON t_DishType;
 
 DROP TABLE IF EXISTS t_DishType;
 
-DROP INDEX employeeinfo_tel ON t_EmployeeInfo;
-
-DROP INDEX employeeinfo_employee_Name ON t_EmployeeInfo;
-
-DROP INDEX employeeinfo_user_id ON t_EmployeeInfo;
-
 DROP TABLE IF EXISTS t_EmployeeInfo;
-
-DROP INDEX Index_ECCECIID ON t_EndCarteContent;
 
 DROP TABLE IF EXISTS t_EndCarteContent;
 
-DROP INDEX ECI_ECIPaidAmount ON t_EndCarteInfo;
-
-DROP INDEX ECI_ECIConsumeAmount ON t_EndCarteInfo;
-
-DROP INDEX ECI_ECIBillTime ON t_EndCarteInfo;
-
-DROP INDEX ECI_ECIRepastTime ON t_EndCarteInfo;
-
-DROP INDEX ECI_ECICashierId ON t_EndCarteInfo;
-
-DROP INDEX ECI_ECIWaiterId ON t_EndCarteInfo;
-
-DROP INDEX ECI_ECITableID ON t_EndCarteInfo;
-
-DROP INDEX ECI_ECISwiftNumber ON t_EndCarteInfo;
-
 DROP TABLE IF EXISTS t_EndCarteInfo;
-
-DROP INDEX memberinfo_memtel ON t_MemberInfo;
-
-DROP INDEX memberinfo_UserName ON t_MemberInfo;
-
-DROP INDEX memberinfo_Name ON t_MemberInfo;
 
 DROP TABLE IF EXISTS t_MemberInfo;
 
 DROP TABLE IF EXISTS t_MemberType;
 
-DROP INDEX OCC_OCCOCIID ON t_OnAccountCarteContent;
-
 DROP TABLE IF EXISTS t_OnAccountCarteContent;
-
-DROP INDEX OCI_OCIWaiterID ON t_OnAccountCarteInfo;
-
-DROP INDEX OCI_OCITableId ON t_OnAccountCarteInfo;
-
-DROP INDEX OCI_OCISwiftNumber ON t_OnAccountCarteInfo;
 
 DROP TABLE IF EXISTS t_OnAccountCarteInfo;
 
 DROP TABLE IF EXISTS t_Power;
 
-DROP INDEX region_region_Name ON t_Region;
-
 DROP TABLE IF EXISTS t_Region;
 
 DROP TABLE IF EXISTS t_Restaurant;
 
-DROP INDEX Index_roleName ON t_Role;
-
 DROP TABLE IF EXISTS t_Role;
-
-DROP INDEX TCI_TCISwiftNumber ON t_TempCarteContent;
 
 DROP TABLE IF EXISTS t_TempCarteContent;
 
-DROP INDEX TCI_TCIWaiterId ON t_TempCarteInfo;
-
-DROP INDEX TCI_TCITableId ON t_TempCarteInfo;
-
-DROP INDEX TCI_TCISwiftNumber ON t_TempCarteInfo;
-
 DROP TABLE IF EXISTS t_TempCarteInfo;
-
-DROP INDEX user_user_Name ON t_User;
 
 DROP TABLE IF EXISTS t_User;
 
@@ -442,7 +375,7 @@ CREATE TABLE t_EndCarteInfo
 	ECI_Discount NUMERIC(4,2) UNSIGNED COMMENT '折扣',
 	ECI_Paid_Amount NUMERIC(10,2) UNSIGNED NOT NULL
 	COMMENT '实收金额',
-	ECI_Remark VARBINARY(100) COMMENT '餐单备注',
+	ECI_Remark VARCHAR(100) COMMENT '餐单备注',
 	del_Flag TINYINT NOT NULL DEFAULT 0
 	COMMENT '删除标记',
 	last_SubTime TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后
@@ -666,7 +599,7 @@ CREATE TABLE t_OnAccountCarteInfo
 	OCI_Discount NUMERIC(4,2) UNSIGNED COMMENT '折扣',
 	OCI_Paid_Amount NUMERIC(10,2) UNSIGNED NOT NULL
 	COMMENT '实收金额',
-	OCI_Remark VARBINARY(100) COMMENT '餐单备注',
+	OCI_Remark VARCHAR(100) COMMENT '餐单备注',
 	del_Flag TINYINT NOT NULL DEFAULT 0
 	COMMENT '删除标记',
 	last_SubTime TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后
@@ -828,6 +761,7 @@ CREATE UNIQUE INDEX Index_roleName ON t_Role
 	role_Name
 );
 
+
 /*==============================================================*/
 /* Table: t_TempCarteContent                                    */
 /*==============================================================*/
@@ -835,8 +769,8 @@ CREATE TABLE t_TempCarteContent
 (
 	TCC_ID INT UNSIGNED NOT NULL AUTO_INCREMENT
 	COMMENT '餐单内容ID',
-	TCI_Swift_Number VARCHAR(20) NOT NULL
-	COMMENT '餐单流水号',
+	TCC_TCI_ID INT NOT NULL
+	COMMENT '餐单信息ID',
 	TCC_Dish_ID INT NOT NULL
 	COMMENT '菜肴ID',
 	TCC_Dish_Num INT NOT NULL
@@ -846,8 +780,7 @@ CREATE TABLE t_TempCarteContent
 	TCC_Specil_Desc VARCHAR(20) COMMENT '特殊菜式',
 	del_Flag TINYINT NOT NULL DEFAULT 0
 	COMMENT '删除标记',
-	last_SubTime TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后
-提交时间',
+	last_SubTime TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后提交时间',
 	subBy INT NOT NULL
 	COMMENT '提交人',
 	PRIMARY KEY (TCC_ID)
@@ -856,12 +789,13 @@ CREATE TABLE t_TempCarteContent
 ALTER TABLE t_TempCarteContent COMMENT '临时消费餐单内容';
 
 /*==============================================================*/
-/* Index: TCI_TCISwiftNumber                                    */
+/* Index: TCI_TCITCCID                                          */
 /*==============================================================*/
-CREATE UNIQUE INDEX TCI_TCISwiftNumber ON t_TempCarteContent
+CREATE INDEX TCI_TCITCCID ON t_TempCarteContent
 (
-	TCI_Swift_Number
+	TCC_TCI_ID
 );
+
 
 /*==============================================================*/
 /* Table: t_TempCarteInfo                                       */
@@ -889,7 +823,7 @@ CREATE TABLE t_TempCarteInfo
 	TCI_Cost_Amount NUMERIC(10,2) UNSIGNED NOT NULL
 	COMMENT '实收金额',
 	TCI_Discount NUMERIC(4,2) UNSIGNED COMMENT '折扣',
-	TCI_Remark VARBINARY(100) COMMENT '餐单备注',
+	TCI_Remark VARCHAR(100) COMMENT '餐单备注',
 	del_Flag TINYINT NOT NULL DEFAULT 0
 	COMMENT '删除标记',
 	last_SubTime DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后

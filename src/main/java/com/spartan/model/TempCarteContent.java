@@ -13,7 +13,7 @@ import java.util.Date;
 public class TempCarteContent {
     private Integer tccId;
 
-    private String tciSwiftNumber;
+    private TempCarteInfo tempCarteInfo;
 
     private Dish dish;
 
@@ -37,12 +37,16 @@ public class TempCarteContent {
         this.tccId = tccId;
     }
 
-    public String getTciSwiftNumber() {
-        return tciSwiftNumber;
+    public TempCarteInfo getTempCarteInfo() {
+        return tempCarteInfo;
     }
 
-    public void setTciSwiftNumber(String tciSwiftNumber) {
-        this.tciSwiftNumber = tciSwiftNumber == null ? null : tciSwiftNumber.trim();
+    public void setTempCarteInfo(TempCarteInfo tempCarteInfo) {
+        if (tempCarteInfo.getTciId() == null) {
+            this.tempCarteInfo = null;
+        } else {
+            this.tempCarteInfo = tempCarteInfo;
+        }
     }
 
     public Dish getDish() {
@@ -113,7 +117,7 @@ public class TempCarteContent {
     public String toString() {
         return "TempCarteContent{" +
                 "tccId=" + tccId +
-                ", tciSwiftNumber='" + tciSwiftNumber + '\'' +
+                ", tempCarteInfo=" + tempCarteInfo +
                 ", dish=" + dish +
                 ", tccDishNum=" + tccDishNum +
                 ", tccTotalPrice=" + tccTotalPrice +

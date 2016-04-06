@@ -1,6 +1,5 @@
-package com.spartan.db.ec;
+package com.spartan.db.tc;
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.spartan.dao.EndCarteContentMapper;
 import com.spartan.dao.EndCarteInfoMapper;
@@ -26,7 +25,7 @@ import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)     //表示继承了SpringJUnit4ClassRunner类
 @ContextConfiguration(locations = {"classpath:ApplicationContext.xml", "classpath:spring-mybatis.xml"})
-public class EndCarteSelect {
+public class TempCarteSelect {
     @Resource
     private EndCarteContentMapper endCarteContentMapper;
     @Resource

@@ -2,6 +2,7 @@ package com.spartan.model;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -44,6 +45,8 @@ public class TempCarteInfo {
     private User user;
 
     private String tciRemark;
+
+    private List<TempCarteContent> tempCarteContentList;
 
     public Integer getTciId() {
         return tciId;
@@ -201,6 +204,14 @@ public class TempCarteInfo {
         this.tciRemark = tciRemark;
     }
 
+    public List<TempCarteContent> getTempCarteContentList() {
+        return tempCarteContentList;
+    }
+
+    public void setTempCarteContentList(List<TempCarteContent> tempCarteContentList) {
+        this.tempCarteContentList = tempCarteContentList;
+    }
+
     @Override
     public String toString() {
         return "TempCarteInfo{" +
@@ -221,6 +232,7 @@ public class TempCarteInfo {
                 ", lastSubtime=" + lastSubtime +
                 ", user=" + user +
                 ", tciRemark='" + tciRemark + '\'' +
+                ", tempCarteContentList=" + tempCarteContentList +
                 '}';
     }
 }

@@ -1,53 +1,31 @@
 {
-  "eciDishNums": 4,
-  "eciBillTime": 1459923617000,
-  "eciSwiftNumber": "16-04-06-02-20-17044",
-  "eciState": 1,
-  "endCarteContentList": [
-    {
-      "dish": {
-        "dishPrice": 10.00,
-        "dishName": "菜心test48",
-        "dishId": 48
-      },
-      "eccTotalPrice": 10.00,
-      "eccId": 1369
+  "lastSubtime": 1459923610000,
+  "dish": {
+    "dishPrice": 10.00,
+    "dishImgUrl": "",
+    "dishSpeel": "dbc",
+    "dishName": "芹菜14",
+    "dishId": 314
+  },
+  "endCarteInfo": {
+    "eciWaiter": {
+      "employeeId": 1,
+      "employeeName": "张钧泳"
     },
-    {
-      "dish": {
-        "dishPrice": 10.00,
-        "dishName": "菜心test45",
-        "dishId": 45
-      },
-      "eccTotalPrice": 10.00,
-      "eccId": 1370
-    },
-    {
-      "dish": {
-        "dishPrice": 10.00,
-        "dishName": "菜心test71",
-        "dishId": 71
-      },
-      "eccTotalPrice": 10.00,
-      "eccId": 1371
-    },
-    {
-      "dish": {
-        "dishPrice": 10.00,
-        "dishName": "鱼香茄子煲五64",
-        "dishId": 264
-      },
-      "eccTotalPrice": 10.00,
-      "eccId": 1372
+    "eciSwiftNumber": "16-04-06-02-20-17004",
+    "eciId": 4
+  },
+  "eccSpecilDesc": "004004",
+  "eccDishNum": 1,
+  "eccTotalPrice": 10.00,
+  "eccId": 1256,
+  "user": {
+    "userId": 1,
+    "userName": "张钧泳",
+    "employeeInfo": {
+      "employeeId": 1,
+      "employeeName": "张钧泳"
     }
-  ],
-  "lastSubtime": 1459923617000,
-  "eciPaidAmount": 100.00,
-  "eciConsumeAmount": 100.00,
-  "eciAmountPeoplo": 10,
-  "eciDiscount": 10.00,
-  "eciRepastTime": 1459923618000,
-  "eciId": 44,
-  "eciPayMethod": "微信支付",
+  },
   "delFlag": 1
 }

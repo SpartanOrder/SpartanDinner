@@ -1,4 +1,4 @@
-package com.spartan.db.ec;
+package com.spartan.db.tc;
 
 import com.spartan.dao.DishMapper;
 import com.spartan.dao.EndCarteContentMapper;
@@ -26,7 +26,7 @@ import java.util.Random;
 
 @RunWith(SpringJUnit4ClassRunner.class)     //表示继承了SpringJUnit4ClassRunner类
 @ContextConfiguration(locations = {"classpath:ApplicationContext.xml", "classpath:spring-mybatis.xml"})
-public class EndCarteUpdate {
+public class TempCarteUpdate {
     @Resource
     private EndCarteContentMapper endCarteContentMapper;
     @Resource

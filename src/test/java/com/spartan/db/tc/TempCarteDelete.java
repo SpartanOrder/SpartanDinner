@@ -1,9 +1,8 @@
-package com.spartan.db.ec;
+package com.spartan.db.tc;
 
 import com.spartan.dao.EndCarteContentMapper;
 import com.spartan.dao.EndCarteInfoMapper;
 import com.spartan.model.EndCarteContentExample;
-import com.spartan.model.EndCarteInfo;
 import com.spartan.model.EndCarteInfoExample;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,7 +21,7 @@ import javax.annotation.Resource;
 
 @RunWith(SpringJUnit4ClassRunner.class)     //表示继承了SpringJUnit4ClassRunner类
 @ContextConfiguration(locations = {"classpath:ApplicationContext.xml", "classpath:spring-mybatis.xml"})
-public class EndCarteDelete {
+public class TempCarteDelete {
     @Resource
     private EndCarteContentMapper endCarteContentMapper;
     @Resource
