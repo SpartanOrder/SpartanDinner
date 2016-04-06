@@ -75,7 +75,7 @@
         </where>
     </sql>
     <sql id="Base_Column_List">
-    mem_Type_ID, mem_Type_Name, mem_Type_Discount, mem_Type_Desc
+    m.mem_Type_ID, m.mem_Type_Name, m.mem_Type_Discount, m.mem_Type_Desc
   </sql>
     <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.spartan.model.MemberTypeExample">
         select

@@ -2,6 +2,7 @@ package com.spartan.model;
 
 import java.math.BigDecimal;
 import java.util.Date;
+
 /**
  * Created with IntelliJ IDEA.
  * @author Wind
@@ -110,5 +111,20 @@ public class OnAccountCarteContent {
         } else {
             this.user = user;
         }
+    }
+
+    @Override
+    public String toString() {
+        return "OnAccountCarteContent{" +
+                "occId=" + occId +
+                ", onAccountCarteInfo=" + onAccountCarteInfo +
+                ", dish=" + dish +
+                ", occDishNum=" + occDishNum +
+                ", occTotalPrice=" + occTotalPrice +
+                ", occSpecilDesc='" + occSpecilDesc + '\'' +
+                ", delFlag=" + delFlag +
+                ", lastSubtime=" + lastSubtime +
+                ", user=" + user +
+                '}';
     }
 }

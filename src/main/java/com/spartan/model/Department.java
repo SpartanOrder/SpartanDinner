@@ -78,6 +78,18 @@ public class Department {
         } else {
             this.user = user;
         }
+    }
 
+    @Override
+    public String toString() {
+        return "Department{" +
+                "departmentId=" + departmentId +
+                ", departmentName='" + departmentName + '\'' +
+                ", description='" + description + '\'' +
+                ", remark='" + remark + '\'' +
+                ", delFlag=" + delFlag +
+                ", lastSubtime=" + lastSubtime +
+                ", user=" + user +
+                '}';
     }
 }

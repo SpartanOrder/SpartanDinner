@@ -216,4 +216,29 @@ public class OnAccountCarteInfo {
     public void setOciRemark(String ociRemark) {
         this.ociRemark = ociRemark;
     }
+
+
+    @Override
+    public String toString() {
+        return "OnAccountCarteInfo{" +
+                "ociId=" + ociId +
+                ", ociSwiftNumber='" + ociSwiftNumber + '\'' +
+                ", ociState=" + ociState +
+                ", dinningTable=" + dinningTable +
+                ", ociWaiter=" + ociWaiter +
+                ", ociCashier=" + ociCashier +
+                ", customer=" + customer +
+                ", memberInfo=" + memberInfo +
+                ", ociDishNums=" + ociDishNums +
+                ", ociAmountPeoplo=" + ociAmountPeoplo +
+                ", ociRepastTime=" + ociRepastTime +
+                ", ociConsumeAmount=" + ociConsumeAmount +
+                ", ociDiscount=" + ociDiscount +
+                ", ociPaidAmount=" + ociPaidAmount +
+                ", delFlag=" + delFlag +
+                ", lastSubtime=" + lastSubtime +
+                ", user=" + user +
+                ", ociRemark='" + ociRemark + '\'' +
+                '}';
+    }
 }

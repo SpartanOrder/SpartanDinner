@@ -75,7 +75,7 @@
         </where>
     </sql>
     <sql id="Base_Column_List">
-    dish_Type_ID, dish_Type_Name, dish_Type_Desc, dish_Type_Status, dish_Type_orderId
+    m.dish_Type_ID, m.dish_Type_Name, m.dish_Type_Desc, m.dish_Type_Status, m.dish_Type_orderId
   </sql>
     <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.spartan.model.DishTypeExample">
         select

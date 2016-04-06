@@ -82,7 +82,7 @@
         </where>
     </sql>
     <sql id="Base_Column_List">
-    ECC_ID, ECC_ECI_ID, ECC_Dish_ID, ECC_Dish_Num, ECC_Total_Price, ECC_Specil_Desc
+    m.ECC_ID, m.ECC_ECI_ID, m.ECC_Dish_ID, m.ECC_Dish_Num, m.ECC_Total_Price, m.ECC_Specil_Desc
   </sql>
     <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.spartan.model.EndCarteContentExample">
         select
@@ -116,7 +116,7 @@
         <include refid="com.spartan.dao.UserMapper.LEFTJOIN_SubBy_Employee"/>
         LEFT JOIN t_endCarteInfo f ON m.ECI_ID=f.ECC_ECI_ID
         LEFT JOIN t_dish fi ON m.ECC_Dish_ID=fi.dish_Id
-        where ECC_ID = #{eccId,jdbcType=INTEGER}
+        where m.ECC_ID = #{eccId,jdbcType=INTEGER}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete m from t_endcartecontent m

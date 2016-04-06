@@ -106,4 +106,20 @@ public class Power {
             this.user = user;
         }
     }
+
+    @Override
+    public String toString() {
+        return "Power{" +
+                "powerId=" + powerId +
+                ", powerName='" + powerName + '\'' +
+                ", powerType='" + powerType + '\'' +
+                ", priority=" + priority +
+                ", parentId=" + parentId +
+                ", parentIds='" + parentIds + '\'' +
+                ", permission='" + permission + '\'' +
+                ", delFlag=" + delFlag +
+                ", lastSubtime=" + lastSubtime +
+                ", user=" + user +
+                '}';
+    }
 }

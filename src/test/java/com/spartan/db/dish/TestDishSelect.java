@@ -40,21 +40,12 @@ public class TestDishSelect {
         }
     }
 
-    //    @Test
-    //    public void testSelectAll() {
-    //        List<Dish> list = dishMapper.selectAll();
-    //        System.out.println(list.size());
-    //        for (Dish dish : list) {
-    //            System.out.println(dish.toString());
-    //        }
-    //    }
-
     @Test
     public void testCountByExample() {
         DishExample dishExample = new DishExample();
         DishExample.Criteria criteria = dishExample.createCriteria();
         //        criteria.andDDishTypeIdLessThan(1000);
-       criteria.andDishIdEqualTo(1);
+        criteria.andDishIdEqualTo(1);
         //        criteria.andDishIdBetween(1, 1000);
         int size = dishMapper.countByExample(dishExample);
         System.out.println(size);

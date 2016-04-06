@@ -91,8 +91,8 @@
         </where>
     </sql>
     <sql id="Base_Column_List">
-        dish_ID, ddish_Type_ID, dish_Name, dish_Speel, dish_Cost, dish_Unit, dish_Price, dish_Description,
-        dish_Cooking, dish_Img_Url
+        m.dish_ID, m.ddish_Type_ID, m.dish_Name, m.dish_Speel, m.dish_Cost, m.dish_Unit, m.dish_Price, m.dish_Description,
+        m.dish_Cooking, m.dish_Img_Url
     </sql>
     <!--<select id="selectAll" resultMap="BaseResultMap">-->
     <!--select-->

@@ -104,9 +104,9 @@
         </where>
     </sql>
     <sql id="Base_Column_List">
-    OCI_ID, OCI_Swift_Number, OCI_State, OCI_Table_ID, OCI_Waiter_ID, OCI_Cashier_ID,
-    OCI_Customer_ID, OCI_Mem_ID, OCI_Dish_Nums, OCI_Amount_Peoplo, OCI_Repast_Time, OCI_Consume_Amount,
-    OCI_Discount, OCI_Paid_Amount, OCI_Remark, del_Flag, last_SubTime, subBy
+    m.OCI_ID, m.OCI_Swift_Number, m.OCI_State, m.OCI_Table_ID, m.OCI_Waiter_ID, m.OCI_Cashier_ID,
+    m.OCI_Customer_ID, m.OCI_Mem_ID, m.OCI_Dish_Nums, m.OCI_Amount_Peoplo, m.OCI_Repast_Time, m.OCI_Consume_Amount,
+    m.OCI_Discount, m.OCI_Paid_Amount, m.OCI_Remark
   </sql>
     <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.spartan.model.OnAccountCarteInfoExample">
         select

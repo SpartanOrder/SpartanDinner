@@ -196,7 +196,6 @@ public class EmployeeInfo {
         } else {
             this.user = user;
         }
-
     }
 
     @Override
@@ -219,7 +218,7 @@ public class EmployeeInfo {
                 ", fireDate=" + fireDate +
                 ", delFlag=" + delFlag +
                 ", lastSubtime=" + lastSubtime +
-                ", dish=" + user +
+                ", user=" + user +
                 '}';
     }
 }

@@ -79,7 +79,7 @@
         </where>
     </sql>
     <sql id="Base_Column_List">
-    table_ID, region_ID, table_Name, table_State, table_Desc, max_Consumer, table_Remark
+    m.table_ID, m.region_ID, m.table_Name, m.table_State, m.table_Desc, m.max_Consumer, m.table_Remark
   </sql>
     <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.spartan.model.DinningTableExample">
         select

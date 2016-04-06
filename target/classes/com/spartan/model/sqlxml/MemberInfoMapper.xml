@@ -97,8 +97,8 @@
         </where>
     </sql>
     <sql id="Base_Column_List">
-    mem_ID, mem_Type_ID, mem_Name, mem_User_Name, mem_Password, mem_Tel, mem_Phone, mem_Address, 
-    mem_Gender, mem_Money, mem_Integral, mem_Birthday, mem_Begin_Time, mem_End_Time,
+    m.mem_ID, m.mem_Type_ID, m.mem_Name, m.mem_User_Name, m.mem_Password, m.mem_Tel, m.mem_Phone, m.mem_Address,
+    m.mem_Gender, m.mem_Money, m.mem_Integral, m.mem_Birthday, m.mem_Begin_Time, m.mem_End_Time,
   </sql>
     <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.spartan.model.MemberInfoExample">
         select

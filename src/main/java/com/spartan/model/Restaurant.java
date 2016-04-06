@@ -136,4 +136,23 @@ public class Restaurant {
             this.user = user;
         }
     }
+
+    @Override
+    public String toString() {
+        return "Restaurant{" +
+                "id=" + id +
+                ", restaurantName='" + restaurantName + '\'' +
+                ", shortName='" + shortName + '\'' +
+                ", tel='" + tel + '\'' +
+                ", adderss='" + adderss + '\'' +
+                ", description='" + description + '\'' +
+                ", url='" + url + '\'' +
+                ", beginDate=" + beginDate +
+                ", account='" + account + '\'' +
+                ", taxRegistrationCertificate='" + taxRegistrationCertificate + '\'' +
+                ", delFlag=" + delFlag +
+                ", lastSubtime=" + lastSubtime +
+                ", user=" + user +
+                '}';
+    }
 }

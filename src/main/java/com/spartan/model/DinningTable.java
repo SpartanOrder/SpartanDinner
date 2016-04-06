@@ -112,6 +112,21 @@ public class DinningTable {
         } else {
             this.user = user;
         }
+    }
 
+    @Override
+    public String toString() {
+        return "DinningTable{" +
+                "tableId=" + tableId +
+                ", region=" + region +
+                ", tableName='" + tableName + '\'' +
+                ", tableState=" + tableState +
+                ", tableDesc='" + tableDesc + '\'' +
+                ", maxConsumer=" + maxConsumer +
+                ", tableRemark='" + tableRemark + '\'' +
+                ", delFlag=" + delFlag +
+                ", lastSubtime=" + lastSubtime +
+                ", user=" + user +
+                '}';
     }
 }

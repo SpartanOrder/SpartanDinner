@@ -77,7 +77,7 @@
         </where>
     </sql>
     <sql id="Base_Column_List">
-    power_Id, power_Name, power_Type, priority, parent_Id, parent_Ids, permission
+    m.power_Id, m.power_Name, m.power_Type, m.priority, m.parent_Id, m.parent_Ids, m.permission
   </sql>
     <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.spartan.model.PowerExample">
         select

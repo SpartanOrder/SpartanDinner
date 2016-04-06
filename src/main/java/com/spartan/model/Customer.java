@@ -82,14 +82,14 @@ public class Customer {
 
     @Override
     public String toString() {
-        return "customer{" +
+        return "Customer{" +
                 "customerId=" + customerId +
                 ", customerName='" + customerName + '\'' +
                 ", customerTel='" + customerTel + '\'' +
                 ", customerGender=" + customerGender +
                 ", delFlag=" + delFlag +
                 ", lastSubtime=" + lastSubtime +
-                ", dish=" + user +
+                ", user=" + user +
                 '}';
     }
 }

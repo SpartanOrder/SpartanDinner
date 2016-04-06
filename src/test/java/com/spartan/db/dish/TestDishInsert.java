@@ -1,5 +1,6 @@
 package com.spartan.db.dish;
 
+import com.spartan.dao.DishMapper;
 import com.spartan.model.Dish;
 import com.spartan.model.DishType;
 import com.spartan.model.User;
@@ -16,29 +17,30 @@ import java.math.BigDecimal;
 @ContextConfiguration(locations = {"classpath:ApplicationContext.xml", "classpath:spring-mybatis.xml"})
 public class TestDishInsert {
     @Resource
-    private DishService dishService;
+    private DishMapper dishMapper;
 
     @Test
     public void testInsertSelectiveBatch() {
-        for (int i = 1; i <= 100; i++) {
+        for (int i = 0; i <= 1; i++) {
             Dish dish = new Dish();
+            dish.setDishId(401 + i);
             DishType dishType = new DishType();
             dishType.setDishTypeId(2);
             dishType.setDishTypeName("青菜");
             dish.setDishType(dishType);
-            dish.setDishName("菜心二" + i);
+            dish.setDishName("韭菜150" + i);
             dish.setDishSpeel("dbc");
             dish.setDishCost(new BigDecimal(6));
             dish.setDishUnit("碟");
             dish.setDishPrice(new BigDecimal(10));
             dish.setDishDescription("清炒");
             dish.setDishCooking("清炒");
-//            dish.setDishImgUrl("test.jpg");
+            //            dish.setDishImgUrl("test.jpg");
             dish.setDelFlag(new Byte((byte) 1));
             User user = new User();
             user.setUserId(2);
             dish.setUser(user);
-            dishService.insertSelective(dish);
+            dishMapper.insertSelective(dish);
         }
     }
 
@@ -46,6 +48,7 @@ public class TestDishInsert {
     public void testInsertBatch() {
         for (int i = 1; i <= 100; i++) {
             Dish dish = new Dish();
+            dish.setDishId(200 + i);
             DishType dishType = new DishType();
             dishType.setDishTypeId(1);
             dishType.setDishTypeName("热卖");
@@ -62,7 +65,7 @@ public class TestDishInsert {
             User user = new User();
             user.setUserId(1);
             dish.setUser(user);
-            dishService.insert(dish);
+            dishMapper.insert(dish);
         }
     }
 

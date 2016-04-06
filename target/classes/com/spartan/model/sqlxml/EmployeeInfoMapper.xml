@@ -88,8 +88,8 @@
         </where>
     </sql>
     <sql id="Base_Column_List">
-        employee_ID, user_Id, employee_Name, employee_Sex, birth_Date, ID_Card, tel, fixed_Phone,
-        degree, description, address, department_Id, salary, employee_Date, fire_Date
+        m.employee_ID, m.user_Id, m.employee_Name, m.employee_Sex, m.birth_Date, m.ID_Card, m.tel, m.fixed_Phone,
+        m.degree, m.description, m.address, m.department_Id, m.salary, m.employee_Date, m.fire_Date
     </sql>
     <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.spartan.model.EmployeeInfoExample">
         select

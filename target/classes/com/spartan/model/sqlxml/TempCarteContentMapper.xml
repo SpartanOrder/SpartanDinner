@@ -75,8 +75,7 @@
         </where>
     </sql>
     <sql id="Base_Column_List">
-    TCC_ID, TCI_Swift_Number, TCC_Dish_ID, TCC_Dish_Num, TCC_Total_Price, TCC_Specil_Desc, 
-    del_Flag, last_SubTime, subBy
+    m.TCC_ID, m.TCI_Swift_Number, m.TCC_Dish_ID, m.TCC_Dish_Num, m.TCC_Total_Price, m.TCC_Specil_Desc
   </sql>
     <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.spartan.model.TempCarteContentExample">
         select

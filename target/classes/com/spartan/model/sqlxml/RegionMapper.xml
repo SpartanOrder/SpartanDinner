@@ -74,7 +74,7 @@
         </where>
     </sql>
     <sql id="Base_Column_List">
-    region_ID, region_Name, region_Min_Consume, region_Max_Consumer
+    m.region_ID, m.region_Name, m.region_Min_Consume, m.region_Max_Consumer
   </sql>
     <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.spartan.model.RegionExample">
         select

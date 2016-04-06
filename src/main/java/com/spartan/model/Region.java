@@ -77,4 +77,17 @@ public class Region {
             this.user = user;
         }
     }
+
+    @Override
+    public String toString() {
+        return "Region{" +
+                "regionId=" + regionId +
+                ", regionName='" + regionName + '\'' +
+                ", regionMinConsume=" + regionMinConsume +
+                ", regionMaxConsumer=" + regionMaxConsumer +
+                ", delFlag=" + delFlag +
+                ", lastSubtime=" + lastSubtime +
+                ", user=" + user +
+                '}';
+    }
 }

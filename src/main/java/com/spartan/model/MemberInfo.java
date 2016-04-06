@@ -181,4 +181,27 @@ public class MemberInfo {
             this.user = user;
         }
     }
+
+    @Override
+    public String toString() {
+        return "MemberInfo{" +
+                "memId=" + memId +
+                ", memberType=" + memberType +
+                ", memName='" + memName + '\'' +
+                ", memUserName='" + memUserName + '\'' +
+                ", memPassword='" + memPassword + '\'' +
+                ", memTel='" + memTel + '\'' +
+                ", memPhone='" + memPhone + '\'' +
+                ", memAddress='" + memAddress + '\'' +
+                ", memGender=" + memGender +
+                ", memMoney=" + memMoney +
+                ", memIntegral=" + memIntegral +
+                ", memBirthday=" + memBirthday +
+                ", memBeginTime=" + memBeginTime +
+                ", memEndTime=" + memEndTime +
+                ", delFlag=" + delFlag +
+                ", lastSubtime=" + lastSubtime +
+                ", user=" + user +
+                '}';
+    }
 }

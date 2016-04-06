@@ -83,8 +83,8 @@
         </where>
     </sql>
     <sql id="Base_Column_List">
-    id, restaurant_Name, short_Name, tel, adderss, description, url, begin_Date, account, 
-    tax_Registration_Certificate
+    m.id, restaurant_Name, m.short_Name, m.tel, m.adderss, m.description, m.url, m.begin_Date, m.account,
+    m.tax_Registration_Certificate
   </sql>
     <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.spartan.model.RestaurantExample">
         select

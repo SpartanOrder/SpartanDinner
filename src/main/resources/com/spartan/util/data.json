@@ -1,0 +1,53 @@
+{
+  "eciDishNums": 4,
+  "eciBillTime": 1459923617000,
+  "eciSwiftNumber": "16-04-06-02-20-17044",
+  "eciState": 1,
+  "endCarteContentList": [
+    {
+      "dish": {
+        "dishPrice": 10.00,
+        "dishName": "菜心test48",
+        "dishId": 48
+      },
+      "eccTotalPrice": 10.00,
+      "eccId": 1369
+    },
+    {
+      "dish": {
+        "dishPrice": 10.00,
+        "dishName": "菜心test45",
+        "dishId": 45
+      },
+      "eccTotalPrice": 10.00,
+      "eccId": 1370
+    },
+    {
+      "dish": {
+        "dishPrice": 10.00,
+        "dishName": "菜心test71",
+        "dishId": 71
+      },
+      "eccTotalPrice": 10.00,
+      "eccId": 1371
+    },
+    {
+      "dish": {
+        "dishPrice": 10.00,
+        "dishName": "鱼香茄子煲五64",
+        "dishId": 264
+      },
+      "eccTotalPrice": 10.00,
+      "eccId": 1372
+    }
+  ],
+  "lastSubtime": 1459923617000,
+  "eciPaidAmount": 100.00,
+  "eciConsumeAmount": 100.00,
+  "eciAmountPeoplo": 10,
+  "eciDiscount": 10.00,
+  "eciRepastTime": 1459923618000,
+  "eciId": 44,
+  "eciPayMethod": "微信支付",
+  "delFlag": 1
+}

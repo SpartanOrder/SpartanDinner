@@ -200,4 +200,27 @@ public class TempCarteInfo {
     public void setTciRemark(String tciRemark) {
         this.tciRemark = tciRemark;
     }
+
+    @Override
+    public String toString() {
+        return "TempCarteInfo{" +
+                "tciId=" + tciId +
+                ", tciSwiftNumber='" + tciSwiftNumber + '\'' +
+                ", tciState=" + tciState +
+                ", dinningTable=" + dinningTable +
+                ", tciWaiter=" + tciWaiter +
+                ", customer=" + customer +
+                ", memberInfo=" + memberInfo +
+                ", tciDishNums=" + tciDishNums +
+                ", tciAmountPeoplo=" + tciAmountPeoplo +
+                ", tciRepastTime=" + tciRepastTime +
+                ", tciConsumeAmount=" + tciConsumeAmount +
+                ", tciCostAmount=" + tciCostAmount +
+                ", tciDiscount=" + tciDiscount +
+                ", delFlag=" + delFlag +
+                ", lastSubtime=" + lastSubtime +
+                ", user=" + user +
+                ", tciRemark='" + tciRemark + '\'' +
+                '}';
+    }
 }

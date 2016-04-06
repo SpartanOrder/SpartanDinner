@@ -110,9 +110,9 @@
         </where>
     </sql>
     <sql id="Base_Column_List">
-    TCI_ID, TCI_Swift_Number, TCI_State, TCI_Table_ID, TCI_Customer_ID, TCI_Mem_ID, TCI_Waiter_ID,
-    TCI_Dish_Nums, TCI_Amount_Peoplo, TCI_Repast_Time, TCI_Consume_Amount, TCI_Cost_Amount,
-    TCI_Discount, TCI_Remark, del_Flag, last_SubTime, subBy
+    m.TCI_ID, m.TCI_Swift_Number, m.TCI_State, m.TCI_Table_ID, m.TCI_Customer_ID, m.TCI_Mem_ID, m.TCI_Waiter_ID,
+    m.TCI_Dish_Nums, m.TCI_Amount_Peoplo, m.TCI_Repast_Time, m.TCI_Consume_Amount, m.TCI_Cost_Amount,
+    m.TCI_Discount, m.TCI_Remark
   </sql>
     <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.spartan.model.TempCarteInfoExample">
         select

@@ -245,4 +245,31 @@ public class EndCarteInfo {
     public void setEndCarteContentList(List<EndCarteContent> endCarteContentList) {
         this.endCarteContentList = endCarteContentList;
     }
+
+    @Override
+    public String toString() {
+        return "EndCarteInfo{" +
+                "eciId=" + eciId +
+                ", eciSwiftNumber='" + eciSwiftNumber + '\'' +
+                ", eciState=" + eciState +
+                ", dinningTable=" + dinningTable +
+                ", eciWaiter=" + eciWaiter +
+                ", eciCashier=" + eciCashier +
+                ", customer=" + customer +
+                ", memberInfo=" + memberInfo +
+                ", eciDishNums=" + eciDishNums +
+                ", eciAmountPeoplo=" + eciAmountPeoplo +
+                ", eciRepastTime=" + eciRepastTime +
+                ", eciBillTime=" + eciBillTime +
+                ", eciPayMethod='" + eciPayMethod + '\'' +
+                ", eciConsumeAmount=" + eciConsumeAmount +
+                ", eciDiscount=" + eciDiscount +
+                ", eciPaidAmount=" + eciPaidAmount +
+                ", delFlag=" + delFlag +
+                ", lastSubtime=" + lastSubtime +
+                ", user=" + user +
+                ", eciRemark='" + eciRemark + '\'' +
+                ", endCarteContentList=" + endCarteContentList +
+                '}';
+    }
 }

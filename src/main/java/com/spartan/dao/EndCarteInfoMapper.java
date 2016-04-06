@@ -17,4 +17,5 @@ public interface EndCarteInfoMapper extends BaseMapper<EndCarteInfo, Integer> {
 
     int updateByExample(@Param("record") EndCarteInfo record, @Param("example") EndCarteInfoExample example);
 
+
 }

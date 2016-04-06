@@ -88,7 +88,6 @@ public class DishType {
         } else {
             this.user = user;
         }
-
     }
 
     @Override
@@ -101,7 +100,7 @@ public class DishType {
                 ", dishTypeOrderid=" + dishTypeOrderid +
                 ", delFlag=" + delFlag +
                 ", lastSubtime=" + lastSubtime +
-                ", dish=" + user +
+                ", user=" + user +
                 '}';
     }
 }

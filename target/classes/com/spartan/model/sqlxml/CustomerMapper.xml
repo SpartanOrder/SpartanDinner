@@ -76,7 +76,7 @@
         </where>
     </sql>
     <sql id="Base_Column_List">
-    customer_ID, customer_Name, customer_Tel, customer_Gender
+    m.customer_ID, m.customer_Name, m.customer_Tel, m.customer_Gender
   </sql>
     <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.spartan.model.CustomerExample">
         select

@@ -77,4 +77,17 @@ public class MemberType {
             this.user = user;
         }
     }
+
+    @Override
+    public String toString() {
+        return "MemberType{" +
+                "memTypeId=" + memTypeId +
+                ", memTypeName='" + memTypeName + '\'' +
+                ", memTypeDiscount=" + memTypeDiscount +
+                ", memTypeDesc='" + memTypeDesc + '\'' +
+                ", delFlag=" + delFlag +
+                ", lastSubtime=" + lastSubtime +
+                ", user=" + user +
+                '}';
+    }
 }

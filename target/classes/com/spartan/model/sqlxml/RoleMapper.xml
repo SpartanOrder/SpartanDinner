@@ -78,7 +78,7 @@
         </where>
     </sql>
     <sql id="Base_Column_List">
-    role_ID, role_Name, department_ID, description, power_Ids
+    m.role_ID, m.role_Name, m.department_ID, m.description, m.power_Ids
   </sql>
     <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.spartan.model.RoleExample">
         select

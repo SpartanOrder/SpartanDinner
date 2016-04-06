@@ -85,8 +85,7 @@
         </where>
     </sql>
     <sql id="Base_Column_List">
-    OCC_ID, OCC_OCI_ID, OCC_Dish_ID, OCC_Dish_Num, OCC_Total_Price, OCC_Specil_Desc, 
-    del_Flag, last_SubTime, subBy
+    m.OCC_ID, m.OCC_OCI_ID, m.OCC_Dish_ID, m.OCC_Dish_Num, m.OCC_Total_Price, m.OCC_Specil_Desc,
   </sql>
     <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.spartan.model.OnAccountCarteContentExample">
         select

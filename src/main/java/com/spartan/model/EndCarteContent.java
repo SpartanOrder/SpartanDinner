@@ -115,6 +115,20 @@ public class EndCarteContent {
         } else {
             this.user = user;
         }
+    }
 
+    @Override
+    public String toString() {
+        return "EndCarteContent{" +
+                "eccId=" + eccId +
+                ", endCarteInfo=" + endCarteInfo +
+                ", dish=" + dish +
+                ", eccDishNum=" + eccDishNum +
+                ", eccTotalPrice=" + eccTotalPrice +
+                ", eccSpecilDesc='" + eccSpecilDesc + '\'' +
+                ", delFlag=" + delFlag +
+                ", lastSubtime=" + lastSubtime +
+                ", user=" + user +
+                '}';
     }
 }

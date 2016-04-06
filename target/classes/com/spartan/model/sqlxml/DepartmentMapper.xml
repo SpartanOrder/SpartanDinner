@@ -74,7 +74,7 @@
         </where>
     </sql>
     <sql id="Base_Column_List">
-    department_ID, department_Name, description, remark
+    m.department_ID, m.department_Name, m.description, m.remark
   </sql>
     <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.spartan.model.DepartmentExample">
         select
@@ -102,10 +102,10 @@
         <include refid="com.spartan.dao.UserMapper.Column_SubBy_Employee"/>
         from t_department m
         <include refid="com.spartan.dao.UserMapper.LEFTJOIN_SubBy_Employee"/>
-        where department_ID = #{departmentId,jdbcType=INTEGER}
+        where m.department_ID = #{departmentId,jdbcType=INTEGER}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete m from t_departmentm
+    delete m from t_department m
     where department_ID = #{departmentId,jdbcType=INTEGER}
   </delete>
     <delete id="deleteByExample" parameterType="com.spartan.model.DepartmentExample">
