@@ -106,502 +106,502 @@ public class DishTypeExample {
         }
 
         public Criteria andDishTypeIdIsNull() {
-            addCriterion("dish_Type_ID is null");
+            addCriterion("m.dish_Type_ID is null");
             return (Criteria) this;
         }
 
         public Criteria andDishTypeIdIsNotNull() {
-            addCriterion("dish_Type_ID is not null");
+            addCriterion("m.dish_Type_ID is not null");
             return (Criteria) this;
         }
 
         public Criteria andDishTypeIdEqualTo(Integer value) {
-            addCriterion("dish_Type_ID =", value, "dishTypeId");
+            addCriterion("m.dish_Type_ID =", value, "dishTypeId");
             return (Criteria) this;
         }
 
         public Criteria andDishTypeIdNotEqualTo(Integer value) {
-            addCriterion("dish_Type_ID <>", value, "dishTypeId");
+            addCriterion("m.dish_Type_ID <>", value, "dishTypeId");
             return (Criteria) this;
         }
 
         public Criteria andDishTypeIdGreaterThan(Integer value) {
-            addCriterion("dish_Type_ID >", value, "dishTypeId");
+            addCriterion("m.dish_Type_ID >", value, "dishTypeId");
             return (Criteria) this;
         }
 
         public Criteria andDishTypeIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("dish_Type_ID >=", value, "dishTypeId");
+            addCriterion("m.dish_Type_ID >=", value, "dishTypeId");
             return (Criteria) this;
         }
 
         public Criteria andDishTypeIdLessThan(Integer value) {
-            addCriterion("dish_Type_ID <", value, "dishTypeId");
+            addCriterion("m.dish_Type_ID <", value, "dishTypeId");
             return (Criteria) this;
         }
 
         public Criteria andDishTypeIdLessThanOrEqualTo(Integer value) {
-            addCriterion("dish_Type_ID <=", value, "dishTypeId");
+            addCriterion("m.dish_Type_ID <=", value, "dishTypeId");
             return (Criteria) this;
         }
 
         public Criteria andDishTypeIdIn(List<Integer> values) {
-            addCriterion("dish_Type_ID in", values, "dishTypeId");
+            addCriterion("m.dish_Type_ID in", values, "dishTypeId");
             return (Criteria) this;
         }
 
         public Criteria andDishTypeIdNotIn(List<Integer> values) {
-            addCriterion("dish_Type_ID not in", values, "dishTypeId");
+            addCriterion("m.dish_Type_ID not in", values, "dishTypeId");
             return (Criteria) this;
         }
 
         public Criteria andDishTypeIdBetween(Integer value1, Integer value2) {
-            addCriterion("dish_Type_ID between", value1, value2, "dishTypeId");
+            addCriterion("m.dish_Type_ID between", value1, value2, "dishTypeId");
             return (Criteria) this;
         }
 
         public Criteria andDishTypeIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("dish_Type_ID not between", value1, value2, "dishTypeId");
+            addCriterion("m.dish_Type_ID not between", value1, value2, "dishTypeId");
             return (Criteria) this;
         }
 
         public Criteria andDishTypeNameIsNull() {
-            addCriterion("dish_Type_Name is null");
+            addCriterion("m.dish_Type_Name is null");
             return (Criteria) this;
         }
 
         public Criteria andDishTypeNameIsNotNull() {
-            addCriterion("dish_Type_Name is not null");
+            addCriterion("m.dish_Type_Name is not null");
             return (Criteria) this;
         }
 
         public Criteria andDishTypeNameEqualTo(String value) {
-            addCriterion("dish_Type_Name =", value, "dishTypeName");
+            addCriterion("m.dish_Type_Name =", value, "dishTypeName");
             return (Criteria) this;
         }
 
         public Criteria andDishTypeNameNotEqualTo(String value) {
-            addCriterion("dish_Type_Name <>", value, "dishTypeName");
+            addCriterion("m.dish_Type_Name <>", value, "dishTypeName");
             return (Criteria) this;
         }
 
         public Criteria andDishTypeNameGreaterThan(String value) {
-            addCriterion("dish_Type_Name >", value, "dishTypeName");
+            addCriterion("m.dish_Type_Name >", value, "dishTypeName");
             return (Criteria) this;
         }
 
         public Criteria andDishTypeNameGreaterThanOrEqualTo(String value) {
-            addCriterion("dish_Type_Name >=", value, "dishTypeName");
+            addCriterion("m.dish_Type_Name >=", value, "dishTypeName");
             return (Criteria) this;
         }
 
         public Criteria andDishTypeNameLessThan(String value) {
-            addCriterion("dish_Type_Name <", value, "dishTypeName");
+            addCriterion("m.dish_Type_Name <", value, "dishTypeName");
             return (Criteria) this;
         }
 
         public Criteria andDishTypeNameLessThanOrEqualTo(String value) {
-            addCriterion("dish_Type_Name <=", value, "dishTypeName");
+            addCriterion("m.dish_Type_Name <=", value, "dishTypeName");
             return (Criteria) this;
         }
 
         public Criteria andDishTypeNameLike(String value) {
-            addCriterion("dish_Type_Name like", value, "dishTypeName");
+            addCriterion("m.dish_Type_Name like", value, "dishTypeName");
             return (Criteria) this;
         }
 
         public Criteria andDishTypeNameNotLike(String value) {
-            addCriterion("dish_Type_Name not like", value, "dishTypeName");
+            addCriterion("m.dish_Type_Name not like", value, "dishTypeName");
             return (Criteria) this;
         }
 
         public Criteria andDishTypeNameIn(List<String> values) {
-            addCriterion("dish_Type_Name in", values, "dishTypeName");
+            addCriterion("m.dish_Type_Name in", values, "dishTypeName");
             return (Criteria) this;
         }
 
         public Criteria andDishTypeNameNotIn(List<String> values) {
-            addCriterion("dish_Type_Name not in", values, "dishTypeName");
+            addCriterion("m.dish_Type_Name not in", values, "dishTypeName");
             return (Criteria) this;
         }
 
         public Criteria andDishTypeNameBetween(String value1, String value2) {
-            addCriterion("dish_Type_Name between", value1, value2, "dishTypeName");
+            addCriterion("m.dish_Type_Name between", value1, value2, "dishTypeName");
             return (Criteria) this;
         }
 
         public Criteria andDishTypeNameNotBetween(String value1, String value2) {
-            addCriterion("dish_Type_Name not between", value1, value2, "dishTypeName");
+            addCriterion("m.dish_Type_Name not between", value1, value2, "dishTypeName");
             return (Criteria) this;
         }
 
         public Criteria andDishTypeDescIsNull() {
-            addCriterion("dish_Type_Desc is null");
+            addCriterion("m.dish_Type_Desc is null");
             return (Criteria) this;
         }
 
         public Criteria andDishTypeDescIsNotNull() {
-            addCriterion("dish_Type_Desc is not null");
+            addCriterion("m.dish_Type_Desc is not null");
             return (Criteria) this;
         }
 
         public Criteria andDishTypeDescEqualTo(String value) {
-            addCriterion("dish_Type_Desc =", value, "dishTypeDesc");
+            addCriterion("m.dish_Type_Desc =", value, "dishTypeDesc");
             return (Criteria) this;
         }
 
         public Criteria andDishTypeDescNotEqualTo(String value) {
-            addCriterion("dish_Type_Desc <>", value, "dishTypeDesc");
+            addCriterion("m.dish_Type_Desc <>", value, "dishTypeDesc");
             return (Criteria) this;
         }
 
         public Criteria andDishTypeDescGreaterThan(String value) {
-            addCriterion("dish_Type_Desc >", value, "dishTypeDesc");
+            addCriterion("m.dish_Type_Desc >", value, "dishTypeDesc");
             return (Criteria) this;
         }
 
         public Criteria andDishTypeDescGreaterThanOrEqualTo(String value) {
-            addCriterion("dish_Type_Desc >=", value, "dishTypeDesc");
+            addCriterion("m.dish_Type_Desc >=", value, "dishTypeDesc");
             return (Criteria) this;
         }
 
         public Criteria andDishTypeDescLessThan(String value) {
-            addCriterion("dish_Type_Desc <", value, "dishTypeDesc");
+            addCriterion("m.dish_Type_Desc <", value, "dishTypeDesc");
             return (Criteria) this;
         }
 
         public Criteria andDishTypeDescLessThanOrEqualTo(String value) {
-            addCriterion("dish_Type_Desc <=", value, "dishTypeDesc");
+            addCriterion("m.dish_Type_Desc <=", value, "dishTypeDesc");
             return (Criteria) this;
         }
 
         public Criteria andDishTypeDescLike(String value) {
-            addCriterion("dish_Type_Desc like", value, "dishTypeDesc");
+            addCriterion("m.dish_Type_Desc like", value, "dishTypeDesc");
             return (Criteria) this;
         }
 
         public Criteria andDishTypeDescNotLike(String value) {
-            addCriterion("dish_Type_Desc not like", value, "dishTypeDesc");
+            addCriterion("m.dish_Type_Desc not like", value, "dishTypeDesc");
             return (Criteria) this;
         }
 
         public Criteria andDishTypeDescIn(List<String> values) {
-            addCriterion("dish_Type_Desc in", values, "dishTypeDesc");
+            addCriterion("m.dish_Type_Desc in", values, "dishTypeDesc");
             return (Criteria) this;
         }
 
         public Criteria andDishTypeDescNotIn(List<String> values) {
-            addCriterion("dish_Type_Desc not in", values, "dishTypeDesc");
+            addCriterion("m.dish_Type_Desc not in", values, "dishTypeDesc");
             return (Criteria) this;
         }
 
         public Criteria andDishTypeDescBetween(String value1, String value2) {
-            addCriterion("dish_Type_Desc between", value1, value2, "dishTypeDesc");
+            addCriterion("m.dish_Type_Desc between", value1, value2, "dishTypeDesc");
             return (Criteria) this;
         }
 
         public Criteria andDishTypeDescNotBetween(String value1, String value2) {
-            addCriterion("dish_Type_Desc not between", value1, value2, "dishTypeDesc");
+            addCriterion("m.dish_Type_Desc not between", value1, value2, "dishTypeDesc");
             return (Criteria) this;
         }
 
         public Criteria andDishTypeStatusIsNull() {
-            addCriterion("dish_Type_Status is null");
+            addCriterion("m.dish_Type_Status is null");
             return (Criteria) this;
         }
 
         public Criteria andDishTypeStatusIsNotNull() {
-            addCriterion("dish_Type_Status is not null");
+            addCriterion("m.dish_Type_Status is not null");
             return (Criteria) this;
         }
 
         public Criteria andDishTypeStatusEqualTo(Byte value) {
-            addCriterion("dish_Type_Status =", value, "dishTypeStatus");
+            addCriterion("m.dish_Type_Status =", value, "dishTypeStatus");
             return (Criteria) this;
         }
 
         public Criteria andDishTypeStatusNotEqualTo(Byte value) {
-            addCriterion("dish_Type_Status <>", value, "dishTypeStatus");
+            addCriterion("m.dish_Type_Status <>", value, "dishTypeStatus");
             return (Criteria) this;
         }
 
         public Criteria andDishTypeStatusGreaterThan(Byte value) {
-            addCriterion("dish_Type_Status >", value, "dishTypeStatus");
+            addCriterion("m.dish_Type_Status >", value, "dishTypeStatus");
             return (Criteria) this;
         }
 
         public Criteria andDishTypeStatusGreaterThanOrEqualTo(Byte value) {
-            addCriterion("dish_Type_Status >=", value, "dishTypeStatus");
+            addCriterion("m.dish_Type_Status >=", value, "dishTypeStatus");
             return (Criteria) this;
         }
 
         public Criteria andDishTypeStatusLessThan(Byte value) {
-            addCriterion("dish_Type_Status <", value, "dishTypeStatus");
+            addCriterion("m.dish_Type_Status <", value, "dishTypeStatus");
             return (Criteria) this;
         }
 
         public Criteria andDishTypeStatusLessThanOrEqualTo(Byte value) {
-            addCriterion("dish_Type_Status <=", value, "dishTypeStatus");
+            addCriterion("m.dish_Type_Status <=", value, "dishTypeStatus");
             return (Criteria) this;
         }
 
         public Criteria andDishTypeStatusIn(List<Byte> values) {
-            addCriterion("dish_Type_Status in", values, "dishTypeStatus");
+            addCriterion("m.dish_Type_Status in", values, "dishTypeStatus");
             return (Criteria) this;
         }
 
         public Criteria andDishTypeStatusNotIn(List<Byte> values) {
-            addCriterion("dish_Type_Status not in", values, "dishTypeStatus");
+            addCriterion("m.dish_Type_Status not in", values, "dishTypeStatus");
             return (Criteria) this;
         }
 
         public Criteria andDishTypeStatusBetween(Byte value1, Byte value2) {
-            addCriterion("dish_Type_Status between", value1, value2, "dishTypeStatus");
+            addCriterion("m.dish_Type_Status between", value1, value2, "dishTypeStatus");
             return (Criteria) this;
         }
 
         public Criteria andDishTypeStatusNotBetween(Byte value1, Byte value2) {
-            addCriterion("dish_Type_Status not between", value1, value2, "dishTypeStatus");
+            addCriterion("m.dish_Type_Status not between", value1, value2, "dishTypeStatus");
             return (Criteria) this;
         }
 
         public Criteria andDishTypeOrderidIsNull() {
-            addCriterion("dish_Type_orderId is null");
+            addCriterion("m.dish_Type_orderId is null");
             return (Criteria) this;
         }
 
         public Criteria andDishTypeOrderidIsNotNull() {
-            addCriterion("dish_Type_orderId is not null");
+            addCriterion("m.dish_Type_orderId is not null");
             return (Criteria) this;
         }
 
         public Criteria andDishTypeOrderidEqualTo(Integer value) {
-            addCriterion("dish_Type_orderId =", value, "dishTypeOrderid");
+            addCriterion("m.dish_Type_orderId =", value, "dishTypeOrderid");
             return (Criteria) this;
         }
 
         public Criteria andDishTypeOrderidNotEqualTo(Integer value) {
-            addCriterion("dish_Type_orderId <>", value, "dishTypeOrderid");
+            addCriterion("m.dish_Type_orderId <>", value, "dishTypeOrderid");
             return (Criteria) this;
         }
 
         public Criteria andDishTypeOrderidGreaterThan(Integer value) {
-            addCriterion("dish_Type_orderId >", value, "dishTypeOrderid");
+            addCriterion("m.dish_Type_orderId >", value, "dishTypeOrderid");
             return (Criteria) this;
         }
 
         public Criteria andDishTypeOrderidGreaterThanOrEqualTo(Integer value) {
-            addCriterion("dish_Type_orderId >=", value, "dishTypeOrderid");
+            addCriterion("m.dish_Type_orderId >=", value, "dishTypeOrderid");
             return (Criteria) this;
         }
 
         public Criteria andDishTypeOrderidLessThan(Integer value) {
-            addCriterion("dish_Type_orderId <", value, "dishTypeOrderid");
+            addCriterion("m.dish_Type_orderId <", value, "dishTypeOrderid");
             return (Criteria) this;
         }
 
         public Criteria andDishTypeOrderidLessThanOrEqualTo(Integer value) {
-            addCriterion("dish_Type_orderId <=", value, "dishTypeOrderid");
+            addCriterion("m.dish_Type_orderId <=", value, "dishTypeOrderid");
             return (Criteria) this;
         }
 
         public Criteria andDishTypeOrderidIn(List<Integer> values) {
-            addCriterion("dish_Type_orderId in", values, "dishTypeOrderid");
+            addCriterion("m.dish_Type_orderId in", values, "dishTypeOrderid");
             return (Criteria) this;
         }
 
         public Criteria andDishTypeOrderidNotIn(List<Integer> values) {
-            addCriterion("dish_Type_orderId not in", values, "dishTypeOrderid");
+            addCriterion("m.dish_Type_orderId not in", values, "dishTypeOrderid");
             return (Criteria) this;
         }
 
         public Criteria andDishTypeOrderidBetween(Integer value1, Integer value2) {
-            addCriterion("dish_Type_orderId between", value1, value2, "dishTypeOrderid");
+            addCriterion("m.dish_Type_orderId between", value1, value2, "dishTypeOrderid");
             return (Criteria) this;
         }
 
         public Criteria andDishTypeOrderidNotBetween(Integer value1, Integer value2) {
-            addCriterion("dish_Type_orderId not between", value1, value2, "dishTypeOrderid");
+            addCriterion("m.dish_Type_orderId not between", value1, value2, "dishTypeOrderid");
             return (Criteria) this;
         }
 
         public Criteria andDelFlagIsNull() {
-            addCriterion("del_Flag is null");
+            addCriterion("m.del_Flag is null");
             return (Criteria) this;
         }
 
         public Criteria andDelFlagIsNotNull() {
-            addCriterion("del_Flag is not null");
+            addCriterion("m.del_Flag is not null");
             return (Criteria) this;
         }
 
         public Criteria andDelFlagEqualTo(Byte value) {
-            addCriterion("del_Flag =", value, "delFlag");
+            addCriterion("m.del_Flag =", value, "delFlag");
             return (Criteria) this;
         }
 
         public Criteria andDelFlagNotEqualTo(Byte value) {
-            addCriterion("del_Flag <>", value, "delFlag");
+            addCriterion("m.del_Flag <>", value, "delFlag");
             return (Criteria) this;
         }
 
         public Criteria andDelFlagGreaterThan(Byte value) {
-            addCriterion("del_Flag >", value, "delFlag");
+            addCriterion("m.del_Flag >", value, "delFlag");
             return (Criteria) this;
         }
 
         public Criteria andDelFlagGreaterThanOrEqualTo(Byte value) {
-            addCriterion("del_Flag >=", value, "delFlag");
+            addCriterion("m.del_Flag >=", value, "delFlag");
             return (Criteria) this;
         }
 
         public Criteria andDelFlagLessThan(Byte value) {
-            addCriterion("del_Flag <", value, "delFlag");
+            addCriterion("m.del_Flag <", value, "delFlag");
             return (Criteria) this;
         }
 
         public Criteria andDelFlagLessThanOrEqualTo(Byte value) {
-            addCriterion("del_Flag <=", value, "delFlag");
+            addCriterion("m.del_Flag <=", value, "delFlag");
             return (Criteria) this;
         }
 
         public Criteria andDelFlagIn(List<Byte> values) {
-            addCriterion("del_Flag in", values, "delFlag");
+            addCriterion("m.del_Flag in", values, "delFlag");
             return (Criteria) this;
         }
 
         public Criteria andDelFlagNotIn(List<Byte> values) {
-            addCriterion("del_Flag not in", values, "delFlag");
+            addCriterion("m.del_Flag not in", values, "delFlag");
             return (Criteria) this;
         }
 
         public Criteria andDelFlagBetween(Byte value1, Byte value2) {
-            addCriterion("del_Flag between", value1, value2, "delFlag");
+            addCriterion("m.del_Flag between", value1, value2, "delFlag");
             return (Criteria) this;
         }
 
         public Criteria andDelFlagNotBetween(Byte value1, Byte value2) {
-            addCriterion("del_Flag not between", value1, value2, "delFlag");
+            addCriterion("m.del_Flag not between", value1, value2, "delFlag");
             return (Criteria) this;
         }
 
         public Criteria andLastSubtimeIsNull() {
-            addCriterion("last_SubTime is null");
+            addCriterion("m.last_SubTime is null");
             return (Criteria) this;
         }
 
         public Criteria andLastSubtimeIsNotNull() {
-            addCriterion("last_SubTime is not null");
+            addCriterion("m.last_SubTime is not null");
             return (Criteria) this;
         }
 
         public Criteria andLastSubtimeEqualTo(Date value) {
-            addCriterion("last_SubTime =", value, "lastSubtime");
+            addCriterion("m.last_SubTime =", value, "lastSubtime");
             return (Criteria) this;
         }
 
         public Criteria andLastSubtimeNotEqualTo(Date value) {
-            addCriterion("last_SubTime <>", value, "lastSubtime");
+            addCriterion("m.last_SubTime <>", value, "lastSubtime");
             return (Criteria) this;
         }
 
         public Criteria andLastSubtimeGreaterThan(Date value) {
-            addCriterion("last_SubTime >", value, "lastSubtime");
+            addCriterion("m.last_SubTime >", value, "lastSubtime");
             return (Criteria) this;
         }
 
         public Criteria andLastSubtimeGreaterThanOrEqualTo(Date value) {
-            addCriterion("last_SubTime >=", value, "lastSubtime");
+            addCriterion("m.last_SubTime >=", value, "lastSubtime");
             return (Criteria) this;
         }
 
         public Criteria andLastSubtimeLessThan(Date value) {
-            addCriterion("last_SubTime <", value, "lastSubtime");
+            addCriterion("m.last_SubTime <", value, "lastSubtime");
             return (Criteria) this;
         }
 
         public Criteria andLastSubtimeLessThanOrEqualTo(Date value) {
-            addCriterion("last_SubTime <=", value, "lastSubtime");
+            addCriterion("m.last_SubTime <=", value, "lastSubtime");
             return (Criteria) this;
         }
 
         public Criteria andLastSubtimeIn(List<Date> values) {
-            addCriterion("last_SubTime in", values, "lastSubtime");
+            addCriterion("m.last_SubTime in", values, "lastSubtime");
             return (Criteria) this;
         }
 
         public Criteria andLastSubtimeNotIn(List<Date> values) {
-            addCriterion("last_SubTime not in", values, "lastSubtime");
+            addCriterion("m.last_SubTime not in", values, "lastSubtime");
             return (Criteria) this;
         }
 
         public Criteria andLastSubtimeBetween(Date value1, Date value2) {
-            addCriterion("last_SubTime between", value1, value2, "lastSubtime");
+            addCriterion("m.last_SubTime between", value1, value2, "lastSubtime");
             return (Criteria) this;
         }
 
         public Criteria andLastSubtimeNotBetween(Date value1, Date value2) {
-            addCriterion("last_SubTime not between", value1, value2, "lastSubtime");
+            addCriterion("m.last_SubTime not between", value1, value2, "lastSubtime");
             return (Criteria) this;
         }
 
         public Criteria andSubbyIsNull() {
-            addCriterion("subBy is null");
+            addCriterion("m.subBy is null");
             return (Criteria) this;
         }
 
         public Criteria andSubbyIsNotNull() {
-            addCriterion("subBy is not null");
+            addCriterion("m.subBy is not null");
             return (Criteria) this;
         }
 
         public Criteria andSubbyEqualTo(Integer value) {
-            addCriterion("subBy =", value, "subby");
+            addCriterion("m.subBy =", value, "subby");
             return (Criteria) this;
         }
 
         public Criteria andSubbyNotEqualTo(Integer value) {
-            addCriterion("subBy <>", value, "subby");
+            addCriterion("m.subBy <>", value, "subby");
             return (Criteria) this;
         }
 
         public Criteria andSubbyGreaterThan(Integer value) {
-            addCriterion("subBy >", value, "subby");
+            addCriterion("m.subBy >", value, "subby");
             return (Criteria) this;
         }
 
         public Criteria andSubbyGreaterThanOrEqualTo(Integer value) {
-            addCriterion("subBy >=", value, "subby");
+            addCriterion("m.subBy >=", value, "subby");
             return (Criteria) this;
         }
 
         public Criteria andSubbyLessThan(Integer value) {
-            addCriterion("subBy <", value, "subby");
+            addCriterion("m.subBy <", value, "subby");
             return (Criteria) this;
         }
 
         public Criteria andSubbyLessThanOrEqualTo(Integer value) {
-            addCriterion("subBy <=", value, "subby");
+            addCriterion("m.subBy <=", value, "subby");
             return (Criteria) this;
         }
 
         public Criteria andSubbyIn(List<Integer> values) {
-            addCriterion("subBy in", values, "subby");
+            addCriterion("m.subBy in", values, "subby");
             return (Criteria) this;
         }
 
         public Criteria andSubbyNotIn(List<Integer> values) {
-            addCriterion("subBy not in", values, "subby");
+            addCriterion("m.subBy not in", values, "subby");
             return (Criteria) this;
         }
 
         public Criteria andSubbyBetween(Integer value1, Integer value2) {
-            addCriterion("subBy between", value1, value2, "subby");
+            addCriterion("m.subBy between", value1, value2, "subby");
             return (Criteria) this;
         }
 
         public Criteria andSubbyNotBetween(Integer value1, Integer value2) {
-            addCriterion("subBy not between", value1, value2, "subby");
+            addCriterion("m.subBy not between", value1, value2, "subby");
             return (Criteria) this;
         }
     }
