@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.spartan.dao.DishTotalMapper">
+    <resultMap id="BaseResultMap" type="com.spartan.model.DishTotal">
+        <id column="dishtotal_Id" property="dishtotalId" jdbcType="INTEGER"/>
+        <result column="dishtotal_Year" property="dishtotalYear" jdbcType="INTEGER"/>
+        <result column="dishtotal_Month" property="dishtotalMonth" jdbcType="INTEGER"/>
+        <result column="dishtotal_Day" property="dishtotalDay" jdbcType="INTEGER"/>
+        <result column="dishtotal_DayTime" property="dishtotalDaytime" jdbcType="INTEGER"/>
+        <result column="total_Amount" property="totalAmount" jdbcType="DECIMAL"/>
+        <result column="del_Flag" property="delFlag" jdbcType="TINYINT"/>
+        <result column="last_SubTime" property="lastSubtime" jdbcType="TIMESTAMP"/>
+        <association property="dish" column="dishtotal_dishId" javaType="com.spartan.model.Dish"
+                     resultMap="com.spartan.dao.DishMapper.SimpleResultMap"></association>
+        <association property="user" column="subBy" javaType="com.spartan.model.User" resultMap="com.spartan.dao.UserMapper.SimpleResultMap">
+        </association>
+    </resultMap>
+    <resultMap id="SimpleResultMap" type="com.spartan.model.DishTotal">
+        <id column="dishtotal_Id" property="dishtotalId" jdbcType="INTEGER"/>
+        <result column="dishtotal_Year" property="dishtotalYear" jdbcType="INTEGER"/>
+        <result column="dishtotal_Month" property="dishtotalMonth" jdbcType="INTEGER"/>
+        <result column="dishtotal_Day" property="dishtotalDay" jdbcType="INTEGER"/>
+        <result column="dishtotal_DayTime" property="dishtotalDaytime" jdbcType="INTEGER"/>
+        <result column="total_Amount" property="totalAmount" jdbcType="DECIMAL"/>
+        <result column="last_SubTime" property="lastSubtime" jdbcType="TIMESTAMP"/>
+        <association property="dish" column="dishtotal_dishId" javaType="com.spartan.model.Dish"
+                     resultMap="com.spartan.dao.DishMapper.SimpleResultMap"></association>
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")" separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")" separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
+    m.dishtotal_Id, m.dishtotal_dishId, m.dishtotal_Year, m.dishtotal_Month, m.dishtotal_Day, m.dishtotal_DayTime,
+    m.total_Amount
+  </sql>
+    <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.spartan.model.DishTotalExample">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List"/>,
+        <include refid="com.spartan.dao.common.Column_Master_LastSubtime"/>,
+        <include refid="com.spartan.dao.common.Column_Master_CUD"/>,
+        <include refid="com.spartan.dao.UserMapper.Column_SubBy_Employee"/>,
+        f.dish_Id,f.dish_Name,f.dish_Speel,f.dish_Price,f.dish_Img_Url
+        from t_dishtotal m
+        <include refid="com.spartan.dao.UserMapper.LEFTJOIN_SubBy_Employee"/>
+        LEFT JOIN t_dish f ON m.dishtotal_dishId=f.dish_Id
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>,
+        <include refid="com.spartan.dao.common.Column_Master_LastSubtime"/>,
+        <include refid="com.spartan.dao.common.Column_Master_CUD"/>,
+        <include refid="com.spartan.dao.UserMapper.Column_SubBy_Employee"/>,
+        f.dish_Id,f.dish_Name,f.dish_Speel,f.dish_Price,f.dish_Img_Url
+        from t_dishtotal m
+        <include refid="com.spartan.dao.UserMapper.LEFTJOIN_SubBy_Employee"/>
+        LEFT JOIN t_dish f ON m.dishtotal_dishId=f.dish_Id
+        where dishtotal_Id = #{dishtotalId,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_dishtotal
+    where dishtotal_Id = #{dishtotalId,jdbcType=INTEGER}
+  </delete>
+    <delete id="deleteByExample" parameterType="com.spartan.model.DishTotalExample">
+        delete m from t_dishtotal m
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </delete>
+    <insert id="insert" parameterType="com.spartan.model.DishTotal">
+    insert into t_dishtotal (dishtotal_Id, dishtotal_dishId, dishtotal_Year, 
+      dishtotal_Month, dishtotal_Day, dishtotal_DayTime, 
+      total_Amount, del_Flag,
+      subBy)
+    values (#{dishtotalId,jdbcType=INTEGER}, #{dishtotalDishid,jdbcType=INTEGER}, #{dishtotalYear,jdbcType=INTEGER}, 
+      #{dishtotalMonth,jdbcType=INTEGER}, #{dishtotalDay,jdbcType=INTEGER}, #{dishtotalDaytime,jdbcType=INTEGER}, 
+      #{totalAmount,jdbcType=DECIMAL}, #{delFlag,jdbcType=TINYINT},
+      #{user.userId,jdbcType=INTEGER})
+  </insert>
+    <insert id="insertSelective" parameterType="com.spartan.model.DishTotal">
+        insert into t_dishtotal
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="dishtotalId != null">
+                dishtotal_Id,
+            </if>
+            <if test="dish != null">
+                dishtotal_dishId,
+            </if>
+            <if test="dishtotalYear != null">
+                dishtotal_Year,
+            </if>
+            <if test="dishtotalMonth != null">
+                dishtotal_Month,
+            </if>
+            <if test="dishtotalDay != null">
+                dishtotal_Day,
+            </if>
+            <if test="dishtotalDaytime != null">
+                dishtotal_DayTime,
+            </if>
+            <if test="totalAmount != null">
+                total_Amount,
+            </if>
+            <if test="delFlag != null">
+                del_Flag,
+            </if>
+            <if test="lastSubtime != null">
+                last_SubTime,
+            </if>
+            <if test="user!= null">
+                subBy,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="dishtotalId != null">
+                #{dishtotalId,jdbcType=INTEGER},
+            </if>
+            <if test="dish!= null">
+                #{dish.dishId,jdbcType=INTEGER},
+            </if>
+            <if test="dishtotalYear != null">
+                #{dishtotalYear,jdbcType=INTEGER},
+            </if>
+            <if test="dishtotalMonth != null">
+                #{dishtotalMonth,jdbcType=INTEGER},
+            </if>
+            <if test="dishtotalDay != null">
+                #{dishtotalDay,jdbcType=INTEGER},
+            </if>
+            <if test="dishtotalDaytime != null">
+                #{dishtotalDaytime,jdbcType=INTEGER},
+            </if>
+            <if test="totalAmount != null">
+                #{totalAmount,jdbcType=DECIMAL},
+            </if>
+            <if test="delFlag != null">
+                #{delFlag,jdbcType=TINYINT},
+            </if>
+            <if test="lastSubtime != null">
+                #{lastSubtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="user != null">
+                #{user.userId,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByExample" parameterType="com.spartan.model.DishTotalExample" resultType="java.lang.Integer">
+        select count(*) from t_dishtotal m
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
+        update t_dishtotal m
+        <set>
+            <if test="record.dishtotalId != null">
+                dishtotal_Id = #{record.dishtotalId,jdbcType=INTEGER},
+            </if>
+            <if test="record.dish != null">
+                dishtotal_dishId = #{record.dish.dishId,jdbcType=INTEGER},
+            </if>
+            <if test="record.dishtotalYear != null">
+                dishtotal_Year = #{record.dishtotalYear,jdbcType=INTEGER},
+            </if>
+            <if test="record.dishtotalMonth != null">
+                dishtotal_Month = #{record.dishtotalMonth,jdbcType=INTEGER},
+            </if>
+            <if test="record.dishtotalDay != null">
+                dishtotal_Day = #{record.dishtotalDay,jdbcType=INTEGER},
+            </if>
+            <if test="record.dishtotalDaytime != null">
+                dishtotal_DayTime = #{record.dishtotalDaytime,jdbcType=INTEGER},
+            </if>
+            <if test="record.totalAmount != null">
+                total_Amount = #{record.totalAmount,jdbcType=DECIMAL},
+            </if>
+            <if test="record.delFlag != null">
+                del_Flag = #{record.delFlag,jdbcType=TINYINT},
+            </if>
+            <if test="record.lastSubtime != null">
+                last_SubTime = #{record.lastSubtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.user != null">
+                subBy = #{record.user.userId,jdbcType=INTEGER},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map">
+        update t_dishtotal m
+        set dishtotal_Id = #{record.dishtotalId,jdbcType=INTEGER},
+        dishtotal_dishId = #{record.dish.dishId,jdbcType=INTEGER},
+        dishtotal_Year = #{record.dishtotalYear,jdbcType=INTEGER},
+        dishtotal_Month = #{record.dishtotalMonth,jdbcType=INTEGER},
+        dishtotal_Day = #{record.dishtotalDay,jdbcType=INTEGER},
+        dishtotal_DayTime = #{record.dishtotalDaytime,jdbcType=INTEGER},
+        total_Amount = #{record.totalAmount,jdbcType=DECIMAL},
+        del_Flag = #{record.delFlag,jdbcType=TINYINT},
+        subBy = #{record.user.userId,jdbcType=INTEGER}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="com.spartan.model.DishTotal">
+        update t_dishtotal m
+        <set>
+            <if test="dish != null">
+                dishtotal_dishId = #{dish.dishId,jdbcType=INTEGER},
+            </if>
+            <if test="dishtotalYear != null">
+                dishtotal_Year = #{dishtotalYear,jdbcType=INTEGER},
+            </if>
+            <if test="dishtotalMonth != null">
+                dishtotal_Month = #{dishtotalMonth,jdbcType=INTEGER},
+            </if>
+            <if test="dishtotalDay != null">
+                dishtotal_Day = #{dishtotalDay,jdbcType=INTEGER},
+            </if>
+            <if test="dishtotalDaytime != null">
+                dishtotal_DayTime = #{dishtotalDaytime,jdbcType=INTEGER},
+            </if>
+            <if test="totalAmount != null">
+                total_Amount = #{totalAmount,jdbcType=DECIMAL},
+            </if>
+            <if test="delFlag != null">
+                del_Flag = #{delFlag,jdbcType=TINYINT},
+            </if>
+            <if test="lastSubtime != null">
+                last_SubTime = #{lastSubtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="user != null">
+                subBy = #{user.userId,jdbcType=INTEGER},
+            </if>
+        </set>
+        where dishtotal_Id = #{dishtotalId,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.spartan.model.DishTotal">
+        update t_dishtotal m
+        set dishtotal_dishId = #{dish.dishId,jdbcType=INTEGER},
+        dishtotal_Year = #{dishtotalYear,jdbcType=INTEGER},
+        dishtotal_Month = #{dishtotalMonth,jdbcType=INTEGER},
+        dishtotal_Day = #{dishtotalDay,jdbcType=INTEGER},
+        dishtotal_DayTime = #{dishtotalDaytime,jdbcType=INTEGER},
+        total_Amount = #{totalAmount,jdbcType=DECIMAL},
+        del_Flag = #{delFlag,jdbcType=TINYINT},
+        subBy = #{user.userId,jdbcType=INTEGER}
+        where dishtotal_Id = #{dishtotalId,jdbcType=INTEGER}
+    </update>
+</mapper>
