@@ -166,73 +166,63 @@ public class TempCarteContentExample {
             return (Criteria) this;
         }
 
-        public Criteria andTciSwiftNumberIsNull() {
-            addCriterion("m.TCI_Swift_Number is null");
+        public Criteria andTccTciIdIsNull() {
+            addCriterion("m.TCC_TCI_ID is null");
             return (Criteria) this;
         }
 
-        public Criteria andTciSwiftNumberIsNotNull() {
-            addCriterion("m.TCI_Swift_Number is not null");
+        public Criteria andTccTciIdIsNotNull() {
+            addCriterion("m.TCC_TCI_ID is not null");
             return (Criteria) this;
         }
 
-        public Criteria andTciSwiftNumberEqualTo(String value) {
-            addCriterion("m.TCI_Swift_Number =", value, "tciSwiftNumber");
+        public Criteria andTccTciIdEqualTo(Integer value) {
+            addCriterion("m.TCC_TCI_ID =", value, "tccTciId");
             return (Criteria) this;
         }
 
-        public Criteria andTciSwiftNumberNotEqualTo(String value) {
-            addCriterion("m.TCI_Swift_Number <>", value, "tciSwiftNumber");
+        public Criteria andTccTciIdNotEqualTo(Integer value) {
+            addCriterion("m.TCC_TCI_ID <>", value, "tccTciId");
             return (Criteria) this;
         }
 
-        public Criteria andTciSwiftNumberGreaterThan(String value) {
-            addCriterion("m.TCI_Swift_Number >", value, "tciSwiftNumber");
+        public Criteria andTccTciIdGreaterThan(Integer value) {
+            addCriterion("m.TCC_TCI_ID >", value, "tccTciId");
             return (Criteria) this;
         }
 
-        public Criteria andTciSwiftNumberGreaterThanOrEqualTo(String value) {
-            addCriterion("m.TCI_Swift_Number >=", value, "tciSwiftNumber");
+        public Criteria andTccTciIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("m.TCC_TCI_ID >=", value, "tccTciId");
             return (Criteria) this;
         }
 
-        public Criteria andTciSwiftNumberLessThan(String value) {
-            addCriterion("m.TCI_Swift_Number <", value, "tciSwiftNumber");
+        public Criteria andTccTciIdLessThan(Integer value) {
+            addCriterion("m.TCC_TCI_ID <", value, "tccTciId");
             return (Criteria) this;
         }
 
-        public Criteria andTciSwiftNumberLessThanOrEqualTo(String value) {
-            addCriterion("m.TCI_Swift_Number <=", value, "tciSwiftNumber");
+        public Criteria andTccTciIdLessThanOrEqualTo(Integer value) {
+            addCriterion("m.TCC_TCI_ID <=", value, "tccTciId");
             return (Criteria) this;
         }
 
-        public Criteria andTciSwiftNumberLike(String value) {
-            addCriterion("m.TCI_Swift_Number like", value, "tciSwiftNumber");
+        public Criteria andTccTciIdIn(List<Integer> values) {
+            addCriterion("m.TCC_TCI_ID in", values, "tccTciId");
             return (Criteria) this;
         }
 
-        public Criteria andTciSwiftNumberNotLike(String value) {
-            addCriterion("m.TCI_Swift_Number not like", value, "tciSwiftNumber");
+        public Criteria andTccTciIdNotIn(List<Integer> values) {
+            addCriterion("m.TCC_TCI_ID not in", values, "tccTciId");
             return (Criteria) this;
         }
 
-        public Criteria andTciSwiftNumberIn(List<String> values) {
-            addCriterion("m.TCI_Swift_Number in", values, "tciSwiftNumber");
+        public Criteria andTccTciIdBetween(Integer value1, Integer value2) {
+            addCriterion("m.TCC_TCI_ID between", value1, value2, "tccTciId");
             return (Criteria) this;
         }
 
-        public Criteria andTciSwiftNumberNotIn(List<String> values) {
-            addCriterion("m.TCI_Swift_Number not in", values, "tciSwiftNumber");
-            return (Criteria) this;
-        }
-
-        public Criteria andTciSwiftNumberBetween(String value1, String value2) {
-            addCriterion("m.TCI_Swift_Number between", value1, value2, "tciSwiftNumber");
-            return (Criteria) this;
-        }
-
-        public Criteria andTciSwiftNumberNotBetween(String value1, String value2) {
-            addCriterion("m.TCI_Swift_Number not between", value1, value2, "tciSwiftNumber");
+        public Criteria andTccTciIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("m.TCC_TCI_ID not between", value1, value2, "tccTciId");
             return (Criteria) this;
         }
 

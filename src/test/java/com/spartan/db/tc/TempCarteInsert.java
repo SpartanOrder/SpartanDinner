@@ -1,8 +1,8 @@
 package com.spartan.db.tc;
 
 import com.spartan.dao.DishMapper;
-import com.spartan.dao.EndCarteContentMapper;
-import com.spartan.dao.EndCarteInfoMapper;
+import com.spartan.dao.TempCarteContentMapper;
+import com.spartan.dao.TempCarteInfoMapper;
 import com.spartan.model.*;
 import com.spartan.util.EnoughNumber;
 import org.junit.Test;
@@ -28,139 +28,131 @@ import java.util.Random;
 @ContextConfiguration(locations = {"classpath:ApplicationContext.xml", "classpath:spring-mybatis.xml"})
 public class TempCarteInsert {
     @Resource
-    private EndCarteInfoMapper endCarteInfoMapper;
+    private TempCarteInfoMapper tempCarteInfoMapper;
     @Resource
-    private EndCarteContentMapper endCarteContentMapper;
+    private TempCarteContentMapper tempCarteContentMapper;
     @Resource
     private DishMapper dishMapper;
     SimpleDateFormat df = new SimpleDateFormat("yy-MM-dd-hh-mm-ss");
 
     @Test
-    public void insertECISelectiveBatch() {
+    public void insertTCISelectiveBatch() {
         for (int i = 1; i <= 100; i++) {
-            EndCarteInfo endCarteInfo = new EndCarteInfo();
-            endCarteInfo.setEciId(i);
-            endCarteInfo.setEciSwiftNumber(df.format(new Date()) + EnoughNumber.lpad(3, i));
-            endCarteInfo.setEciState((byte) 1);
+            TempCarteInfo tempCarteInfo = new TempCarteInfo();
+            tempCarteInfo.setTciId(i);
+            tempCarteInfo.setTciSwiftNumber(df.format(new Date()) + EnoughNumber.lpad(3, i));
+            tempCarteInfo.setTciState((byte) 1);
             DinningTable dinningTable = new DinningTable();
             dinningTable.setTableId(new Random().nextInt(6));
-            endCarteInfo.setDinningTable(dinningTable);
+            tempCarteInfo.setDinningTable(dinningTable);
             EmployeeInfo eciWaiter = new EmployeeInfo();
             eciWaiter.setEmployeeId(new Random().nextInt(6));
-            endCarteInfo.setEciWaiter(eciWaiter);
-            EmployeeInfo eciCashier = new EmployeeInfo();
-            eciCashier.setEmployeeId(new Random().nextInt(6));
-            endCarteInfo.setEciCashier(eciCashier);
+            tempCarteInfo.setTciWaiter(eciWaiter);
             Customer customer = new Customer();
             customer.setCustomerId(new Random().nextInt(6));
-            endCarteInfo.setCustomer(customer);
+            tempCarteInfo.setCustomer(customer);
             MemberInfo memberInfo = new MemberInfo();
             memberInfo.setMemId(new Random().nextInt(6));
-            endCarteInfo.setMemberInfo(memberInfo);
-            endCarteInfo.setEciDishNums(countECCForECI(i));
-            endCarteInfo.setEciAmountPeoplo(10);
-            endCarteInfo.setEciRepastTime(new Date());
-            String[] payMethods = {"现金", "刷卡", "微信支付"};
-            endCarteInfo.setEciPayMethod(payMethods[new Random().nextInt(3)]);
-            endCarteInfo.setEciConsumeAmount(new BigDecimal(100));
-            endCarteInfo.setEciDiscount(new BigDecimal(10));
-            endCarteInfo.setEciPaidAmount(new BigDecimal(100));
-            endCarteInfo.setDelFlag((byte) 1);
+            tempCarteInfo.setMemberInfo(memberInfo);
+            tempCarteInfo.setTciDishNums(countTCCForTCI(i));
+            tempCarteInfo.setTciAmountPeoplo(10);
+            tempCarteInfo.setTciRepastTime(new Date());
+            tempCarteInfo.setTciConsumeAmount(new BigDecimal(100));
+            tempCarteInfo.setTciCostAmount(new BigDecimal(100));
+            tempCarteInfo.setTciDiscount(new BigDecimal(10));
+            tempCarteInfo.setDelFlag((byte) 1);
             User user = new User();
             user.setUserId(new Random().nextInt(6));
-            endCarteInfo.setUser(user);
-            endCarteInfoMapper.insertSelective(endCarteInfo);
+            tempCarteInfo.setUser(user);
+            tempCarteInfoMapper.insertSelective(tempCarteInfo);
         }
     }
 
     @Test
-    public void insertECIBatch() {
+    public void insertTCIBatch() {
         for (int i = 1; i <= 100; i++) {
-            EndCarteInfo endCarteInfo = new EndCarteInfo();
-            endCarteInfo.setEciId(100 + i);
+            TempCarteInfo tempCarteInfo = new TempCarteInfo();
+            tempCarteInfo.setTciId(100 + i);
             System.out.println(df.format(new Date()) + EnoughNumber.lpad(3, i));
-            endCarteInfo.setEciSwiftNumber(df.format(new Date()) + EnoughNumber.lpad(3, i));
-            endCarteInfo.setEciState((byte) 1);
+            tempCarteInfo.setTciSwiftNumber(df.format(new Date()) + EnoughNumber.lpad(3, i));
+            tempCarteInfo.setTciState((byte) 1);
             DinningTable dinningTable = new DinningTable();
             dinningTable.setTableId(new Random().nextInt(6));
-            endCarteInfo.setDinningTable(dinningTable);
+            tempCarteInfo.setDinningTable(dinningTable);
             EmployeeInfo eciWaiter = new EmployeeInfo();
             eciWaiter.setEmployeeId(new Random().nextInt(6));
-            endCarteInfo.setEciWaiter(eciWaiter);
+            tempCarteInfo.setTciWaiter(eciWaiter);
             EmployeeInfo eciCashier = new EmployeeInfo();
             eciCashier.setEmployeeId(new Random().nextInt(6));
-            endCarteInfo.setEciCashier(eciCashier);
             Customer customer = new Customer();
             customer.setCustomerId(new Random().nextInt(6));
-            endCarteInfo.setCustomer(customer);
+            tempCarteInfo.setCustomer(customer);
             MemberInfo memberInfo = new MemberInfo();
             memberInfo.setMemId(new Random().nextInt(6));
-            endCarteInfo.setMemberInfo(memberInfo);
-            endCarteInfo.setEciDishNums(countECCForECI(i));
-            endCarteInfo.setEciAmountPeoplo(10);
-            endCarteInfo.setEciRepastTime(new Date());
-            String[] payMethods = {"现金", "刷卡", "微信支付"};
-            endCarteInfo.setEciPayMethod(payMethods[new Random().nextInt(3)]);
-            endCarteInfo.setEciConsumeAmount(new BigDecimal(100));
-            endCarteInfo.setEciDiscount(new BigDecimal(10));
-            endCarteInfo.setEciPaidAmount(new BigDecimal(100));
-            endCarteInfo.setDelFlag((byte) 1);
+            tempCarteInfo.setMemberInfo(memberInfo);
+            tempCarteInfo.setTciDishNums(countTCCForTCI(i));
+            tempCarteInfo.setTciAmountPeoplo(10);
+            tempCarteInfo.setTciRepastTime(new Date());
+            tempCarteInfo.setTciConsumeAmount(new BigDecimal(100));
+            tempCarteInfo.setTciDiscount(new BigDecimal(10));
+            tempCarteInfo.setTciCostAmount(new BigDecimal(100));
+            tempCarteInfo.setDelFlag((byte) 1);
             User user = new User();
             user.setUserId(new Random().nextInt(6));
-            endCarteInfo.setUser(user);
-            endCarteInfoMapper.insert(endCarteInfo);
+            tempCarteInfo.setUser(user);
+            tempCarteInfoMapper.insert(tempCarteInfo);
         }
     }
 
-    public int countECCForECI(int i) {
-        EndCarteContentExample carteContentExample = new EndCarteContentExample();
-        EndCarteContentExample.Criteria criteria = carteContentExample.createCriteria();
-        criteria.andEccEciIdEqualTo(i);
-        return endCarteContentMapper.countByExample(carteContentExample);
+    public int countTCCForTCI(int i) {
+        TempCarteContentExample carteContentExample = new TempCarteContentExample();
+        TempCarteContentExample.Criteria criteria = carteContentExample.createCriteria();
+        criteria.andTccTciIdEqualTo(i);
+        return tempCarteContentMapper.countByExample(carteContentExample);
     }
 
     @Test
-    public void insertECCSelectiveBatch() {
+    public void insertTCCSelectiveBatch() {
         for (int i = 1; i <= 100; i++) {
-            EndCarteInfo endCarteInfo = new EndCarteInfo();
-            int rand = new Random().nextInt(5) + 1;
+            TempCarteInfo tempCarteInfo = new TempCarteInfo();
+            int rand = new Random().nextInt(10) + 1;
             for (int j = 1; j <= rand; j++) {
-                EndCarteContent endCarteContent = new EndCarteContent();
-                endCarteInfo.setEciId(i);
-                endCarteContent.setEndCarteInfo(endCarteInfo);
+                TempCarteContent tempCarteContent = new TempCarteContent();
+                tempCarteInfo.setTciId(i);
+                tempCarteContent.setTempCarteInfo(tempCarteInfo);
                 Dish dish = dishMapper.selectByPrimaryKey(new Random().nextInt(700) + 1);
-                endCarteContent.setDish(dish);
-                endCarteContent.setEccDishNum(1);
-                endCarteContent.setEccTotalPrice(dish.getDishPrice());
-                endCarteContent.setEccSpecilDesc(EnoughNumber.lpad(3, i) + EnoughNumber.lpad(3, j));
-                endCarteContent.setDelFlag((byte) 1);
+                tempCarteContent.setDish(dish);
+                tempCarteContent.setTccDishNum(1);
+                tempCarteContent.setTccTotalPrice(dish.getDishPrice());
+                tempCarteContent.setTccSpecilDesc(EnoughNumber.lpad(3, i) + EnoughNumber.lpad(3, j));
+                tempCarteContent.setDelFlag((byte) 1);
                 User user = new User();
                 user.setUserId(1);
-                endCarteContent.setUser(user);
-                endCarteContentMapper.insertSelective(endCarteContent);
+                tempCarteContent.setUser(user);
+                tempCarteContentMapper.insertSelective(tempCarteContent);
             }
         }
     }
 
     @Test
-    public void insertECCBatch() {
+    public void insertTCCBatch() {
         for (int i = 1; i <= 100; i++) {
             int rand = new Random().nextInt(6);
             for (int j = 1; j < rand; j++) {
-                EndCarteContent endCarteContent = new EndCarteContent();
-                EndCarteInfo endCarteInfo = new EndCarteInfo();
-                endCarteInfo.setEciId(100 + i);
-                endCarteContent.setEndCarteInfo(endCarteInfo);
+                TempCarteContent tempCarteContent = new TempCarteContent();
+                TempCarteInfo tempCarteInfo = new TempCarteInfo();
+                tempCarteInfo.setTciId(100 + i);
+                tempCarteContent.setTempCarteInfo(tempCarteInfo);
                 Dish dish = dishMapper.selectByPrimaryKey(new Random().nextInt(700) + 1);
-                endCarteContent.setDish(dish);
-                endCarteContent.setEccDishNum(1);
-                endCarteContent.setEccTotalPrice(dish.getDishPrice());
-                endCarteContent.setEccSpecilDesc(EnoughNumber.lpad(3, i) + EnoughNumber.lpad(3, j));
-                endCarteContent.setDelFlag((byte) 1);
+                tempCarteContent.setDish(dish);
+                tempCarteContent.setTccDishNum(1);
+                tempCarteContent.setTccTotalPrice(dish.getDishPrice());
+                tempCarteContent.setTccSpecilDesc(EnoughNumber.lpad(3, i) + EnoughNumber.lpad(3, j));
+                tempCarteContent.setDelFlag((byte) 1);
                 User user = new User();
                 user.setUserId(1);
-                endCarteContent.setUser(user);
-                endCarteContentMapper.insertSelective(endCarteContent);
+                tempCarteContent.setUser(user);
+                tempCarteContentMapper.insertSelective(tempCarteContent);
             }
         }
     }

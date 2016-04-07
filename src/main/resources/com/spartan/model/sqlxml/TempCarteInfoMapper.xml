@@ -208,7 +208,7 @@
             <if test="dinningTable != null">
                 TCI_Table_ID,
             </if>
-            <if test="customerId != null">
+            <if test="customer != null">
                 TCI_Customer_ID,
             </if>
             <if test="memberInfo!= null">
