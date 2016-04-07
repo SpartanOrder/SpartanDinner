@@ -108,372 +108,372 @@ public class EndCarteContentExample {
         }
 
         public Criteria andEccIdIsNull() {
-            addCriterion("m.ECC_ID is null");
+            addCriterion("m.TCC_ID is null");
             return (Criteria) this;
         }
 
         public Criteria andEccIdIsNotNull() {
-            addCriterion("m.ECC_ID is not null");
+            addCriterion("m.TCC_ID is not null");
             return (Criteria) this;
         }
 
         public Criteria andEccIdEqualTo(Integer value) {
-            addCriterion("m.ECC_ID =", value, "eccId");
+            addCriterion("m.TCC_ID =", value, "eccId");
             return (Criteria) this;
         }
 
         public Criteria andEccIdNotEqualTo(Integer value) {
-            addCriterion("m.ECC_ID <>", value, "eccId");
+            addCriterion("m.TCC_ID <>", value, "eccId");
             return (Criteria) this;
         }
 
         public Criteria andEccIdGreaterThan(Integer value) {
-            addCriterion("m.ECC_ID >", value, "eccId");
+            addCriterion("m.TCC_ID >", value, "eccId");
             return (Criteria) this;
         }
 
         public Criteria andEccIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("m.ECC_ID >=", value, "eccId");
+            addCriterion("m.TCC_ID >=", value, "eccId");
             return (Criteria) this;
         }
 
         public Criteria andEccIdLessThan(Integer value) {
-            addCriterion("m.ECC_ID <", value, "eccId");
+            addCriterion("m.TCC_ID <", value, "eccId");
             return (Criteria) this;
         }
 
         public Criteria andEccIdLessThanOrEqualTo(Integer value) {
-            addCriterion("m.ECC_ID <=", value, "eccId");
+            addCriterion("m.TCC_ID <=", value, "eccId");
             return (Criteria) this;
         }
 
         public Criteria andEccIdIn(List<Integer> values) {
-            addCriterion("m.ECC_ID in", values, "eccId");
+            addCriterion("m.TCC_ID in", values, "eccId");
             return (Criteria) this;
         }
 
         public Criteria andEccIdNotIn(List<Integer> values) {
-            addCriterion("m.ECC_ID not in", values, "eccId");
+            addCriterion("m.TCC_ID not in", values, "eccId");
             return (Criteria) this;
         }
 
         public Criteria andEccIdBetween(Integer value1, Integer value2) {
-            addCriterion("m.ECC_ID between", value1, value2, "eccId");
+            addCriterion("m.TCC_ID between", value1, value2, "eccId");
             return (Criteria) this;
         }
 
         public Criteria andEccIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("m.ECC_ID not between", value1, value2, "eccId");
+            addCriterion("m.TCC_ID not between", value1, value2, "eccId");
             return (Criteria) this;
         }
 
         public Criteria andEccEciIdIsNull() {
-            addCriterion("m.ECC_ECI_ID is null");
+            addCriterion("m.TCC_ECI_ID is null");
             return (Criteria) this;
         }
 
         public Criteria andEccEciIdIsNotNull() {
-            addCriterion("m.ECC_ECI_ID is not null");
+            addCriterion("m.TCC_ECI_ID is not null");
             return (Criteria) this;
         }
 
         public Criteria andEccEciIdEqualTo(Integer value) {
-            addCriterion("m.ECC_ECI_ID =", value, "eccEciId");
+            addCriterion("m.TCC_ECI_ID =", value, "eccEciId");
             return (Criteria) this;
         }
 
         public Criteria andEccEciIdNotEqualTo(Integer value) {
-            addCriterion("m.ECC_ECI_ID <>", value, "eccEciId");
+            addCriterion("m.TCC_ECI_ID <>", value, "eccEciId");
             return (Criteria) this;
         }
 
         public Criteria andEccEciIdGreaterThan(Integer value) {
-            addCriterion("m.ECC_ECI_ID >", value, "eccEciId");
+            addCriterion("m.TCC_ECI_ID >", value, "eccEciId");
             return (Criteria) this;
         }
 
         public Criteria andEccEciIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("m.ECC_ECI_ID >=", value, "eccEciId");
+            addCriterion("m.TCC_ECI_ID >=", value, "eccEciId");
             return (Criteria) this;
         }
 
         public Criteria andEccEciIdLessThan(Integer value) {
-            addCriterion("m.ECC_ECI_ID <", value, "eccEciId");
+            addCriterion("m.TCC_ECI_ID <", value, "eccEciId");
             return (Criteria) this;
         }
 
         public Criteria andEccEciIdLessThanOrEqualTo(Integer value) {
-            addCriterion("m.ECC_ECI_ID <=", value, "eccEciId");
+            addCriterion("m.TCC_ECI_ID <=", value, "eccEciId");
             return (Criteria) this;
         }
 
         public Criteria andEccEciIdIn(List<Integer> values) {
-            addCriterion("m.ECC_ECI_ID in", values, "eccEciId");
+            addCriterion("m.TCC_ECI_ID in", values, "eccEciId");
             return (Criteria) this;
         }
 
         public Criteria andEccEciIdNotIn(List<Integer> values) {
-            addCriterion("m.ECC_ECI_ID not in", values, "eccEciId");
+            addCriterion("m.TCC_ECI_ID not in", values, "eccEciId");
             return (Criteria) this;
         }
 
         public Criteria andEccEciIdBetween(Integer value1, Integer value2) {
-            addCriterion("m.ECC_ECI_ID between", value1, value2, "eccEciId");
+            addCriterion("m.TCC_ECI_ID between", value1, value2, "eccEciId");
             return (Criteria) this;
         }
 
         public Criteria andEccEciIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("m.ECC_ECI_ID not between", value1, value2, "eccEciId");
+            addCriterion("m.TCC_ECI_ID not between", value1, value2, "eccEciId");
             return (Criteria) this;
         }
 
         public Criteria andEccDishIdIsNull() {
-            addCriterion("m.ECC_Dish_ID is null");
+            addCriterion("m.TCC_Dish_ID is null");
             return (Criteria) this;
         }
 
         public Criteria andEccDishIdIsNotNull() {
-            addCriterion("m.ECC_Dish_ID is not null");
+            addCriterion("m.TCC_Dish_ID is not null");
             return (Criteria) this;
         }
 
         public Criteria andEccDishIdEqualTo(Integer value) {
-            addCriterion("m.ECC_Dish_ID =", value, "eccDishId");
+            addCriterion("m.TCC_Dish_ID =", value, "eccDishId");
             return (Criteria) this;
         }
 
         public Criteria andEccDishIdNotEqualTo(Integer value) {
-            addCriterion("m.ECC_Dish_ID <>", value, "eccDishId");
+            addCriterion("m.TCC_Dish_ID <>", value, "eccDishId");
             return (Criteria) this;
         }
 
         public Criteria andEccDishIdGreaterThan(Integer value) {
-            addCriterion("m.ECC_Dish_ID >", value, "eccDishId");
+            addCriterion("m.TCC_Dish_ID >", value, "eccDishId");
             return (Criteria) this;
         }
 
         public Criteria andEccDishIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("m.ECC_Dish_ID >=", value, "eccDishId");
+            addCriterion("m.TCC_Dish_ID >=", value, "eccDishId");
             return (Criteria) this;
         }
 
         public Criteria andEccDishIdLessThan(Integer value) {
-            addCriterion("m.ECC_Dish_ID <", value, "eccDishId");
+            addCriterion("m.TCC_Dish_ID <", value, "eccDishId");
             return (Criteria) this;
         }
 
         public Criteria andEccDishIdLessThanOrEqualTo(Integer value) {
-            addCriterion("m.ECC_Dish_ID <=", value, "eccDishId");
+            addCriterion("m.TCC_Dish_ID <=", value, "eccDishId");
             return (Criteria) this;
         }
 
         public Criteria andEccDishIdIn(List<Integer> values) {
-            addCriterion("m.ECC_Dish_ID in", values, "eccDishId");
+            addCriterion("m.TCC_Dish_ID in", values, "eccDishId");
             return (Criteria) this;
         }
 
         public Criteria andEccDishIdNotIn(List<Integer> values) {
-            addCriterion("m.ECC_Dish_ID not in", values, "eccDishId");
+            addCriterion("m.TCC_Dish_ID not in", values, "eccDishId");
             return (Criteria) this;
         }
 
         public Criteria andEccDishIdBetween(Integer value1, Integer value2) {
-            addCriterion("m.ECC_Dish_ID between", value1, value2, "eccDishId");
+            addCriterion("m.TCC_Dish_ID between", value1, value2, "eccDishId");
             return (Criteria) this;
         }
 
         public Criteria andEccDishIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("m.ECC_Dish_ID not between", value1, value2, "eccDishId");
+            addCriterion("m.TCC_Dish_ID not between", value1, value2, "eccDishId");
             return (Criteria) this;
         }
 
         public Criteria andEccDishNumIsNull() {
-            addCriterion("m.ECC_Dish_Num is null");
+            addCriterion("m.TCC_Dish_Num is null");
             return (Criteria) this;
         }
 
         public Criteria andEccDishNumIsNotNull() {
-            addCriterion("m.ECC_Dish_Num is not null");
+            addCriterion("m.TCC_Dish_Num is not null");
             return (Criteria) this;
         }
 
         public Criteria andEccDishNumEqualTo(Integer value) {
-            addCriterion("m.ECC_Dish_Num =", value, "eccDishNum");
+            addCriterion("m.TCC_Dish_Num =", value, "eccDishNum");
             return (Criteria) this;
         }
 
         public Criteria andEccDishNumNotEqualTo(Integer value) {
-            addCriterion("m.ECC_Dish_Num <>", value, "eccDishNum");
+            addCriterion("m.TCC_Dish_Num <>", value, "eccDishNum");
             return (Criteria) this;
         }
 
         public Criteria andEccDishNumGreaterThan(Integer value) {
-            addCriterion("m.ECC_Dish_Num >", value, "eccDishNum");
+            addCriterion("m.TCC_Dish_Num >", value, "eccDishNum");
             return (Criteria) this;
         }
 
         public Criteria andEccDishNumGreaterThanOrEqualTo(Integer value) {
-            addCriterion("m.ECC_Dish_Num >=", value, "eccDishNum");
+            addCriterion("m.TCC_Dish_Num >=", value, "eccDishNum");
             return (Criteria) this;
         }
 
         public Criteria andEccDishNumLessThan(Integer value) {
-            addCriterion("m.ECC_Dish_Num <", value, "eccDishNum");
+            addCriterion("m.TCC_Dish_Num <", value, "eccDishNum");
             return (Criteria) this;
         }
 
         public Criteria andEccDishNumLessThanOrEqualTo(Integer value) {
-            addCriterion("m.ECC_Dish_Num <=", value, "eccDishNum");
+            addCriterion("m.TCC_Dish_Num <=", value, "eccDishNum");
             return (Criteria) this;
         }
 
         public Criteria andEccDishNumIn(List<Integer> values) {
-            addCriterion("m.ECC_Dish_Num in", values, "eccDishNum");
+            addCriterion("m.TCC_Dish_Num in", values, "eccDishNum");
             return (Criteria) this;
         }
 
         public Criteria andEccDishNumNotIn(List<Integer> values) {
-            addCriterion("m.ECC_Dish_Num not in", values, "eccDishNum");
+            addCriterion("m.TCC_Dish_Num not in", values, "eccDishNum");
             return (Criteria) this;
         }
 
         public Criteria andEccDishNumBetween(Integer value1, Integer value2) {
-            addCriterion("m.ECC_Dish_Num between", value1, value2, "eccDishNum");
+            addCriterion("m.TCC_Dish_Num between", value1, value2, "eccDishNum");
             return (Criteria) this;
         }
 
         public Criteria andEccDishNumNotBetween(Integer value1, Integer value2) {
-            addCriterion("m.ECC_Dish_Num not between", value1, value2, "eccDishNum");
+            addCriterion("m.TCC_Dish_Num not between", value1, value2, "eccDishNum");
             return (Criteria) this;
         }
 
         public Criteria andEccTotalPriceIsNull() {
-            addCriterion("m.ECC_Total_Price is null");
+            addCriterion("m.TCC_Total_Price is null");
             return (Criteria) this;
         }
 
         public Criteria andEccTotalPriceIsNotNull() {
-            addCriterion("m.ECC_Total_Price is not null");
+            addCriterion("m.TCC_Total_Price is not null");
             return (Criteria) this;
         }
 
         public Criteria andEccTotalPriceEqualTo(BigDecimal value) {
-            addCriterion("m.ECC_Total_Price =", value, "eccTotalPrice");
+            addCriterion("m.TCC_Total_Price =", value, "eccTotalPrice");
             return (Criteria) this;
         }
 
         public Criteria andEccTotalPriceNotEqualTo(BigDecimal value) {
-            addCriterion("m.ECC_Total_Price <>", value, "eccTotalPrice");
+            addCriterion("m.TCC_Total_Price <>", value, "eccTotalPrice");
             return (Criteria) this;
         }
 
         public Criteria andEccTotalPriceGreaterThan(BigDecimal value) {
-            addCriterion("m.ECC_Total_Price >", value, "eccTotalPrice");
+            addCriterion("m.TCC_Total_Price >", value, "eccTotalPrice");
             return (Criteria) this;
         }
 
         public Criteria andEccTotalPriceGreaterThanOrEqualTo(BigDecimal value) {
-            addCriterion("m.ECC_Total_Price >=", value, "eccTotalPrice");
+            addCriterion("m.TCC_Total_Price >=", value, "eccTotalPrice");
             return (Criteria) this;
         }
 
         public Criteria andEccTotalPriceLessThan(BigDecimal value) {
-            addCriterion("m.ECC_Total_Price <", value, "eccTotalPrice");
+            addCriterion("m.TCC_Total_Price <", value, "eccTotalPrice");
             return (Criteria) this;
         }
 
         public Criteria andEccTotalPriceLessThanOrEqualTo(BigDecimal value) {
-            addCriterion("m.ECC_Total_Price <=", value, "eccTotalPrice");
+            addCriterion("m.TCC_Total_Price <=", value, "eccTotalPrice");
             return (Criteria) this;
         }
 
         public Criteria andEccTotalPriceIn(List<BigDecimal> values) {
-            addCriterion("m.ECC_Total_Price in", values, "eccTotalPrice");
+            addCriterion("m.TCC_Total_Price in", values, "eccTotalPrice");
             return (Criteria) this;
         }
 
         public Criteria andEccTotalPriceNotIn(List<BigDecimal> values) {
-            addCriterion("m.ECC_Total_Price not in", values, "eccTotalPrice");
+            addCriterion("m.TCC_Total_Price not in", values, "eccTotalPrice");
             return (Criteria) this;
         }
 
         public Criteria andEccTotalPriceBetween(BigDecimal value1, BigDecimal value2) {
-            addCriterion("m.ECC_Total_Price between", value1, value2, "eccTotalPrice");
+            addCriterion("m.TCC_Total_Price between", value1, value2, "eccTotalPrice");
             return (Criteria) this;
         }
 
         public Criteria andEccTotalPriceNotBetween(BigDecimal value1, BigDecimal value2) {
-            addCriterion("m.ECC_Total_Price not between", value1, value2, "eccTotalPrice");
+            addCriterion("m.TCC_Total_Price not between", value1, value2, "eccTotalPrice");
             return (Criteria) this;
         }
 
         public Criteria andEccSpecilDescIsNull() {
-            addCriterion("m.ECC_Specil_Desc is null");
+            addCriterion("m.TCC_Specil_Desc is null");
             return (Criteria) this;
         }
 
         public Criteria andEccSpecilDescIsNotNull() {
-            addCriterion("m.ECC_Specil_Desc is not null");
+            addCriterion("m.TCC_Specil_Desc is not null");
             return (Criteria) this;
         }
 
         public Criteria andEccSpecilDescEqualTo(String value) {
-            addCriterion("m.ECC_Specil_Desc =", value, "eccSpecilDesc");
+            addCriterion("m.TCC_Specil_Desc =", value, "eccSpecilDesc");
             return (Criteria) this;
         }
 
         public Criteria andEccSpecilDescNotEqualTo(String value) {
-            addCriterion("m.ECC_Specil_Desc <>", value, "eccSpecilDesc");
+            addCriterion("m.TCC_Specil_Desc <>", value, "eccSpecilDesc");
             return (Criteria) this;
         }
 
         public Criteria andEccSpecilDescGreaterThan(String value) {
-            addCriterion("m.ECC_Specil_Desc >", value, "eccSpecilDesc");
+            addCriterion("m.TCC_Specil_Desc >", value, "eccSpecilDesc");
             return (Criteria) this;
         }
 
         public Criteria andEccSpecilDescGreaterThanOrEqualTo(String value) {
-            addCriterion("m.ECC_Specil_Desc >=", value, "eccSpecilDesc");
+            addCriterion("m.TCC_Specil_Desc >=", value, "eccSpecilDesc");
             return (Criteria) this;
         }
 
         public Criteria andEccSpecilDescLessThan(String value) {
-            addCriterion("m.ECC_Specil_Desc <", value, "eccSpecilDesc");
+            addCriterion("m.TCC_Specil_Desc <", value, "eccSpecilDesc");
             return (Criteria) this;
         }
 
         public Criteria andEccSpecilDescLessThanOrEqualTo(String value) {
-            addCriterion("m.ECC_Specil_Desc <=", value, "eccSpecilDesc");
+            addCriterion("m.TCC_Specil_Desc <=", value, "eccSpecilDesc");
             return (Criteria) this;
         }
 
         public Criteria andEccSpecilDescLike(String value) {
-            addCriterion("m.ECC_Specil_Desc like", value, "eccSpecilDesc");
+            addCriterion("m.TCC_Specil_Desc like", value, "eccSpecilDesc");
             return (Criteria) this;
         }
 
         public Criteria andEccSpecilDescNotLike(String value) {
-            addCriterion("m.ECC_Specil_Desc not like", value, "eccSpecilDesc");
+            addCriterion("m.TCC_Specil_Desc not like", value, "eccSpecilDesc");
             return (Criteria) this;
         }
 
         public Criteria andEccSpecilDescIn(List<String> values) {
-            addCriterion("m.ECC_Specil_Desc in", values, "eccSpecilDesc");
+            addCriterion("m.TCC_Specil_Desc in", values, "eccSpecilDesc");
             return (Criteria) this;
         }
 
         public Criteria andEccSpecilDescNotIn(List<String> values) {
-            addCriterion("m.ECC_Specil_Desc not in", values, "eccSpecilDesc");
+            addCriterion("m.TCC_Specil_Desc not in", values, "eccSpecilDesc");
             return (Criteria) this;
         }
 
         public Criteria andEccSpecilDescBetween(String value1, String value2) {
-            addCriterion("m.ECC_Specil_Desc between", value1, value2, "eccSpecilDesc");
+            addCriterion("m.TCC_Specil_Desc between", value1, value2, "eccSpecilDesc");
             return (Criteria) this;
         }
 
         public Criteria andEccSpecilDescNotBetween(String value1, String value2) {
-            addCriterion("m.ECC_Specil_Desc not between", value1, value2, "eccSpecilDesc");
+            addCriterion("m.TCC_Specil_Desc not between", value1, value2, "eccSpecilDesc");
             return (Criteria) this;
         }
 

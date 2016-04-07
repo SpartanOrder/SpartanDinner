@@ -29,13 +29,13 @@ public class EndCarteDelete {
     private EndCarteInfoMapper endCarteInfoMapper;
 
     @Test
-    public void deleteECCByPrimary() {
+    public void deleteTCCByPrimary() {
         endCarteContentMapper.deleteByPrimaryKey(1389);
 
     }
 
     @Test
-    public void deleteECCByExample() {
+    public void deleteTCCByExample() {
         EndCarteContentExample endCarteContentExample = new EndCarteContentExample();
         EndCarteContentExample.Criteria criteria = endCarteContentExample.createCriteria();
         criteria.andEccIdEqualTo(1390);

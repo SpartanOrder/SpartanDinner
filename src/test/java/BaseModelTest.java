@@ -13,14 +13,14 @@ import javax.annotation.Resource;
 
 public class BaseModelTest {
     private static Logger logger = Logger.getLogger(TestMyBatis.class);
-    //  private ApplicationContext ac = null;
+    //  private ApplicationContext oc = null;
     @Resource
     private DishService dishService = null;
 
     //  @Before
     //  public void before() {
-    //      ac = new ClassPathXmlApplicationContext("applicationContext.xml");
-    //      userService = (IUserService) ac.getBean("userService");
+    //      oc = new ClassPathXmlApplicationContext("applicationContext.xml");
+    //      userService = (IUserService) oc.getBean("userService");
     //  }
 
     @Test

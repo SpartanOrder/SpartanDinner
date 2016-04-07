@@ -316,34 +316,34 @@ CREATE UNIQUE INDEX employeeinfo_tel ON t_EmployeeInfo
 /*==============================================================*/
 CREATE TABLE t_EndCarteContent
 (
-	ECC_ID INT UNSIGNED NOT NULL AUTO_INCREMENT
+	TCC_ID INT UNSIGNED NOT NULL AUTO_INCREMENT
 	COMMENT '餐单内容ID',
-	ECC_ECI_ID INT NOT NULL
+	TCC_TCI_ID INT NOT NULL
 	COMMENT '餐单信息ID',
-	ECC_Dish_ID INT NOT NULL
+	TCC_Dish_ID INT NOT NULL
 	COMMENT '菜肴ID',
-	ECC_Dish_Num INT NOT NULL
+	TCC_Dish_Num INT NOT NULL
 	COMMENT '菜肴数量',
-	ECC_Total_Price NUMERIC(10,2) NOT NULL
+	TCC_Total_Price NUMERIC(10,2) NOT NULL
 	COMMENT '菜肴总价',
-	ECC_Specil_Desc VARCHAR(20) COMMENT '特殊菜式',
+	TCC_Specil_Desc VARCHAR(20) COMMENT '特殊菜式',
 	del_Flag TINYINT NOT NULL DEFAULT 0
 	COMMENT '删除标记',
 	last_SubTime TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后
 提交时间',
 	subBy INT NOT NULL
 	COMMENT '提交人',
-	PRIMARY KEY (ECC_ID)
+	PRIMARY KEY (TCC_ID)
 );
 
 ALTER TABLE t_EndCarteContent COMMENT '消费餐单内容';
 
 /*==============================================================*/
-/* Index: Index_ECCECIID                                        */
+/* Index: Index_TCCTCIID                                        */
 /*==============================================================*/
-CREATE INDEX Index_ECCECIID ON t_EndCarteContent
+CREATE INDEX Index_TCCTCIID ON t_EndCarteContent
 (
-	ECC_ECI_ID
+	TCC_TCI_ID
 );
 
 /*==============================================================*/
@@ -351,105 +351,105 @@ CREATE INDEX Index_ECCECIID ON t_EndCarteContent
 /*==============================================================*/
 CREATE TABLE t_EndCarteInfo
 (
-	ECI_ID INT UNSIGNED NOT NULL AUTO_INCREMENT
+	TCI_ID INT UNSIGNED NOT NULL AUTO_INCREMENT
 	COMMENT '餐单信息ID',
-	ECI_Swift_Number VARCHAR(20) NOT NULL
+	TCI_Swift_Number VARCHAR(20) NOT NULL
 	COMMENT '餐单流水号',
-	ECI_State TINYINT NOT NULL DEFAULT 0
+	TCI_State TINYINT NOT NULL DEFAULT 0
 	COMMENT '餐单状态',
-	ECI_Table_ID INT COMMENT '餐桌ID',
-	ECI_Waiter_ID INT COMMENT '服务员ID',
-	ECI_Cashier_ID INT NOT NULL
+	TCI_Table_ID INT COMMENT '餐桌ID',
+	TCI_Waiter_ID INT COMMENT '服务员ID',
+	TCI_Cashier_ID INT NOT NULL
 	COMMENT '收银员ID',
-	ECI_Customer_ID INT COMMENT '顾客ID',
-	ECI_Mem_ID INT COMMENT '会员ID',
-	ECI_Dish_Nums INT NOT NULL
+	TCI_Customer_ID INT COMMENT '顾客ID',
+	TCI_Mem_ID INT COMMENT '会员ID',
+	TCI_Dish_Nums INT NOT NULL
 	COMMENT '菜肴数量',
-	ECI_Amount_Peoplo INT COMMENT '就餐人数',
-	ECI_Repast_Time TIMESTAMP COMMENT '就餐时间',
-	ECI_Bill_Time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+	TCI_Amount_Peoplo INT COMMENT '就餐人数',
+	TCI_Repast_Time TIMESTAMP COMMENT '就餐时间',
+	TCI_Bill_Time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 	COMMENT '结帐时间',
-	ECI_Pay_Method VARCHAR(20) COMMENT '结账方式',
-	ECI_Consume_Amount NUMERIC(10,2) UNSIGNED NOT NULL
+	TCI_Pay_Method VARCHAR(20) COMMENT '结账方式',
+	TCI_Consume_Amount NUMERIC(10,2) UNSIGNED NOT NULL
 	COMMENT '消费金额',
-	ECI_Discount NUMERIC(4,2) UNSIGNED COMMENT '折扣',
-	ECI_Paid_Amount NUMERIC(10,2) UNSIGNED NOT NULL
+	TCI_Discount NUMERIC(4,2) UNSIGNED COMMENT '折扣',
+	TCI_Paid_Amount NUMERIC(10,2) UNSIGNED NOT NULL
 	COMMENT '实收金额',
-	ECI_Remark VARCHAR(100) COMMENT '餐单备注',
+	TCI_Remark VARCHAR(100) COMMENT '餐单备注',
 	del_Flag TINYINT NOT NULL DEFAULT 0
 	COMMENT '删除标记',
 	last_SubTime TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后
 提交时间',
 	subBy INT NOT NULL
 	COMMENT '提交人',
-	PRIMARY KEY (ECI_ID),
-	UNIQUE KEY AK_ECISwiftNumber (ECI_Swift_Number)
+	PRIMARY KEY (TCI_ID),
+	UNIQUE KEY AK_TCISwiftNumber (TCI_Swift_Number)
 );
 
 ALTER TABLE t_EndCarteInfo COMMENT '消费餐单信息';
 
 /*==============================================================*/
-/* Index: ECI_ECISwiftNumber                                    */
+/* Index: TCI_TCISwiftNumber                                    */
 /*==============================================================*/
-CREATE UNIQUE INDEX ECI_ECISwiftNumber ON t_EndCarteInfo
+CREATE UNIQUE INDEX TCI_TCISwiftNumber ON t_EndCarteInfo
 (
-	ECI_Swift_Number
+	TCI_Swift_Number
 );
 
 /*==============================================================*/
-/* Index: ECI_ECITableID                                        */
+/* Index: TCI_TCITableID                                        */
 /*==============================================================*/
-CREATE INDEX ECI_ECITableID ON t_EndCarteInfo
+CREATE INDEX TCI_TCITableID ON t_EndCarteInfo
 (
-	ECI_Table_ID
+	TCI_Table_ID
 );
 
 /*==============================================================*/
-/* Index: ECI_ECIWaiterId                                       */
+/* Index: TCI_TCIWaiterId                                       */
 /*==============================================================*/
-CREATE INDEX ECI_ECIWaiterId ON t_EndCarteInfo
+CREATE INDEX TCI_TCIWaiterId ON t_EndCarteInfo
 (
-	ECI_Waiter_ID
+	TCI_Waiter_ID
 );
 
 /*==============================================================*/
-/* Index: ECI_ECICashierId                                      */
+/* Index: TCI_TCICashierId                                      */
 /*==============================================================*/
-CREATE INDEX ECI_ECICashierId ON t_EndCarteInfo
+CREATE INDEX TCI_TCICashierId ON t_EndCarteInfo
 (
-	ECI_Cashier_ID
+	TCI_Cashier_ID
 );
 
 /*==============================================================*/
-/* Index: ECI_ECIRepastTime                                     */
+/* Index: TCI_TCIRepastTime                                     */
 /*==============================================================*/
-CREATE INDEX ECI_ECIRepastTime ON t_EndCarteInfo
+CREATE INDEX TCI_TCIRepastTime ON t_EndCarteInfo
 (
-	ECI_Repast_Time
+	TCI_Repast_Time
 );
 
 /*==============================================================*/
-/* Index: ECI_ECIBillTime                                       */
+/* Index: TCI_TCIBillTime                                       */
 /*==============================================================*/
-CREATE INDEX ECI_ECIBillTime ON t_EndCarteInfo
+CREATE INDEX TCI_TCIBillTime ON t_EndCarteInfo
 (
-	ECI_Bill_Time
+	TCI_Bill_Time
 );
 
 /*==============================================================*/
-/* Index: ECI_ECIConsumeAmount                                  */
+/* Index: TCI_TCIConsumeAmount                                  */
 /*==============================================================*/
-CREATE INDEX ECI_ECIConsumeAmount ON t_EndCarteInfo
+CREATE INDEX TCI_TCIConsumeAmount ON t_EndCarteInfo
 (
-	ECI_Consume_Amount
+	TCI_Consume_Amount
 );
 
 /*==============================================================*/
-/* Index: ECI_ECIPaidAmount                                     */
+/* Index: TCI_TCIPaidAmount                                     */
 /*==============================================================*/
-CREATE INDEX ECI_ECIPaidAmount ON t_EndCarteInfo
+CREATE INDEX TCI_TCIPaidAmount ON t_EndCarteInfo
 (
-	ECI_Paid_Amount
+	TCI_Paid_Amount
 );
 
 /*==============================================================*/
@@ -607,7 +607,7 @@ CREATE TABLE t_OnAccountCarteInfo
 	subBy INT NOT NULL
 	COMMENT '提交人',
 	PRIMARY KEY (OCI_ID),
-	UNIQUE KEY AK_ECISwiftNumber (OCI_Swift_Number)
+	UNIQUE KEY AK_TCISwiftNumber (OCI_Swift_Number)
 );
 
 ALTER TABLE t_OnAccountCarteInfo COMMENT '挂账餐单消费信息';
@@ -831,7 +831,7 @@ CREATE TABLE t_TempCarteInfo
 	subBy INT NOT NULL
 	COMMENT '提交人',
 	PRIMARY KEY (TCI_ID),
-	UNIQUE KEY AK_ECISwiftNumber (TCI_Swift_Number)
+	UNIQUE KEY AK_TCISwiftNumber (TCI_Swift_Number)
 );
 
 ALTER TABLE t_TempCarteInfo COMMENT '临时消费餐单信息';

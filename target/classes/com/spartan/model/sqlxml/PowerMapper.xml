@@ -120,11 +120,11 @@
     <insert id="insert" parameterType="com.spartan.model.Power">
     insert into t_power (power_Id, power_Name, power_Type, 
       priority, parent_Id, parent_Ids, 
-      permission, del_Flag, last_SubTime, 
+      permission, del_Flag,
       subBy)
     values (#{powerId,jdbcType=INTEGER}, #{powerName,jdbcType=VARCHAR}, #{powerType,jdbcType=VARCHAR}, 
       #{priority,jdbcType=INTEGER}, #{parentId,jdbcType=INTEGER}, #{parentIds,jdbcType=VARCHAR}, 
-      #{permission,jdbcType=VARCHAR}, #{delFlag,jdbcType=TINYINT}, #{lastSubtime,jdbcType=TIMESTAMP}, 
+      #{permission,jdbcType=VARCHAR}, #{delFlag,jdbcType=TINYINT},
       #{user.userId,jdbcType=INTEGER})
   </insert>
     <insert id="insertSelective" parameterType="com.spartan.model.Power">
@@ -248,7 +248,6 @@
         parent_Ids = #{record.parentIds,jdbcType=VARCHAR},
         permission = #{record.permission,jdbcType=VARCHAR},
         del_Flag = #{record.delFlag,jdbcType=TINYINT},
-        last_SubTime = #{record.lastSubtime,jdbcType=TIMESTAMP},
         subBy = #{record.user.userId,jdbcType=INTEGER}
         <if test="_parameter != null">
             <include refid="Update_By_Example_Where_Clause"/>
@@ -296,7 +295,6 @@
       parent_Ids = #{parentIds,jdbcType=VARCHAR},
       permission = #{permission,jdbcType=VARCHAR},
       del_Flag = #{delFlag,jdbcType=TINYINT},
-      last_SubTime = #{lastSubtime,jdbcType=TIMESTAMP},
       subBy = #{user.userId,jdbcType=INTEGER}
     where power_Id = #{powerId,jdbcType=INTEGER}
   </update>

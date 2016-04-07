@@ -57,7 +57,7 @@ public class EndCarteInsert {
             MemberInfo memberInfo = new MemberInfo();
             memberInfo.setMemId(new Random().nextInt(6));
             endCarteInfo.setMemberInfo(memberInfo);
-            endCarteInfo.setEciDishNums(countECCForECI(i));
+            endCarteInfo.setEciDishNums(countTCCForECI(i));
             endCarteInfo.setEciAmountPeoplo(10);
             endCarteInfo.setEciRepastTime(new Date());
             String[] payMethods = {"现金", "刷卡", "微信支付"};
@@ -96,7 +96,7 @@ public class EndCarteInsert {
             MemberInfo memberInfo = new MemberInfo();
             memberInfo.setMemId(new Random().nextInt(6));
             endCarteInfo.setMemberInfo(memberInfo);
-            endCarteInfo.setEciDishNums(countECCForECI(i));
+            endCarteInfo.setEciDishNums(countTCCForECI(i));
             endCarteInfo.setEciAmountPeoplo(10);
             endCarteInfo.setEciRepastTime(new Date());
             String[] payMethods = {"现金", "刷卡", "微信支付"};
@@ -112,7 +112,7 @@ public class EndCarteInsert {
         }
     }
 
-    public int countECCForECI(int i) {
+    public int countTCCForECI(int i) {
         EndCarteContentExample carteContentExample = new EndCarteContentExample();
         EndCarteContentExample.Criteria criteria = carteContentExample.createCriteria();
         criteria.andEccEciIdEqualTo(i);
@@ -120,7 +120,7 @@ public class EndCarteInsert {
     }
 
     @Test
-    public void insertECCSelectiveBatch() {
+    public void insertTCCSelectiveBatch() {
         for (int i = 1; i <= 100; i++) {
             EndCarteInfo endCarteInfo = new EndCarteInfo();
             int rand = new Random().nextInt(5) + 1;
@@ -143,7 +143,7 @@ public class EndCarteInsert {
     }
 
     @Test
-    public void insertECCBatch() {
+    public void insertTCCBatch() {
         for (int i = 1; i <= 100; i++) {
             int rand = new Random().nextInt(6);
             for (int j = 1; j < rand; j++) {

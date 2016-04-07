@@ -39,7 +39,7 @@ public class EndCarteSelect {
     }
 
     @Test
-    public void selectECCByPrimary() {
+    public void selectTCCByPrimary() {
         EndCarteContent endCarteContent = endCarteContentMapper.selectByPrimaryKey(1256);
         System.out.println(JSONObject.toJSON(endCarteContent).toString());
     }
@@ -59,7 +59,7 @@ public class EndCarteSelect {
     }
 
     @Test
-    public void selectECCByExample() {
+    public void selectTCCByExample() {
         EndCarteContentExample endCarteContentExample = new EndCarteContentExample();
         EndCarteContentExample.Criteria criteria = endCarteContentExample.createCriteria();
         criteria.andDelFlagIsNotNull();
@@ -72,7 +72,7 @@ public class EndCarteSelect {
     }
 
     @Test
-    public void countECCByExample() {
+    public void countTCCByExample() {
         EndCarteContentExample endCarteContentExample = new EndCarteContentExample();
         EndCarteContentExample.Criteria criteria = endCarteContentExample.createCriteria();
         criteria.andDelFlagIsNotNull();

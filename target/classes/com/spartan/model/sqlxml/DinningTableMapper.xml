@@ -126,11 +126,11 @@
     <insert id="insert" parameterType="com.spartan.model.DinningTable">
     insert into t_dinningtable (table_ID, region_ID, table_Name, 
       table_State, table_Desc, max_Consumer, 
-      table_Remark, del_Flag, last_SubTime, 
+      table_Remark, del_Flag,
       subBy)
     values (#{tableId,jdbcType=INTEGER}, #{region.regionId,jdbcType=INTEGER}, #{tableName,jdbcType=VARCHAR},
       #{tableState,jdbcType=TINYINT}, #{tableDesc,jdbcType=VARCHAR}, #{maxConsumer,jdbcType=INTEGER}, 
-      #{tableRemark,jdbcType=VARCHAR}, #{delFlag,jdbcType=TINYINT}, #{lastSubtime,jdbcType=TIMESTAMP}, 
+      #{tableRemark,jdbcType=VARCHAR}, #{delFlag,jdbcType=TINYINT},
       #{user.userId,jdbcType=INTEGER})
   </insert>
     <insert id="insertSelective" parameterType="com.spartan.model.DinningTable">
@@ -254,7 +254,6 @@
         max_Consumer = #{record.maxConsumer,jdbcType=INTEGER},
         table_Remark = #{record.tableRemark,jdbcType=VARCHAR},
         del_Flag = #{record.delFlag,jdbcType=TINYINT},
-        last_SubTime = #{record.lastSubtime,jdbcType=TIMESTAMP},
         subBy = #{record.user.userId,jdbcType=INTEGER}
         <if test="_parameter != null">
             <include refid="Update_By_Example_Where_Clause"/>
@@ -302,7 +301,6 @@
       max_Consumer = #{maxConsumer,jdbcType=INTEGER},
       table_Remark = #{tableRemark,jdbcType=VARCHAR},
       del_Flag = #{delFlag,jdbcType=TINYINT},
-      last_SubTime = #{lastSubtime,jdbcType=TIMESTAMP},
       subBy = #{user.userId,jdbcType=INTEGER}
     where table_ID = #{tableId,jdbcType=INTEGER}
   </update>

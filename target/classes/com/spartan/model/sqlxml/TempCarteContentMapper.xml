@@ -3,18 +3,28 @@
 <mapper namespace="com.spartan.dao.TempCarteContentMapper">
     <resultMap id="BaseResultMap" type="com.spartan.model.TempCarteContent">
         <id column="TCC_ID" property="tccId" jdbcType="INTEGER"/>
-        <result column="TCI_Swift_Number" property="tciSwiftNumber" jdbcType="VARCHAR"/>
         <result column="TCC_Dish_Num" property="tccDishNum" jdbcType="INTEGER"/>
         <result column="TCC_Total_Price" property="tccTotalPrice" jdbcType="DECIMAL"/>
         <result column="TCC_Specil_Desc" property="tccSpecilDesc" jdbcType="VARCHAR"/>
         <result column="del_Flag" property="delFlag" jdbcType="TINYINT"/>
         <result column="last_SubTime" property="lastSubtime" jdbcType="TIMESTAMP"/>
-        <association property="dish" column="TCC_Dish_ID" javaType="com.spartan.model.Dish" resultMap="com.spartan.dao.DishMapper.SimpleResultMap">
+        <association property="tempCarteInfo" column="TCC_TCI_ID" javaType="com.spartan.model.TempCarteInfo"
+                     resultMap="com.spartan.dao.TempCarteInfoMapper.SimpleResultMap"></association>
+        <association property="dish" column="TCC_Dish_ID" javaType="com.spartan.model.Dish"
+                     resultMap="com.spartan.dao.DishMapper.SimpleResultMap">
         </association>
-        <association property="user" column="subBy" javaType="com.spartan.model.User" resultMap="com.spartan.dao.UserMapper.SimpleResultMap">
+        <association property="user" column="subBy" javaType="com.spartan.model.User"
+                     resultMap="com.spartan.dao.UserMapper.SimpleResultMap">
         </association>
     </resultMap>
     <resultMap id="SimpleResultMap" type="com.spartan.model.TempCarteContent">
+        <id column="TCC_ID" property="tccId" jdbcType="INTEGER"/>
+        <result column="TCC_Total_Price" property="tccTotalPrice" jdbcType="DECIMAL"/>
+        <association property="tempCarteInfo" column="TCC_TCI_ID" javaType="com.spartan.model.TempCarteInfo"
+                     resultMap="com.spartan.dao.TempCarteInfoMapper.SimpleResultMap"></association>
+        <association property="dish" column="TCC_Dish_ID" javaType="com.spartan.model.Dish"
+                     resultMap="com.spartan.dao.DishMapper.SimpleResultMap">
+        </association>
     </resultMap>
     <sql id="Example_Where_Clause">
         <where>
@@ -75,7 +85,7 @@
         </where>
     </sql>
     <sql id="Base_Column_List">
-    m.TCC_ID, m.TCI_Swift_Number, m.TCC_Dish_ID, m.TCC_Dish_Num, m.TCC_Total_Price, m.TCC_Specil_Desc
+    m.TCC_ID, m.TCC_TCI_ID, m.TCC_Dish_ID, m.TCC_Dish_Num, m.TCC_Total_Price, m.TCC_Specil_Desc
   </sql>
     <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.spartan.model.TempCarteContentExample">
         select
@@ -85,8 +95,12 @@
         <include refid="Base_Column_List"/>,
         <include refid="com.spartan.dao.common.Column_Master_LastSubtime"/>,
         <include refid="com.spartan.dao.common.Column_Master_CUD"/>,
-        <include refid="com.spartan.dao.UserMapper.Column_SubBy_Employee"/>
-        from t_tempcartecontent
+        <include refid="com.spartan.dao.UserMapper.Column_SubBy_Employee"/>,
+        f.TCI_ID,f.TCI_Swift_Number,fi.dish_Id,fi.dish_Name,fi.dish_Speel,fi.dish_Price,fi.dish_Img_Url
+        from t_tempcartecontent m
+        <include refid="com.spartan.dao.UserMapper.LEFTJOIN_SubBy_Employee"/>
+        LEFT JOIN t_tempCarteInfo f ON m.TCC_TCI_ID=f.TCI_ID
+        LEFT JOIN t_dish fi ON m.TCC_Dish_ID=fi.dish_Id
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
@@ -99,28 +113,32 @@
         <include refid="Base_Column_List"/>,
         <include refid="com.spartan.dao.common.Column_Master_LastSubtime"/>,
         <include refid="com.spartan.dao.common.Column_Master_CUD"/>,
-        <include refid="com.spartan.dao.UserMapper.Column_SubBy_Employee"/>
-        from t_tempcartecontent
+        <include refid="com.spartan.dao.UserMapper.Column_SubBy_Employee"/>,
+        f.TCI_ID,f.TCI_Swift_Number,fi.dish_Id,fi.dish_Name,fi.dish_Speel,fi.dish_Price,fi.dish_Img_Url
+        from t_tempcartecontent m
+        <include refid="com.spartan.dao.UserMapper.LEFTJOIN_SubBy_Employee"/>
+        LEFT JOIN t_tempCarteInfo f ON m.TCC_TCI_ID=f.TCI_ID
+        LEFT JOIN t_dish fi ON m.TCC_Dish_ID=fi.dish_Id
         where TCC_ID = #{tccId,jdbcType=INTEGER}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from t_tempcartecontent
+    delete m from t_tempcartecontent m
     where TCC_ID = #{tccId,jdbcType=INTEGER}
   </delete>
     <delete id="deleteByExample" parameterType="com.spartan.model.TempCarteContentExample">
-        delete from t_tempcartecontent
+        delete m from t_tempcartecontent m
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
     </delete>
     <insert id="insert" parameterType="com.spartan.model.TempCarteContent">
-    insert into t_tempcartecontent (TCC_ID, TCI_Swift_Number, TCC_Dish_ID, 
+    insert into t_tempcartecontent (TCC_ID, TCC_TCI_ID, TCC_Dish_ID,
       TCC_Dish_Num, TCC_Total_Price, TCC_Specil_Desc, 
-      del_Flag, last_SubTime, subBy
+      del_Flag, subBy
       )
-    values (#{tccId,jdbcType=INTEGER}, #{tciSwiftNumber,jdbcType=VARCHAR}, #{tccDishId,jdbcType=INTEGER}, 
+    values (#{tccId,jdbcType=INTEGER}, #{tempCarteInfo.tciId,jdbcType=INTEGER}, #{dish.dishId,jdbcType=INTEGER},
       #{tccDishNum,jdbcType=INTEGER}, #{tccTotalPrice,jdbcType=DECIMAL}, #{tccSpecilDesc,jdbcType=VARCHAR}, 
-      #{delFlag,jdbcType=TINYINT}, #{lastSubtime,jdbcType=TIMESTAMP}, #{subby,jdbcType=INTEGER}
+      #{delFlag,jdbcType=TINYINT},  #{user.userId,jdbcType=INTEGER}
       )
   </insert>
     <insert id="insertSelective" parameterType="com.spartan.model.TempCarteContent">
@@ -129,10 +147,10 @@
             <if test="tccId != null">
                 TCC_ID,
             </if>
-            <if test="tciSwiftNumber != null">
-                TCI_Swift_Number,
+            <if test="tempCarteInfo != null">
+                TCC_TCI_ID,
             </if>
-            <if test="tccDishId != null">
+            <if test="dish!= null">
                 TCC_Dish_ID,
             </if>
             <if test="tccDishNum != null">
@@ -150,7 +168,7 @@
             <if test="lastSubtime != null">
                 last_SubTime,
             </if>
-            <if test="subby != null">
+            <if test="user != null">
                 subBy,
             </if>
         </trim>
@@ -158,11 +176,11 @@
             <if test="tccId != null">
                 #{tccId,jdbcType=INTEGER},
             </if>
-            <if test="tciSwiftNumber != null">
-                #{tciSwiftNumber,jdbcType=VARCHAR},
+            <if test="tempCarteInfo != null">
+                #{tempCarteInfo.tciId,jdbcType=INTEGER},
             </if>
-            <if test="tccDishId != null">
-                #{tccDishId,jdbcType=INTEGER},
+            <if test="dish != null">
+                #{dish.dishId,jdbcType=INTEGER},
             </if>
             <if test="tccDishNum != null">
                 #{tccDishNum,jdbcType=INTEGER},
@@ -179,28 +197,28 @@
             <if test="lastSubtime != null">
                 #{lastSubtime,jdbcType=TIMESTAMP},
             </if>
-            <if test="subby != null">
-                #{subby,jdbcType=INTEGER},
+            <if test="user != null">
+                #{user.userId,jdbcType=INTEGER},
             </if>
         </trim>
     </insert>
     <select id="countByExample" parameterType="com.spartan.model.TempCarteContentExample" resultType="java.lang.Integer">
-        select count(*) from t_tempcartecontent
+        select count(*) from t_tempcartecontent m
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
     </select>
     <update id="updateByExampleSelective" parameterType="map">
-        update t_tempcartecontent
+        update t_tempcartecontent m
         <set>
             <if test="record.tccId != null">
                 TCC_ID = #{record.tccId,jdbcType=INTEGER},
             </if>
-            <if test="record.tciSwiftNumber != null">
-                TCI_Swift_Number = #{record.tciSwiftNumber,jdbcType=VARCHAR},
+            <if test="record.tempCarteInfo != null">
+                TCC_TCI_ID = #{record.tempCarteInfo.tciId,jdbcType=INTEGER},
             </if>
-            <if test="record.tccDishId != null">
-                TCC_Dish_ID = #{record.tccDishId,jdbcType=INTEGER},
+            <if test="record.dish != null">
+                TCC_Dish_ID = #{record.dish.dishId,jdbcType=INTEGER},
             </if>
             <if test="record.tccDishNum != null">
                 TCC_Dish_Num = #{record.tccDishNum,jdbcType=INTEGER},
@@ -217,8 +235,8 @@
             <if test="record.lastSubtime != null">
                 last_SubTime = #{record.lastSubtime,jdbcType=TIMESTAMP},
             </if>
-            <if test="record.subby != null">
-                subBy = #{record.subby,jdbcType=INTEGER},
+            <if test="record.user != null">
+                subBy = #{record.user.userId,jdbcType=INTEGER},
             </if>
         </set>
         <if test="_parameter != null">
@@ -226,28 +244,27 @@
         </if>
     </update>
     <update id="updateByExample" parameterType="map">
-        update t_tempcartecontent
+        update t_tempcartecontent m
         set TCC_ID = #{record.tccId,jdbcType=INTEGER},
-        TCI_Swift_Number = #{record.tciSwiftNumber,jdbcType=VARCHAR},
-        TCC_Dish_ID = #{record.tccDishId,jdbcType=INTEGER},
+        TCC_TCI_ID = #{record.tempCarteInfo.tciId,jdbcType=INTEGER},
+        TCC_Dish_ID = #{record.dish.dishId,jdbcType=INTEGER},
         TCC_Dish_Num = #{record.tccDishNum,jdbcType=INTEGER},
         TCC_Total_Price = #{record.tccTotalPrice,jdbcType=DECIMAL},
         TCC_Specil_Desc = #{record.tccSpecilDesc,jdbcType=VARCHAR},
         del_Flag = #{record.delFlag,jdbcType=TINYINT},
-        last_SubTime = #{record.lastSubtime,jdbcType=TIMESTAMP},
-        subBy = #{record.subby,jdbcType=INTEGER}
+        subBy = #{record.user.userId,jdbcType=INTEGER}
         <if test="_parameter != null">
             <include refid="Update_By_Example_Where_Clause"/>
         </if>
     </update>
     <update id="updateByPrimaryKeySelective" parameterType="com.spartan.model.TempCarteContent">
-        update t_tempcartecontent
+        update t_tempcartecontent m
         <set>
-            <if test="tciSwiftNumber != null">
-                TCI_Swift_Number = #{tciSwiftNumber,jdbcType=VARCHAR},
+            <if test="tempCarteInfo != null">
+                TCC_TCI_ID = #{tempCarteInfo.tciId,jdbcType=INTEGER},
             </if>
-            <if test="tccDishId != null">
-                TCC_Dish_ID = #{tccDishId,jdbcType=INTEGER},
+            <if test="dish != null">
+                TCC_Dish_ID = #{dish.dishId,jdbcType=INTEGER},
             </if>
             <if test="tccDishNum != null">
                 TCC_Dish_Num = #{tccDishNum,jdbcType=INTEGER},
@@ -264,22 +281,21 @@
             <if test="lastSubtime != null">
                 last_SubTime = #{lastSubtime,jdbcType=TIMESTAMP},
             </if>
-            <if test="subby != null">
-                subBy = #{subby,jdbcType=INTEGER},
+            <if test="user != null">
+                subBy = #{user.userId,jdbcType=INTEGER},
             </if>
         </set>
         where TCC_ID = #{tccId,jdbcType=INTEGER}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.spartan.model.TempCarteContent">
     update t_tempcartecontent
-    set TCI_Swift_Number = #{tciSwiftNumber,jdbcType=VARCHAR},
-      TCC_Dish_ID = #{tccDishId,jdbcType=INTEGER},
-      TCC_Dish_Num = #{tccDishNum,jdbcType=INTEGER},
-      TCC_Total_Price = #{tccTotalPrice,jdbcType=DECIMAL},
-      TCC_Specil_Desc = #{tccSpecilDesc,jdbcType=VARCHAR},
-      del_Flag = #{delFlag,jdbcType=TINYINT},
-      last_SubTime = #{lastSubtime,jdbcType=TIMESTAMP},
-      subBy = #{subby,jdbcType=INTEGER}
+    set  TCC_TCI_ID = #{tempCarteInfo.tciId,jdbcType=INTEGER},
+        TCC_Dish_ID = #{dish.dishId,jdbcType=INTEGER},
+        TCC_Dish_Num = #{tccDishNum,jdbcType=INTEGER},
+        TCC_Total_Price = #{tccTotalPrice,jdbcType=DECIMAL},
+        TCC_Specil_Desc = #{tccSpecilDesc,jdbcType=VARCHAR},
+        del_Flag = #{delFlag,jdbcType=TINYINT},
+        subBy = #{user.userId,jdbcType=INTEGER}
     where TCC_ID = #{tccId,jdbcType=INTEGER}
   </update>
 </mapper>

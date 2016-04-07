@@ -148,13 +148,13 @@
       mem_Phone, mem_Address, mem_Gender, 
       mem_Money, mem_Integral, mem_Birthday, 
       mem_Begin_Time, mem_End_Time, del_Flag, 
-      last_SubTime, subBy)
+       subBy)
     values (#{memId,jdbcType=INTEGER}, #{memberType.memTypeId,jdbcType=INTEGER}, #{memName,jdbcType=VARCHAR},
       #{memUserName,jdbcType=VARCHAR}, #{memPassword,jdbcType=VARCHAR}, #{memTel,jdbcType=VARCHAR}, 
       #{memPhone,jdbcType=VARCHAR}, #{memAddress,jdbcType=VARCHAR}, #{memGender,jdbcType=TINYINT}, 
       #{memMoney,jdbcType=DECIMAL}, #{memIntegral,jdbcType=INTEGER}, #{memBirthday,jdbcType=DATE}, 
       #{memBeginTime,jdbcType=DATE}, #{memEndTime,jdbcType=DATE}, #{delFlag,jdbcType=TINYINT}, 
-      #{lastSubtime,jdbcType=TIMESTAMP}, #{user.userId,jdbcType=INTEGER})
+       #{user.userId,jdbcType=INTEGER})
   </insert>
     <insert id="insertSelective" parameterType="com.spartan.model.MemberInfo">
         insert into t_memberinfo
@@ -347,7 +347,6 @@
         mem_Begin_Time = #{record.memBeginTime,jdbcType=DATE},
         mem_End_Time = #{record.memEndTime,jdbcType=DATE},
         del_Flag = #{record.delFlag,jdbcType=TINYINT},
-        last_SubTime = #{record.lastSubtime,jdbcType=TIMESTAMP},
         subBy = #{record.user.userId,jdbcType=INTEGER}
         <if test="_parameter != null">
             <include refid="Update_By_Example_Where_Clause"/>
@@ -423,7 +422,6 @@
       mem_Begin_Time = #{memBeginTime,jdbcType=DATE},
       mem_End_Time = #{memEndTime,jdbcType=DATE},
       del_Flag = #{delFlag,jdbcType=TINYINT},
-      last_SubTime = #{lastSubtime,jdbcType=TIMESTAMP},
       subBy = #{user.userId,jdbcType=INTEGER}
     where mem_ID = #{memId,jdbcType=INTEGER}
   </update>

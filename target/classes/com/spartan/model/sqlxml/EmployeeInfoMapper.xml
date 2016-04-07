@@ -141,14 +141,14 @@
         tel, fixed_Phone, degree,
         description, address, department_Id,
         salary, employee_Date, fire_Date,
-        del_Flag, last_SubTime, subBy
+        del_Flag, , subBy
         )
         values (#{employeeId,jdbcType=INTEGER}, #{account.userId,jdbcType=INTEGER}, #{employeeName,jdbcType=VARCHAR},
         #{employeeSex,jdbcType=TINYINT}, #{birthDate,jdbcType=DATE}, #{idCard,jdbcType=VARCHAR},
         #{tel,jdbcType=VARCHAR}, #{fixedPhone,jdbcType=VARCHAR}, #{degree,jdbcType=VARCHAR},
         #{description,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{department.departmentId,jdbcType=INTEGER},
         #{salary,jdbcType=INTEGER}, #{employeeDate,jdbcType=DATE}, #{fireDate,jdbcType=DATE},
-        #{delFlag,jdbcType=TINYINT}, #{lastSubtime,jdbcType=TIMESTAMP}, #{user.userId,jdbcType=INTEGER}
+        #{delFlag,jdbcType=TINYINT},  #{user.userId,jdbcType=INTEGER}
         )
     </insert>
     <insert id="insertSelective" parameterType="com.spartan.model.EmployeeInfo">
@@ -352,7 +352,6 @@
         employee_Date = #{record.employeeDate,jdbcType=DATE},
         fire_Date = #{record.fireDate,jdbcType=DATE},
         del_Flag = #{record.delFlag,jdbcType=TINYINT},
-        last_SubTime = #{record.lastSubtime,jdbcType=TIMESTAMP},
         subBy = #{record.user.userId,jdbcType=INTEGER}
         <if test="_parameter != null">
             <include refid="Update_By_Example_Where_Clause"/>
@@ -432,7 +431,6 @@
       employee_Date = #{employeeDate,jdbcType=DATE},
       fire_Date = #{fireDate,jdbcType=DATE},
       del_Flag = #{delFlag,jdbcType=TINYINT},
-      last_SubTime = #{lastSubtime,jdbcType=TIMESTAMP},
       subBy = #{user.userId,jdbcType=INTEGER}
     where employee_ID = #{employeeId,jdbcType=INTEGER}
   </update>

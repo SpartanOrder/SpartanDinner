@@ -151,12 +151,12 @@
     insert into t_dish (dish_ID, ddish_Type_ID, dish_Name,
       dish_Speel, dish_Cost, dish_Unit, 
       dish_Price, dish_Description, dish_Cooking, 
-      dish_Img_Url, del_Flag, last_SubTime, 
+      dish_Img_Url, del_Flag,
       subBy)
     values (#{dishId,jdbcType=INTEGER}, #{dishType.dishTypeId,jdbcType=INTEGER}, #{dishName,jdbcType=VARCHAR},
       #{dishSpeel,jdbcType=VARCHAR}, #{dishCost,jdbcType=DECIMAL}, #{dishUnit,jdbcType=VARCHAR}, 
       #{dishPrice,jdbcType=DECIMAL}, #{dishDescription,jdbcType=VARCHAR}, #{dishCooking,jdbcType=VARCHAR}, 
-      #{dishImgUrl,jdbcType=VARCHAR}, #{delFlag,jdbcType=TINYINT}, #{lastSubtime,jdbcType=TIMESTAMP}, 
+      #{dishImgUrl,jdbcType=VARCHAR}, #{delFlag,jdbcType=TINYINT},
       #{user.userId,jdbcType=INTEGER})
   </insert>
     <insert id="insertSelective" parameterType="com.spartan.model.Dish">
@@ -310,7 +310,6 @@
         dish_Cooking = #{record.dishCooking,jdbcType=VARCHAR},
         dish_Img_Url = #{record.dishImgUrl,jdbcType=VARCHAR},
         del_Flag = #{record.delFlag,jdbcType=TINYINT},
-        last_SubTime = #{record.lastSubtime,jdbcType=TIMESTAMP},
         subBy = #{record.user.userId,jdbcType=INTEGER}
         <if test="_parameter != null">
             <include refid="Update_By_Example_Where_Clause"/>
@@ -370,7 +369,6 @@
         dish_Cooking = #{dishCooking,jdbcType=VARCHAR},
         dish_Img_Url = #{dishImgUrl,jdbcType=VARCHAR},
         del_Flag = #{delFlag,jdbcType=TINYINT},
-        last_SubTime = #{lastSubtime,jdbcType=TIMESTAMP},
         subBy = #{user.userId,jdbcType=INTEGER}
         where dish_ID = #{dishId,jdbcType=INTEGER}
     </update>

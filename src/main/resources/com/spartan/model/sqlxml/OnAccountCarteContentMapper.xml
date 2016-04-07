@@ -134,11 +134,11 @@
     <insert id="insert" parameterType="com.spartan.model.OnAccountCarteContent">
     insert into t_onaccountcartecontent (OCC_ID, OCC_OCI_ID, OCC_Dish_ID, 
       OCC_Dish_Num, OCC_Total_Price, OCC_Specil_Desc, 
-      del_Flag, last_SubTime, subBy
+      del_Flag, subBy
       )
     values (#{occId,jdbcType=INTEGER}, #{onAccountCarteInfo.ociId,jdbcType=INTEGER}, #{dish.dishId,jdbcType=INTEGER},
       #{occDishNum,jdbcType=INTEGER}, #{occTotalPrice,jdbcType=DECIMAL}, #{occSpecilDesc,jdbcType=VARCHAR}, 
-      #{delFlag,jdbcType=TINYINT}, #{lastSubtime,jdbcType=TIMESTAMP}, #{user.userId,jdbcType=INTEGER}
+      #{delFlag,jdbcType=TINYINT},#{user.userId,jdbcType=INTEGER}
       )
   </insert>
     <insert id="insertSelective" parameterType="com.spartan.model.OnAccountCarteContent">
@@ -214,10 +214,10 @@
             <if test="record.occId != null">
                 OCC_ID = #{record.occId,jdbcType=INTEGER},
             </if>
-            <if test="record.onAccountCarteInfo.ociId != null">
+            <if test="record.onAccountCarteInfo != null">
                 OCC_OCI_ID = #{record.onAccountCarteInfo.ociId,jdbcType=INTEGER},
             </if>
-            <if test="record.dish.dishId != null">
+            <if test="record.dish != null">
                 OCC_Dish_ID = #{record.dish.dishId,jdbcType=INTEGER},
             </if>
             <if test="record.occDishNum != null">
@@ -252,7 +252,6 @@
         OCC_Total_Price = #{record.occTotalPrice,jdbcType=DECIMAL},
         OCC_Specil_Desc = #{record.occSpecilDesc,jdbcType=VARCHAR},
         del_Flag = #{record.delFlag,jdbcType=TINYINT},
-        last_SubTime = #{record.lastSubtime,jdbcType=TIMESTAMP},
         subBy = #{record.user.userId,jdbcType=INTEGER}
         <if test="_parameter != null">
             <include refid="Update_By_Example_Where_Clause"/>
@@ -296,7 +295,6 @@
       OCC_Total_Price = #{occTotalPrice,jdbcType=DECIMAL},
       OCC_Specil_Desc = #{occSpecilDesc,jdbcType=VARCHAR},
       del_Flag = #{delFlag,jdbcType=TINYINT},
-      last_SubTime = #{lastSubtime,jdbcType=TIMESTAMP},
       subBy = #{user.userId,jdbcType=INTEGER}
     where OCC_ID = #{occId,jdbcType=INTEGER}
   </update>

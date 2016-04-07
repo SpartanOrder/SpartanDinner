@@ -118,11 +118,9 @@
     </delete>
     <insert id="insert" parameterType="com.spartan.model.Customer">
     insert into t_customer (customer_ID, customer_Name, customer_Tel,
-      customer_Gender, del_Flag, last_SubTime, 
-      subBy)
+      customer_Gender, del_Flag, subBy)
     values (#{customerId,jdbcType=INTEGER}, #{customerName,jdbcType=VARCHAR}, #{customerTel,jdbcType=VARCHAR}, 
-      #{customerGender,jdbcType=TINYINT}, #{delFlag,jdbcType=TINYINT}, #{lastSubtime,jdbcType=TIMESTAMP}, 
-      #{user.userId,jdbcType=INTEGER})
+      #{customerGender,jdbcType=TINYINT}, #{delFlag,jdbcType=TINYINT},  #{user.userId,jdbcType=INTEGER})
   </insert>
     <insert id="insertSelective" parameterType="com.spartan.model.Customer">
         insert into t_customer
@@ -215,7 +213,6 @@
         customer_Tel = #{record.customerTel,jdbcType=VARCHAR},
         customer_Gender = #{record.customerGender,jdbcType=TINYINT},
         del_Flag = #{record.delFlag,jdbcType=TINYINT},
-        last_SubTime = #{record.lastSubtime,jdbcType=TIMESTAMP},
         subBy = #{record.user.userId,jdbcType=INTEGER}
         <if test="_parameter != null">
             <include refid="Update_By_Example_Where_Clause"/>
@@ -251,7 +248,6 @@
       customer_Tel = #{customerTel,jdbcType=VARCHAR},
       customer_Gender = #{customerGender,jdbcType=TINYINT},
       del_Flag = #{delFlag,jdbcType=TINYINT},
-      last_SubTime = #{lastSubtime,jdbcType=TIMESTAMP},
       subBy = #{user.userId,jdbcType=INTEGER}
     where customer_ID = #{customerId,jdbcType=INTEGER}
   </update>

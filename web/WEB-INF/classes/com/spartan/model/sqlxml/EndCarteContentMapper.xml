@@ -2,23 +2,23 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.spartan.dao.EndCarteContentMapper" >
   <resultMap id="BaseResultMap" type="com.spartan.model.EndCarteContent" >
-    <id column="ECC_ID" property="eccId" jdbcType="INTEGER" />
-    <result column="ECC_Dish_ID" property="eccDishId" jdbcType="INTEGER" />
-    <result column="ECC_Dish_Num" property="eccDishNum" jdbcType="INTEGER" />
-    <result column="ECC_Total_Price" property="eccTotalPrice" jdbcType="DECIMAL" />
-    <result column="ECC_ECI_ID" property="eccEciId" jdbcType="INTEGER" />
-    <result column="ECC_Specil_Desc" property="eccSpecilDesc" jdbcType="VARCHAR" />
+    <id column="TCC_ID" property="eccId" jdbcType="INTEGER" />
+    <result column="TCC_Dish_ID" property="eccDishId" jdbcType="INTEGER" />
+    <result column="TCC_Dish_Num" property="eccDishNum" jdbcType="INTEGER" />
+    <result column="TCC_Total_Price" property="eccTotalPrice" jdbcType="DECIMAL" />
+    <result column="TCC_ECI_ID" property="eccEciId" jdbcType="INTEGER" />
+    <result column="TCC_Specil_Desc" property="eccSpecilDesc" jdbcType="VARCHAR" />
     <result column="del_Flag" property="delFlag" jdbcType="TINYINT" />
     <result column="last_SubTime" property="lastSubtime" jdbcType="TIMESTAMP" />
     <result column="subBy" property="subby" jdbcType="INTEGER" />
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from t_endcartecontent
-    where ECC_ID = #{eccId,jdbcType=INTEGER}
+    where TCC_ID = #{eccId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.spartan.model.EndCarteContent" >
-    insert into t_endcartecontent (ECC_ID, ECC_Dish_ID, ECC_Dish_Num,
-    ECC_Total_Price, ECC_ECI_ID, ECC_Specil_Desc,
+    insert into t_endcartecontent (TCC_ID, TCC_Dish_ID, TCC_Dish_Num,
+    TCC_Total_Price, TCC_ECI_ID, TCC_Specil_Desc,
     del_Flag, subBy)
     values (#{eccId,jdbcType=INTEGER}, #{eccDishId,jdbcType=INTEGER}, #{eccDishNum,jdbcType=INTEGER},
     #{eccTotalPrice,jdbcType=DECIMAL}, #{eccEciId,jdbcType=INTEGER}, #{eccSpecilDesc,jdbcType=VARCHAR},
@@ -26,23 +26,23 @@
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.spartan.model.EndCarteContent" >
     update t_endcartecontent
-    set ECC_Dish_ID = #{eccDishId,jdbcType=INTEGER},
-      ECC_Dish_Num = #{eccDishNum,jdbcType=INTEGER},
-      ECC_Total_Price = #{eccTotalPrice,jdbcType=DECIMAL},
-      ECC_ECI_ID = #{eccEciId,jdbcType=INTEGER},
-      ECC_Specil_Desc = #{eccSpecilDesc,jdbcType=VARCHAR},
+    set TCC_Dish_ID = #{eccDishId,jdbcType=INTEGER},
+      TCC_Dish_Num = #{eccDishNum,jdbcType=INTEGER},
+      TCC_Total_Price = #{eccTotalPrice,jdbcType=DECIMAL},
+      TCC_ECI_ID = #{eccEciId,jdbcType=INTEGER},
+      TCC_Specil_Desc = #{eccSpecilDesc,jdbcType=VARCHAR},
       del_Flag = #{delFlag,jdbcType=TINYINT},
       subBy = #{subby,jdbcType=INTEGER}
-    where ECC_ID = #{eccId,jdbcType=INTEGER}
+    where TCC_ID = #{eccId,jdbcType=INTEGER}
   </update>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select ECC_ID, ECC_Dish_ID, ECC_Dish_Num, ECC_Total_Price, ECC_ECI_ID, ECC_Specil_Desc, 
+    select TCC_ID, TCC_Dish_ID, TCC_Dish_Num, TCC_Total_Price, TCC_ECI_ID, TCC_Specil_Desc,
     del_Flag, last_SubTime, subBy
     from t_endcartecontent
-    where ECC_ID = #{eccId,jdbcType=INTEGER}
+    where TCC_ID = #{eccId,jdbcType=INTEGER}
   </select>
   <select id="selectAll" resultMap="BaseResultMap" >
-    select ECC_ID, ECC_Dish_ID, ECC_Dish_Num, ECC_Total_Price, ECC_ECI_ID, ECC_Specil_Desc, 
+    select TCC_ID, TCC_Dish_ID, TCC_Dish_Num, TCC_Total_Price, TCC_ECI_ID, TCC_Specil_Desc,
     del_Flag, last_SubTime, subBy
     from t_endcartecontent
   </select>

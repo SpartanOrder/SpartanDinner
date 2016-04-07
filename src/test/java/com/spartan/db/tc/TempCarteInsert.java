@@ -70,7 +70,7 @@ public class TempCarteInsert {
 
     @Test
     public void insertTCIBatch() {
-        for (int i = 1; i <= 100; i++) {
+        for (int i = 1; i < 100; i++) {
             TempCarteInfo tempCarteInfo = new TempCarteInfo();
             tempCarteInfo.setTciId(100 + i);
             System.out.println(df.format(new Date()) + EnoughNumber.lpad(3, i));
@@ -90,7 +90,7 @@ public class TempCarteInsert {
             MemberInfo memberInfo = new MemberInfo();
             memberInfo.setMemId(new Random().nextInt(6));
             tempCarteInfo.setMemberInfo(memberInfo);
-            tempCarteInfo.setTciDishNums(countTCCForTCI(i));
+            tempCarteInfo.setTciDishNums(countTCCForTCI(100+i));
             tempCarteInfo.setTciAmountPeoplo(10);
             tempCarteInfo.setTciRepastTime(new Date());
             tempCarteInfo.setTciConsumeAmount(new BigDecimal(100));

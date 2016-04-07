@@ -143,7 +143,7 @@ public class EndCarteUpdate {
 
 
     @Test
-    public void updateECCByPrimarySelective() {
+    public void updateTCCByPrimarySelective() {
         EndCarteContent endCarteContent = new EndCarteContent();
         endCarteContent.setEccId(1681);
         Dish dish = new Dish();
@@ -153,7 +153,7 @@ public class EndCarteUpdate {
     }
 
     @Test
-    public void updateECCByPrimary() {
+    public void updateTCCByPrimary() {
         EndCarteContent endCarteContent = new EndCarteContent();
         endCarteContent.setEccId(1681);
         EndCarteInfo endCarteInfo = new EndCarteInfo();
@@ -163,7 +163,7 @@ public class EndCarteUpdate {
         endCarteContent.setDish(dish);
         endCarteContent.setEccDishNum(1);
         endCarteContent.setEccTotalPrice(dish.getDishPrice());
-        endCarteContent.setEccSpecilDesc("updateECCByPrimary");
+        endCarteContent.setEccSpecilDesc("updateTCCByPrimary");
         endCarteContent.setDelFlag((byte) 1);
         User user = new User();
         user.setUserId(1);
@@ -172,21 +172,21 @@ public class EndCarteUpdate {
     }
 
     @Test
-    public void updateECCByExampleSelective() {
+    public void updateTCCByExampleSelective() {
         EndCarteContent endCarteContent = new EndCarteContent();
         Dish dish = new Dish();
         dish.setDishId(1);
         endCarteContent.setDish(dish);
         EndCarteContentExample endCarteContentExample = new EndCarteContentExample();
         EndCarteContentExample.Criteria criteria = endCarteContentExample.createCriteria();
-        criteria.andEccSpecilDescEqualTo("updateECCByPrimary");
+        criteria.andEccSpecilDescEqualTo("updateTCCByPrimary");
         criteria.andEccEciIdEqualTo(200);
         endCarteContentMapper.updateByExampleSelective(endCarteContent, endCarteContentExample);
     }
 
 
     @Test
-    public void updateECCByExample() {
+    public void updateTCCByExample() {
         EndCarteContent endCarteContent = new EndCarteContent();
         endCarteContent.setEccId(1681);
         EndCarteInfo endCarteInfo = new EndCarteInfo();
@@ -196,14 +196,14 @@ public class EndCarteUpdate {
         endCarteContent.setDish(dish);
         endCarteContent.setEccDishNum(1);
         endCarteContent.setEccTotalPrice(dish.getDishPrice());
-        endCarteContent.setEccSpecilDesc("updateECCByExample");
+        endCarteContent.setEccSpecilDesc("updateTCCByExample");
         endCarteContent.setDelFlag((byte) 1);
         User user = new User();
         user.setUserId(1);
         endCarteContent.setUser(user);
         EndCarteContentExample endCarteContentExample = new EndCarteContentExample();
         EndCarteContentExample.Criteria criteria = endCarteContentExample.createCriteria();
-        criteria.andEccSpecilDescEqualTo("updateECCByPrimary");
+        criteria.andEccSpecilDescEqualTo("updateTCCByPrimary");
         endCarteContentMapper.updateByExample(endCarteContent, endCarteContentExample);
     }
 

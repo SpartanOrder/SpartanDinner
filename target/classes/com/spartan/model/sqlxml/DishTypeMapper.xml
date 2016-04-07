@@ -118,10 +118,10 @@
     <insert id="insert" parameterType="com.spartan.model.DishType">
     insert into t_dishtype (dish_Type_ID, dish_Type_Name, dish_Type_Desc, 
       dish_Type_Status, dish_Type_orderId, del_Flag, 
-      last_SubTime, subBy)
+      subBy)
     values (#{dishTypeId,jdbcType=INTEGER}, #{dishTypeName,jdbcType=VARCHAR}, #{dishTypeDesc,jdbcType=VARCHAR}, 
       #{dishTypeStatus,jdbcType=TINYINT}, #{dishTypeOrderid,jdbcType=INTEGER}, #{delFlag,jdbcType=TINYINT}, 
-      #{lastSubtime,jdbcType=TIMESTAMP}, #{user.userId,jdbcType=INTEGER})
+      #{user.userId,jdbcType=INTEGER})
   </insert>
     <insert id="insertSelective" parameterType="com.spartan.model.DishType">
         insert into t_dishtype
@@ -224,7 +224,6 @@
         dish_Type_Status = #{record.dishTypeStatus,jdbcType=TINYINT},
         dish_Type_orderId = #{record.dishTypeOrderid,jdbcType=INTEGER},
         del_Flag = #{record.delFlag,jdbcType=TINYINT},
-        last_SubTime = #{record.lastSubtime,jdbcType=TIMESTAMP},
         subBy = #{record.user.userId,jdbcType=INTEGER}
         <if test="_parameter != null">
             <include refid="Update_By_Example_Where_Clause"/>
@@ -264,7 +263,6 @@
       dish_Type_Status = #{dishTypeStatus,jdbcType=TINYINT},
       dish_Type_orderId = #{dishTypeOrderid,jdbcType=INTEGER},
       del_Flag = #{delFlag,jdbcType=TINYINT},
-      last_SubTime = #{lastSubtime,jdbcType=TIMESTAMP},
       subBy = #{user.userId,jdbcType=INTEGER}
     where dish_Type_ID = #{dishTypeId,jdbcType=INTEGER}
   </update>

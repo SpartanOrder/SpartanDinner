@@ -145,11 +145,11 @@
     <insert id="insert" parameterType="com.spartan.model.User">
     insert into t_user (user_ID, user_Name, role_ID, 
       user_state, user_Password, salt, 
-      last_LoginIp, del_Flag, last_SubTime, 
+      last_LoginIp, del_Flag,
       subby)
     values (#{userId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{role.roleId,jdbcType=INTEGER},
       #{userState,jdbcType=TINYINT}, #{userPassword,jdbcType=VARCHAR}, #{salt,jdbcType=VARCHAR}, 
-      #{lastLoginip,jdbcType=VARCHAR}, #{delFlag,jdbcType=TINYINT}, #{lastSubtime,jdbcType=TIMESTAMP}, 
+      #{lastLoginip,jdbcType=VARCHAR}, #{delFlag,jdbcType=TINYINT},
       #{user.userId,jdbcType=INTEGER})
   </insert>
     <insert id="insertSelective" parameterType="com.spartan.model.User">
@@ -273,7 +273,6 @@
         salt = #{record.salt,jdbcType=VARCHAR},
         last_LoginIp = #{record.lastLoginip,jdbcType=VARCHAR},
         del_Flag = #{record.delFlag,jdbcType=TINYINT},
-        last_SubTime = #{record.lastSubtime,jdbcType=TIMESTAMP},
         subby = #{record.user.userId,jdbcType=INTEGER}
         <if test="_parameter != null">
             <include refid="Update_By_Example_Where_Clause"/>
@@ -321,7 +320,6 @@
       salt = #{salt,jdbcType=VARCHAR},
       last_LoginIp = #{lastLoginip,jdbcType=VARCHAR},
       del_Flag = #{delFlag,jdbcType=TINYINT},
-      last_SubTime = #{lastSubtime,jdbcType=TIMESTAMP},
       subby = #{user.userId,jdbcType=INTEGER}
     where user_ID = #{userId,jdbcType=INTEGER}
   </update>

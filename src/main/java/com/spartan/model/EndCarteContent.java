@@ -8,7 +8,7 @@ import java.util.Date;
  * Created with IntelliJ IDEA.
  * @author Wind
  * @version V1.0
- * @Description:消费餐单信息ECC .
+ * @Description:消费餐单信息TCC .
  * @Date 2016/3/30 22:43
  */
 public class EndCarteContent {

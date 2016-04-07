@@ -131,13 +131,14 @@
         <include refid="Base_Column_List"/>,
         <include refid="com.spartan.dao.common.Column_Master_LastSubtime"/>,
         <include refid="com.spartan.dao.common.Column_Master_CUD"/>,
-        <include refid="com.spartan.dao.UserMapper.Column_SubBy_Employee"/>
-        f. TCC_ID,f.TCC_Total_Price,f.TCC_Dish_ID,fi.dish_Id,fi.dish_Name,fi.dish_price,si.table_Id,si.table_Name,si.table_state,
+        <include refid="com.spartan.dao.UserMapper.Column_SubBy_Employee"/>,
+        f.TCC_ID,f.TCC_Total_Price,f.TCC_Dish_ID,fi.dish_Id,fi.dish_Name,fi.dish_price,si.table_Id,si.table_Name,si.table_state,
         se.employee_Id as Waiter_employee_Id,se.employee_Name as Waiter_employee_Name,ei.customer_Id,ei.customer_Name,ei.customer_Tel,ei
-        .customer_Gender,ni.mem_ID,ni.mem_Name,ni.mem_User_Name,ni.mem_Tel,ni.mem_Gender
+        .customer_Gender,ni.mem_ID,
+        ni.mem_Name,ni.mem_User_Name,ni.mem_Tel,ni.mem_Gender
         from t_tempcarteinfo m
         <include refid="com.spartan.dao.UserMapper.LEFTJOIN_SubBy_Employee"/>
-        LEFT JOIN t_endCarteContent f ON m.TCI_ID=f.TCC_TCI_ID
+        LEFT JOIN t_tempCarteContent f ON m.TCI_ID=f.TCC_TCI_ID
         LEFT JOIN t_dish fi ON f.TCC_Dish_Id=fi.dish_id
         LEFT JOIN t_dinningTable si ON m.TCI_Table_ID=si.table_ID
         LEFT JOIN t_EmployeeInfo se ON m.TCI_Waiter_ID=se.employee_Id
@@ -155,13 +156,13 @@
         <include refid="Base_Column_List"/>,
         <include refid="com.spartan.dao.common.Column_Master_LastSubtime"/>,
         <include refid="com.spartan.dao.common.Column_Master_CUD"/>,
-        <include refid="com.spartan.dao.UserMapper.Column_SubBy_Employee"/>
-        f. TCC_ID,f.TCC_Total_Price,f.TCC_Dish_ID,fi.dish_Id,fi.dish_Name,fi.dish_price,si.table_Id,si.table_Name,si.table_state,
+        <include refid="com.spartan.dao.UserMapper.Column_SubBy_Employee"/>,
+        f.TCC_ID,f.TCC_Total_Price,f.TCC_Dish_ID,fi.dish_Id,fi.dish_Name,fi.dish_price,si.table_Id,si.table_Name,si.table_state,
         se.employee_Id as Waiter_employee_Id,se.employee_Name as Waiter_employee_Name,ei.customer_Id,ei.customer_Name,ei.customer_Tel,ei
         .customer_Gender,ni.mem_ID,ni.mem_Name,ni.mem_User_Name,ni.mem_Tel,ni.mem_Gender
         from t_tempcarteinfo m
         <include refid="com.spartan.dao.UserMapper.LEFTJOIN_SubBy_Employee"/>
-        LEFT JOIN t_endCarteContent f ON m.TCI_ID=f.TCC_TCI_ID
+        LEFT JOIN t_tempCarteContent f ON m.TCI_ID=f.TCC_TCI_ID
         LEFT JOIN t_dish fi ON f.TCC_Dish_Id=fi.dish_id
         LEFT JOIN t_dinningTable si ON m.TCI_Table_ID=si.table_ID
         LEFT JOIN t_EmployeeInfo se ON m.TCI_Waiter_ID=se.employee_Id
@@ -185,13 +186,13 @@
         TCI_Waiter_ID, TCI_Dish_Nums, TCI_Amount_Peoplo,
         TCI_Repast_Time, TCI_Consume_Amount, TCI_Cost_Amount,
         TCI_Discount, TCI_Remark, del_Flag,
-        last_SubTime, subBy)
+         subBy)
         values (#{tciId,jdbcType=INTEGER}, #{tciSwiftNumber,jdbcType=VARCHAR}, #{tciState,jdbcType=TINYINT},
         #{dinningTable.tableId,jdbcType=INTEGER}, #{customer.customerId,jdbcType=INTEGER}, #{memberInfo.memId,jdbcType=INTEGER},
         #{tciWaiter.employeeId,jdbcType=INTEGER}, #{tciDishNums,jdbcType=INTEGER}, #{tciAmountPeoplo,jdbcType=INTEGER},
         #{tciRepastTime,jdbcType=TIMESTAMP}, #{tciConsumeAmount,jdbcType=DECIMAL}, #{tciCostAmount,jdbcType=DECIMAL},
         #{tciDiscount,jdbcType=DECIMAL}, #{tciRemark,jdbcType=VARCHAR}, #{delFlag,jdbcType=TINYINT},
-        #{lastSubtime,jdbcType=TIMESTAMP}, #{user.userId,jdbcType=INTEGER})
+         #{user.userId,jdbcType=INTEGER})
     </insert>
     <insert id="insertSelective" parameterType="com.spartan.model.TempCarteInfo">
         insert into t_tempcarteinfo
@@ -384,7 +385,6 @@
         TCI_Discount = #{record.tciDiscount,jdbcType=DECIMAL},
         TCI_Remark = #{record.tciRemark,jdbcType=VARCHAR},
         del_Flag = #{record.delFlag,jdbcType=TINYINT},
-        last_SubTime = #{record.lastSubtime,jdbcType=TIMESTAMP},
         subBy = #{record.user.userId,jdbcType=INTEGER}
         <if test="_parameter != null">
             <include refid="Update_By_Example_Where_Clause"/>
@@ -460,7 +460,6 @@
         TCI_Discount = #{tciDiscount,jdbcType=DECIMAL},
         TCI_Remark = #{tciRemark,jdbcType=VARCHAR},
         del_Flag = #{delFlag,jdbcType=TINYINT},
-        last_SubTime = #{lastSubtime,jdbcType=TIMESTAMP},
         subBy = #{user.userId,jdbcType=INTEGER}
     where TCI_ID = #{tciId,jdbcType=INTEGER}
   </update>

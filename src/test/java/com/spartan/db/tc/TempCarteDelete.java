@@ -1,9 +1,9 @@
 package com.spartan.db.tc;
 
-import com.spartan.dao.EndCarteContentMapper;
-import com.spartan.dao.EndCarteInfoMapper;
-import com.spartan.model.EndCarteContentExample;
-import com.spartan.model.EndCarteInfoExample;
+import com.spartan.dao.TempCarteContentMapper;
+import com.spartan.dao.TempCarteInfoMapper;
+import com.spartan.model.TempCarteContentExample;
+import com.spartan.model.TempCarteInfoExample;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -23,38 +23,38 @@ import javax.annotation.Resource;
 @ContextConfiguration(locations = {"classpath:ApplicationContext.xml", "classpath:spring-mybatis.xml"})
 public class TempCarteDelete {
     @Resource
-    private EndCarteContentMapper endCarteContentMapper;
+    private TempCarteContentMapper tempCarteContentMapper;
     @Resource
-    private EndCarteInfoMapper endCarteInfoMapper;
+    private TempCarteInfoMapper tempCarteInfoMapper;
 
     @Test
-    public void deleteECCByPrimary() {
-        endCarteContentMapper.deleteByPrimaryKey(1389);
+    public void deleteTCCByPrimary() {
+        tempCarteContentMapper.deleteByPrimaryKey(199);
 
     }
 
     @Test
-    public void deleteECCByExample() {
-        EndCarteContentExample endCarteContentExample = new EndCarteContentExample();
-        EndCarteContentExample.Criteria criteria = endCarteContentExample.createCriteria();
-        criteria.andEccIdEqualTo(1390);
+    public void deleteTCCByExample() {
+        TempCarteContentExample tempCarteContentExample = new TempCarteContentExample();
+        TempCarteContentExample.Criteria criteria = tempCarteContentExample.createCriteria();
+        criteria.andTccIdEqualTo(200);
         criteria.andSubbyIsNotNull();
-        endCarteContentMapper.deleteByExample(endCarteContentExample);
+        tempCarteContentMapper.deleteByExample(tempCarteContentExample);
     }
 
     @Test
-    public void deleteECIByPrimary() {
-        endCarteInfoMapper.deleteByPrimaryKey(1);
+    public void deleteTCIByPrimary() {
+        tempCarteInfoMapper.deleteByPrimaryKey(1);
 
     }
 
     @Test
-    public void deleteECIByExample() {
-        EndCarteInfoExample endCarteInfoExample = new EndCarteInfoExample();
-        EndCarteInfoExample.Criteria criteria = endCarteInfoExample.createCriteria();
-        criteria.andEciIdEqualTo(2);
+    public void deleteTCIByExample() {
+        TempCarteInfoExample tempCarteInfoExample = new TempCarteInfoExample();
+        TempCarteInfoExample.Criteria criteria = tempCarteInfoExample.createCriteria();
+        criteria.andTciIdEqualTo(2);
         criteria.andSubbyIsNotNull();
-        endCarteInfoMapper.deleteByExample(endCarteInfoExample);
+        tempCarteInfoMapper.deleteByExample(tempCarteInfoExample);
     }
 
 }

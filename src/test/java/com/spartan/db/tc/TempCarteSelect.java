@@ -1,12 +1,12 @@
 package com.spartan.db.tc;
 
 import com.alibaba.fastjson.JSONObject;
-import com.spartan.dao.EndCarteContentMapper;
-import com.spartan.dao.EndCarteInfoMapper;
-import com.spartan.model.EndCarteContent;
-import com.spartan.model.EndCarteContentExample;
-import com.spartan.model.EndCarteInfo;
-import com.spartan.model.EndCarteInfoExample;
+import com.spartan.dao.TempCarteContentMapper;
+import com.spartan.dao.TempCarteInfoMapper;
+import com.spartan.model.TempCarteContent;
+import com.spartan.model.TempCarteContentExample;
+import com.spartan.model.TempCarteInfo;
+import com.spartan.model.TempCarteInfoExample;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -27,64 +27,64 @@ import java.util.List;
 @ContextConfiguration(locations = {"classpath:ApplicationContext.xml", "classpath:spring-mybatis.xml"})
 public class TempCarteSelect {
     @Resource
-    private EndCarteContentMapper endCarteContentMapper;
+    private TempCarteContentMapper tempCarteContentMapper;
     @Resource
-    private EndCarteInfoMapper endCarteInfoMapper;
+    private TempCarteInfoMapper tempCarteInfoMapper;
 
     @Test
-    public void selectECIByPrimary() {
-        EndCarteInfo endCarteInfo = endCarteInfoMapper.selectByPrimaryKey(3);
-        System.out.println(JSONObject.toJSON(endCarteInfo).toString());
+    public void selectTCIByPrimary() {
+        TempCarteInfo tempCarteInfo = tempCarteInfoMapper.selectByPrimaryKey(3);
+        System.out.println(JSONObject.toJSON(tempCarteInfo).toString());
     }
 
     @Test
-    public void selectECCByPrimary() {
-        EndCarteContent endCarteContent = endCarteContentMapper.selectByPrimaryKey(1256);
-        System.out.println(JSONObject.toJSON(endCarteContent).toString());
+    public void selectTCCByPrimary() {
+        TempCarteContent tempCarteContent = tempCarteContentMapper.selectByPrimaryKey(2);
+        System.out.println(JSONObject.toJSON(tempCarteContent).toString());
     }
 
     @Test
-    public void selectECIByExample() {
-        EndCarteInfoExample endCarteInfoExample = new EndCarteInfoExample();
-        EndCarteInfoExample.Criteria criteria = endCarteInfoExample.createCriteria();
-        criteria.andEciDishNumsGreaterThan(2);
+    public void selectTCIByExample() {
+        TempCarteInfoExample tempCarteInfoExample = new TempCarteInfoExample();
+        TempCarteInfoExample.Criteria criteria = tempCarteInfoExample.createCriteria();
+        criteria.andTciDishNumsGreaterThan(2);
         criteria.andSubbyIsNotNull();
-        criteria.andEciRemarkIsNull();
-        List<EndCarteInfo> list = endCarteInfoMapper.selectByExample(endCarteInfoExample);
-        for (EndCarteInfo endCarteInfo : list) {
-            System.out.println(endCarteInfo.toString());
-            System.out.println(JSONObject.toJSON(endCarteInfo));
+        criteria.andTciRemarkIsNull();
+        List<TempCarteInfo> list = tempCarteInfoMapper.selectByExample(tempCarteInfoExample);
+        for (TempCarteInfo tempCarteInfo : list) {
+            System.out.println(tempCarteInfo.toString());
+            System.out.println(JSONObject.toJSON(tempCarteInfo));
         }
     }
 
     @Test
-    public void selectECCByExample() {
-        EndCarteContentExample endCarteContentExample = new EndCarteContentExample();
-        EndCarteContentExample.Criteria criteria = endCarteContentExample.createCriteria();
+    public void selectTCCByExample() {
+        TempCarteContentExample tempCarteContentExample = new TempCarteContentExample();
+        TempCarteContentExample.Criteria criteria = tempCarteContentExample.createCriteria();
         criteria.andDelFlagIsNotNull();
         criteria.andSubbyIsNotNull();
-        List<EndCarteContent> list = endCarteContentMapper.selectByExample(endCarteContentExample);
-        for (EndCarteContent endCarteContent : list) {
-            System.out.println(endCarteContent.toString());
-            System.out.println(JSONObject.toJSON(endCarteContent));
+        List<TempCarteContent> list = tempCarteContentMapper.selectByExample(tempCarteContentExample);
+        for (TempCarteContent tempCarteContent : list) {
+            System.out.println(tempCarteContent.toString());
+            System.out.println(JSONObject.toJSON(tempCarteContent));
         }
     }
 
     @Test
-    public void countECCByExample() {
-        EndCarteContentExample endCarteContentExample = new EndCarteContentExample();
-        EndCarteContentExample.Criteria criteria = endCarteContentExample.createCriteria();
+    public void countTCCByExample() {
+        TempCarteContentExample tempCarteContentExample = new TempCarteContentExample();
+        TempCarteContentExample.Criteria criteria = tempCarteContentExample.createCriteria();
         criteria.andDelFlagIsNotNull();
         criteria.andSubbyIsNotNull();
-        System.out.println(endCarteContentMapper.countByExample(endCarteContentExample));
+        System.out.println(tempCarteContentMapper.countByExample(tempCarteContentExample));
     }
 
     @Test
-    public void countECIByExample() {
-        EndCarteInfoExample endCarteInfoExample = new EndCarteInfoExample();
-        EndCarteInfoExample.Criteria criteria = endCarteInfoExample.createCriteria();
+    public void countTCIByExample() {
+        TempCarteInfoExample tempCarteInfoExample = new TempCarteInfoExample();
+        TempCarteInfoExample.Criteria criteria = tempCarteInfoExample.createCriteria();
         criteria.andDelFlagIsNotNull();
         criteria.andSubbyIsNotNull();
-        System.out.println(endCarteInfoMapper.countByExample(endCarteInfoExample));
+        System.out.println(tempCarteInfoMapper.countByExample(tempCarteInfoExample));
     }
 }

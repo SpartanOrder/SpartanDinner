@@ -128,12 +128,12 @@
     insert into t_restaurant (id, restaurant_Name, short_Name, 
       tel, adderss, description, 
       url, begin_Date, account, 
-      tax_Registration_Certificate, del_Flag, last_SubTime, 
+      tax_Registration_Certificate, del_Flag,
       subBy)
     values (#{id,jdbcType=INTEGER}, #{restaurantName,jdbcType=VARCHAR}, #{shortName,jdbcType=VARCHAR}, 
       #{tel,jdbcType=VARCHAR}, #{adderss,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
       #{url,jdbcType=VARCHAR}, #{beginDate,jdbcType=DATE}, #{account,jdbcType=VARCHAR}, 
-      #{taxRegistrationCertificate,jdbcType=VARCHAR}, #{delFlag,jdbcType=TINYINT}, #{lastSubtime,jdbcType=TIMESTAMP}, 
+      #{taxRegistrationCertificate,jdbcType=VARCHAR}, #{delFlag,jdbcType=TINYINT},
       #{user.userId,jdbcType=INTEGER})
   </insert>
     <insert id="insertSelective" parameterType="com.spartan.model.Restaurant">
@@ -287,7 +287,6 @@
         account = #{record.account,jdbcType=VARCHAR},
         tax_Registration_Certificate = #{record.taxRegistrationCertificate,jdbcType=VARCHAR},
         del_Flag = #{record.delFlag,jdbcType=TINYINT},
-        last_SubTime = #{record.lastSubtime,jdbcType=TIMESTAMP},
         subBy = #{record.user.userId,jdbcType=INTEGER}
         <if test="_parameter != null">
             <include refid="Update_By_Example_Where_Clause"/>
@@ -347,7 +346,6 @@
       account = #{account,jdbcType=VARCHAR},
       tax_Registration_Certificate = #{taxRegistrationCertificate,jdbcType=VARCHAR},
       del_Flag = #{delFlag,jdbcType=TINYINT},
-      last_SubTime = #{lastSubtime,jdbcType=TIMESTAMP},
       subBy = #{user.userId,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>

@@ -195,18 +195,18 @@
         OCI_Customer_ID, OCI_Mem_ID, OCI_Dish_Nums,
         OCI_Amount_Peoplo, OCI_Repast_Time, OCI_Consume_Amount,
         OCI_Discount, OCI_Paid_Amount, OCI_Remark,
-        del_Flag, last_SubTime, subBy
+        del_Flag,  subBy
         )
         values (#{ociId,jdbcType=INTEGER}, #{ociSwiftNumber,jdbcType=VARCHAR}, #{ociState,jdbcType=TINYINT},
-        #{dinningTable.ableId,jdbcType=INTEGER}, #{ociWaiter.employeeId,jdbcType=INTEGER}, #{ociCashier.employeeId,jdbcType=INTEGER},
+        #{dinningTable.tableId,jdbcType=INTEGER}, #{ociWaiter.employeeId,jdbcType=INTEGER}, #{ociCashier.employeeId,jdbcType=INTEGER},
         #{customer.customerId,jdbcType=INTEGER}, #{memberInfo.memId,jdbcType=INTEGER}, #{ociDishNums,jdbcType=INTEGER},
         #{ociAmountPeoplo,jdbcType=INTEGER}, #{ociRepastTime,jdbcType=TIMESTAMP}, #{ociConsumeAmount,jdbcType=DECIMAL},
         #{ociDiscount,jdbcType=DECIMAL}, #{ociPaidAmount,jdbcType=DECIMAL}, #{ociRemark,jdbcType=VARCHAR},
-        #{delFlag,jdbcType=TINYINT}, #{lastSubtime,jdbcType=TIMESTAMP}, #{user.userId,jdbcType=INTEGER}
+        #{delFlag,jdbcType=TINYINT},  #{user.userId,jdbcType=INTEGER}
         )
     </insert>
     <insert id="insertSelective" parameterType="com.spartan.model.OnAccountCarteInfo">
-        insert into t_onaccountcarteinfo m
+        insert into t_onaccountcarteinfo
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="ociId != null">
                 OCI_ID,
@@ -406,7 +406,6 @@
         OCI_Paid_Amount = #{record.ociPaidAmount,jdbcType=DECIMAL},
         OCI_Remark = #{record.ociRemark,jdbcType=VARCHAR},
         del_Flag = #{record.delFlag,jdbcType=TINYINT},
-        last_SubTime = #{record.lastSubtime,jdbcType=TIMESTAMP},
         subBy = #{record.user.userId,jdbcType=INTEGER}
         <if test="_parameter != null">
             <include refid="Update_By_Example_Where_Clause"/>
@@ -486,7 +485,6 @@
         OCI_Paid_Amount = #{ociPaidAmount,jdbcType=DECIMAL},
         OCI_Remark = #{ociRemark,jdbcType=VARCHAR},
         del_Flag = #{delFlag,jdbcType=TINYINT},
-        last_SubTime = #{lastSubtime,jdbcType=TIMESTAMP},
         subBy = #{user.userId,jdbcType=INTEGER}
     where OCI_ID = #{ociId,jdbcType=INTEGER}
   </update>
