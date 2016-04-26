@@ -5,35 +5,265 @@
         <id column="dish_Type_ID" property="dishTypeId" jdbcType="INTEGER"/>
         <result column="dish_Type_Name" property="dishTypeName" jdbcType="VARCHAR"/>
         <result column="dish_Type_Desc" property="dishTypeDesc" jdbcType="VARCHAR"/>
+        <result column="dish_Type_Status" property="dishTypeStatus" jdbcType="TINYINT"/>
+        <result column="dish_Type_orderId" property="dishTypeOrderid" jdbcType="INTEGER"/>
         <result column="del_Flag" property="delFlag" jdbcType="TINYINT"/>
         <result column="last_SubTime" property="lastSubtime" jdbcType="TIMESTAMP"/>
-        <result column="subBy" property="subby" jdbcType="INTEGER"/>
+        <association property="user" column="subBy" javaType="com.spartan.model.User" resultMap="com.spartan.dao.UserMapper.SimpleResultMap">
+        </association>
     </resultMap>
+    <resultMap id="SimpleResultMap" type="com.spartan.model.DishType">
+        <id column="dish_Type_ID" property="dishTypeId" jdbcType="INTEGER"/>
+        <result column="dish_Type_Name" property="dishTypeName" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")" separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")" separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
+    m.dish_Type_ID, m.dish_Type_Name, m.dish_Type_Desc, m.dish_Type_Status, m.dish_Type_orderId
+  </sql>
+    <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.spartan.model.DishTypeExample">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List"/>,
+        <include refid="com.spartan.dao.common.Column_Master_LastSubtime"/>,
+        <include refid="com.spartan.dao.common.Column_Master_CUD"/>,
+        <include refid="com.spartan.dao.UserMapper.Column_SubBy_Employee"/>
+        from t_dishtype m
+        <include refid="com.spartan.dao.UserMapper.LEFTJOIN_SubBy_Employee"/>
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>,
+        <include refid="com.spartan.dao.common.Column_Master_LastSubtime"/>,
+        <include refid="com.spartan.dao.common.Column_Master_CUD"/>,
+        <include refid="com.spartan.dao.UserMapper.Column_SubBy_Employee"/>
+        from t_dishtype m
+        <include refid="com.spartan.dao.UserMapper.LEFTJOIN_SubBy_Employee"/>
+        where dish_Type_ID = #{dishTypeId,jdbcType=INTEGER}
+    </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from t_dishtype
+    delete m from t_dishtype m
     where dish_Type_ID = #{dishTypeId,jdbcType=INTEGER}
   </delete>
+    <delete id="deleteByExample" parameterType="com.spartan.model.DishTypeExample">
+        delete m from t_dishtype m
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </delete>
     <insert id="insert" parameterType="com.spartan.model.DishType">
-    insert into t_dishtype (dish_Type_ID, dish_Type_Name, dish_Type_Desc,
-    del_Flag, subBy)
-    values (#{dishTypeId,jdbcType=INTEGER}, #{dishTypeName,jdbcType=VARCHAR}, #{dishTypeDesc,jdbcType=VARCHAR},
-    #{delFlag,jdbcType=TINYINT}, #{subby,jdbcType=INTEGER})
+    insert into t_dishtype (dish_Type_ID, dish_Type_Name, dish_Type_Desc, 
+      dish_Type_Status, dish_Type_orderId, del_Flag, 
+      subBy)
+    values (#{dishTypeId,jdbcType=INTEGER}, #{dishTypeName,jdbcType=VARCHAR}, #{dishTypeDesc,jdbcType=VARCHAR}, 
+      #{dishTypeStatus,jdbcType=TINYINT}, #{dishTypeOrderid,jdbcType=INTEGER}, #{delFlag,jdbcType=TINYINT}, 
+      #{user.userId,jdbcType=INTEGER})
   </insert>
+    <insert id="insertSelective" parameterType="com.spartan.model.DishType">
+        insert into t_dishtype
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="dishTypeId != null">
+                dish_Type_ID,
+            </if>
+            <if test="dishTypeName != null">
+                dish_Type_Name,
+            </if>
+            <if test="dishTypeDesc != null">
+                dish_Type_Desc,
+            </if>
+            <if test="dishTypeStatus != null">
+                dish_Type_Status,
+            </if>
+            <if test="dishTypeOrderid != null">
+                dish_Type_orderId,
+            </if>
+            <if test="delFlag != null">
+                del_Flag,
+            </if>
+            <if test="lastSubtime != null">
+                last_SubTime,
+            </if>
+            <if test="user != null">
+                subBy,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="dishTypeId != null">
+                #{dishTypeId,jdbcType=INTEGER},
+            </if>
+            <if test="dishTypeName != null">
+                #{dishTypeName,jdbcType=VARCHAR},
+            </if>
+            <if test="dishTypeDesc != null">
+                #{dishTypeDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="dishTypeStatus != null">
+                #{dishTypeStatus,jdbcType=TINYINT},
+            </if>
+            <if test="dishTypeOrderid != null">
+                #{dishTypeOrderid,jdbcType=INTEGER},
+            </if>
+            <if test="delFlag != null">
+                #{delFlag,jdbcType=TINYINT},
+            </if>
+            <if test="lastSubtime != null">
+                #{lastSubtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="user != null">
+                #{user.userId,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByExample" parameterType="com.spartan.model.DishTypeExample" resultType="java.lang.Integer">
+        select count(*) from t_dishtype m
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
+        update t_dishtype m
+        <set>
+            <if test="record.dishTypeId != null">
+                dish_Type_ID = #{record.dishTypeId,jdbcType=INTEGER},
+            </if>
+            <if test="record.dishTypeName != null">
+                dish_Type_Name = #{record.dishTypeName,jdbcType=VARCHAR},
+            </if>
+            <if test="record.dishTypeDesc != null">
+                dish_Type_Desc = #{record.dishTypeDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="record.dishTypeStatus != null">
+                dish_Type_Status = #{record.dishTypeStatus,jdbcType=TINYINT},
+            </if>
+            <if test="record.dishTypeOrderid != null">
+                dish_Type_orderId = #{record.dishTypeOrderid,jdbcType=INTEGER},
+            </if>
+            <if test="record.delFlag != null">
+                del_Flag = #{record.delFlag,jdbcType=TINYINT},
+            </if>
+            <if test="record.lastSubtime != null">
+                last_SubTime = #{record.lastSubtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.user != null">
+                subBy = #{record.user.userId,jdbcType=INTEGER},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map">
+        update t_dishtype m
+        set dish_Type_ID = #{record.dishTypeId,jdbcType=INTEGER},
+        dish_Type_Name = #{record.dishTypeName,jdbcType=VARCHAR},
+        dish_Type_Desc = #{record.dishTypeDesc,jdbcType=VARCHAR},
+        dish_Type_Status = #{record.dishTypeStatus,jdbcType=TINYINT},
+        dish_Type_orderId = #{record.dishTypeOrderid,jdbcType=INTEGER},
+        del_Flag = #{record.delFlag,jdbcType=TINYINT},
+        subBy = #{record.user.userId,jdbcType=INTEGER}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="com.spartan.model.DishType">
+        update t_dishtype m
+        <set>
+            <if test="dishTypeName != null">
+                dish_Type_Name = #{dishTypeName,jdbcType=VARCHAR},
+            </if>
+            <if test="dishTypeDesc != null">
+                dish_Type_Desc = #{dishTypeDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="dishTypeStatus != null">
+                dish_Type_Status = #{dishTypeStatus,jdbcType=TINYINT},
+            </if>
+            <if test="dishTypeOrderid != null">
+                dish_Type_orderId = #{dishTypeOrderid,jdbcType=INTEGER},
+            </if>
+            <if test="delFlag != null">
+                del_Flag = #{delFlag,jdbcType=TINYINT},
+            </if>
+            <if test="lastSubtime != null">
+                last_SubTime = #{lastSubtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="user != null">
+                subBy = #{user.userId,jdbcType=INTEGER},
+            </if>
+        </set>
+        where dish_Type_ID = #{dishTypeId,jdbcType=INTEGER}
+    </update>
     <update id="updateByPrimaryKey" parameterType="com.spartan.model.DishType">
-    update t_dishtype
+    update t_dishtype m
     set dish_Type_Name = #{dishTypeName,jdbcType=VARCHAR},
       dish_Type_Desc = #{dishTypeDesc,jdbcType=VARCHAR},
+      dish_Type_Status = #{dishTypeStatus,jdbcType=TINYINT},
+      dish_Type_orderId = #{dishTypeOrderid,jdbcType=INTEGER},
       del_Flag = #{delFlag,jdbcType=TINYINT},
-      subBy = #{subby,jdbcType=INTEGER}
+      subBy = #{user.userId,jdbcType=INTEGER}
     where dish_Type_ID = #{dishTypeId,jdbcType=INTEGER}
   </update>
-    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
-    select dish_Type_ID, dish_Type_Name, dish_Type_Desc, del_Flag, last_SubTime, subBy
-    from t_dishtype
-    where dish_Type_ID = #{dishTypeId,jdbcType=INTEGER}
-  </select>
-    <select id="selectAll" resultMap="BaseResultMap">
-    select dish_Type_ID, dish_Type_Name, dish_Type_Desc, del_Flag, last_SubTime, subBy
-    from t_dishtype
-  </select>
 </mapper>

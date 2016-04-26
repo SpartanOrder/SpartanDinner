@@ -1,0 +1,31 @@
+{
+  "lastSubtime": 1459923610000,
+  "dish": {
+    "dishPrice": 10.00,
+    "dishImgUrl": "",
+    "dishSpeel": "dbc",
+    "dishName": "芹菜14",
+    "dishId": 314
+  },
+  "endCarteInfo": {
+    "eciWaiter": {
+      "employeeId": 1,
+      "employeeName": "张钧泳"
+    },
+    "eciSwiftNumber": "16-04-06-02-20-17004",
+    "eciId": 4
+  },
+  "eccSpecilDesc": "004004",
+  "eccDishNum": 1,
+  "eccTotalPrice": 10.00,
+  "eccId": 1256,
+  "user": {
+    "userId": 1,
+    "userName": "张钧泳",
+    "employeeInfo": {
+      "employeeId": 1,
+      "employeeName": "张钧泳"
+    }
+  },
+  "delFlag": 1
+}

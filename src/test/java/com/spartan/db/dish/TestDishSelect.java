@@ -1,5 +1,6 @@
 package com.spartan.db.dish;
 
+import com.alibaba.fastjson.JSONObject;
 import com.spartan.dao.DishMapper;
 import com.spartan.model.Dish;
 import com.spartan.model.DishExample;
@@ -24,6 +25,7 @@ public class TestDishSelect {
     public void testSelectByPrimaryKey() {
         Dish dish = dishService.selectByPrimaryKey(16);
         System.out.println(dish.toString());
+        System.out.println(JSONObject.toJSON(dish));
     }
 
     @Test

@@ -1,45 +1,254 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.spartan.dao.RegionMapper" >
-  <resultMap id="BaseResultMap" type="com.spartan.model.Region" >
-    <id column="region_ID" property="regionId" jdbcType="INTEGER" />
-    <result column="region_Name" property="regionName" jdbcType="VARCHAR" />
-    <result column="region_Min_Consume" property="regionMinConsume" jdbcType="DECIMAL" />
-    <result column="region_Max_Consumer" property="regionMaxConsumer" jdbcType="INTEGER" />
-    <result column="del_Flag" property="delFlag" jdbcType="TINYINT" />
-    <result column="last_SubTime" property="lastSubtime" jdbcType="TIMESTAMP" />
-    <result column="subBy" property="subby" jdbcType="INTEGER" />
-  </resultMap>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from t_region
+<mapper namespace="com.spartan.dao.RegionMapper">
+    <resultMap id="BaseResultMap" type="com.spartan.model.Region">
+        <id column="region_ID" property="regionId" jdbcType="INTEGER"/>
+        <result column="region_Name" property="regionName" jdbcType="VARCHAR"/>
+        <result column="region_Min_Consume" property="regionMinConsume" jdbcType="DECIMAL"/>
+        <result column="region_Max_Consumer" property="regionMaxConsumer" jdbcType="INTEGER"/>
+        <result column="del_Flag" property="delFlag" jdbcType="TINYINT"/>
+        <result column="last_SubTime" property="lastSubtime" jdbcType="TIMESTAMP"/>
+        <association property="user" column="subBy" javaType="com.spartan.model.User" resultMap="com.spartan.dao.UserMapper.SimpleResultMap">
+        </association>
+    </resultMap>
+    <resultMap id="SimpleResultMap" type="com.spartan.model.Region">
+        <id column="region_ID" property="regionId" jdbcType="INTEGER"/>
+        <result column="region_Name" property="regionName" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")" separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")" separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
+    m.region_ID, m.region_Name, m.region_Min_Consume, m.region_Max_Consumer
+  </sql>
+    <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.spartan.model.RegionExample">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List"/>,
+        <include refid="com.spartan.dao.common.Column_Master_LastSubtime"/>,
+        <include refid="com.spartan.dao.common.Column_Master_CUD"/>,
+        <include refid="com.spartan.dao.UserMapper.Column_SubBy_Employee"/>
+        from t_region m
+        <include refid="com.spartan.dao.UserMapper.LEFTJOIN_SubBy_Employee"/>
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>,
+        <include refid="com.spartan.dao.common.Column_Master_LastSubtime"/>,
+        <include refid="com.spartan.dao.common.Column_Master_CUD"/>,
+        <include refid="com.spartan.dao.UserMapper.Column_SubBy_Employee"/>
+        from t_region m
+        <include refid="com.spartan.dao.UserMapper.LEFTJOIN_SubBy_Employee"/>
+        where region_ID = #{regionId,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from m t_region m
     where region_ID = #{regionId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.spartan.model.Region" >
+    <delete id="deleteByExample" parameterType="com.spartan.model.RegionExample">
+        delete m from t_region m
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </delete>
+    <insert id="insert" parameterType="com.spartan.model.Region">
     insert into t_region (region_ID, region_Name, region_Min_Consume, 
-      region_Max_Consumer, del_Flag, subBy
-      )
-    values (#{regionId,jdbcType=INTEGER}, #{regionName,jdbcType=VARCHAR}, #{regionMinConsume,jdbcType=DECIMAL},
-      #{regionMaxConsumer,jdbcType=INTEGER}, #{delFlag,jdbcType=TINYINT}, #{subby,jdbcType=INTEGER}
-      )
+      region_Max_Consumer, del_Flag,
+      subBy)
+    values (#{regionId,jdbcType=INTEGER}, #{regionName,jdbcType=VARCHAR}, #{regionMinConsume,jdbcType=DECIMAL}, 
+      #{regionMaxConsumer,jdbcType=INTEGER}, #{delFlag,jdbcType=TINYINT},
+      #{user.userId,jdbcType=INTEGER})
   </insert>
-  <update id="updateByPrimaryKey" parameterType="com.spartan.model.Region" >
-    update t_region
-    set region_Name = #{regionName,jdbcType=VARCHAR},
-      region_Min_Consume = #{regionMinConsume,jdbcType=DECIMAL},
-      region_Max_Consumer = #{regionMaxConsumer,jdbcType=INTEGER},
-      del_Flag = #{delFlag,jdbcType=TINYINT},
-      subBy = #{subby,jdbcType=INTEGER}
-    where region_ID = #{regionId,jdbcType=INTEGER}
-  </update>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select region_ID, region_Name, region_Min_Consume, region_Max_Consumer, del_Flag, 
-    last_SubTime, subBy
-    from t_region
-    where region_ID = #{regionId,jdbcType=INTEGER}
-  </select>
-  <select id="selectAll" resultMap="BaseResultMap" >
-    select region_ID, region_Name, region_Min_Consume, region_Max_Consumer, del_Flag, 
-    last_SubTime, subBy
-    from t_region
-  </select>
+    <insert id="insertSelective" parameterType="com.spartan.model.Region">
+        insert into t_region
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="regionId != null">
+                region_ID,
+            </if>
+            <if test="regionName != null">
+                region_Name,
+            </if>
+            <if test="regionMinConsume != null">
+                region_Min_Consume,
+            </if>
+            <if test="regionMaxConsumer != null">
+                region_Max_Consumer,
+            </if>
+            <if test="delFlag != null">
+                del_Flag,
+            </if>
+            <if test="lastSubtime != null">
+                last_SubTime,
+            </if>
+            <if test="user != null">
+                subBy,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="regionId != null">
+                #{regionId,jdbcType=INTEGER},
+            </if>
+            <if test="regionName != null">
+                #{regionName,jdbcType=VARCHAR},
+            </if>
+            <if test="regionMinConsume != null">
+                #{regionMinConsume,jdbcType=DECIMAL},
+            </if>
+            <if test="regionMaxConsumer != null">
+                #{regionMaxConsumer,jdbcType=INTEGER},
+            </if>
+            <if test="delFlag != null">
+                #{delFlag,jdbcType=TINYINT},
+            </if>
+            <if test="lastSubtime != null">
+                #{lastSubtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="user != null">
+                #{user.userId,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByExample" parameterType="com.spartan.model.RegionExample" resultType="java.lang.Integer">
+        select count(*) from t_region m
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
+        update t_region m
+        <set>
+            <if test="record.regionId != null">
+                region_ID = #{record.regionId,jdbcType=INTEGER},
+            </if>
+            <if test="record.regionName != null">
+                region_Name = #{record.regionName,jdbcType=VARCHAR},
+            </if>
+            <if test="record.regionMinConsume != null">
+                region_Min_Consume = #{record.regionMinConsume,jdbcType=DECIMAL},
+            </if>
+            <if test="record.regionMaxConsumer != null">
+                region_Max_Consumer = #{record.regionMaxConsumer,jdbcType=INTEGER},
+            </if>
+            <if test="record.delFlag != null">
+                del_Flag = #{record.delFlag,jdbcType=TINYINT},
+            </if>
+            <if test="record.lastSubtime != null">
+                last_SubTime = #{record.lastSubtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.user != null">
+                subBy = #{record.user.userId,jdbcType=INTEGER},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map">
+        update t_region m
+        set region_ID = #{record.regionId,jdbcType=INTEGER},
+        region_Name = #{record.regionName,jdbcType=VARCHAR},
+        region_Min_Consume = #{record.regionMinConsume,jdbcType=DECIMAL},
+        region_Max_Consumer = #{record.regionMaxConsumer,jdbcType=INTEGER},
+        del_Flag = #{record.delFlag,jdbcType=TINYINT},
+        subBy = #{record.user.userId,jdbcType=INTEGER}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="com.spartan.model.Region">
+        update t_region m
+        <set>
+            <if test="regionName != null">
+                region_Name = #{regionName,jdbcType=VARCHAR},
+            </if>
+            <if test="regionMinConsume != null">
+                region_Min_Consume = #{regionMinConsume,jdbcType=DECIMAL},
+            </if>
+            <if test="regionMaxConsumer != null">
+                region_Max_Consumer = #{regionMaxConsumer,jdbcType=INTEGER},
+            </if>
+            <if test="delFlag != null">
+                del_Flag = #{delFlag,jdbcType=TINYINT},
+            </if>
+            <if test="lastSubtime != null">
+                last_SubTime = #{lastSubtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="user != null">
+                subBy = #{user.userId,jdbcType=INTEGER},
+            </if>
+        </set>
+        where region_ID = #{regionId,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.spartan.model.Region">
+        update t_region m
+        set region_Name = #{regionName,jdbcType=VARCHAR},
+        region_Min_Consume = #{regionMinConsume,jdbcType=DECIMAL},
+        region_Max_Consumer = #{regionMaxConsumer,jdbcType=INTEGER},
+        del_Flag = #{delFlag,jdbcType=TINYINT},
+        last_SubTime = #{lastSubtime,jdbcType=TIMESTAMP},
+        where region_ID = #{regionId,jdbcType=INTEGER}
+    </update>
 </mapper>

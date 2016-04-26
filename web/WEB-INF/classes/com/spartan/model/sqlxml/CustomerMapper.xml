@@ -8,38 +8,247 @@
         <result column="customer_Gender" property="customerGender" jdbcType="TINYINT"/>
         <result column="del_Flag" property="delFlag" jdbcType="TINYINT"/>
         <result column="last_SubTime" property="lastSubtime" jdbcType="TIMESTAMP"/>
-        <result column="subBy" property="subby" jdbcType="INTEGER"/>
+        <association property="user" column="subBy" javaType="com.spartan.model.User" resultMap="com.spartan.dao.UserMapper.SimpleResultMap">
+        </association>
     </resultMap>
-    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-        delete from t_customer
+    <resultMap id="SimpleResultMap" type="com.spartan.model.Customer">
+        <id column="customer_ID" property="customerId" jdbcType="INTEGER"/>
+        <result column="customer_Name" property="customerName" jdbcType="VARCHAR"/>
+        <result column="customer_Tel" property="customerTel" jdbcType="VARCHAR"/>
+        <result column="customer_Gender" property="customerGender" jdbcType="TINYINT"/>
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")" separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")" separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
+    m.customer_ID, m.customer_Name, m.customer_Tel, m.customer_Gender
+  </sql>
+    <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.spartan.model.CustomerExample">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List"/>,
+        <include refid="com.spartan.dao.common.Column_Master_LastSubtime"/>,
+        <include refid="com.spartan.dao.common.Column_Master_CUD"/>,
+        <include refid="com.spartan.dao.UserMapper.Column_SubBy_Employee"/>
+        from t_customer m
+        <include refid="com.spartan.dao.UserMapper.LEFTJOIN_SubBy_Employee"/>
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>,
+        <include refid="com.spartan.dao.common.Column_Master_LastSubtime"/>,
+        <include refid="com.spartan.dao.common.Column_Master_CUD"/>,
+        <include refid="com.spartan.dao.UserMapper.Column_SubBy_Employee"/>
+        from t_customer m
+        <include refid="com.spartan.dao.UserMapper.LEFTJOIN_SubBy_Employee"/>
         where customer_ID = #{customerId,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete m from t_customer m
+    where customer_ID = #{customerId,jdbcType=INTEGER}
+  </delete>
+    <delete id="deleteByExample" parameterType="com.spartan.model.CustomerExample">
+        delete m from t_customer m
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
     </delete>
     <insert id="insert" parameterType="com.spartan.model.Customer">
-        insert into t_customer (customer_ID, customer_Name, customer_Tel,
-        customer_Gender, del_Flag, subBy
-        )
-        values (#{customerId,jdbcType=INTEGER}, #{customerName,jdbcType=VARCHAR}, #{customerTel,jdbcType=VARCHAR},
-        #{customerGender,jdbcType=TINYINT}, #{delFlag,jdbcType=TINYINT}, #{subby,jdbcType=INTEGER}
-        )
+    insert into t_customer (customer_ID, customer_Name, customer_Tel,
+      customer_Gender, del_Flag, subBy)
+    values (#{customerId,jdbcType=INTEGER}, #{customerName,jdbcType=VARCHAR}, #{customerTel,jdbcType=VARCHAR}, 
+      #{customerGender,jdbcType=TINYINT}, #{delFlag,jdbcType=TINYINT},  #{user.userId,jdbcType=INTEGER})
+  </insert>
+    <insert id="insertSelective" parameterType="com.spartan.model.Customer">
+        insert into t_customer
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="customerId != null">
+                customer_ID,
+            </if>
+            <if test="customerName != null">
+                customer_Name,
+            </if>
+            <if test="customerTel != null">
+                customer_Tel,
+            </if>
+            <if test="customerGender != null">
+                customer_Gender,
+            </if>
+            <if test="delFlag != null">
+                del_Flag,
+            </if>
+            <if test="lastSubtime != null">
+                last_SubTime,
+            </if>
+            <if test="user.getUserId()  != null">
+                subBy,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="customerId != null">
+                #{customerId,jdbcType=INTEGER},
+            </if>
+            <if test="customerName != null">
+                #{customerName,jdbcType=VARCHAR},
+            </if>
+            <if test="customerTel != null">
+                #{customerTel,jdbcType=VARCHAR},
+            </if>
+            <if test="customerGender != null">
+                #{customerGender,jdbcType=TINYINT},
+            </if>
+            <if test="delFlag != null">
+                #{delFlag,jdbcType=TINYINT},
+            </if>
+            <if test="lastSubtime != null">
+                #{lastSubtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="user != null">
+                #{user.userId,jdbcType=INTEGER},
+            </if>
+        </trim>
     </insert>
+    <select id="countByExample" parameterType="com.spartan.model.CustomerExample" resultType="java.lang.Integer">
+        select count(*) from t_customer m
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
+        update t_customer m
+        <set>
+            <if test="record.customerId != null">
+                customer_ID = #{record.customerId,jdbcType=INTEGER},
+            </if>
+            <if test="record.customerName != null">
+                customer_Name = #{record.customerName,jdbcType=VARCHAR},
+            </if>
+            <if test="record.customerTel != null">
+                customer_Tel = #{record.customerTel,jdbcType=VARCHAR},
+            </if>
+            <if test="record.customerGender != null">
+                customer_Gender = #{record.customerGender,jdbcType=TINYINT},
+            </if>
+            <if test="record.delFlag != null">
+                del_Flag = #{record.delFlag,jdbcType=TINYINT},
+            </if>
+            <if test="record.lastSubtime != null">
+                last_SubTime = #{record.lastSubtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.user != null">
+                subBy = #{record.user.userId,jdbcType=INTEGER},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map">
+        update t_customer m
+        set customer_ID = #{record.customerId,jdbcType=INTEGER},
+        customer_Name = #{record.customerName,jdbcType=VARCHAR},
+        customer_Tel = #{record.customerTel,jdbcType=VARCHAR},
+        customer_Gender = #{record.customerGender,jdbcType=TINYINT},
+        del_Flag = #{record.delFlag,jdbcType=TINYINT},
+        subBy = #{record.user.userId,jdbcType=INTEGER}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="com.spartan.model.Customer">
+        update t_customer m
+        <set>
+            <if test="customerName != null">
+                customer_Name = #{customerName,jdbcType=VARCHAR},
+            </if>
+            <if test="customerTel != null">
+                customer_Tel = #{customerTel,jdbcType=VARCHAR},
+            </if>
+            <if test="customerGender != null">
+                customer_Gender = #{customerGender,jdbcType=TINYINT},
+            </if>
+            <if test="delFlag != null">
+                del_Flag = #{delFlag,jdbcType=TINYINT},
+            </if>
+            <if test="lastSubtime != null">
+                last_SubTime = #{lastSubtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="user != null">
+                subBy = #{user.userId,jdbcType=INTEGER},
+            </if>
+        </set>
+        where customer_ID = #{customerId,jdbcType=INTEGER}
+    </update>
     <update id="updateByPrimaryKey" parameterType="com.spartan.model.Customer">
-    update t_customer
+    update t_customer m
     set customer_Name = #{customerName,jdbcType=VARCHAR},
       customer_Tel = #{customerTel,jdbcType=VARCHAR},
       customer_Gender = #{customerGender,jdbcType=TINYINT},
       del_Flag = #{delFlag,jdbcType=TINYINT},
-      subBy = #{subby,jdbcType=INTEGER}
+      subBy = #{user.userId,jdbcType=INTEGER}
     where customer_ID = #{customerId,jdbcType=INTEGER}
   </update>
-    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
-    select customer_ID, customer_Name, customer_Tel, customer_Gender, del_Flag, last_SubTime, 
-    subBy
-    from t_customer
-    where customer_ID = #{customerId,jdbcType=INTEGER}
-  </select>
-    <select id="selectAll" resultMap="BaseResultMap">
-    select customer_ID, customer_Name, customer_Tel, customer_Gender, del_Flag, last_SubTime, 
-    subBy
-    from t_customer
-  </select>
 </mapper>

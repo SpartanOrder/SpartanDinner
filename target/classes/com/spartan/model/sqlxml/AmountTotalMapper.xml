@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.spartan.dao.AmountTotalMapper">
+    <resultMap id="BaseResultMap" type="com.spartan.model.AmountTotal">
+        <id column="total_Id" property="totalId" jdbcType="INTEGER"/>
+        <result column="total_Year" property="totalYear" jdbcType="INTEGER"/>
+        <result column="total_Month" property="totalMonth" jdbcType="INTEGER"/>
+        <result column="total_Day" property="totalDay" jdbcType="INTEGER"/>
+        <result column="total_DayTime" property="totalDaytime" jdbcType="INTEGER"/>
+        <result column="total_Num" property="totalNum" jdbcType="INTEGER"/>
+        <result column="total__End_Num" property="totalEndNum" jdbcType="INTEGER"/>
+        <result column="total__OnAccount_Num" property="totalOnaccountNum" jdbcType="INTEGER"/>
+        <result column="total_Amount" property="totalAmount" jdbcType="DECIMAL"/>
+        <result column="total_End_Amount" property="totalEndAmount" jdbcType="DECIMAL"/>
+        <result column="total_OnAccount_Amount" property="totalOnaccountAmount" jdbcType="DECIMAL"/>
+        <result column="del_Flag" property="delFlag" jdbcType="TINYINT"/>
+        <result column="last_SubTime" property="lastSubtime" jdbcType="TIMESTAMP"/>
+        <association property="user" column="subBy" javaType="com.spartan.model.User" resultMap="com.spartan.dao.UserMapper.SimpleResultMap">
+        </association>
+    </resultMap>
+    <resultMap id="SimpleResultMap" type="com.spartan.model.AmountTotal">
+        <id column="total_Id" property="totalId" jdbcType="INTEGER"/>
+        <result column="total_Year" property="totalYear" jdbcType="INTEGER"/>
+        <result column="total_Month" property="totalMonth" jdbcType="INTEGER"/>
+        <result column="total_Day" property="totalDay" jdbcType="INTEGER"/>
+        <result column="total_DayTime" property="totalDaytime" jdbcType="INTEGER"/>
+        <result column="total_Num" property="totalNum" jdbcType="INTEGER"/>
+        <result column="total_Amount" property="totalAmount" jdbcType="DECIMAL"/>
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")" separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")" separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
+    m.total_Id, m.total_Year, m.total_Month, m.total_Day, m.total_DayTime, m.total_Num, m.total__End_Num,
+    m.total__OnAccount_Num, m.total_Amount, m.total_End_Amount, m.total_OnAccount_Amount
+  </sql>
+    <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.spartan.model.AmountTotalExample">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List"/>,
+        <include refid="com.spartan.dao.common.Column_Master_LastSubtime"/>,
+        <include refid="com.spartan.dao.common.Column_Master_CUD"/>,
+        <include refid="com.spartan.dao.UserMapper.Column_SubBy_Employee"/>
+        from t_amounttotal m
+        <include refid="com.spartan.dao.UserMapper.LEFTJOIN_SubBy_Employee"/>
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>,
+        <include refid="com.spartan.dao.common.Column_Master_LastSubtime"/>,
+        <include refid="com.spartan.dao.common.Column_Master_CUD"/>,
+        <include refid="com.spartan.dao.UserMapper.Column_SubBy_Employee"/>
+        from t_amounttotal m
+        <include refid="com.spartan.dao.UserMapper.LEFTJOIN_SubBy_Employee"/>
+        where total_Id = #{totalId,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete m from t_amounttotal m
+    where total_Id = #{totalId,jdbcType=INTEGER}
+  </delete>
+    <delete id="deleteByExample" parameterType="com.spartan.model.AmountTotalExample">
+        delete m from t_amounttotal m
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </delete>
+    <insert id="insert" parameterType="com.spartan.model.AmountTotal">
+    insert into t_amounttotal (total_Id, total_Year, total_Month, 
+      total_Day, total_DayTime, total_Num, 
+      total__End_Num, total__OnAccount_Num, total_Amount, 
+      total_End_Amount, total_OnAccount_Amount, del_Flag, 
+      subBy)
+    values (#{totalId,jdbcType=INTEGER}, #{totalYear,jdbcType=INTEGER}, #{totalMonth,jdbcType=INTEGER}, 
+      #{totalDay,jdbcType=INTEGER}, #{totalDaytime,jdbcType=INTEGER}, #{totalNum,jdbcType=INTEGER}, 
+      #{totalEndNum,jdbcType=INTEGER}, #{totalOnaccountNum,jdbcType=INTEGER}, #{totalAmount,jdbcType=DECIMAL}, 
+      #{totalEndAmount,jdbcType=DECIMAL}, #{totalOnaccountAmount,jdbcType=DECIMAL}, #{delFlag,jdbcType=TINYINT}, 
+      #{user.userId,jdbcType=INTEGER})
+  </insert>
+    <insert id="insertSelective" parameterType="com.spartan.model.AmountTotal">
+        insert into t_amounttotal
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="totalId != null">
+                total_Id,
+            </if>
+            <if test="totalYear != null">
+                total_Year,
+            </if>
+            <if test="totalMonth != null">
+                total_Month,
+            </if>
+            <if test="totalDay != null">
+                total_Day,
+            </if>
+            <if test="totalDaytime != null">
+                total_DayTime,
+            </if>
+            <if test="totalNum != null">
+                total_Num,
+            </if>
+            <if test="totalEndNum != null">
+                total__End_Num,
+            </if>
+            <if test="totalOnaccountNum != null">
+                total__OnAccount_Num,
+            </if>
+            <if test="totalAmount != null">
+                total_Amount,
+            </if>
+            <if test="totalEndAmount != null">
+                total_End_Amount,
+            </if>
+            <if test="totalOnaccountAmount != null">
+                total_OnAccount_Amount,
+            </if>
+            <if test="delFlag != null">
+                del_Flag,
+            </if>
+            <if test="lastSubtime != null">
+                last_SubTime,
+            </if>
+            <if test="user != null">
+                subBy,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="totalId != null">
+                #{totalId,jdbcType=INTEGER},
+            </if>
+            <if test="totalYear != null">
+                #{totalYear,jdbcType=INTEGER},
+            </if>
+            <if test="totalMonth != null">
+                #{totalMonth,jdbcType=INTEGER},
+            </if>
+            <if test="totalDay != null">
+                #{totalDay,jdbcType=INTEGER},
+            </if>
+            <if test="totalDaytime != null">
+                #{totalDaytime,jdbcType=INTEGER},
+            </if>
+            <if test="totalNum != null">
+                #{totalNum,jdbcType=INTEGER},
+            </if>
+            <if test="totalEndNum != null">
+                #{totalEndNum,jdbcType=INTEGER},
+            </if>
+            <if test="totalOnaccountNum != null">
+                #{totalOnaccountNum,jdbcType=INTEGER},
+            </if>
+            <if test="totalAmount != null">
+                #{totalAmount,jdbcType=DECIMAL},
+            </if>
+            <if test="totalEndAmount != null">
+                #{totalEndAmount,jdbcType=DECIMAL},
+            </if>
+            <if test="totalOnaccountAmount != null">
+                #{totalOnaccountAmount,jdbcType=DECIMAL},
+            </if>
+            <if test="delFlag != null">
+                #{delFlag,jdbcType=TINYINT},
+            </if>
+            <if test="lastSubtime != null">
+                #{lastSubtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="user != null">
+                #{user.userId,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByExample" parameterType="com.spartan.model.AmountTotalExample" resultType="java.lang.Integer">
+        select count(*) from t_amounttotal m
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
+        update t_amounttotal m
+        <set>
+            <if test="record.totalId != null">
+                total_Id = #{record.totalId,jdbcType=INTEGER},
+            </if>
+            <if test="record.totalYear != null">
+                total_Year = #{record.totalYear,jdbcType=INTEGER},
+            </if>
+            <if test="record.totalMonth != null">
+                total_Month = #{record.totalMonth,jdbcType=INTEGER},
+            </if>
+            <if test="record.totalDay != null">
+                total_Day = #{record.totalDay,jdbcType=INTEGER},
+            </if>
+            <if test="record.totalDaytime != null">
+                total_DayTime = #{record.totalDaytime,jdbcType=INTEGER},
+            </if>
+            <if test="record.totalNum != null">
+                total_Num = #{record.totalNum,jdbcType=INTEGER},
+            </if>
+            <if test="record.totalEndNum != null">
+                total__End_Num = #{record.totalEndNum,jdbcType=INTEGER},
+            </if>
+            <if test="record.totalOnaccountNum != null">
+                total__OnAccount_Num = #{record.totalOnaccountNum,jdbcType=INTEGER},
+            </if>
+            <if test="record.totalAmount != null">
+                total_Amount = #{record.totalAmount,jdbcType=DECIMAL},
+            </if>
+            <if test="record.totalEndAmount != null">
+                total_End_Amount = #{record.totalEndAmount,jdbcType=DECIMAL},
+            </if>
+            <if test="record.totalOnaccountAmount != null">
+                total_OnAccount_Amount = #{record.totalOnaccountAmount,jdbcType=DECIMAL},
+            </if>
+            <if test="record.delFlag != null">
+                del_Flag = #{record.delFlag,jdbcType=TINYINT},
+            </if>
+            <if test="record.lastSubtime != null">
+                last_SubTime = #{record.lastSubtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.user != null">
+                subBy = #{record.user.userId,jdbcType=INTEGER},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map">
+        update t_amounttotal m
+        set total_Id = #{record.totalId,jdbcType=INTEGER},
+        total_Year = #{record.totalYear,jdbcType=INTEGER},
+        total_Month = #{record.totalMonth,jdbcType=INTEGER},
+        total_Day = #{record.totalDay,jdbcType=INTEGER},
+        total_DayTime = #{record.totalDaytime,jdbcType=INTEGER},
+        total_Num = #{record.totalNum,jdbcType=INTEGER},
+        total__End_Num = #{record.totalEndNum,jdbcType=INTEGER},
+        total__OnAccount_Num = #{record.totalOnaccountNum,jdbcType=INTEGER},
+        total_Amount = #{record.totalAmount,jdbcType=DECIMAL},
+        total_End_Amount = #{record.totalEndAmount,jdbcType=DECIMAL},
+        total_OnAccount_Amount = #{record.totalOnaccountAmount,jdbcType=DECIMAL},
+        del_Flag = #{record.delFlag,jdbcType=TINYINT},
+        last_SubTime = #{record.lastSubtime,jdbcType=TIMESTAMP},
+        subBy = #{record.user.userId,jdbcType=INTEGER}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="com.spartan.model.AmountTotal">
+        update t_amounttotal m
+        <set>
+            <if test="totalYear != null">
+                total_Year = #{totalYear,jdbcType=INTEGER},
+            </if>
+            <if test="totalMonth != null">
+                total_Month = #{totalMonth,jdbcType=INTEGER},
+            </if>
+            <if test="totalDay != null">
+                total_Day = #{totalDay,jdbcType=INTEGER},
+            </if>
+            <if test="totalDaytime != null">
+                total_DayTime = #{totalDaytime,jdbcType=INTEGER},
+            </if>
+            <if test="totalNum != null">
+                total_Num = #{totalNum,jdbcType=INTEGER},
+            </if>
+            <if test="totalEndNum != null">
+                total__End_Num = #{totalEndNum,jdbcType=INTEGER},
+            </if>
+            <if test="totalOnaccountNum != null">
+                total__OnAccount_Num = #{totalOnaccountNum,jdbcType=INTEGER},
+            </if>
+            <if test="totalAmount != null">
+                total_Amount = #{totalAmount,jdbcType=DECIMAL},
+            </if>
+            <if test="totalEndAmount != null">
+                total_End_Amount = #{totalEndAmount,jdbcType=DECIMAL},
+            </if>
+            <if test="totalOnaccountAmount != null">
+                total_OnAccount_Amount = #{totalOnaccountAmount,jdbcType=DECIMAL},
+            </if>
+            <if test="delFlag != null">
+                del_Flag = #{delFlag,jdbcType=TINYINT},
+            </if>
+            <if test="lastSubtime != null">
+                last_SubTime = #{lastSubtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="user != null">
+                subBy = #{user.userId,jdbcType=INTEGER},
+            </if>
+        </set>
+        where total_Id = #{totalId,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.spartan.model.AmountTotal">
+    update t_amounttotal m
+    set total_Year = #{totalYear,jdbcType=INTEGER},
+      total_Month = #{totalMonth,jdbcType=INTEGER},
+      total_Day = #{totalDay,jdbcType=INTEGER},
+      total_DayTime = #{totalDaytime,jdbcType=INTEGER},
+      total_Num = #{totalNum,jdbcType=INTEGER},
+      total__End_Num = #{totalEndNum,jdbcType=INTEGER},
+      total__OnAccount_Num = #{totalOnaccountNum,jdbcType=INTEGER},
+      total_Amount = #{totalAmount,jdbcType=DECIMAL},
+      total_End_Amount = #{totalEndAmount,jdbcType=DECIMAL},
+      total_OnAccount_Amount = #{totalOnaccountAmount,jdbcType=DECIMAL},
+      del_Flag = #{delFlag,jdbcType=TINYINT},
+      last_SubTime = #{lastSubtime,jdbcType=TIMESTAMP},
+      subBy = #{user.userId,jdbcType=INTEGER}
+    where total_Id = #{totalId,jdbcType=INTEGER}
+  </update>
+</mapper>

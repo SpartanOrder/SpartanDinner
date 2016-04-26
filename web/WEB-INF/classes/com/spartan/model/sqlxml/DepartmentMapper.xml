@@ -2,46 +2,253 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.spartan.dao.DepartmentMapper">
     <resultMap id="BaseResultMap" type="com.spartan.model.Department">
-        <id column="role_ID" property="roleId" jdbcType="INTEGER"/>
-        <result column="role_Name" property="roleName" jdbcType="VARCHAR"/>
-        <result column="priority" property="priority" jdbcType="INTEGER"/>
-        <result column="parent_Id" property="parentId" jdbcType="INTEGER"/>
-        <result column="parent_Ids" property="parentIds" jdbcType="VARCHAR"/>
+        <id column="department_ID" property="departmentId" jdbcType="INTEGER"/>
+        <result column="department_Name" property="departmentName" jdbcType="VARCHAR"/>
+        <result column="description" property="description" jdbcType="VARCHAR"/>
+        <result column="remark" property="remark" jdbcType="VARCHAR"/>
         <result column="del_Flag" property="delFlag" jdbcType="TINYINT"/>
         <result column="last_SubTime" property="lastSubtime" jdbcType="TIMESTAMP"/>
-        <result column="subBy" property="subby" jdbcType="INTEGER"/>
+        <association property="user" column="subBy" javaType="com.spartan.model.User" resultMap="com.spartan.dao.UserMapper.SimpleResultMap">
+        </association>
     </resultMap>
-    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from t_department
-    where role_ID = #{roleId,jdbcType=INTEGER}
-  </delete>
-    <insert id="insert" parameterType="com.spartan.model.Department">
-    insert into t_department (role_ID, role_Name, priority, 
-      parent_Id, parent_Ids, del_Flag, 
-      subBy)
-    values (#{roleId,jdbcType=INTEGER}, #{roleName,jdbcType=VARCHAR}, #{priority,jdbcType=INTEGER},
-      #{parentId,jdbcType=INTEGER}, #{parentIds,jdbcType=VARCHAR}, #{delFlag,jdbcType=TINYINT},
-      #{subby,jdbcType=INTEGER})
-  </insert>
-    <update id="updateByPrimaryKey" parameterType="com.spartan.model.Department">
-    update t_department
-    set role_Name = #{roleName,jdbcType=VARCHAR},
-      priority = #{priority,jdbcType=INTEGER},
-      parent_Id = #{parentId,jdbcType=INTEGER},
-      parent_Ids = #{parentIds,jdbcType=VARCHAR},
-      del_Flag = #{delFlag,jdbcType=TINYINT},
-      subBy = #{subby,jdbcType=INTEGER}
-    where role_ID = #{roleId,jdbcType=INTEGER}
-  </update>
+    <resultMap id="SimpleResultMap" type="com.spartan.model.Department">
+        <id column="department_ID" property="departmentId" jdbcType="INTEGER"/>
+        <result column="department_Name" property="departmentName" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")" separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")" separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
+    m.department_ID, m.department_Name, m.description, m.remark
+  </sql>
+    <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.spartan.model.DepartmentExample">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List"/>,
+        <include refid="com.spartan.dao.common.Column_Master_LastSubtime"/>,
+        <include refid="com.spartan.dao.common.Column_Master_CUD"/>,
+        <include refid="com.spartan.dao.UserMapper.Column_SubBy_Employee"/>
+        from t_department m
+        <include refid="com.spartan.dao.UserMapper.LEFTJOIN_SubBy_Employee"/>
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
-    select role_ID, role_Name, priority, parent_Id, parent_Ids, del_Flag, last_SubTime, 
-    subBy
-    from t_department
-    where role_ID = #{roleId,jdbcType=INTEGER}
-  </select>
-    <select id="selectAll" resultMap="BaseResultMap">
-    select role_ID, role_Name, priority, parent_Id, parent_Ids, del_Flag, last_SubTime, 
-    subBy
-    from t_department
-  </select>
+        select
+        <include refid="Base_Column_List"/>,
+        <include refid="com.spartan.dao.common.Column_Master_LastSubtime"/>,
+        <include refid="com.spartan.dao.common.Column_Master_CUD"/>,
+        <include refid="com.spartan.dao.UserMapper.Column_SubBy_Employee"/>
+        from t_department m
+        <include refid="com.spartan.dao.UserMapper.LEFTJOIN_SubBy_Employee"/>
+        where m.department_ID = #{departmentId,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete m from t_department m
+    where department_ID = #{departmentId,jdbcType=INTEGER}
+  </delete>
+    <delete id="deleteByExample" parameterType="com.spartan.model.DepartmentExample">
+        delete m from t_department m
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </delete>
+    <insert id="insert" parameterType="com.spartan.model.Department">
+    insert into t_department (department_ID, department_Name, description, 
+      remark, del_Flag,
+      subBy)
+    values (#{departmentId,jdbcType=INTEGER}, #{departmentName,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR}, #{delFlag,jdbcType=TINYINT},
+      #{user.userId,jdbcType=INTEGER})
+  </insert>
+    <insert id="insertSelective" parameterType="com.spartan.model.Department">
+        insert into t_department
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="departmentId != null">
+                department_ID,
+            </if>
+            <if test="departmentName != null">
+                department_Name,
+            </if>
+            <if test="description != null">
+                description,
+            </if>
+            <if test="remark != null">
+                remark,
+            </if>
+            <if test="delFlag != null">
+                del_Flag,
+            </if>
+            <if test="lastSubtime != null">
+                last_SubTime,
+            </if>
+            <if test="user.getUserId()!= null">
+                subBy,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="departmentId != null">
+                #{departmentId,jdbcType=INTEGER},
+            </if>
+            <if test="departmentName != null">
+                #{departmentName,jdbcType=VARCHAR},
+            </if>
+            <if test="description != null">
+                #{description,jdbcType=VARCHAR},
+            </if>
+            <if test="remark != null">
+                #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="delFlag != null">
+                #{delFlag,jdbcType=TINYINT},
+            </if>
+            <if test="lastSubtime != null">
+                #{lastSubtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="user != null">
+                #{user.userId,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByExample" parameterType="com.spartan.model.DepartmentExample" resultType="java.lang.Integer">
+        select count(*) from t_department m
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
+        update t_department m
+        <set>
+            <if test="record.departmentId != null">
+                department_ID = #{record.departmentId,jdbcType=INTEGER},
+            </if>
+            <if test="record.departmentName != null">
+                department_Name = #{record.departmentName,jdbcType=VARCHAR},
+            </if>
+            <if test="record.description != null">
+                description = #{record.description,jdbcType=VARCHAR},
+            </if>
+            <if test="record.remark != null">
+                remark = #{record.remark,jdbcType=VARCHAR},
+            </if>
+            <if test="record.delFlag != null">
+                del_Flag = #{record.delFlag,jdbcType=TINYINT},
+            </if>
+            <if test="record.lastSubtime != null">
+                last_SubTime = #{record.lastSubtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.user != null">
+                subBy = #{record.user.userId,jdbcType=INTEGER},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map">
+        update t_department m
+        set department_ID = #{record.departmentId,jdbcType=INTEGER},
+        department_Name = #{record.departmentName,jdbcType=VARCHAR},
+        description = #{record.description,jdbcType=VARCHAR},
+        remark = #{record.remark,jdbcType=VARCHAR},
+        del_Flag = #{record.delFlag,jdbcType=TINYINT},
+        subBy = #{record.user.userId,jdbcType=INTEGER}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="com.spartan.model.Department">
+        update t_department m
+        <set>
+            <if test="departmentName != null">
+                department_Name = #{departmentName,jdbcType=VARCHAR},
+            </if>
+            <if test="description != null">
+                description = #{description,jdbcType=VARCHAR},
+            </if>
+            <if test="remark != null">
+                remark = #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="delFlag != null">
+                del_Flag = #{delFlag,jdbcType=TINYINT},
+            </if>
+            <if test="lastSubtime != null">
+                last_SubTime = #{lastSubtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="user != null">
+                subBy = #{user.userId,jdbcType=INTEGER},
+            </if>
+        </set>
+        where department_ID = #{departmentId,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.spartan.model.Department">
+    update t_department m
+    set department_Name = #{departmentName,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      del_Flag = #{delFlag,jdbcType=TINYINT},
+      subBy = #{user.userId,jdbcType=INTEGER}
+    where department_ID = #{departmentId,jdbcType=INTEGER}
+  </update>
 </mapper>
